@@ -4,7 +4,7 @@ Una recopilación de apuntes del Grado en Matemáticas escritos en $\LaTeX$. Tod
 
 ## 📖 Contenidos
 
-- [Ampliación de la Teoría de Probabilidad]([https://github.com/DanielSevillano/matematicas-latex/tree/main/Ecuaciones%20diferenciales%20II](https://github.com/jorgeroddom/matematicas-latex/tree/main/Ampliacion%20de%20la%20Teoria%20de%20la%20Probabilidad))
+- [Ampliación de la Teoría de Probabilidad](https://github.com/DanielSevillano/matematicas-latex/tree/main/Ecuaciones%20diferenciales%20II](https://github.com/jorgeroddom/matematicas-latex/tree/main/Ampliacion%20de%20la%20Teoria%20de%20la%20Probabilidad)
 - [Análisis Numérico](https://github.com/jorgeroddom/matematicas-latex/tree/main/Analisis%20Numerico)
 - [Análisis de Datos e Inferencia](https://github.com/jorgeroddom/matematicas-latex/tree/main/Analisis%20de%20Datos%20e%20Inferencia)
 - [Inferencia Estadística](https://github.com/jorgeroddom/matematicas-latex/tree/main/Inferencia%20Estadistica)
