@@ -1,0 +1,289 @@
+\chapter{Análisis factorial}
+
+El propósito del Análisis Factorial \cite{Ruiz} es explicar la estructura subyacente en una matriz de datos $\mathbf{X}$, analizando las interrelaciones entre las variables. A partir de nuestra matriz de datos, el Análisis Factorial calcula un conjunto de dimensiones latentes, conocidas como factores, que buscar explicar dichas correlaciones. El Análisis Factorial es parecido al Análisis de Componentes Principales, en el sentido de que buscan reducir la dimensión de los datos, aunque podemos destacar dos diferencias importantes:
+\begin{enumerate}
+    \item En el Análisis de Componentes Principales se definen nuevas variables como combinaciones lineales de las variables originales, mientras que en el Análisis Factorial, son las variables originales las que se descomponen como combinación lineales de otras variables, a las que llamaremos factores.
+    \item En el Análisis de Componentes Principales se pretende explicar la mayor parte posible de la varianza total, mientras que en el Análisis Factorial se busca explicar las covarianzas (o correlaciones) entre las variables.
+\end{enumerate}
+
+El Análisis Factorial puede ser:
+\begin{itemize}
+    \item Exploratorio: no se conocen a priori el número de factores, que se determinarán sobre la marcha.
+    \item Confirmatorio: los factores están fijados a priori, utilizándose contrastes de hipótesis para su corroboración.
+\end{itemize}
+
+Nosotros nos centraremos en el Análisis Factorial exploratorio.
+
+\section{Definición del modelo y suposiciones}
+
+Sea $\mathbf{X} = [X_1| X_2| \ldots| X_p]$ una matriz de datos multivariantes, con vector de medias $\boldsymbol{\mu}$ y matriz de covarianzas $\Sigma$. El Análisis Factorial busca descomponer nuestras variables de la siguiente manera:
+
+\begin{equation} \label{modelo:fact1}
+\begin{aligned}
+    X_1 - \mu_1 &= \lambda_{11} F_1 + \lambda_{12}F_2 + \ldots + \lambda_{1m} F_m + \varepsilon_1, \\
+    X_2 - \mu_2 &= \lambda_{21} F_1 + \lambda_{22}F_2 + \ldots + \lambda_{2m} F_m + \varepsilon_2, \\
+    & \vdots\\
+    X_p - \mu_p &= \lambda_{p1} F_1 + \lambda_{p2}F_2 + \ldots + \lambda_{pm} F_m + \varepsilon_p.
+\end{aligned}
+\end{equation}
+
+Los coeficientes $\lambda_{ij}$ se denominan cargas factoriales e indican como cada variable $X_i$ depende de cada factor $F_j$. Sólo después de estimar las cargas factoriales podemos asignar las variables a los factores.
+
+
+Supondremos que, para $j=1,\ldots,m$,
+\begin{align} \label{cond:fact1}
+    E[F_j] = 0, \quad Var(F_j) = 0, \quad Cov(F_j, F_k) = 0, \quad j \not = k.
+\end{align}
+
+Estas condiciones hacen que el modelo que estamos definiendo se conozca como modelo de factores ortonormales. Supondremos además que, para $i = 1, \ldots, p$,
+\begin{align} \label{cond:fact2}
+    E[\varepsilon_i] = 0, \quad Var(\varepsilon_i) = \psi_i, \quad Cov(\varepsilon_i, \varepsilon_j) = 0, \quad i \not = j, \quad Cov(\varepsilon_i, f_j) = 0.
+\end{align}
+
+$\psi_i$ es la varianza específica. Bajo estas suposiciones, se tiene
+\begin{align}
+    Var(X_i) = \lambda_{i1}^2 + \lambda_{i2}^2 + \ldots + \lambda_{im}^2 + \psi_i,
+\end{align}
+
+donde apreciamos que la varianza $X_i$ se reparte en:
+\begin{itemize}
+    \item una componente debida a los factores comunes, llamada comunalidad.
+    \item una componente específica, llamada varianza específica o residual.
+\end{itemize}
+
+Podemos expresar \eqref{modelo:fact1} matricialmente como
+\begin{align}
+    \mathbf{X} - \boldsymbol{\mu} = \Lambda \mathbf{f} + \boldsymbol{\varepsilon}
+\end{align}
+
+siendo,
+
+\begin{equation}
+\begin{aligned}
+    \Lambda &= \begin{bmatrix}
+        \lambda_{11} & \lambda_{12} & \ldots & \lambda_{1m} \\
+        \lambda_{21} & \lambda_{22} & \ldots & \lambda_{2m} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        \lambda_{p1} & \lambda_{p2} & \ldots & \lambda_{pm}
+    \end{bmatrix} \\
+    E[\mathbf{f}] &= \mathbf{0}, \quad Cov(\mathbf{f}) = \mathbf{I}, \quad E[\boldsymbol{\varepsilon}] = \mathbf{0}, \\
+    Cov(\boldsymbol{\varepsilon}) &= \Psi = \begin{bmatrix}
+        \psi_1 & 0 & \ldots & 0 \\
+        0 & \psi_2 & \ldots & 0 \\
+        \vdots & \vdots & \ddots & \vdots \\
+        0 & 0 & \ldots & \psi_m
+    \end{bmatrix}, \\
+    Cov(\boldsymbol{\varepsilon}, \mathbf{f}) &= \mathbf{0}.
+\end{aligned}
+\end{equation}
+
+Deseamos expresar las $p(p-1)/2$ covarianzas (y las $p$ varianzas) de las varibles $X_1, X_2, \ldots, X_p$ en términos de la estructura simplificada en la que aparecen las $p \cdot m$ cargas factoriales y las $p$ varianzas específicas. Matricialmente, podemos expresar $\Sigma$ en función de $\Lambda$ y $\Psi$.
+
+\begin{align*}
+    \Sigma = E[(\mathbf{X} - \boldsymbol{\mu})(\mathbf{X} - \boldsymbol{\mu})'] &= E[(\Lambda \mathbf{f} + \boldsymbol{\varepsilon})(\Lambda \mathbf{f} + \boldsymbol{\varepsilon})'] = E[(\Lambda \mathbf{f} + \boldsymbol{\varepsilon})(\mathbf{f}'\Lambda' + \boldsymbol{\varepsilon}')] \\
+    &= E[\Lambda \mathbf{f} \mathbf{f}' \Lambda' + \Lambda \mathbf{f} \boldsymbol{\varepsilon}' + \boldsymbol{\varepsilon} \mathbf{f} \Lambda' + \boldsymbol{\varepsilon} \boldsymbol{\varepsilon}'] \\
+    &= \Lambda E[\mathbf{f} \mathbf{f}'] \Lambda' + \Lambda E[\mathbf{f} \boldsymbol{\varepsilon}'] + E[\boldsymbol{\varepsilon} \mathbf{f}] \Lambda' + E[\boldsymbol{\varepsilon} \boldsymbol{\varepsilon}'] = \Lambda \Lambda' + \Psi,
+\end{align*}
+
+donde la última igualdad se da gracias a las condiciones \eqref{cond:fact1} y \eqref{cond:fact2}.
+
+
+En la práctica, la matriz de covarianza no se ajustará satisfactoriamente a la expresión
+\begin{align} \label{igualdad}
+    \Sigma = \Lambda \Lambda' + \Psi
+\end{align}
+
+El objetivo será estimar $\Lambda$. Igualando cada elemento de $\Sigma$ con la combinación lineal correspondiente al segundo de la ecuación \eqref{igualdad}, resultan $p^2$ ecuaciones. Como $\Sigma$ es simétrica, está integrada por $p(p+1)/2$ elementos distintos. En el segundo miembro de la igualdad \eqref{igualdad}, vemos que hay $p$ incógnitas correspondientes a $\Psi$ y $p \cdot m$ incógnitas correspondientes a $\Lambda$, que hacen un total de $p(m+1)$ incógnitas. Para que un sistema de estas características tenga solución ha de ocurrir
+\begin{align*}
+    p(m+1) \leq \frac{p(p+1)}{2} \Longleftrightarrow m \leq \frac{p-1}{2}.
+\end{align*}
+
+Además, el Análisis Factorial es único salvo rotaciones ortogonales.
+
+\section{Estimación de las cargas factoriales}
+
+\subsection{Método de las componentes principales}
+
+Sea $\mathbf{X} = (x_{ij})$, $i=1,\ldots,n$, $j=1,\ldots,p$ nuestra matriz de datos, con matriz de covarianzas $S$. Factorizemos $S$ mediante su descomposición espectral, es decir,
+\begin{align*}
+    S = CDC',
+\end{align*}
+siendo
+\begin{itemize}
+    \item $C$ la matriz ortonormal construida a partir de los autovectores de $S$,
+    \begin{align*}
+        C = [\mathbf{c}_1 | \ldots | \mathbf{c}_p].
+    \end{align*}
+    \item $D$ la matriz diagonal formada por los autovalores de $S$,
+    \begin{align*}
+        D = \begin{bmatrix}
+            \theta_1 & 0 & \ldots & 0 \\
+            0 & \theta_2 & 0 \ldots & 0 \\
+            \vdots & \vdots & \ddots & \vdots \\
+            0 & 0 & \ldots & \theta_p
+        \end{bmatrix}.
+    \end{align*}
+\end{itemize}
+Así, 
+\begin{align*}
+    S = CDC' = CD^{1/2}D^{1/2}C' = (CD^{1/2})(CD^{1/2})'.
+\end{align*}
+
+Definimos las matrices
+\begin{itemize}
+    \item $\widetilde{D} = diag(\theta_1, \theta_2, \ldots, \theta_m)$, con los $m$ autovalores mayores, ordenados de mayor a menor.
+    \item $\widetilde{C} = [\mathbf{c}_1 | \ldots | \mathbf{c}_m]$ formada por los correspondientes $m$ autovectores.
+\end{itemize}
+
+Definimos $\widetilde{\Lambda} = \widetilde{C}\widetilde{D}^{1/2} = [\sqrt{\theta_1} \mathbf{c}_1 |\sqrt{\theta_2} \mathbf{c}_2 | \ldots | \sqrt{\theta_m} \mathbf{c}_m]$. El $i$-ésimo elemento de la diagonal de $\widetilde{\Lambda}\widetilde{\Lambda}'$ es la suma de los cuadrados de la $i$-ésima fila de $\widetilde{\Lambda}$:
+\begin{align*}
+    \widetilde{\lambda}_i' \widetilde{\lambda}_i = \sum_{j=1}^{m} \widetilde{\lambda}_{ij}^2,
+\end{align*}
+con esto, solo nos falta definir las varianzas específicas como 
+\begin{align*}
+    \widetilde{\psi}_i = s_{ii} - \sum_{j=1}^{m} \widetilde{\lambda}_{ij}^2,
+\end{align*}
+llegando a que $S \approx \widetilde{\Lambda} \widetilde{\Lambda}' + \widetilde{\Psi}$, siendo $\widetilde{\Psi} = diag(\widetilde{\psi}_1, \widetilde{\psi}_2, \ldots, \widetilde{\psi}_p)$. Si definimos la matriz $(e_{ij}) = E = S - (\widetilde{\Lambda} \widetilde{\Lambda}' + \widetilde{\Psi})$, se puede probar que
+\begin{align*}
+    \sum_{i,j=1}^{p} e_{ij} \leq \theta_{m+1}^2 + \theta_{m+2}^2 + \ldots + \theta_p^2.
+\end{align*}
+
+Nótese además, que la suma de los cuadrados de las columna $i$-ésima de $\widetilde{\Lambda}$ es precisamente $\theta_i$. La contribución del $j$-ésimo factor a la varianza muestral total ($ts(S)$) es $\sum_{i=1}^{m} \widetilde{\lambda}_{ij}^2$, por lo que la proporción de la varianza total muestral debida al factor $j$-ésimo es entonces
+\begin{align*}
+    \frac{\sum_{i=1}^{m} \widetilde{\lambda}_{ij}^2}{tr(S)} = \frac{\theta_j}{tr(S)}.
+\end{align*}
+
+\subsection{Método de los factores principales}
+
+En el procedimiento de estimación de las cargas factoriales por componentes principales se deshecha la matriz $\Psi$ y se factoriza la matriz $S$. El método de los factores principales parte de una estimación inicial de $\Psi$, que denotaremos por $\widehat{\Psi}$, y se factoriza la matriz $S-\widetilde{\Psi}$ como $S - \widetilde{\Psi} \approx \widetilde{\Lambda} \widetilde{\Lambda}'$, donde como antes
+\begin{align*}
+    \widetilde{\Lambda} = \widetilde{C}\widetilde{D}^{1/2} = [\sqrt{\theta_1} \mathbf{c}_1 |\sqrt{\theta_2} \mathbf{c}_2 | \ldots | \sqrt{\theta_m} \mathbf{c}_m].
+\end{align*}
+
+El $i$-ésimo elemento de la diagonal de $S - \widetilde{\Psi}$ es $s_{ii} - \widetilde{\psi}_i$, que es precisamente la $i$-ésima comunalidad. En forma matricial:
+
+\begin{align*}
+    S - \widetilde{\Psi} = \begin{bmatrix}
+        \widetilde{h}_1^2 & s_{12} & \ldots & s_{1p} \\
+        s_{21} & \widetilde{h}_2^2 & \ldots & s_{2p} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        s_{p1} & s_{p2} & \ldots & \widetilde{h}_p^2
+    \end{bmatrix},
+\end{align*}
+
+donde se suele estimar 
+\begin{align*}
+    \widetilde{h}_i^2 = s_{ii} - \frac{1}{s_{ii}}.
+\end{align*}
+
+Una vez tenemos estimadas las comunalidades, se calculan los autovalores de $S - \widetilde{\Psi}$ para calcular $\widetilde{\Lambda} = \widetilde{C}\widetilde{D}^{1/2} = [\sqrt{\theta_1} \mathbf{c}_1 |\sqrt{\theta_2} \mathbf{c}_2 | \ldots | \sqrt{\theta_m} \mathbf{c}_m]$. La suma de la columna $j$ de $\widetilde{\Lambda}$ es precisamente el $j$-ésimo autovalor de $S - \widetilde{\Psi}$, $\theta_j$. La proporción de la variabilidad explicada por el factor $j$ es
+\begin{align*}
+    \frac{\theta_j}{tr(S- \widetilde{\Psi})} = \frac{\theta_j}{\sum_{i=1}^{p} \theta_i}.
+\end{align*}
+
+\begin{obs}
+    No se garantiza que $S - \widetilde{\Psi}$ sea semidefinida positiva. En caso de no serlo, no podríamos estimar $\widetilde{\Lambda}$.
+\end{obs}
+
+\section{Rotaciones}
+
+El objetivo del Análisis Factorial es que los factores comunes tengan una interpretación clara. Sin embargo, esto sucede en muy pocas ocasiones, con independencia del método utilizado para su extracción.
+
+
+Los procedimientos de rotación de factores se han ideado para obtener, a partir de la solución inicial, unos factores que sean fácilmente interpretables. Con los factores rotados se trata de que cada una de las variables originales tenga una correlación lo más próxima a 1 posible con uno de los factores y correlaciones próximas a 0 con el resto de factores. La rotación es posible puesto que no existe una solución única para determinar la matriz de cargas (es único salvo rotaciones ortogonales).
+
+
+Las rotaciones básicas son:
+\begin{itemize}
+    \item \textbf{Rotación ortogonal.} La ventaja de estas rotaciones es su simplicidad, ya que los pesos representan las correlaciones entre los factores y las variables. La rotación ortogonal preserva las comunalidades (puesto que se preservan las distancias). Hay varios enfoques para la rotación ortogonal, pero en la práctica usaremos: \texttt{varimax}, \texttt{varimin} y \texttt{quartimax}.
+    \item \textbf{Rotación oblicua.} Una rotación implica una transformación ortogonal que preserva las distancias, por lo que un término más correcto para esta ''rotación'' sería transformación oblicua. Lo que las diferencias de las rotaciones ortogonales, es que aquí $Cov(\mathbf{f}) \not = \mathbf{I}$ (los ejes no son ortogonales). En la práctica, usaremos las siguientes rotaciones oblicuas: \texttt{oblimin}, \texttt{promax} y \texttt{simplimax}.
+\end{itemize}
+
+\section{Un segundo ejemplo en \text{R}}
+
+Consideremos los mismos datos que en el ejemplo anterior: \texttt{state.x77}. 
+
+<<>>=
+library(datasets)
+data(state)
+datos <- state.x77
+N = dim(datos)[1]
+@
+
+Antes de comenzar con el Análisis Factorial es interesante estudiar la matriz de correlaciones. El test de esfericidad de Bartlett contrasta la hipótesis de que la matriz de correlaciones sea la identidad, en cuyo caso, no existirían correlaciones y el Análisis Factorial no sería adecuado. Para realizar dicho test debemos importar la librería \texttt{psych}.
+
+<<>>=
+library(psych)
+corr_datos <-cor(datos)
+cortest.bartlett(corr_datos, n=N)
+@
+
+El valor del estadístico es alto, por lo que rechazamos la hipótesis nula, es decir, el Análisis Factorial sería aceptable en este caso.
+
+Comenzamos con la extracción y rotación de los factores. Recordemos que queremos estimar la matriz de cargas factoriales $\Lambda$ a partir de 
+\begin{align*}
+    \Sigma = \Lambda \Lambda' + \Psi.
+\end{align*}
+
+Una implementación del Análisis Factorial en \texttt{R} es el comando \texttt{factanal()}. Debemos indicar el número de factores.
+
+<<>>=
+af_basico <- factanal(datos, factors=4)
+af_basico
+@
+
+Nos devuelve, entre otras cosas, las cargas factoriales, las unicidades (varianzas específicas), la varianza explicada por el modelo, y un test para medir la suficiencia del número de factores. Por defecto, este comando emplea el método de máxima verosimilitud para la extracción de factores y la rotación \texttt{varimax} por defecto.
+
+
+Recordemos que la cercanía de las comunalidades a 1 indican una mejor representación de la variable en el modelo. Pueden calcularse fácilmente de la siguiente manera: para la variable \texttt{Population}, que es la primera fila
+
+<<>>=
+h2_population <- sum(af_basico$loadings[1,]^2)
+h2_population
+@
+
+
+También podemos visualizar la disposición de las variables en el espacio factorial dos a dos
+
+<<>>=
+af_basico$loadings
+@
+
+\begin{center}
+<<plot.fa.2, fig.height=10, fig.width=10, fig.pos="H">>=
+plot(af_basico$loadings[,1], af_basico$loadings[,2],col="white", xlab = "Factor 1", ylab = "Factor 2")
+text(af_basico$loadings[,1], af_basico$loadings[,2], labels = colnames(datos))
+@
+\end{center}
+
+La librería \texttt{psych} antes mencionada proporciona un comando más completo para realizar el Análisis Factorial, \texttt{fa()}, que es el que se deberá usar en la práctica. Repitiendo lo anterior con este comando, y usando la misma rotación y método que antes:
+
+<<>>=
+af_completo <- fa(corr_datos, nfactors = 4, rotate = "varimax", fm = "ml")
+af_completo
+@
+
+Este comando permite además aplicar rotaciones oblicuas. También permite estudiar otros métodos de extracción (para la estimación de $\Lambda$) diferentes al de máxima verosimilitud.
+
+La proyección en el espacio de los dos primeros factores es similar al resultado obtenido con \texttt{factanal()}
+
+<<>>=
+af_completo$loadings
+@
+
+\begin{center}
+<<plot.fa.1, fig.height=10, fig.width=10, fig.pos="H">>=
+plot(af_completo$loadings, col="white", xlab = "Factor 1", ylab = "Factor 2")
+text(af_completo$loadings, labels = colnames(datos))
+@
+\end{center}
+
+\section{Segunda práctica: Análisis Factorial}
+
+\begin{itemize}
+    \item Importar los datos \texttt{datos\_pca.csv}.
+    \item Justificar si es recomendable realizar un Análisis Factorial a los datos.
+    \item Realizar Análisis Factorial con distintas rotaciones, eligiendo un método de extracción de cargas factoriales. Como  solo hemos visto Análisis Factorial Exploratorio, no es necesario realizar ningún contraste sobre la suficiencia de factores (elige el mismo número de factores para todos los análisis).
+\end{itemize}
+
+La solución de esta práctica se encuentra en el Apéndice \ref{sol:p2}.

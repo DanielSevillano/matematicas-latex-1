@@ -1,0 +1,15 @@
+\chapter*{Introducción}
+\addcontentsline{toc}{chapter}{Introducción}
+
+El material de prácticas desarrollado en este documento va dirigido especialmente a estudiantes del grado en Matemáticas o Estadística. No obstante, también puede estar dirigido a estudiantes de Ingeniería, Física, Economía... siempre y cuando se tengan conocimientos previos sobre Estadística, Probabilidad e Inferencia Estadística. Se estudiarán y aplicarán distintos modelos y técnicas estadísticas a conjuntos de datos con cualquier número de variables. De esta manera, los estudiantes serán de capaces de describir y clasificar datos multivariantes, adquiriendo para ello conocimientos tanto teóricos como prácticos. 
+
+
+Entre los objetivos de este material docente se encuentran:
+
+\begin{itemize}
+    \item Aprender los principios del lenguaje \texttt{R}.
+    \item Solucionar problemas matemáticos mediante la planificación estratégica, considerando las herramientas disponibles y respetando las limitaciones de tiempo y recursos.
+    \item Desarrollar programas en \texttt{R} que resuelvan problemas matemáticos.
+    \item Proponer, analizar, validar e interpretar modelos.
+    \item Clasificación de datos multivariantes y reducción de dimensionalidad.
+\end{itemize}

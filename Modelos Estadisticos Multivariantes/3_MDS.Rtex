@@ -1,0 +1,140 @@
+\chapter{Escalado multidimensional}
+
+Uno de los problemas más interesantes en muchas disciplinas \cite{Vera} se plantea cuando necesitamos medir y entender las relaciones entre objetos siendo desconocidas las dimensiones subyacentes de los mismos y especialmente en aquellas situaciones en las que la información disponible se refiere exclusivamente a la semejanza o desemejanza entre los objetivos que son motivo de estudio.
+
+
+Para introducir el concepto de MDS puede emplearse el siguiente ejemplo: Supongamos que se está interesado en el estudio de $n$ ciudades respecto a su posición geográfica. Si se dispone de un mapa donde se encuentran representadas las ciudades la construcción de la correspondiente matriz de distancias entre las ciudades a partir de dicho mapa se recude a una cuestión gráfica elemental. Supongamos por el contrario que se dispone de una matriz cuadrada $(n \times n)$ formada por las distancias lineales entre cada pareja de ciudades y se pretende reconstruir el mapa partiendo de dicha matriz. Este problema tiene solución en dimensión arbitraria y se recoge en el siguiente resultado, cuya demostración puede verse en \cite{Mardia}.
+
+\begin{teo} \label{teo:mds}
+Sea $D_{(n \times n)}$ una matriz de distancias entre $n$ puntos en un espacio de configuración de dimensión $K$ y sea $B_{(n \times n)}$ la matriz dada por $B = HAH$, siendo $H_{(n \times n)}$ dada por $H = I - n^{-1} \mathbf{11}'$ y $A_{(n \times n)}$ la matriz cuyos elementos vienen dados a través de $a_{rs} = -d_{rs}^2/2$. Entonces, $D$ es una matriz de distancias Euclídeas, si y solo si, $B$ es semidefinida positiva. En particular se cumple
+\begin{enumerate}
+    \item Si $D$ es la matriz de distancias Euclídeas para una configuración dada por $Z_{(n \times K)} = (z_1, \ldots, z_n)'$, entonces $B = (HZ)(HZ)'$, es decir, $b_{rs} = (z_r - \overline{z})'(z_s - \overline{z})$, $\forall r,s = 1,\ldots,n$, de donde $B \ge 0$. $B$ será la matriz centrada de productos escalares de $Z$.
+    \item Inversamente, si $B$ es semidefinida positiva de rango $K$, entonces puede construirse una configuración  asociada a $B$ de la siguiente forma: Sean $\lambda_1 > \ldots > \lambda_K$ los $K$ autovalores positivos de $B$ correspondientes a los autovectores $X_{(n \times K)} = (x_{(1)}, \ldots, x_{(K)})$, normalizados según la condición $x_{(i)}'x_{(i)} = \lambda_i$, $\forall i = 1,\ldots,K$. Los puntos de $\mathbb{R}^K$ de coordenadas $x_r = (x_{r1}, \ldots, x_{rK})'$ (donde $x_r$ representa la $r$-ésima fila de la matriz $X$), tienen matriz de distancias $D$. Además esa configuración está centrada en $\overline{x} = 0$ y $B$ es la matriz de productos escalares de la configuración.
+\end{enumerate}
+\end{teo}
+
+Desde un punto de vista general el término proximidad indica el concepto de cercanía en espacio, tiempo o cualquier otro contexto. Desde un punto de vista matemático, ese término hace referencia al concepto de disimilaridad o similaridad entre dos elementos.
+
+Sea $O$ un conjunto finito o infinito de elementos (individuos, estímulos sujetos u objetos) sobre los que queremos definir una proximidad.
+
+\begin{defi}
+    Dados dos puntos $o_i,o_j \in O$ y $\delta$ una función real de $O \times O \rightarrow \mathbb{R}$, con $\delta_{ij} = \delta(o_i,o_j)$. Se dirá que $\delta$ es una \textit{disimilaridad} si verifica:
+    \begin{enumerate}
+        \item $\delta_{ij} = \delta_{ji}$, $\forall i,j$.
+        \item $\delta_{ii} \leq \delta_{ij}$, $\forall i,j$.
+        \item $\delta_{ii} = \delta_0$, $\forall i$.
+    \end{enumerate}
+\end{defi}
+
+Las condiciones segunda y tercera suelen establecerse igualmente para $\delta_0 = 0$, aunque también es conocido que cuando a un individuo le son presentados dos estímulos idénticos, éste tiende a asignarles algún valor de disimilaridad no nulo y generalmente positivo, y además no siempre se define $\delta_0 \ge 0$ ya que si por ejemplo las disimilaridades provienen de una transformación, estás podrían ser negativas.
+
+\begin{defi}
+    Una función real $s$ de $O \times O \rightarrow \mathbb{R}$, se dirá que es una \textit{similaridad} si verifica:
+    \begin{enumerate}
+        \item $s_{ij} = s_{ji}$, $\forall i,j$.
+        \item $s_{ii} \ge s_{ij}$, $\forall i,j$.
+        \item $s_{ij} > s_0$, $\forall i,j$.
+    \end{enumerate}
+\end{defi}
+
+Algunos autores consideran $s_0 = 0$ y además suponen que $0 \leq s_{ij} \leq 1$ ya que una similaridad es un término opuesto a la de disimilaridad por lo que deberá existir alguna transformación monótona $t$ tal que $t(s) = \delta$. 
+
+\section{MDS clásico}
+
+Supongamos un conjunto de $n$ objetos y una matriz de disimilaridades $(\delta_{ij})$ entre los pares de objetos. El objetivo del MDS será encontrar una configuración de puntos en un espacio de dimensión $K$ de forma que las distancias $d_{ij}$, no necesariamente Euclídeas, entre cada par de puntos $(i,j)$ representen tan bien como establezcan las diferentes técnicas de MDS, pudiendo clasificarse en dos grandes grupos. Se distinguen dos modelos de MDS:
+
+\begin{itemize}
+    \item \textbf{MDS métrico.} Suele estar asociado a datos de tipo intervalo y de razón y trata de encontrar un conjunto de puntos en un espacio de forma que cada punto represente uno de los objetos y las distancias entre los puntos sean aproximadamente iguales cuantitativamente a las correspondientes disimilaridades transformadas mediante la relación, $d_{ij} \approx f(\delta_{ij})$.
+    \begin{itemize}
+        \item \textbf{MDS clásico.}
+        \item \textbf{MDS mínimo cuadrático.}
+        \item \textbf{MDS máximo verosímil.}
+    \end{itemize}
+    \item \textbf{MDS no métrico.} Si se abandona la naturaleza métrica de la transformación de las disimilaridades por una relación puramente ordinal, se obtienen modelos de MDS no métricos. La transformación $f$ en este caso puede ser arbitraria y solo obedece a la restricción monótona, 
+    \begin{align*}
+        \delta_{ij} < \delta_{rs} \Longrightarrow f(\delta_{ij}) \leq f(\delta_{rs}).
+    \end{align*}
+    Por tanto, solo las ordenaciones de las disimilaridades deben preservarse por la transformación y de ahí el término no métrico. Entre los modelos más importantes de este tipo están:
+    \begin{itemize}
+        \item \textbf{MDS mínimo cuadrático.}
+        \item \textbf{MDS máximo verosímil.}
+    \end{itemize}
+\end{itemize}
+
+Como adelanta el título de la sección, nos centraremos en el MDS clásico. Este modelo trata a las disimilaridades directamente como distancias Euclídeas mediante la relación $d_{ij} = \delta_{ij}$, de forma que es utilizada la descomposición espectral de una matriz doblemente centrada de disimilaridades para obtener la matriz de configuración. Esto es precisamente lo que se describe en el Teorema \ref{teo:mds}.
+
+
+En la práctica, el MDS clásico puede describirse de la siguiente forma:
+\begin{enumerate}
+    \item Se obtienen las disimilaridades $\delta_{ij}$.
+    \item Se calcula la matriz $A = (-\delta_{ij}^2/2)$.
+    \item Se calcula $B = HAH$.
+    \item Se obtienen los $(n-1)$ autovalores $\lambda_1,\ldots,\lambda_{n-1}$ asociados a los correspondientes autovectores $v_1,\ldots,v_{n-1}$, normalizados de la forma $v_i'v_i = \lambda_i$, $\forall i = 1,\ldots,n-1$. Si $B$ no es semidefinida positiva entonces o bien se ignoran los valores propios negativos o se añade una constante aditiva c a las disimilaridades tal y como se describirá a continuación, volviendo al paso 2.
+    \item Se elige la dimensión apropiada $K<p$.
+    \item Las coordenadas de los $n$ puntos en el espacio Euclídeo de dimensión $K$, vendrán dadas por los $K$ vectores propios asociados a los $K$ mayores valores propios. Así, $x_{ik} = v_{ik}$, $i = 1,\ldots,n$, $k = 1,\ldots,K$.
+\end{enumerate}
+
+\section{Un tercer ejemplo en \texttt{R}}
+
+Vamos a realizar un MDS clásico con los datos \texttt{eurodist} disponibles en la librería \texttt{datasets}. 
+
+<<>>=
+library(datasets)
+data(eurodist)
+D <- as.matrix(eurodist)
+n <- dim(D)[1]
+D
+@
+
+Podemos aplicar el MDS clásico mediante el comando \texttt{cmdscale()}. Este comando requiere de un elemento tipo \texttt{dist} y de la dimensión $K$. Como nuestros datos son distancias entre ciudades, es interesante ver si podemos ajustar un modelo en dos dimensiones.
+
+<<>>=
+mds_clasico <- cmdscale(eurodist, k=2, eig=TRUE)
+mds_clasico
+@
+
+La bondad del modelo se puede calcular mediante el coeficiente de Mardia. Supongamos que aplicamos el MDS clásico para cierto $K$. El coeficiente de Mardia de ese modelo es:
+
+\begin{align*}
+    mardia = \frac{\lambda_1 + \ldots + \lambda_K}{\sum_i \lambda_i}, \quad \lambda_i > 0. 
+\end{align*}
+Nótese que cuanto mayor es $K$, mayor es el coeficiente de Mardia. Al indicar \texttt{eig=TRUE} el comando \texttt{eurodist()} nos devuelve entre otras cosas el coeficiente de Mardia del ajuste, que en nuestro caso es 0.8679134.
+
+Representando los puntos obtenidos:
+
+<<plot.mds.3, fig.height=11, fig.width=11>>=
+plot(mds_clasico$points[,1:2], col = "white", xlab="Coordenada 1",  ylab="Coordenada 2")
+text(mds_clasico$points[,1:2], labels=rownames(D))
+@
+
+Obtener una representación que se parece bastante a un mapa de Europa (pero rotado).
+
+\section{Tercera práctica: Escalado Multidimensional}
+
+\begin{itemize}
+    \item Definir una función en \texttt{R} que permita aplicar el MDS clásico y que tome como argumentos: una matriz de distancias $D$ y la bondad que el usuario quiera que tenga el modelo ajustado.
+    \item Aplicar dicha función a las distancias de la Tabla \ref{dist:europa}
+
+
+\begin{longtable}{l|llllllllll|}
+\cline{2-11}
+                               & $c_1$ & $c_2$ & $c_3$ & $c_4$ & $c_5$ & $c_6$ & $c_7$ & $c_8$ & $c_9$ & $c_{10}$ \\ \hline
+\multicolumn{1}{|l|}{$c_1$}    & 0     & 569   & 667   & 530   & 141   & 140   & 357   & 396   & 570   & 190      \\
+\multicolumn{1}{|l|}{$c_2$}    & 569   & 0     & 1212  & 1043  & 617   & 446   & 325   & 423   & 787   & 648      \\
+\multicolumn{1}{|l|}{$c_3$}    & 667   & 1212  & 0     & 201   & 596   & 768   & 923   & 882   & 714   & 714      \\
+\multicolumn{1}{|l|}{$c_4$}    & 530   & 1043  & 201   & 0     & 431   & 608   & 740   & 690   & 516   & 622      \\
+\multicolumn{1}{|l|}{$c_5$}    & 141   & 617   & 596   & 431   & 0     & 177   & 340   & 337   & 436   & 320      \\
+\multicolumn{1}{|l|}{$c_6$}    & 140   & 446   & 768   & 608   & 177   & 0     & 218   & 272   & 519   & 302      \\
+\multicolumn{1}{|l|}{$c_7$}    & 357   & 325   & 923   & 740   & 340   & 218   & 0     & 114   & 472   & 514      \\
+\multicolumn{1}{|l|}{$c_8$}    & 396   & 423   & 882   & 690   & 337   & 272   & 114   & 0     & 364   & 573      \\
+\multicolumn{1}{|l|}{$c_9$}    & 569   & 787   & 714   & 516   & 436   & 519   & 472   & 364   & 0     & 755      \\
+\multicolumn{1}{|l|}{$c_{10}$} & 190   & 648   & 714   & 622   & 320   & 302   & 514   & 573   & 755   & 0        \\ \hline
+
+\caption{Distancias entre 10 ciudades europeas}
+\label{dist:europa}
+\end{longtable}
+
+\item Comparar los resultados obtenidos con los que se obtienen con el comando \texttt{cmdscale()}.
+\end{itemize}
+
+La solución de esta práctica se encuentra en el Apéndice \ref{sol:p3}.

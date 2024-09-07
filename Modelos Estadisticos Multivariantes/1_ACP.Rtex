@@ -1,0 +1,143 @@
+\chapter{Análisis de Componentes Principales}
+
+El primer método de reducción de dimensiones son las componentes principales. Sea $\mathbf{X} = [X_1| X_2| \ldots,| X_p]$ una matriz de datos multivariantes. El objetivo del Análisis de Componentes Principales \cite{Cuadras} es obtener $p$ nuevas variables (que serán combinaciones lineales de las originales) que sean incorreladas y mantengan la mayor variabilidad posible, así como poder reducir la dimensionalidad de nuestros datos.
+
+\section{Cálculo de las componentes principales}
+
+Sin pérdida de generalidad, podemos suponer que $\mathbf{X}$ está centrada, es decir, que $E[\mathbf{X}] = \mathbf{0}$. Si $\mathbf{X}$ no estuviera centrada, bastaría con restarle su vector de medias y hacer el proceso con la nueva matriz resultante.
+
+\begin{defi}
+    Las componentes principales son las variables compuestas
+    \begin{align*}
+        Y_1 =  \mathbf{X}\mathbf{t}_1, Y_2 = \mathbf{X}\mathbf{t}_2, \ldots, Y_p = \mathbf{X}\mathbf{t}_p,
+    \end{align*}
+    tales que
+    \begin{enumerate}
+        \item $Var(Y_1)$ es máxima condicionado a $\mathbf{t}_1'\mathbf{t}_1 = 1$.
+        \item Entre todas las variables compuestas $Y$ tales que $Cov(Y_1, Y ) = 0$; la variable $Y_2$ es tal que $Var(Y_2)$ es máxima condicionado a $\mathbf{t}_2' \mathbf{t}_2 = 1$.
+        \item Si $p \ge 3$, la componente $Y_3$ es una variable incorrelada con $Y_1$, $Y_2$ con varianza máxima.
+        \item Análogamente se definen las demás componentes principales si $p > 3$.
+    \end{enumerate}
+\end{defi}
+Si $\mathbf{T} = [\mathbf{t}_1 | \ldots | \mathbf{t}_p]$ es la matriz $p \times p$ cuyas columnas son los vectores que definen las componentes principales, entonces tenemos 
+\begin{align}
+    \mathbf{Y} = \mathbf{XT}.
+\end{align}
+
+La transformación $\mathbf{X} \rightarrow \mathbf{Y}$ se denomina transformación por componentes principales. Cabe destacar el siguiente resultado, cuya demostración se puede encontrar en \cite{Cuadras}.
+\begin{teo} \label{teo:1}
+    Sean $\mathbf{t}_1, \mathbf{t}_2, \ldots, \mathbf{t}_p$ los $p$ vectores propios normalizados de la matriz de covarianzas $\Sigma$,
+    \begin{align*}
+        \Sigma \mathbf{t}_i = \lambda_i \mathbf{t}_i, \quad \mathbf{t}_i'\mathbf{t}_i = 1, \quad i = 1,\ldots,p.
+    \end{align*}
+    
+    Entonces
+    \begin{enumerate}
+        \item Las variables compuestas $Y_i = \mathbf{X}\mathbf{t}_i$, $i=1,\ldots,p$, son las componentes principales.
+        \item Las varianzas son los valores propios de $\Sigma$:
+        \begin{align*}
+            Var(Y_i) = \lambda_i, \quad i = 1,\ldots,p.
+        \end{align*}
+        \item Las componentes principales son variables incorreladas:
+        \begin{align*}
+            Cov(Y_i,Y_j) = 0, \quad i\not=j=1,\ldots,p.
+        \end{align*}
+    \end{enumerate}
+\end{teo}
+
+\section{Variabilidad explicada por las componentes principales}
+Como nos dice el Teorema \ref{teo:1}, la varianza de la componente principal $Y_i$ es $Var(Y_i) = \lambda_i$, lo que nos dice que la varianza total es $tr(\Sigma) = \sum_{i=1}^{p} \lambda_i$. Por tanto:
+\begin{enumerate}
+    \item $Y_i$ contribuye con la cantidad $\lambda_i$ a la variabilidad total.
+    \item Si $k < p$, $Y_1, \ldots, Y_k$ contribuyen con la cantidad $\sum_{i=1}^{k} \lambda_i$.
+    \item El porcentaje de variabilidad explicada por las $k$ primeras componentes principales es
+    \begin{align}
+        P_m = 100 \frac{\lambda_1 +\ldots + \lambda_k}{\lambda_1 + \ldots + \lambda_p}.
+    \end{align}
+\end{enumerate}
+
+Por ejemplo, si $m = 2 < p$, y $P_2 = 90\%$, las dos primeras componentes principales explican una gran parte de la variabilidad total, entonces podemos sustituir $X_1, X_2, \ldots, X_p$ por las componentes principales $Y_1, Y_2$. Nótese que conforme aumenta $k$ también aumenta el porcentaje de variabilidad explicada, por lo que en la práctica, es conveniente elegir el menor $k$ que explique la variabilidad que deseamos.
+
+
+\section{Un primer ejemplo en \texttt{R}}
+A pesar de que es posible implementar el cálculo de las componentes principales de manera sencilla, en \texttt{R} existen dos comandos para obtener las componentes principales: \texttt{prcomp()} y \texttt{princomp()}. Es recomendable usar \texttt{prcomp()} por una mejor implementación de las técnicas numéricas necesarias.
+
+
+Realicemos un Análisis de Componentes Principales con datos disponibles en \texttt{R}. En particular, vamos a usar diferentes medidas sobre la población de USA en el año 1977, disponible en el paquete \texttt{datasets} como \texttt{state.x77}, dentro de la variable de datos \texttt{state}.
+
+
+Cargamos los datos:
+
+<<>>=
+library(datasets)
+data(state)
+state.x77
+@
+
+Para realizar un Análisis de Componentes Principales, es recomendable centrar y escalar los datos. Esto se puede hacer mediante el comando \texttt{prcomp()}. Vamos a guardar el análisis en la variable \texttt{state.x77.pca}:
+
+<<>>=
+state.x77.pca <- prcomp(state.x77, scale = TRUE)
+state.x77.pca
+@
+
+La salida del comando nos muestra varios resultados agrupados en variables dentro de \texttt{state.x77.pca}. Podemos conocer el nombre de dichas variables de la siguiente manera:
+
+<<>>=
+names(state.x77.pca)
+@
+
+Es posible acceder a dichas variables utilizando el símbolo \$. Por ejemplo, la matriz de rotación de los ejes:
+
+<<>>=
+state.x77.pca$rotation
+@
+
+Cada una de las columnas de la matriz anterior son las componentes principales. Recordemos que estas columnas corresponden a los autovectores asociados a la matriz de datos. Por otro lado, los autovalores se corresponden con las varianzas de cada componente principal. En la salida de \texttt{prcomp} tenemos las desviaciones típicas.
+
+
+Podemos calcular la variabilidad explicada por cada componente y así la acumulada. Esto puede obtenerse mediante el resumen del Análisis de las Componentes Principales:
+
+<<>>=
+summary(state.x77.pca)
+@
+
+Observamos que las 2 primeras componentes explican el 65\% de la varianza, mientras que las 4 primeras explican el 88\%.
+
+Tomemos las dos primeras componentes, PC1 y PC2. Esto significa que proyectamos los datos en un espacio de dos dimensiones. Los valores proyectados en dicho espacio son los siguientes:
+
+<<>>=
+state.x77.pca$x[,1:2]
+@
+
+Podemos representar estos puntos de la siguiente manera:
+
+\begin{center}
+<<plot1, fig.height=6, fig.width=6>>=
+plot(state.x77.pca$x[,1:2])
+@
+\end{center}
+
+Aunque una mejor forma de verlo es usar \texttt{biplot()}, donde aparecen las observaciones y las variables orientadas según su presencia en cada componente principal
+
+\begin{center}
+<<plot2, fig.height=10, fig.width=10>>=
+biplot(state.x77.pca)
+@
+\end{center}
+
+Se pueden encontrar más bases de datos en \cite{Kaggle}.
+
+
+\section{Primera práctica: Análisis de Componentes Principales}
+
+Importando los datos \texttt{datos\_pca.csv}:
+
+\begin{itemize}
+    \item Calcular la matriz de correlaciones y calcular sus autovalores y autovectores.
+    \item Comprobar si los vectores son ortogonales.
+    \item Obtener las componentes principales usando correlaciones y el comando \texttt{prcomp()}.
+    \item Comparar ambos resultados.
+\end{itemize}
+
+La solución de esta práctica se encuentra en el Apéndice \ref{sol:p1}.

@@ -1,0 +1,574 @@
+\appendix
+
+%===================================================
+\chapter{Primera práctica: Análisis de Componentes Principales} \label{sol:p1}
+
+Primero, importamos los datos del fichero \texttt{datos\_pca.csv}:
+
+<<>>=
+datos <- read.csv(file="datos_pca.csv", sep="")
+datos
+@
+
+La matriz de correlaciones es la siguiente:
+
+<<>>=
+datos_cor <- cor(datos)
+datos_cor
+@
+
+Los autovalores y autovectores de una matriz se calculan mediante el comando \texttt{eigen()}
+
+<<>>=
+datos_cor_aut <- eigen(datos_cor)
+datos_cor_aut
+@
+
+Los autovectores coinciden con las componentes principales. Comprobemos la ortogonalidad de algunos autovectores.
+
+¿Son ortogonales $v_1$ y $v_2$? Nótese que el autovector $v_i$ es la $i$-esima columna de la matriz compuesta por los autovectores.
+
+<<>>=
+sum(datos_cor_aut$vectors[,1]*datos_cor_aut$vectores[,2])
+@
+
+Son ortogonales puesto que su producto escalar es 0. ¿Son ortogonales $v_5$ y $v_7$?
+
+<<>>=
+sum(datos_cor_aut$vectors[,5]*datos_cor_aut$vectores[,7])
+@
+
+Son ortogonales puesto que su producto escalar es 0. Para el resto de autovectores se hace de manera completamente análoga. Para calcular las componentes principales, vamos a centrar y escalar nuestros datos. Esto es lo que hace precisamente el comando \texttt{scale()}.
+
+<<>>=
+datos_centrados <- scale(as.matrix(datos))
+datos_centrados
+@
+
+Una vez tenemos los datos centrados, basta con multiplicar por la matriz de autovectores para obtener las componentes principales:
+
+<<>>=
+datos_pca <- datos_centrados%*%datos_cor_aut$vectors
+datos_pca
+@
+ 
+
+Mediante el comando \texttt{prcomp()} podemos calcular las componentes principales. Escalando los datos obtenemos
+
+<<>>=
+datos_prcomp <- prcomp(datos, scale = TRUE)
+datos_prcomp$x
+@
+
+Vemos que, salvo signo, parecen coincidir. Comprobémoslo.
+
+<<>>=c
+abs(datos_pca) - abs(datos_prcomp$x)
+@
+
+Efectivamente, sale la matriz de ceros (cero máquina), por tanto, obtenemos las mismas componentes principales.
+
+
+Representando las dos primeras componentes principales:
+
+<<plot.p11, fig.height=10, fig.width=10>>=
+plot(datos_pca[,1:2], xlab="PC1", ylab="PC2", main="Proyección Componentes Principales")
+@
+
+Mediante el comando \texttt{biplot()} podemos representar las dos primeras componentes principales obtenidas con el comando \texttt{prcomp()} y ver las direcciones de cada variable en la proyección:
+<<plot.p13, fig.height=10, fig.width=10>>=
+biplot(datos_prcomp)
+@
+
+La varianza explicada acumulada en las dos primeras componentes principales es:
+
+<<>>=
+sum(datos_cor_aut$values[1:2])/sum(datos_cor_aut$values)
+@
+
+Las dos primeras componentes principales explican un 65.35\% de la varianza.
+
+
+
+
+
+%===================================================
+\chapter{Segunda práctica: Análisis Factorial} \label{sol:p2}
+
+Primero, importamos los datos del fichero \texttt{datos\_pca.csv}:
+
+<<>>=
+datos <- read.csv(file="datos_pca.csv", sep="")
+datos
+@
+
+Primero, realizamos el Test de esfericidad de Bartlett, que contrasta la hipótesis de que la matriz de correlación sea la identidad, en cuyo caso, no existirían correlaciones y el Análisis Factorial no sería adecuado. Debemos importar la librería \texttt{psych}.
+
+<<>>=
+library(psych)
+N <- dim(datos)[1]
+datos_cor <- cor(datos)
+cortest.bartlett(datos_cor, n = N)
+@
+
+El valor del estadístico es muy alto y el $p$-valor es el cero máquina, lo que nos dice que rechazamos la hipótesis nula (que la matriz de correlaciones sea la identidad), por lo que en este caso, el Análisis Factorial sería aceptable.
+
+
+Para realizar el Análisis Factorial vamos a utilizar el comando \texttt{fa()} ya que nos permite elegir la rotación que aplicamos, mediante el argumento \texttt{rotate} y el método de factorización mediante el argumento \texttt{fm}.
+
+
+
+Recordemos que el número de factores tiene que ser menor o igual que $(p-1)/2$. En el caso de estos datos, el número de factores ha de ser menor o igual que $(10 -1)/2 = 4.5$. Vamos a tomar 4 factores.
+
+
+\subsubsection{Rotaciones ortogonales}
+<<>>=
+af_varimax <- fa(datos_cor, nfactors = 4, rotate = "varimax", fm="ml")
+af_varimax
+@
+
+Los dos primeros factores explican el 83\% de la varianza.
+
+<<>>=
+af_varimin <- fa(datos_cor, nfactors = 4, rotate = "varimin", fm="ml")
+af_varimin
+@
+
+Los dos primeros factores explican el 59\% de la varianza.
+
+<<>>=
+af_quartimax <- fa(datos_cor, nfactors = 4, rotate = "quartimax", fm="ml")
+af_quartimax
+@
+
+Los dos primeros factores explican el 16\% de la varianza.
+
+
+De los 3 métodos utilizados, varimax es el que más varianza explica con los dos primeros factores. Represetemos la proyección sobre los dos primeros factores de los tres análisis
+
+<<plot.p21, fig.height=12, fig.width=12>>=
+par(mfrow= c(2,2))
+plot(af_varimax$loadings[,1:2], xlab="Factor 1", ylab="Factor 2", main="varimax", col="white")
+text(af_varimax$loadings[,1:2], labels=colnames(datos), cex=1.2)
+
+plot(af_varimin$loadings[,1:2], xlab="Factor 1", ylab="Factor 2", main="varimin", col="white")
+text(af_varimin$loadings[,1:2], labels=colnames(datos), cex=1.2)
+
+plot(af_quartimax$loadings[,1:2], xlab="Factor 1", ylab="Factor 2", main="quatimax", col="white")
+text(af_quartimax$loadings[,1:2], labels=colnames(datos), cex=1.2)
+@
+
+Los resultados de varimax y quartimax son más parecidos entre sí. El resultado de varimin es bastante diferente a los otros dos.
+
+\subsubsection{Rotaciones oblicuas}
+
+<<>>=
+af_oblimin <- fa(datos_cor, nfactors = 4, rotate = "oblimin", fm="ml")
+af_oblimin
+@
+
+Los dos primeros factores explican el 84\% de la varianza.
+
+<<>>=
+af_promax<- fa(datos_cor, nfactors = 4, rotate = "promax", fm="ml")
+af_promax
+@
+
+Los dos primeros factores explican el 85\% de la varianza.
+
+<<>>=
+af_simplimax <- fa(datos_cor, nfactors = 4, rotate = "simplimax", fm="ml")
+af_simplimax
+@
+
+Los dos primeros factores explican el 85\% de la varianza.
+
+
+Los tres métodos explican un porcentaje muy parecido de la varianza con los primeros factores.
+
+<<plot.p22, fig.height=12, fig.width=12>>=
+par(mfrow= c(2,2))
+plot(af_oblimin$loadings[,1:2], xlab="Factor 1", ylab="Factor 2", main="oblimin", col="white")
+text(af_oblimin$loadings[,1:2], labels=colnames(datos), cex=1.2)
+
+plot(af_promax$loadings[,1:2], xlab="Factor 1", ylab="Factor 2", main="promax", col="white")
+text(af_promax$loadings[,1:2], labels=colnames(datos), cex=1.2)
+
+plot(af_simplimax$loadings[,1:2], xlab="Factor 1", ylab="Factor 2", main="simplimax", col="white")
+text(af_simplimax$loadings[,1:2], labels=colnames(datos), cex=1.2)
+@
+
+Los tres resultados son diferentes, aunque algunas variable si que las dsitribuye igual (como pueden ser la 9 y la 6).
+
+
+%===================================================
+\chapter{Tercera práctica: Escalado Multidimensional} \label{sol:p3}
+
+Importamos las distancias de la Tabla \ref{dist:europa}
+
+<<>>=
+c1 <- c(0, 569, 667, 530, 141, 140, 357, 396, 570, 190)
+c2 <- c(569, 0, 1212, 1043, 617, 446, 325, 423, 787, 648)
+c3 <- c(667, 1212, 0, 201, 596, 768, 923, 882, 714, 714)
+c4 <- c(530, 1043, 201, 0, 431, 608, 740, 690, 516, 622)
+c5 <- c(141, 617, 596, 431, 0, 177, 340, 337, 436, 320)
+c6 <- c(140, 446, 768, 608, 177, 0, 218, 272, 519, 302)
+c7 <- c(357, 325, 923, 740, 340, 218, 0, 114, 472, 514)
+c8 <- c(396, 423, 882, 690, 337, 272, 114, 0, 364, 573)
+c9 <- c(569, 787, 714, 516, 436, 519, 472, 364, 0, 755)
+c10 <- c(190, 648, 714, 622, 320, 302, 514, 573, 755, 0)
+
+D <- rbind(c1,c2,c3,c4,c5,c6,c7,c8,c9,c10)
+@
+
+Recordemos que el MDS clásico puede describirse de la siguiente forma:
+\begin{enumerate}
+    \item Se obtienen las disimilaridades $\delta_{ij}$.
+    \item Se calcula la matriz $A = (-\delta_{ij}^2/2)$.
+    \item Se calcula $B = HAH$.
+    \item Se obtienen los $(n-1)$ autovalores $\lambda_1,\ldots,\lambda_{n-1}$ asociados a los correspondientes autovectores $v_1,\ldots,v_{n-1}$, normalizados de la forma $v_i'v_i = \lambda_i$, $\forall i = 1,\ldots,n-1$. Si $B$ no es semidefina positiva entonces o bien se ignoran los valores propios negativos o se añade una constante aditiva c a las disimilaridades tal y como se describirá a continuación, volviendo al paso 2.
+    \item Se elige la dimensión apropiada $K<p$.
+    \item Las coordenadas de los $n$ puntos en el espacio Euclídeo de dimensión $K$, vendrán dadas por los $K$ vectores propios asociados a los $K$ mayores valores propios. Así, $x_{ik} = v_{ik}$, $i = 1,\ldots,n$, $k = 1,\ldots,K$.
+\end{enumerate}
+Comenzamos diseñando la función. Vayamos por partes. Lo primero de todo es asegurarnos que la matriz $D$ que nos den sea simétrica. En caso de no serlo, vamos a realizar lo siguiente: construir una matriz nueva, $E$, que será la media de la matriz triangular superior e inferior de $D$. También podría quedarme o bien con la matriz triangular superior o inferior y construir una nueva matriz simétrica a partir de ellas, pero prefiero mi elección anterior para poder hacer una combinación de ambas posibilidades.
+
+
+Ahora para construir $B$ necesitamos
+\begin{itemize}
+    \item El número de ciudades, $n$.
+    \item La matriz $A$ cuyos elementos son $a_{rs} = -e_{rs}^2/2$, siendo $e_{rs}$ los elementos de $E$.
+    \item La matriz $H=I - n^{-1}\mathbf{11'}$.
+\end{itemize}
+
+Mediante el comando \texttt{eigen()} podemos calcular los autovalores $(\lambda_i)$ y los autovectores $(v_i)$ de $B$, pero teniendo en cuenta que dicho comando normaliza los autovectores según la condición $v_i'v_i = 1$ (lo dice la documentación de \texttt{R}) y nosotros necesitamos que $v_i'v_i = \lambda_i$ (para poder aplicar el Teorema \ref{teo:mds}). 
+
+Nos quedamos solo con aquellos autovalores positivos y autovectores asociados a dichos autovalores. Además, vamos a normalizar estos autovectores según $v_i'v_i = \lambda_i$. Para ello basta multiplicar $v_i$ por $\sqrt{\lambda_i}$ (recordemos que solo lo aplicamos para aquellos $\lambda_i > 0$).
+
+Recogemos todo lo descrito en la siguiente función
+
+<<>>=
+autovectores_normalizados <- function(D){
+  # Numero de objetos
+  n <- dim(D)[1]
+
+  # Simetria de D
+  if(!isSymmetric(D)){
+    E <- matrix(0, ncol = n, nrow=n)
+    for (j in 1:n){
+      for (i in 1:j){
+        E[i,j] <- 0.5*(D[i,j] + D[j,i])
+        E[j,i] <- E[i,j]
+      }
+    }
+    D <- E
+  }
+
+  # Calculamos A, H y B
+  A <- -D^2/2
+  H <- diag(1, nrow = n) - 1/n*matrix(1, ncol = n, nrow=n)
+  B <- H%*%A%*%H
+
+  # Calculamos los autovalores y autovectores de B
+  info <- eigen(B)
+  autovalores <- info$values
+  autovectores <- info$vectors
+
+  # Calculamos los autovectores normalizados
+  autovectores_norm <- autovectores%*%diag((abs(autovalores))^(1/2))
+
+  # Elegimos solo los autovalores positivos y sus autovectores asociados
+  parar <- autovalores[1]
+  p <- 0
+  i<-0; while(parar > 0){
+    parar <- autovalores[i+1]
+    i<-i+1
+    p <- p+1
+  }
+  autovalores <- autovalores[1:p-1] # nos quedamos con los p autovalores positivos
+  autovectores <- autovectores_norm[,1:p-1]
+  
+  return(list(autovalores=autovalores, autovectores=autovectores))
+}
+@
+
+Solo nos faltan los dos últimos pasos del método. La función \texttt{mds\_clasico\_propio()} aplica el MDS clásico, apoyándose en la función \texttt{autovectores\_normalizados()} que acabamos de crear. Dicha función toma como parámetros la matriz de distancias $D$ y la bondad que queremos que tenga nuestro modelo, a la que hemos llamado \textit{bondad} y que debe cumplir que $0< bondad < 1$ (si no indicamos nada, supondremos que es 0.85). Para ello vamos a calcular el coeficiente de Mardia (que nos indica la bondad de nuestro modelo). Supongamos que aplicamos el MDS clasíco para cierto $K$. El coeficiente de Mardia de ese modelo es:
+
+\begin{align*}
+    mardia = \frac{\lambda_1 + \ldots + \lambda_K}{\sum_i \lambda_i},
+\end{align*}
+Nótese que cuanto mayor es $K$, mayor es el coeficiente de Mardia, es por eso que tomaremos el menor $K$ tal que $bondad \leq mardia$.
+
+<<>>=
+mds_clasico_propio <- function(D, bondad=0.85){
+  if(bondad <= 0 || bondad>=1){
+    stop("bondad debe estar entre 0 y 1")
+  }
+  else{
+    n <- dim(D)[1]
+    # Autovalores positivos y autovectores asociados
+    info <- autovectores_normalizados(D) 
+    autovalores <- info$autovalores 
+    autovectores <- info$autovectores
+    
+    # Coficientes de Mardia
+    suma <- sum(autovalores)
+    suma_acumulada <- cumsum(autovalores)/suma 
+
+    # Minimo k para cumplir bondad
+    mardia <- suma_acumulada[1]
+    k <- 1
+    i<-1; while(mardia < bondad){
+      mardia <- suma_acumulada[i+1]
+      i<-i+1
+      k <- k+1
+    }
+
+    # Configuracion final
+    puntos <- autovectores[,1:k] 
+    return(list(puntos=puntos, mardia=mardia))
+  }
+}
+@
+
+Pasamos a la segunda parte de la práctica. Vamos a comparar la función creada con la función \texttt{cmdscale()} de \texttt{R}. Aplicando \texttt{mds\_clasico\_propio()} a nuestra matriz $D$ y pidiendo que el modelo tenga una bondad de al menos 0.9, obtenemos:
+<<>>=
+configuracion <- mds_clasico_propio(D, 0.9)
+configuracion
+@
+\noindent En este caso, parece que la dimensión $K = 2$ es suficiente, por lo que podemos representar los puntos en el plano.
+
+<<>>=
+configuracion$puntos
+@
+
+\begin{center}
+<<plot.mds.1, fig.height=4, fig.width=4, fig.pos="H">>=
+plot(configuracion$puntos, col = "white", xlab =  "Coordenada 1", ylab = "Coordenada 2")
+text(configuracion$puntos, labels = rownames(D))
+@    
+\end{center}
+
+
+Aplicando la función \texttt{cmdscale()} a la matriz simétrica que obtenemos a partir de $D$ (de la forma descrita anteriormente), para dimensión $K=2$ deberíamos obtener los mismos puntos que antes
+
+
+<<>>=
+n <- dim(D)[1]
+E <- matrix(0, ncol = n, nrow=n)
+for (j in 1:n){
+  for (i in 1:j){
+    E[i,j] <- 0.5*(D[i,j] + D[j,i])
+    E[j,i] <- E[i,j]
+  }
+}
+mds <- cmdscale(E, k=2, eig=TRUE)
+mds
+@
+
+Representando la solución que proporciona \texttt{cmdscale()}
+
+\begin{center}
+<<plot.mds.2, fig.height=4, fig.width=4>>=
+plot(mds$points, col = "white", xlab = "Coordenada 1", ylab = "Coordenada 2")
+text(mds$points, labels = rownames(D))
+@
+\end{center}
+
+<<>>=
+max(abs(dist(mds$points) - dist(configuracion$puntos)))
+@
+
+La diferencia entre los puntos es mínima, puesto que la mayor diferencia entre las distancias de ambas configuraciones es prácticamente cero.
+
+
+%====================================================
+\chapter{Cuarta práctica: Clasificación} \label{sol:p4}
+
+Vamos a trabajar con datos reales consistentes en medidas de distintos tipos de cristales. Estos datos se encuentran en el fichero \texttt{glass.txt}.
+
+<<>>=
+datosfull <- read.table("glass.txt",header=TRUE, sep=",")
+datosfull
+@
+
+Estos datos vienen ya etiquetados, es decir, la variable \texttt{Type} nos indica el tipo de semilla de cada observación. Creando unos nuevos datos eliminando esa columna:
+
+<<>>=
+datos <- subset(datosfull, select=-c(Type))
+datos
+@
+
+\subsubsection{Análisis cluster jerárquico algomerativo}
+
+Comenzamos realizando un análisis cluster jerárquico aglomerativo usando las tres distancias que hemos visto,
+
+<<>>=
+D <- dist(datos)
+cluster_min <- hclust(D, method="single")
+cluster_max <- hclust(D, method="complete")
+cluster_ave <- hclust(D, method="average")
+@
+
+<<>>=
+cluster_min
+summary(cluster_min)
+@
+
+Representando los dendrogramas de las tres estrategias:
+
+\begin{center}
+<<plot.c.7, fig.height=6, fig.width=10>>=
+plot(cluster_min, hang=-1)
+@
+\end{center}
+
+\begin{center}
+<<plot.c.8, fig.height=6, fig.width=10>>=
+plot(cluster_max, hang=-1)
+@
+\end{center}
+
+\begin{center}
+<<plot.c.9, fig.height=6, fig.width=10>>=
+plot(cluster_ave, hang=-1)
+@
+\end{center}
+
+Si por ejemplo, queremos tener 7 cluster con la estrategia de distancia máxima podemos hacer lo siguiente:
+
+\begin{center}
+<<plot.c.10, fig.height=6, fig.width=10>>=
+plot(cluster_max, hang=-1)
+rect.hclust(cluster_max, k = 7)
+@
+\end{center}
+
+
+Por último, calculamos el coeficiente cofenético con las distintas estrategia empleadas:
+
+<<>>=
+cor(D, cophenetic(cluster_min))
+cor(D, cophenetic(cluster_max))
+cor(D, cophenetic(cluster_ave))
+@
+
+La mejor estrategía es la distancia media, que tiene un coeficiente cofenético próximo a 1.
+
+\subsubsection{$k$-means}
+
+Debemos fijar una semilla, puesto que el $k$-means elige $k$ puntos aleatorios y si queremos comparar diferentes métodos sin que cambien los resultados, debemos fijar la semilla. Para $k=3$:
+
+<<>>=
+set.seed(1234)
+kmclu3 <- kmeans(datos, centers = 3)
+kmclu3
+@
+
+Este comando devuelve algo interesante: $between_{SS} \diagup total_{SS}$. Cuanto más próximo a 1 sea este valor, el clustering es mejor. Pero hay que tener cuidado, pues este valor aumenta conforme aumenta $k$.
+
+
+Para $k=5$:
+<<>>=
+kmclu5 <- kmeans(datos, centers = 5)
+kmclu5
+@
+
+
+Para $k=7$:
+<<>>=
+kmclu7 <- kmeans(datos, centers = 7)
+kmclu7
+@
+
+Para $k=9$:
+<<>>=
+kmclu9 <- kmeans(datos, centers = 9)
+kmclu9
+@
+
+Vamos a comparar los gráficos silueta de estas 4 configuraciones
+
+<<>>=
+library(cluster)
+kmsil3 <- silhouette(kmclu3$cluster, D)
+kmsil5 <- silhouette(kmclu5$cluster, D)
+kmsil7 <- silhouette(kmclu7$cluster, D)
+kmsil9 <- silhouette(kmclu9$cluster, D)
+@
+
+\begin{center}
+<<plot.c.11, fig.height=12, fig.width=12>>=
+par(mfrow= c(2,2))
+plot(kmsil3, main="k=3")
+plot(kmsil5, main="k=5")
+plot(kmsil7, main="k=7")
+plot(kmsil9, main="k=9")
+@
+\end{center}
+
+Sabemos que nuestros datos provienen de 7 tipos de cristales, sin embargo, la mejor configuración parece ser la de 3 cluster. Esto se puede deber a que si miramos los datos, hay muchos datos de algunos tipos de cristales, pero muy pocos de los demás.
+
+Representemos los distintos cluster en el espacio de las dos primeras componentes principales, que es lo que hace el comando \texttt{fviz\_cluster()}
+<<>>=
+library(ggpubr)
+library(factoextra)
+@
+\begin{center}
+<<plot.c.21, fig.height=4, fig.width=4>>=
+par(mfrow= c(2,2))
+fviz_cluster(kmclu3, datos)
+fviz_cluster(kmclu5, datos)
+fviz_cluster(kmclu7, datos)
+fviz_cluster(kmclu9, datos)
+@
+\end{center}
+
+
+\subsubsection{$k$-medoids}
+
+Pasamos ahora a probar el algortimo $k$-medoids mediante el comando \texttt{clara()} disponible en la librería \texttt{cluster()}
+
+
+Para $k=3$.
+<<>>=
+cla3 <- clara(datos, k=3, sample=10)
+cla3
+@
+
+Para $k=5$.
+<<>>=
+cla5 <- clara(datos, k=5, sample=10)
+cla5
+@
+
+Para $k=7$.
+<<>>=
+cla7 <- clara(datos, k=7, sample=10)
+cla7
+@
+
+Para $k=9$.
+<<>>=
+cla9 <- clara(datos, k=9, sample=10)
+cla9
+@
+
+Podemos representar lo que obtenemos con \texttt{clara()} (al igual que antes, vemos la proyección en el espacio de las dos primeras componentes principales):
+
+\begin{center}
+<<plot.c.12, fig.height=8, fig.width=8>>=
+par(mfrow= c(2,2))
+plot(cla3, main="k=3")
+plot(cla5, main="k=5")
+@
+\end{center}
+
+\begin{center}
+<<plot.c.13, fig.height=8, fig.width=8>>=
+par(mfrow= c(2,2))
+plot(cla7, main="k=7")
+plot(cla9, main="k=9")
+@
+\end{center}
+
+Al igual que ocurría con el $k$-means, parece que la mejor distribución son tres clusters, pero sabemos que nuestros dados provienen de 7 cristales diferentes.

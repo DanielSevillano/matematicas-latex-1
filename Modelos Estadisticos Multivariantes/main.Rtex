@@ -1,0 +1,84 @@
+\documentclass{book}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amsfonts}
+\usepackage[mathscr]{euscript}
+\usepackage[spanish]{babel}
+\usepackage{mathrsfs}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{vmargin}
+\usepackage{hyperref}
+\usepackage{vmargin}
+\usepackage[all]{xy}
+\usepackage{relsize}
+\usepackage{bigints}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage[autostyle]{csquotes} 
+\usepackage{tcolorbox}
+\tcbuselibrary{listingsutf8}
+\usepackage{float}
+\usepackage{appendix}
+\usepackage{longtable}
+
+\usepackage{mathtools}
+\DeclarePairedDelimiter\autobracket{(}{)}
+\newcommand{\br}[1]{\autobracket*{#1}}
+
+
+\title{\Huge \textbf{Probabilidad}}
+\author{Jorge Rodríguez Domínguez}
+\date{}
+
+
+\definecolor{light-gray}{gray}{0.85}
+
+%\newmdtheoremenv[backgroundcolor=light-gray]{teo}{Teorema}[chapter]
+ \newtheorem{teo}{Teorema}[chapter]
+%\newmdtheoremenv[backgroundcolor=light-gray]{cor}[teo]{Corolario}
+\newtheorem{cor}[teo]{Corolario}
+%\newmdtheoremenv[backgroundcolor=light-gray]{lema}[teo]{Lema}
+\newtheorem{lema}[teo]{Lema}
+
+\newtheorem{defi}[teo]{Definición}
+%\newmdtheoremenv[backgroundcolor=light-gray]{prop}[teo]{Proposición}
+ \newtheorem{prop}[teo]{Proposición}
+
+\theoremstyle{definition}
+%\newmdtheoremenv[backgroundcolor=light-gray]{defi}[teo]{Definición}
+\newtheorem{ejemplo}[teo]{Ejemplo}
+%\newmdtheoremenv[backgroundcolor=light-gray]{ejemplo}[teo]{Ejemplo}
+%\newtheorem{obs}[teo]{Observación}
+ \newtheorem{obs}[teo]{Observación}
+
+
+
+
+\begin{document}
+% =========================================
+\frontmatter
+\include{indice}
+
+% =========================================
+\mainmatter
+\include{0_Introduccion}
+\include{1_ACP}
+\include{2_AF}
+\include{3_MDS}
+\include{4_Cluster}
+
+\bibliographystyle{plain}
+\bibliography{bibliografia}
+\addcontentsline{toc}{chapter}{Bibliografía}
+
+
+\include{5_Practicas}
+
+
+
+
+\end{document}

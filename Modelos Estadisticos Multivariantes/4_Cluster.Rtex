@@ -1,0 +1,335 @@
+\chapter{Análisis Cluster}
+
+Lo que pretende el Análisis Cluster es agrupar un conjunto de observaciones, donde cada grupo tenga alta homogeneidad interna y baja homogeneidad externa, es decir, que los elementos de cada grupo sean lo más parecido posible entre sí y que los grupos sean diferentes entre sí. Así, podemos clasificar por ejemplo \cite{Cuadras}:
+\begin{itemize}
+    \item Los trabajadores en actividad profesionales: servicios, industria, agricultura \ldots
+    \item Los animales en especies, géneros, familias y órdenes.
+    \item Los libros de una biblioteca.
+\end{itemize}
+
+Sea $\Omega = \{ \omega_1, \omega_2, \ldots, \omega_n\}$ un conjunto finito de $n$ observaciones. Clasificar los elementos de $\Omega$ es también definir una relación de equivalencia $\mathcal{R}$ en $\Omega$. Esta relación define una partición sobre $\Omega$ de $m$ clases de equivalencia, que denotaremos como
+\begin{align*}
+    \Omega = C_1 \dot\cup C_2 \dot\cup \cdots \dot\cup C_m,
+\end{align*}
+A la partición la llamaremos clustering y a las clases de equivalencia clusters. Existen diferentes métodos de análisis cluster pero nos centraremos en los siguientes:
+\begin{itemize}
+    \item Aglomerativo.
+    \item $k$-means.
+    \item $k$-medoids.
+\end{itemize}
+
+\section{Análisis clúster jerárquico aglomerativo}
+Los métodos aglomerativos \cite{Gallardo}, también conocidos como ascendentes, comienzan el análisis con tantos grupos como individuos haya. A partir de estas unidades iniciales se van formando grupos, de forma ascendente, hasta que al final del proceso todos los casos tratados están englobados en un mismo clustering.
+
+
+Sea $\Omega = \{ \omega_1, \omega_2, \ldots, \omega_n\}$. El algoritmo del análisis cluster jerárquico aglomerativo puede describirse de la siguiente manera:
+\begin{enumerate}
+    \item Partimos de la partición más fina de $\Omega$, esto es
+    \begin{align*}
+        \Omega = \{\omega_1\} \cup \{\omega_2\} \cup \cdots \cup \{\omega_n\}.
+    \end{align*}
+    \item Se calcula la distancia entre los clusters, creando una matriz de distancias $D$.
+    \item Se unen los clusters más cercanos, en base a $D$. Actualizamos $D$.
+    \item Repetir el paso anterior hasta llegar a un único cluster $\Omega = \{ \omega_1, \omega_2, \ldots, \omega_n\}$.
+\end{enumerate}
+
+Para poder aplicar este algoritmo necesitamos saber que significa que dos clusters estén ''cerca''.
+
+\subsection{Estrategia de la distancia mínima}
+
+En este método se considera que la distancia entre dos clusters viene dada por la mínima distancia entre sus componentes. La distancia entre los cluster $C_i$ (con $n_i$ elementos) y $C_j$ (con $n_j$ elementos) sería
+\begin{align*}
+    d(C_i, C_j) = \min_{x_l \in C_i, x_p \in C_j} \{d(x_l,x_p)\}, \quad l = 1,\ldots,n_i, \quad p=1,\ldots n_j.
+\end{align*}
+Así, la estrategia seguida en la iteración $K+1$ será: se unen los cluster $C_i$ y $C_j$ si
+\begin{align*}
+        d(C_i,C_j) = \min_{i_1,j_1=1,\ldots,n-K} \{d(C_{i_1}, C_{j_1})
+\end{align*}
+
+\begin{ejemplo}
+Veamos un ejemplo simple en \texttt{R} con las siguiente matriz de distancias:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|ccccccc|}
+\hline
+           & \textbf{A} & \textbf{B} & \textbf{C} & \textbf{D} & \textbf{E} & \textbf{F} & \textbf{G} \\ \hline
+\textbf{A} & 0          &            &            &            &            &            &            \\
+\textbf{B} & 2,15       & 0          &            &            &            &            &            \\
+\textbf{C} & 0,7        & 1,53       & 0          &            &            &            &            \\
+\textbf{D} & 1,07       & 1,14       & 0,43       & 0          &            &            &            \\
+\textbf{E} & 0,85       & 1,38       & 0,21       & 0,29       & 0          &            &            \\
+\textbf{F} & 1,16       & 1,01       & 0,55       & 0,22       & 0,41       & 0          &            \\
+\textbf{G} & 1,56       & 2,83       & 1,86       & 2,04       & 2,02       & 2,05       & 0          \\ \hline
+\end{tabular}
+\caption{Matriz de distancias entre 7 individuos}
+\label{tab:distancias}
+\end{table}
+Mediante el comando \texttt{hclust()} de \texttt{R} podemos realizar un análisis cluster jerárquico aglomerativo. Dicho comando toma como argumentos una matriz de distancias entre las observaciones y podemos elegir que distancia utiliza entre los clusters mediante \texttt{method}. Para el caso de la distancia mínima, debemos indicar \texttt{method=''single''}. Si realizamos un \texttt{plot()} de lo que nos devuelve el comando \texttt{hclust()} obtenemos:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{imagenes/dendrograma_min.png}
+    \caption{Estrategia de la distancia mínima}
+    \label{dend:min}
+\end{figure}
+\end{ejemplo}
+
+
+Este gráfica se conoce como dendrograma y en ella podemos ver las distintas iteraciones del algoritmo. 
+\begin{enumerate}
+    \item En la primera iteración se forma el cluster $\{D,F\}$.
+    \item En la segunda iteración se forma el cluster $\{C,E\}$.
+    \item En la tercera iteración se forma el cluster $\{\{D,F\},\{C,E\}\}$.
+    \item En la cuarta iteración se forma el cluster $\{A,\{D,F\},\{C,E\}\}$.
+    \item En la quinta iteración se forma el cluster $\{B,\{A,\{D,F\},\{C,E\}\}\}$.
+    \item En la sexta iteración se forma el cluster $\{G,\{B,\{A,\{D,F\},\{C,E\}\}\}\}$.
+\end{enumerate}
+
+\subsection{Estrategia de la distancia máxima}
+
+En este método se considera que la distancia entre dos clusters viene dada por la máxima distancia entre sus componentes. La distancia entre los cluster $C_i$ (con $n_i$ elementos) y $C_j$ (con $n_j$ elementos) sería
+\begin{align*}
+    d(C_i, C_j) = \max_{x_l \in C_i, x_p \in C_j} \{d(x_l,x_p)\}, \quad l = 1,\ldots,n_i, \quad p=1,\ldots n_j.
+\end{align*}
+Así, la estrategia seguida en la iteración $K+1$ será: se unen los cluster $C_i$ y $C_j$ si
+\begin{align*}
+        d(C_i,C_j) = \min_{i_1,j_1=1,\ldots,n-K} \{d(C_{i_1}, C_{j_1})
+\end{align*}
+
+Volviendo al mismo ejemplo con las distancias de la Tabla \ref{tab:distancias} pero usando la distancia máxima (\texttt{method=''complete''}) obtenemos
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{imagenes/dendrograma_max.png}
+    \caption{Estrategia de la distancia máxima}
+    \label{dend:max}
+\end{figure}
+
+\subsection{Estrategia de la distancia media}
+
+En este método se considera que la distancia entre dos clusters viene dada por la media aritmética entre la distancia de las componentes de dichos clusters. Así, si el cluster $C_i$ (con $n_i$ elementos) está compuesto, a su vez, por dos clusters $C_{i_1}$ y $C_{i_2}$ (con $n_{i_1}$ y $n_{i_2}$ elementos respectivamente), y el cluster $C_j$ posee $n_j$ elementos, la distancia media entre $C_i$ y $C_j$ es
+\begin{align*}
+    d(C_i,C_j) = \frac{d(C_{i_1}, C_j) + d(C_{i_1},C_j)}{2}
+\end{align*}
+
+Volviendo al mismo ejemplo con las distancias de la Tabla \ref{tab:distancias} pero usando la distancia media (\texttt{method=''average''}) obtenemos
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{imagenes/dendrograma_ave.png}
+    \caption{Estrategia de la distancia media}
+    \label{dend:ave}
+\end{figure}
+
+\section{Cluster de particionado}
+Los métodos que presentamos ahora están diseñados para clasificar individuos en una clasificación de $k$ cluster, donde $k$ se ha fijado a priori. La idea de estos algoritmos es elegir una partición inicial de individuos y después intercambiar los miembros de estos clusters para obtener una partición mejor.
+\subsection{$k$-means}
+
+El algortimo $k$-means es uno de los algoritmos más simples que resuelven problemas de agrupación. El procedimiento de este algoritmo se puede describir como sigue:
+\begin{enumerate}
+    \item Fijamos $k$ cluster, para ello elegimos $k$ puntos que denominaremos centroides, que serán el centro de cada cluster.
+    \item Asignar cada individuo restante al cluster con el centroide más cercano. Después de cada asignación, recalcular el centroide del cluster obtenido.
+    \item Repetir el paso anterior hasta que no haya más reasignaciones (en la práctica esto no es posible, por lo que se dentendrá cuando el porcentaje de reasignaciones esté por debajo de un umbral).
+\end{enumerate}
+
+\subsection{$k$-medoids}
+
+$k$-meodids surge como un algoritmo diseñado para tratar con datos atípicos. Comparado con otros algoritmos, es simple, rápido y fácil de implementar. Existen diversos tipos de algoritmos que implementan el algoritmo $k$-medoids, pero nos centraremos en CLARA. El algoritmo $k$-medoids se puede describir como
+\begin{enumerate}
+    \item Se eligen $k$ puntos aleatorios de nuestro datos, que llamaremos centroides, y asignamos dichos puntos a $k$ clusters.
+    \item Para el resto de puntos, calculamos la distancia con cada centroide, y asignamos dicho punto al cluster con el centroide más cercano.
+    \item Se calcula la suma de todas las distancias de todos los puntos a los centroides.
+    \item Se selecciona un punto aleatorio como nuevo centroide y se intercambia con el centroide anterior. Se repiten los pasos 2 y 3.
+    \item Si la suma total de distancias con el nuevo centroide es menor que la anterior, este centroide será permanente y repetiremos el 4.
+    \item Si la suma total de distancias con el nuevo centroide es mayor que la anterior, se deshace el cambio y repetimos el paso 4.
+\end{enumerate}
+\section{Validación de clusters}
+
+\subsection{Silhouette}
+
+Una manera de validar que nuestro clustering está bien distribuido es la medida silueta. Sea $\Omega_k$ un clustering formado por $k$ clusters. Sea $C_i \in \Omega$ y sea $x_j \in C_i$. Definimos $a_j$ como la media de las disimilaridades entre $x_j$ y el resto de elementos de $C_i$; $d(j,C)$ como la media de la disimilaridades entre $x_j$ y los elementos de $C \in \Omega_k$, $C \not = C_i$; y $b_j = \min_{C \in \Omega, C \not = C_j} d(j,C)$. De esa manera, definimos el valor silueta del dato $x_j$ como
+\begin{align*}
+    s_{jk} = \frac{b_j - a_j}{\max \in \{a_j,b_j\}}.
+\end{align*}
+Nótese que $s_{jk} \in [-1,1]$. Dependiendo del valor del valor silueta tenemos:
+\begin{itemize}
+    \item Si $s_{jk} \approx 1$ significa que $a_j \approx 0$, lo que nos dice que $x_j$ está bien en $C_i$.
+    \item Si $s_{jk} \approx -1$ significa que $b_j \approx 0$, lo que nos dice que $x_j$ no está bien en $C_i$.
+    \item Si $s_{jk} \approx 0$ significa que $a_j \approx b_j$, lo que nos dice que $x_i$ está entre dos clusters.
+\end{itemize}
+Si $\max_j s_{jk} \leq 0.25$, no hay clusters claramente definidos. También definimos la anchura media como
+\begin{align*}
+    \overline{s_k} = \frac{1}{n} \sum_{j=1}^{n} s_{jk},
+\end{align*}
+siendo $n$ el número de datos y al coeficiente de Silhouette como
+\begin{align*}
+    SC = \max_k \overline{s_k}.
+\end{align*}
+
+Según el valor de SC tenemos:
+\begin{itemize}
+    \item Si $SC \leq 0.25$, no hay estructura de cluster en los datos.
+    \item Si $0.25 < SC \leq 0.5$, hay una estructura de cluster débil.
+    \item Si $0.5 < SC \leq 0.7$, hay una estructura de cluster razonable.
+    \item Si $0.7 < SC \leq 1$, hay una estructura de cluster fuerte.
+\end{itemize}
+
+En \texttt{R} podemos conocer todos estos valores mediante el comando \texttt{silhouette()} del la librería \texttt{cluster}.
+
+\subsection{Distancia cofenética}
+
+La distancia cofenética es una medida de validación para clusters jerárquicos, como es el caso del aglomerativo que vimos anteriormente.
+
+La distancia cofenética entre dos observaciones que se han agrupado se define como la disimilitud intergrupos en la que las dos observaciones se combinan por primera vez en un único conglomerado.
+
+Se puede argumentar que un dendrograma es un resumen apropiado de algunos datos si la correlación entre las distancias originales y las distancias cofenéticas es alta. En caso contrario, debería considerarse simplemente como la descripción del resultado del algoritmo de agrupación.
+
+
+En \texttt{R} podemos conocer la matriz de distancias cofenéticas mediante el comando \texttt{cophenetic()} del la librería \texttt{cluster}.
+
+\section{Un cuarto ejemplo en \texttt{R}}
+
+Vamos a trabajar con datos reales consistentes en medidas de semillas de tres tipos. Estos datos se encuentran en el fichero \texttt{semillas.txt}.
+
+<<>>=
+datosfull <- read.table("semillas.txt", header=TRUE)
+datosfull
+@
+
+Estos datos vienen ya etiquetados, es decir, la variable \texttt{Type} nos indica el tipo de semilla de cada observación. Creando unos nuevos datos eliminando esa columna:
+
+<<>>=
+datos <- subset(datosfull, select=-c(Type))
+datos
+@
+
+\subsubsection{Métodos jerárquicos}
+Comenzamos realizando un análisis cluster jerárquico aglomerativo usando las tres distancias vistas anteriormente,
+
+<<>>=
+D <- dist(datos)
+cluster_min <- hclust(D, method="single")
+cluster_max <- hclust(D, method="complete")
+cluster_ave <- hclust(D, method="average")
+@
+
+<<>>=
+cluster_min
+summary(cluster_min)
+@
+
+El dendrograma nos indica el proceso de clustering completo. Las alturas a las que se realizan las uniones coinciden con las distancias cofenéticas entre elementos.
+
+<<plot.c.1, fig.height=8, fig.width=12>>=
+par(mfrow= c(1,2))
+plot(cluster_min, hang=-1)
+plot(cluster_max, hang=-1)
+@
+
+\begin{center}
+<<plot.c.3, fig.height=5, fig.width=5>>=
+plot(cluster_ave, hang=-1)
+@
+\end{center}
+
+Podemos cortar un dendrograma a una determinada altura para ver que clusters se forman, o indicar el número de clusters que queremos para que se corte a la altura necesaria.
+
+<<>>=
+cutree(cluster_max, h = 5)
+@
+
+<<<>>=
+cutree(cluster_max, k = 5)
+@
+
+La matriz de distancias cofenéticas se obtiene mediante
+
+<<>>=
+C_min <- cophenetic(cluster_min)
+@
+
+La correlación con la matriz de distancias originales es el coeficiente cofenético.
+
+<<>>=
+cor(D, C_min)
+@
+
+Calculemos el coeficiente cofenético con las distintas estrategia empleadas:
+
+<<>>=
+cor(D, cophenetic(cluster_min))
+cor(D, cophenetic(cluster_max))
+cor(D, cophenetic(cluster_ave))
+@
+
+El que tiene mayor coeficiente cofenético es la estrategia de la distancia media.
+
+\subsubsection{Métodos de particionado}
+
+Podemos aplicar el método $k$-means en \texttt{R} mediante el comando \texttt{kmeans()}. Debemos fijar una semilla, puesto que el $k$-means elige $k$ puntos aleatorios y si queremos comparar diferentes métodos sin que cambien los resultoad, debemos fijar la semilla.
+
+<<>>=
+set.seed(135711)
+kmclu <- kmeans(datos, centers = 3)
+kmclu
+@
+
+Importando la librería \texttt{cluster} podemos obtener los coeficientes silhouette
+
+<<>>=
+library(cluster)
+kmsil <- silhouette(kmclu$cluster, D)
+summary(kmsil)
+@
+
+El cluster 1 tiene valor silhouette de 0.51, el cluster 2 tiene valor silhouette de 0.54 y el cluster 3 tiene valor silhouette de 0.35. Podemos representar la gráfica Silhouette como sigue:
+\begin{center}
+<<plot.c.4, fig.height=5, fig.width=5>>=
+plot(kmsil)
+@
+\end{center}
+
+El coeficiente de silhouette es 0.47, lo que nos dice que hay cierta estructura cluster en nuestros datos. 
+
+<<>>=
+library(ggpubr)
+library(factoextra)
+@
+
+\begin{center}
+<<plot.c.5, fig.height=5, fig.width=5>>=
+fviz_cluster(kmclu, datos)
+@
+\end{center}
+
+Este comando utiliza Análisis de Componente Principales en caso de que se necesite reducir la dimensión de los datos para poder representarlos en el plano.
+
+
+La librería \texttt{cluster} también incluye un comando para realizar el algoritmo $k$-medoids. El comando \texttt{clara()} realiza un $k$-medoids a un subconjunto aleatorio de los datos y luego asigna el resto de putos por su cercanía a los clusters formados. Calculando para 3 clusters y tomando 10 puntos de los 33 que tenemos.
+
+<<>>=
+cla <- clara(datos, k=3, sample=10)
+cla
+@
+
+Podemos representar lo que obtenemos con \texttt{clara()}:
+
+\begin{center}
+<<plot.c.6, fig.height=4, fig.width=8>>=
+par(mfrow= c(1,2))
+plot(cla)
+@
+\end{center}
+Nos devuelve la distribución de los puntos en las dos primeras componentes principales y el gráfico silueta. El coeficiente de silhouette es 0.45, lo que nos dice que hay cierta estructura cluster en nuestros datos. 
+
+\section{Cuarta práctica en \texttt{R}: Clasificación}
+
+Aplicar a los datos \texttt{glass.txt} las diferentes técnicas de clasificación de datos vistas:
+\begin{itemize}
+    \item Análisis cluster jerárquico aglomerativo, probando diferentes estrategias de distancia, comparando dichas estrategias entre sí y midiendo la bondad de los modelos.
+    \item $k$-means, validando la elección del $k$ y representando los datos.
+    \item $k$-medoids, validando la elección del $k$ y representando los datos.
+\end{itemize}
+
+La solución de esta práctica se encuentra en el Apéndice \ref{sol:p4}.
+
