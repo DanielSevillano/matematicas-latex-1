@@ -1,0 +1,361 @@
+\chapter{Singularidades aisladas}
+
+\section{Singularidades aisladas}
+
+\begin{defi}
+Por una singularidad aislada de una función $f$ entendemos un punto $z_0$ de manera que $f$ está definida y es holomorfa en un entorno perforado de $z_0$, $\Delta(z_0,r) \backslash \{z_0\}$, sin ser a priori holomorfa en todo el entorno $\Delta(z_0,r)$.
+\end{defi}
+
+\begin{ejemplo}
+\begin{enumerate}
+    \item Las funciones $\frac{1}{z}$, $\frac{\sen z}{z}$, $e^{1/z}$ presentan singularidades aisladas en 0, ya que están definidas y son holomorfas en un entorno perforado de 0.
+    \item En principio, según la definición, si $f$ es holomorfa en $z_0$, también podría decir que $f$ presenta una singularidad aislada en $z_0$, aunque el interés es decir esto es nulo.
+    \item Un primer resultado sobre singularidades aisladas ya lo vimos como consecuencia de la analiticidad de funciones holomorfas: Si $f$ es continua en un abierto $\Omega$ y $f$ es holomorfa en $\Omega \backslash \{p\}$, siendo $p \in \Omega$, entonces $f$ es holomorfa en $\Omega$. O sea, la singularidad de $p$ es evitable si $f$ es continua en $p$.
+    \item Hay puntos que también podríamos llamar singularidades pero no aisladas. Por ejemplo, la función $f(z) = \frac{1}{\sen (1/z)}$ presenta singularidades aisladas en los puntos de la forma $a_n = \frac{1}{n\pi}$, $n \in \mathbb{Z} \backslash \{0\}$. El punto $a = 0$ también es ''singularidad'' de $f$, pero al ser límite de singularidades aisladas (no evitables), resulta que no es holomorfa en ningún entorno perforado de 0, por lo que 0 no puede ser singularidad aislada de $f$.
+\end{enumerate}
+\end{ejemplo}
+
+\begin{defi}
+Si $z_0$ es una singularidad de $f$, decimos que es evitable si $f$ admite una extensión holomorfa a todo un entorno de $z_0$. De esta manera, absusando de notación, la extensión holomorfa de $f$ en un entorno de una singularidad aislada evitable, también se suele denominar $f$.
+\end{defi}
+
+\begin{teo}[Teorema de Riemann sobre la singularidad evitable]
+Sea $z_0$ una singularidad aislada de $f$. Son equivalentes:
+\begin{enumerate}
+    \item[(i)] $z_0$ es singularidad aislada evitable de $f$.
+    \item[(ii)] $f$ admite extensión continua a $z_0$.
+    \item[(iii)] Existe $\lim_{z \to z_0} f(z)$ y es finito.
+    \item[(iv)] $f$ está acotada en un entorno perforado de $z_0$.
+    \item[(v)] $\lim_{z \to z_0} (z-z_0)f(z) = 0$.
+\end{enumerate}
+\end{teo}
+
+\begin{proof}
+Las implicaciones $(i) \Longrightarrow (ii) \Longrightarrow (iii) \Longrightarrow (iv) \Longrightarrow (v)$ son inmediatas. Probemos $(v) \Longrightarrow (i)$.
+\\
+\newline
+Supongamos que $f$ es holomorfa en $\Delta(z_0,R) \backslash \{z_0\}$ y que $\lim_{z \to z_0} (z-z_0)f(z) = 0$. Entonces la función $g: \Delta(z_0,R) \longrightarrow \com$, dada por 
+\begin{align*}
+    g(z) = \left\{ \begin{array}{lcc}
+             (z-z_0)f(z) &  si  & z \in \Delta(z_0,R) \backslash \{z_0\}\\
+             0 &  si & z = z_0 \\
+             \end{array}
+   \right.
+\end{align*}
+está bien definida y es continua en $\Delta(z_0,R)$, y además es holomrfa en $\Delta(z_0,R) \backslash \{z_0\}$. Por tanto, tenemos que $g$ es holomorfa en $\Delta(z_0,R)$ y tiene un cero en $z_0$. Todo esto implica que $g$ admite una factorización del tipo $g(z) = (z-z_0)h(z)$, con $h$ holomrfa en $\Delta(z_0,R)$. Se sigue entonces que:
+\begin{align*}
+    h(z) = \frac{(z-z_0)h(z)}{(z-z_0)} = \frac{g(z)}{z-z_0} = f(z), \ \ z \in \Delta(z_0,R) \backslash \{z_0\}
+\end{align*}
+probando de esta manera que $h$ es una extensión holomorfa de $f$ en $\Delta(z_0,R)$, y así, $z_0$ es singularidad evitable.
+\end{proof}
+
+\begin{defi}
+Sea $z_0$ una singularidad aislada de $f$.
+\begin{itemize}
+    \item $z_0$ es evitable si existe $\lim_{z \to z_0} f(z)$ y es finito.
+    \item $z_0$ es polo si existe $\lim_{z \to z_0} f(z)$ y vale $\infty$.
+    \item $z_0$ es singularidad aislada esencial si no es aislada ni polo ($f$ no tiene límite en $z_0$).
+\end{itemize}
+\end{defi}
+
+\begin{ejemplo}
+\begin{enumerate}
+    \item $f(z) = \frac{\sen z}{z}$ tiene una singularidad aislada evitable en $0$.
+    \item $f(z) = \frac{1}{(z-z_0)^n}$ tiene un polo en $z = z_0$.
+    \item $f(z) = e^{1/z}$ tiene una singularidad esencial en $z = 0$, pues el límite no existe, basta considerar:
+    \begin{align*}
+        &\lim_{n \to \infty} f\left( \frac{1}{n} \right) = \lim_{n \to \infty} e^n  = \infty \\
+        &\lim_{n \to \infty} f\left(- \frac{1}{n} \right) = \lim_{n \to \infty} e^{-n}  = 0
+\end{align*}
+\end{enumerate}
+\end{ejemplo}
+
+\begin{teo}[Orden de un polo]
+Sea $z_0$ un polo de $f$. Entonces existe un primer natural $n_0$ tal que $f(z) = (z-z_0)^{n_0}g(z)$ tiene una singularidad aislada evitable en $z_0$ y, además, trás evitar la singularidad, $g$ no se anula en todo un entorno de $z_0$.
+\\
+\newline
+Dicho primer natural se llama orden $z_0$ como polo de $f$.
+\end{teo}
+
+\begin{obs}
+\begin{enumerate}
+    \item $f$ tiene un polo de orden $n_0$ en $z_0$ si y solo si $\frac{1}{f}$ tiene un cero de orden $n_0$ en $z_0$.
+    \item Si $\Omega$ es abierto de $\com$, $z_0 \in \Omega$, y $f$ es holomorfa enn $\Omega \backslash \{z_0\}$, siendo $z_0$ polo de $f$ de orden $n_0$, entonces $g(z) = (z-z_0)^{n_0}f(z)$ es holomorfa en $\Omega$ con $g(z_0) \not = 0$.
+    \item Si $z_0$ es singularidad aislada de $f$ que es evitable o polo, entonces existe $\lim_{z \to z_0} f(z)$ como valor en $\com^*$, así que definiendo $f(z_0) = \lim_{n \to z_0} f(z) \in \com^*$, obtenemos una extensión de $f$, continua con respecto a la topología de $\com^*$ en un entorno de $z_0$.
+\end{enumerate}
+\end{obs}
+
+\begin{teo}[Casorati-Weierstrass]
+Si $D$ es un dominio en $\com$ y $f$ es holomorfa en $D \backslash \{z_0\}$, siendo $z_0 \in D$ una singularidad aislada esencial de $f$, entonces para $r>0$ tal que $\Delta(z_0,r) \subset D$, se tiene que $f(\Delta(z_0,r) \backslash \{z_0\})$ es denso en $\com$.
+\end{teo}
+
+\section{Desarrollos de Laurent}
+Sabemos que si $f$ es holomorfa en $z_0$, entonces $f$ es desarrollable en serie de potencias alrededor de $z_0$:
+\begin{align*}
+    f(z) = \sum_{n=0}^{\infty}{a_n(z-z_0)^n}
+\end{align*}
+Cuando $z_0$ es una singularidad aislada evitable o un polo de $f$, también obtenemos un desarrollo en serie de potencias de $(z-z_0)$ de la siguiente forma:
+\begin{itemize}
+    \item Si $z_0$ es singularidad evitable de $f$, la extensión holomorfa de $f$ en $z_0$, que la llamaremos nuevamente $f$, se encarga de proporcionarnos un desarrollo en serie de potencias ''no negativas'' de $(z-z_0)$:
+    \begin{align*}
+        f(z) = \sum_{n=0}^{\infty}{a_n(z-z_0)^n}
+    \end{align*}
+    \item Si $z_0$ es un polo de orden $n_0$ de $f$, entonces $(z-z_0)^nf(z)$ tiene una singularidad evitable en $z_0$, y $n_0$ es el primer natural con esta propiedad. Tras evitar la singularidad enn $z_0$, obtenemos
+    \begin{align*}
+        (z-z_0)^{n_0}f(z) = \sum_{n=0}^{\infty}{b_n(z-z_0)^n}
+    \end{align*}
+    De aquí se sigue que
+    \begin{align*}
+        f(z) &= \frac{1}{(z-z_0)^{n_0}}\sum_{n=0}^{\infty}{b_n(z-z_0)^n} = \sum_{n=0}^{\infty}{b_n(z-z_0)^{n-n_0}} \underset{k = n-n_0}{=} \sum_{k=-n_0}^{\infty}{a_k(z-z_0)^k} \\
+        &= \frac{a_{-n_0}}{(z-z_0)^{n_0}} + \frac{a_{-n_0 +1}}{(z-z_0)^{n_0-1}} + ... + \frac{a_{-1}}{(z-z_0)} + a_0 + a_1(z-z_0)+ ....
+    \end{align*}
+\end{itemize}
+Cuando $z_0$ sea una singularidad aislada esencial de $f$, veremos aparecer infinitas potencias negativas de $(z-z_0)$.
+
+\begin{teo}[Desarrollos de Laurent]
+Sea $a \in \com$, $0 \leq R_1 < R_2 \leq \infty$, y $f$ holomorfa en el anillo $A = A(a;R_1,R_2) = \{ z \in \com : R_1 < |z-a| < R_2\}$. Entonces $f$ admite un desarrollo, llamado desarrollo de Laurent de $f$ en $A$, de la forma:
+\begin{align*}
+    f(z) = \sum_{n = -\infty}^{\infty}{a_n(z-a)^n}, \ \ z \in A
+\end{align*}
+siendo la convergencia de la serie absoluta y uniforme en cada compacto de $A$. Además, los coeficientes $a_n$ vienen dados por la fórmula:
+\begin{align*}
+    a_n = \frac{1}{2\pi i} \int_{\gamma} {\frac{f(\xi)}{(\xi -a)^{n+1}} \ d \xi}
+\end{align*}
+donde $\gamma$ es cualquier ciclo de $A$ con $n(\gamma,a) = 1$.
+\end{teo}
+
+\begin{obs}
+Si $\{a_n\}_{n = -\infty}^{\infty}$ es una sucesión, decimos que la serie $\sum_{n=-\infty}^{\infty} a_n$ converge si las dos series $\sum_{n=0}^{\infty} a_n$, $\sum_{n=1}^{\infty} a_{-n}$ convergen. En tal caso, escribimos $\sum_{n=-\infty}^{\infty} a_n = \sum_{n=0}^{\infty} a_n  +\sum_{n=1}^{\infty} a_{-n}$. Decimos que la serie $\sum_{n=-\infty}^{\infty} a_n$ converge absolutamente si $\sum_{n=-\infty}^{\infty} |a_n|$ es convergente.
+\\
+\newline
+Si $S$ es un conjunto, y para cada $n \in \mathbb{Z}$, $f_n$ es una función de $S$ en $\com$, decimos que la serie $\sum_{n=-\infty}^{\infty} f_n$ converge uniformemente en $S$ si las dos series  funcionales $\sum_{n=0}^{\infty} f_n$, $\sum_{n=1}^{\infty} f_{-n}$ convergen uniformemente en $S$. En tal caso, escribimos $\sum_{n=-\infty}^{\infty} f_n = \sum_{n=0}^{\infty} f_n  +\sum_{n=1}^{\infty} f_{-n}$.
+\end{obs}
+
+\begin{obs}
+\begin{enumerate}
+    \item Una consecuencia de la demostración del teorema sobre desarrollos de Laurent, es que $f$ es descompone como $f = f_1 + f_2$, $f_1(z) = \sum_{n=-\infty}^{-1}a_n(z-a)^n$ y $f_2(z) = \sum_{n=0}^{\infty} a_n (z-a)^n$, siendo $f_1$ holomorfa en $\{ z \in \com : |z-a| > R_1 \}$ y $f_2$ holomorfa en $\{ z \in \com : |z-a| < R_2 \}$.
+    \item Si $f$ tiene una singularidad aislada en $a$, entonces $f$ es holomorfa en un anillo de la forma $A(a;0,R)$, para algún $R > 0$, y admite un desarrollo de Laurent alrededor de $a$:
+    \begin{align*}
+        f(z) = \sum_{n=-\infty}^{\infty}{a_n(z-a)^n}, \ \ z \in A(a;0,R)
+    \end{align*}
+    La serie de potencias negativas, $f_1 = \sum_{n=-\infty}^{-1}a_n(z-a)^n = P_{f,a}(z)$ se llama \textbf{parte principal del desarrollo de Laurent de $f$ en $a$}. Según el aspecto de esta parte prinicipal, obtenemos la siguiente caracterización de singularidades aisladas:
+    \begin{enumerate}
+        \item $a$ es singularidad evitable de $f$ si y solo si $f_1 \equiv 0$.
+        \item $a$ es polo de $f$ de orden $n_0$ si y solo si $f_1$ es un polinomio de grado $n_0$ en la variable $\frac{1}{z-a}$.
+        \item $a$ es singlaridad aislada esencial de $f$ si y solo $f_1$ tiene infinitos sumandos.
+    \end{enumerate}
+    \item Si $f$ tiene una singularidad aislada en $a$, $f$ es holomorfa en $A(a;0,R)$, para algún $R > 0$, y su desarrollo de Laurent es de la forma
+        \begin{align*}
+        f(z) = \sum_{n=-\infty}^{\infty}{a_n(z-a)^n}, \ \ z \in A(a;0,R)
+    \end{align*}
+    Si ahora $\gamma$ es un ciclo en $A(a;0,R)$ tal que $n(\gamma,a) = 1$, entonces
+    \begin{align*}
+        a_{-1} = \frac{1}{2\pi i} \int_{\gamma} f(\xi) \ d \xi
+    \end{align*}
+    O sea, hablando coloquialmente, $a_{-1}$ es el único coeficiente del desarrollo de Laurent de $f$ en $a$ que sobrevive al integrar $f$ a lo largo de $\gamma$. Recibe el nombre de \textbf{residuo de $f$ en $a$} 
+    \begin{align*}
+    \boxed{
+        Res(f,a) = a_{-1} = \frac{1}{2\pi i} \int_{\gamma} f(\xi) \ d \xi
+    }
+    \end{align*}
+    cualquiera que sea el ciclo $\gamma$ en $A(a,0,R)$ con $n(\gamma,a) = 1$. 
+    \begin{enumerate}
+        \item Si $a$ es singularidad evitable de $f$, entonces $Res(f,a) = 0$.
+        \item Si $a$ es un polo de $f$ de orden $n_0$, entonces
+            \begin{align*}
+        f(z) = \sum_{n = -n_0}^{\infty}{a_n(z-a)^n}
+    \end{align*}
+    con lo que
+    \begin{align*}
+        (z-a)^{n_0}f(z) = \sum_{k = 0}^{\infty}{a_{k-n_0}(z-a)^k}
+    \end{align*}
+    De donde deducimos que
+    \begin{align*}
+    \boxed{
+        Res(f,a) = a_{-1} = \frac{1}{(n_0-1)!} \frac{d^{n_0-1}}{dz^{n_0 - 1}}\Big|_{z=a} \left[ (z-a)^{n_0}f(z)\right]
+    }
+    \end{align*}
+    \end{enumerate}
+\end{enumerate}
+\end{obs}
+
+\section{El infinito}
+
+\begin{defi}
+Sea $f$ una función holomorfa definida en un entorno de $\infty$, esto es, existe $R>0$ tal que $f$ está definida en $\{z \in \com : |z| > R \}$. Decimos que $f$ es holomorfa en $\infty$ si $f(1/z)$ tiene una singularidad evitable en $0$, o sea, si $f(1/z)$ es holomorfa en $0$. Decimos que $\infty$ es una singularidad aislada (evitable, polo, esencial) de $f$ si $0$ es singularidad aislada (evitable, polo, esencial) de $f(1/z)$.
+\end{defi}
+
+\begin{obs}
+\begin{enumerate}
+    \item Si $f$ tiene una singularidad aislada en $\infty$, entonces $g(\xi) = f(1/\xi)$ tiene una singularidad aislada en $0$, con desarrollo de Laurent en $0$ del tipo:
+    \begin{align*}
+        g(\xi) = \sum_{n=-\infty}^{\infty}{b_n \xi^n} = \sum_{n=-\infty}^{\infty}{b_{-n} \left(\frac{1}{\xi}\right)^n} 
+    \end{align*}
+    y parte prinicipal
+    \begin{align*}
+        g_1(\xi) = \sum_{n=-\infty}^{1}{b_n \xi^n} = \sum_{n=1}^{\infty}{b_{-n} \left(\frac{1}{\xi}\right)^n} 
+    \end{align*}
+    De esta manera, podemos decir que el desarrollo de Laurent de $f$ en $\infty$ es como sigue
+    \begin{align*}
+        f(z) = g(1/z) = \sum_{n=-\infty}^{\infty}{b_{-n}z^n} = \sum_{n=-\infty}^{\infty}{a_nz^n}
+    \end{align*}
+    y su parte prinicipal es
+    \begin{align*}
+        f_1(z) = g_1(1/z) = \sum_{n=1}^{\infty}{a_nz^n}
+    \end{align*}
+    o sea, es una serie de potencias centrada en 0 con radio de convergencia $\infty$ (porque tiene que estar definida y ser holomorfa en un entorno ''perforado'' de $\infty$). En consecuencia:
+    \begin{enumerate}
+        \item $\infty$ es singualaridad evitable si y solo si $f_1 \equiv 0$.
+        \item $\infty$ es polo de orden $n_0$ de $f$ si y solo si $f_1(z) = \sum_{n=1}^{n_0}{a_nz^n}$ es un polinomio de grado $n_0$.
+        \item $\infty$ es singularidad aislada esencial de $f$ si y solo si $f_1(z) = \sum_{n=1}^{\infty}{a_nz^n}$ es una serie de potencias alrededor de 0, con infinitos sumandos, y radio de convergencia $\infty$. En otras palabras, $\infty$ es singularidad aislada esencial de $f$ si y solo si $f_1$ es una función enntera distinta de un polinomio.
+    \end{enumerate}
+    \item En virtud de lo anterior:
+    \begin{enumerate}
+        \item Todo polimomio de grado $N$ tiene un polo de orden $N$ en $\infty$.
+        \item $\frac{1}{z^N}$ es holomorfa en $\infty$ y tiene un cero de orden $N$ es $\infty$.
+        \item $e^z = \sum_{n=0}^{\infty}{\frac{z^n}{n!}}$ tiene una singularidad esencial en $\infty$, pues su parte principal es $\sum_{n=1}^{\infty}{\frac{z^n}{n!}} = e^z -1$, que es una función entera que no es un polinomio.
+        \item $e^{1/z} = \sum_{n=0}^{\infty}{\frac{1}{n!z^n}} = \sum_{n=-\infty}^{0}{\frac{z^n}{(-n)!}}$ tiene una singularidad aislada en $\infty$, con parte principal igual a $0$. Luego, $e^{1/z}$ es holomorfa en $\infty$ (y en $\infty$ vale $1$).
+    \end{enumerate}
+\end{enumerate}
+\end{obs}
+
+\begin{defi}
+Si $f$ tiene una sigularidad aislada en $\infty$, y $R$ es tal que $f$ es holomorfa en $\{z \in \com : |z| > R\}$, definimos el residuo de $f$ en $\infty$ como
+\begin{align*}
+    Res(f,\infty) = - \frac{1}{2\pi i}\int_{|\xi| = r}{f(\xi) \ d\xi}
+\end{align*}
+cualquiera que sea $r > 0$.
+\end{defi}
+
+\begin{obs}
+Una forma rápida para calcular el residuo de $f$ en $\infty$ es la siguiente:
+\begin{align*}
+    Res(f,\infty) = - \frac{1}{2\pi i} \int_{|\xi| = r}{f(\xi) \ d\xi} \underset{\xi = 1/w}{=} \frac{1}{2\pi i}\int_{|w| = 1/r}{f\left(\frac{1}{w}\right)\left(-\frac{1}{w^2}\right) \ dw} = Res\left( -\frac{1}{w}f\left(\frac{1}{w} \right),0 \right)
+\end{align*}
+\end{obs}
+
+\begin{defi}
+Sea $\Omega$ abierto de $\com^*$ y sea $f: \Omega \longrightarrow \com^*$. Decimos que $f$ es meromorfa en $\Omega$ si $f$ es holomorfa en $\Omega$ salvo por polos (y singularidades evitables, como tales, trás evitarlas, dejan de ser singularidades)
+\end{defi}
+
+\begin{obs}
+Si $f$ es meromorfa en el abierto $\Omega$ de $\com^*$, entonces el conjunto de polos de $f$ no tiene puntos acumulación en $\Omega$. De lo contrario, $f$ tendría ''singularidades no aisladas'' en $\Omega$. Se sigue entonces que el conjunto de polos de $f$, además de no tener puntos de acumulación en $\Omega$, es a lo sumo numerable, y sus putos de acumulación están en $\partial_{\infty} \Omega$.
+\end{obs}
+
+\begin{teo}
+\begin{itemize}
+    \item Si $f$ es holomorfa en $\com^*$, entonces $f$ es constante.
+    \item Si $f$ es meromorfa en $\com^*$, entonces $f$ es una función racional.
+\end{itemize}
+\end{teo}
+
+\section{El teorema de los residuos}
+
+\begin{prop}
+Sea $R$ una función racional. Entonces la suma de los residuos de $R$ es $0$.
+\end{prop}
+
+\begin{teo}[Teorema de los residuos]
+Si $f$ es holomorfa en un abierto $\Omega \subseteq \com$ excepto en $S \subset \Omega$, conjunto de singularidades aisladas (finitas) de $f$ (puede haber singularidades aisladas esenciales), entonces
+\begin{align*}
+    \frac{1}{2\pi i}\int_{\gamma}{f(z) \ dz} = \sum_{a \in S}{n(\gamma,a)Res(f,a)}
+\end{align*}
+para todo ciclo $\gamma$ en $\Omega \backslash S$, homólogo a 0 módulo $\Omega$.
+\end{teo}
+
+\begin{obs}
+El teorema de los residuos engloba todos los resultados importantes vistos hasta ahora.
+\begin{enumerate}
+    \item \underline{Teorema de Cauchy}: Si $f$ es holomorfa en el abierto $\Omega \subseteq \com$ y $\gamma$ es un ciclo en $\Omega$ homólogo a 0 módulo $\Omega$, entoces $\int_{\gamma}{f(\xi) \ d\xi} = 0$, pues $f$ no tiene singularidades aisladas.
+    \item \underline{Fórmula integral de Cauchy}: Si $f$ es holomorfa en el abierto $\Omega \subseteq \com$, $z_0 \in \Omega$ y $\gamma$ es un ciclo en $\Omega \backslash \{z_0\}$ homólogo a 0 módulo $\Omega$, entonces el conjunto de singularidades de $g(z) = \frac{f(z)}{z-z_0}$, $z \in \Omega \backslash \{z_0\}$ es $S = \{z_0\}$, y observamos que $z_0$ es polo simple de $g$, por lo que $Res(g,z_0) = \lim_{z \to z_0} g(z)(z-z_0) = f(z_0)$. De ahí que 
+    \begin{align*}
+        \frac{1}{2\pi i}\int_{\gamma} \frac{f(\xi)}{\xi - z_0} \ d\xi = \frac{1}{2\pi i} \int_{\gamma} g(\xi) \ d\xi = n(\gamma,z_0)Res(g,z_0) = n(\gamma,z_0)f(z_0)
+    \end{align*}
+    \item \underline{Fórmula integral de Cauchy para la $n$-ésima derivada}: Si $f$ es holomorfa en el abierto $\Omega \subseteq \com$, $z_0 \in \Omega$, $n \in \mathbb{N}$, y $\gamma$ es un ciclo en $\Omega \backslash \{z_0\}$ homólogo a 0 módulo $\Omega$, entonces el conjunto de singularidades de $g(z) = \frac{f(z)}{(z-z_0)^{n+1}}$, $z \in \Omega \backslash \{z_0\}$ es $S = \{z_0\}$ y observamos que $z_0$ es un polo de $g$ de orden $n+1$. Teniendo en cuenta que el desarrollo de Taylor de $f$ en $z_0$, $f(z) = \sum_{k=0}^{\infty}{a_k (z-z_0)^k}$, nso da el desarrollo de Laurent de $g$ en $z_0$ : 
+    \begin{align*}
+        g(z) = (z-z_0)^{-n-1}f(z) = \sum_{k=0}^{\infty}{a_k(z-z_0)^{-n-1+k}}
+    \end{align*}
+    de donde, obtenemos que
+    \begin{align*}
+        Res(g,z_0) = a_n = \frac{f^{(n)}(z_0)}{n!}
+    \end{align*}
+    De aquí se sigue que
+    \begin{align*}
+        \frac{n!}{2\pi i} \int_{\gamma} \frac{f(\xi)}{(\xi - z_0)^{n+1}} \ d\xi = \frac{n!}{2\pi i} \int_{\gamma} g(\xi) \ d\xi = n!n(\gamma,z_0)Res(g,z_0) = n(\gamma,z_0)f^{(n)}(z_0)
+    \end{align*}
+\end{enumerate}
+\end{obs}
+
+\section{Principio del argumento}
+
+\begin{teo}[De la curva de Jordan]
+Sea $J$ el soporte de una curva de Jordan en $\com$. Entonces $\com \backslash J$ tiene exactamente 2 componentes conexas y $J$ es la frontera de ambas.
+\begin{itemize}
+    \item A la componente acotada de $J$ se le llama \textbf{dominio interior de $J$}, y se denota por $I(J)$.
+    \item A la componente no acotada de $J$ se le llama \textbf{dominio exterior de $J$}, y se denota por $E(J)$.
+\end{itemize}
+\end{teo}
+
+Otrs resultados que aceptaremos como válidos (pero que no demostraremos) son los siguientes:
+\begin{enumerate}
+    \item Si $\gamma$ es un camino de Jordan y $J = sop(\gamma)$, entonces $n(\gamma,z) = 0$ para todo $z \in E(J)$, (tambien escribiremos $n(\gamma,z) = n(J,z)$), mientras que $n(\gamma,z) = 1$ para todo $z \in I(J)$.
+    \begin{itemize}
+        \item Si $n(\gamma,z) = 1$ para todo $I(J)$, decimos que $J$ está orientado positivamente.
+        \item Si $n(\gamma,z) = -1$ para todo $I(J)$, decimos que $J$ está orientado negativamente.
+    \end{itemize}
+    \item Cuando $J$ es el soporte de un camino de Jordan positivamente orientado, entonces $I(J)$ recibe el nombre de \textbf{dominio de Jordan}. Dicho de otra forma, un dominio $D \subseteq \com$ se dice que es un \textbf{dominio de Jordan}, si $\partial D$ es el soporte de un camino de Jordan positivamente orientado.
+    \item Existen curvas de Jordan con área positiva.
+\end{enumerate}
+
+\begin{teo}[Principio del argumento]
+Sea $J$ el soporte de un camino de Jordan $\gamma$ positivamente orientado. Sea $D$ un dominio simplemete conexo que contiene a $I(J) \cup J$. Sea $f$ meromorfa en $D$ sin ceros ni polos en $J$, entonces
+\begin{align*}
+    \frac{1}{2\pi i} \int_{\gamma} \frac{f'(\xi)}{f(\xi)} \ d\xi = (*) - (**)
+\end{align*}
+siendo
+\begin{enumerate}
+    \item[(*)] el número de ceros de $f$ en $I(J)$ contando multiplicidades.
+    \item[(**)] el número de polos de $f$ en $I(J)$ contando multiplicidades.
+\end{enumerate}
+\end{teo}
+
+\begin{obs}
+Bajo las hipótesis del teorema de los residuos, tenemos que
+\begin{align*}
+    n(f \circ \gamma,0) = \frac{1}{2\pi i}\int_{f \circ \gamma} \frac{1}{w} \ dw = \frac{1}{2\pi} Var_{f \circ \gamma} (\arg(w)) = \frac{1}{2\pi} Var_{\gamma}(\arg(f))
+\end{align*}
+\end{obs}
+
+\begin{teo}[Propiedad recubridora local de las funciones holomorfas]
+Sea $f$ una función holomorfa en $z_0 \in \com$. Sea $w_0 = f(z_0)$ y sea $N \in \mathbb{N}$ el orden de $z_0$ como cero de $f-w_0$. Entonces $f$ es una aplicación $N \longleftrightarrow 1$ en un entorno de $z_0$, queriendo esto decir que existe $R > 0$, tal que si $f$ es holomorfa en $\Delta(z_0,R)$, y tal que para todo $r \in (o,R)$, existe $\delta > 0$ con la propiedad de que si $w \in A(w_0,\delta) \backslash \{w_0\}$, entonces existen $N$ puntos distintos $z_1(w),...,z_N(w) \in \Delta(z_0,r)$ con $f(z_j(w)) = w$, $j = 1,...,N$.
+\end{teo}
+
+\begin{cor}[Teoerma de la aplicación abierta]
+Si $f$ es meromorfa y no constante, entonces $f$ es una aplicación abierta (en la topologia de $\com^*$).
+\end{cor}
+
+\begin{obs}
+\begin{enumerate}
+    \item Si $f$ es meromorfa y no constante en el abierto $\Omega$, entoncnes $f(\Omega)$ es abierto.
+    \item Si $f$ es meromorfa y no constante en el dominio $D$, entonces  $f(D)$ es dominio.
+\end{enumerate}
+\end{obs}
+
+\begin{teo}[Teorema de Rouché]
+Sea $J$ el soporte de un camino de Jordan $\gamma$. Sea $D$ un dominio simplemente conexo en $\com$, satisfaciendo que $I(J) \cup J \subset D$. Sean $f,g$ holomorfas en $D$ y tales que
+\begin{align*}
+    |f(z) - g(z)| < |g(z)|, \ \ \text{para todo } z \in J.
+\end{align*}
+Entonces $f$ y $g$ tienen el mismo números de ceros en $I(J)$ (por supuesto, contando multiplicidad).
+\end{teo}
+
+\begin{teo}[De Hurwitz (I)]
+Supongamos que $\{f_n\}$ es una sucesión de funciones holomorfas en un dominio $D$, que converge normalmente a una función $f$ (que sabemos que es holomorfa en $D$). Entonces. o bien $f \lea 0$ en $D$, o bien cada vez que $z_0 \in D$ sea un cero de orden $N \ge 0$, existen $r_0 > 0$ y $n_0 \in \mathbb{N}$ con la propiedad que, para todo $n \ge n_0$ $f_n$ tiene exactamente $N$ ceros en $\Delta(z_0,r_0)$ contando multiplicidades. Es más, estos ceros convergenn a  $z_0$ en medida que $n \to \infty$.
+\\
+\newline
+En particular, si cada $f_n$ carece de ceros y $f$ no es identicamente cero, entonces $f$ también carece de ceros.
+\end{teo}
+
+\begin{teo}[De Hurwitz (II)]
+Supongamos que $\{f_n\}$ es ua sucesión de funciones holomorfas e inyectivas en un dominio $D$, que converge normalmente a una función $f$ (que sabemos que es holomorfa en $D$). Entonces, obien $f$ es constante en $D$, o bien $f$ es inyectiva en $D$. 
+\end{teo}

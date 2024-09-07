@@ -1,0 +1,432 @@
+\chapter{Métodos multipaso}
+
+\section{Motivación, ejemplos y repaso de interpolación}
+
+\subsection{Métodos basados en integración numérica}
+
+\noindent La solución exacta de
+\begin{align*}
+    \left\{ \begin{array}{lcc}
+             y' = f(t,y)\\
+             y(0) = y_0 \\
+             \end{array}
+   \right.
+\end{align*}
+satisface 
+\begin{align*}
+    y(t_{k+1}) = y(t_k) + \int_{t_k}^{t_{k+1}} f(t,y(t)) \ dt.
+\end{align*}
+Tomando una fórmula de integración numérica para aproximar dicha integral, podemos aproximar
+\begin{align*}
+    y(t_{k+1}) \simeq y(t_k) +h\sum_{i=1}^{q} b_if\left( f_k^{(i)}, t_k^{(i)} \right).
+\end{align*}
+
+\begin{ejemplo}
+Método de Adams-Bashforth de 2 pasos. Si calculamos el polinomio que interpola $(t_{k-1},f_{k-1})$ y $(t_k,f_k)$, al que denotaremos por $P_1$, podemos aproximar: 
+\begin{align*}
+    \int_{t_{k-1}}^{t_k} f(t,y(t)) \ dt \simeq  \int_{t_{k-1}}^{t_k} P_1(t) \ dt.
+\end{align*}
+Y usando lo anterior, llegamos a que:
+\begin{align*}
+    y_{k+1} = t_k + \frac{h}{2}[3f(t_k,y_k) - f(t_{k-1},y_{k-1})].
+\end{align*}
+\end{ejemplo}
+
+\noindent Para calcular los polinomios de interpolación se suelen usar la forma de Lagrange y la forma de Newton.
+
+\subsection{Forma de Lagrange del polinomio de interpolación}
+
+\noindent Recodemos que 
+\begin{align*}
+    \ell_i(t) = \frac{(t-t_0) \cdots \widehat{(t - t_i)} \cdots (t - t_k)}{(t_i - t_0) \cdots \widehat{(t_i - t_i)} \cdots (t_i - t_k)},\ \ i = 1,\ldots,k.
+\end{align*}
+Observamos que 
+\begin{align*}
+    \ell_i(t_j) = \left\{ \begin{array}{lcc}
+             1 & si & i = j\\
+             0 & si & i \not = j \\
+             \end{array}
+   \right.
+\end{align*}
+Entonces, la forma de Lagrange del polinomio de interpolación de $(t_0,f_0),\ldots,(t_k,f_k)$ es
+\begin{align*}
+    P_k(t) = \sum_{i=0}^{k} f_i\ell_i(t)
+\end{align*}
+Con esto
+\begin{align*}
+    \int_{a}^{b} f(t) \ dt \simeq \int_{a}^{b} P_k(t) \ dt = \int_{a}^{b} \sum_{i=0}^{k} f_i\ell_i(t) \ dt = \sum_{i=0}^{k} \alpha_i f_i
+\end{align*}
+siendo $\alpha_i = \int_{a}^{b} \ell_i(t) \ dt$ (pesos de la fórmula).
+
+\subsection{Forma de Newton del polinomio de interpolación}
+
+\noindent Recordemos que las diferencias dividas de Newton se definen como
+\begin{align*}
+    f[x_k] &= f(x_k) & k \in \{0,\ldots.,n\} \\
+    f[x_k,x_{k+1}] &= \frac{f[x_{k+1}] - f[x_k]}{x_{k+1} - x_k} & k \in \{0,\ldots,n-1\} \\
+    f[x_k,x_{k+1},x_{k+2}] &= \frac{f[x_{k+1},x_{k+2}] - f[x_k,x_{k+1}]}{x_{k+2} - x_k} & k \in \{0,\ldots,n-2\} \\
+    & \vdots \\
+    f[x_k,x_{k+1},\ldots,x_{k+i}] &= \frac{f[x_{k+1},x_{k+2},\ldots,x_{k+1}] - f[x_k,x_{k+1},\ldots,x_{k+i-1}]}{x_{k+i}-x_k} & k \in \{0,\ldots,n-i\}
+\end{align*}
+De esta manera, la forma de Newton del polinomio de interpolación de $(t_0,f_0),\ldots,(t_k,f_k)$ es
+\begin{align*}
+    P_k(t) = f_0 + f[t_0,t_1](t-t_0) + f[t_0,t_1,t_2](t-t_0)(t-t_1) + \ldots + f[t_0,\ldots,t_k](t-t_0)\cdots(t-t_{k-1})
+\end{align*}
+Aunque en la práctica usaremos la otra expresión, que viene dada por:
+\begin{align*}
+    P_k(t) = f_k + f[t_{k-1},t_k](t-t_k) + f[t_{k-2},t_{k-1},t_k](t-t_k)(t-t_{k-1}) + \ldots + f[t_0,\ldots,t_k](t-t_k)\cdots (t-t_1)
+\end{align*}
+
+\begin{defi}[Diferencias finitas regresivas]
+La diferencia finita regresiva de orden 0 en $t_j$ es $\bigtriangledown^0f_j = f_j$. De forma recursiva, definimos:
+\begin{align*}
+    \bigtriangledown^{k+1}f_k = \bigtriangledown^k f_j - \bigtriangledown^kf_{j-1}.
+\end{align*}
+\end{defi}
+
+\begin{obs}
+De esta manera, tenemos que
+\begin{align*}
+    f[t_i,\ldots,t_{i+j}] = \frac{\bigtriangledown^j f_{i+j}}{j! h^j}.
+\end{align*}
+Con lo que podemos reeescribir la forma de Newton del polinomio de interpolacón como
+\begin{align*}
+    P_k(t) = \widetilde{P}_k(s) = \bigtriangledown^0 f_k + \bigtriangledown^1 f_k + \frac{\bigtriangledown^2 f_k}{2!}s(s+1) + \ldots + \frac{\bigtriangledown^k f_k}{k!}s(s+1)\cdots (s+k-1).
+\end{align*}
+siendo $sh = t - t_k$. Observamos que 
+\begin{align*}
+    \binom{s}{j} = \frac{s!}{j!(s-j)!} = \frac{s(s-1) \cdots (s-k+1)}{j!},
+\end{align*}
+con lo que
+\begin{align*}
+\boxed{
+    P_k(t) = \widetilde{P}_k(s) = \sum_{i=0}^{k} \binom{s+i-1}{i} \bigtriangledown^i f_k, \ \ \ s = \frac{t - t_k}{h}.
+}
+\end{align*}
+Esta expresión se conoce como la expresión de Gregory-Newton regresiva del polinomio de interpolación.
+\end{obs}
+
+\section{Métodos multipaso basados en integración numérica}
+
+\subsection{Métodos de Adams-Bashforth}
+
+\noindent La solución exacta de la ecuación $y' = f(t,y)$ verifica que 
+\begin{align*}
+    y(t_{k+1}) = y(t_k) + \int_{t_k}^{t_{k+1}} f(t,y(t)) \ dt.
+\end{align*}
+La idea del métodos de Adams-Bashforth de $q$ pasos es aproximar:
+\begin{align*}
+    \int_{t_k}^{t_{k+1}} f(t,y(t)) \ dt \thickapprox \int_{t_k}^{t_{k+1}} P_{q-1}(t) \ dt.
+\end{align*}
+siendo $P_{q-1}$ el polinomio de interpolación de $(t_k,f_k),\ldots,(t_{k-q+1},f_{k-q+1})$.
+\\
+\newline
+La expresión del método $AB$ de $q$ pasos es la siguiente:
+\begin{align*}
+    t_{k+1} = t_k + \int_{t_k}^{t_{k+1}} P_{q-1}(t) \ dt.
+\end{align*}
+Si hacemos el cambio de variable $s = \frac{t - t_k}{h}$, entonces:
+\begin{align*}
+\boxed{
+    y_{k+1} = y_k + h \int_{0}^{1} \widetilde{P}_{q-1}(s) \ ds.
+}
+\end{align*}
+
+\begin{ejemplo} \
+\begin{enumerate} 
+    \item La expresión del método $AB1$ es:
+    \begin{align*}
+        y_{k+1} = y_k + hf_k.
+    \end{align*}
+    \item La expresión del método $AB2$ es:
+    \begin{align*}
+        y_{k+1} = y_k + \frac{h}{2}(3f_k - f_{k-1}).
+    \end{align*}
+    \item La expresión del método $AB3$ es:
+    \begin{align*}
+        y_{k+1} = y_k + \frac{h}{12}(23f_k - 16f_{k-1} +5f_{k-2}).
+    \end{align*}
+\end{enumerate}
+\end{ejemplo}
+
+\subsection{Métodos de Adams-Moulton}
+
+\noindent Los métodos Adams-Moulton son métodos implícitos. Dichos métodos son parecidos a los Adams-Bashfort, pero vamos a usar el polinomio de interpolación $Q_q$ que interpola los puntos 
+\begin{align*}
+    (t_{k+1},f_{k+1}),(t_k,f_k),\ldots,(t_{k-q+1},f_{k-q+1}),
+\end{align*}
+es decir, usamos en la expresión del polinomio a $f_{k+1}$, que para conocerlo necesitamos $y_{k+1}$ (por eso es un método implícito). El método de Adams-Moulton de $q$ pasos es:
+\begin{align*}
+\boxed{
+    y_{k+1} = y_k + h\int_{-1}^{0} \widetilde{Q}_q (s) \ ds, \ \ \ s = \frac{t - t_k}{h}.
+}
+\end{align*}
+
+\begin{ejemplo} \
+\begin{enumerate} 
+    \item La expresión del método $AM1$ (o método del trapecio) es:
+    \begin{align*}
+        y_{k+1} = y_k + \frac{h}{2}(f_{k+1} + f_k).
+    \end{align*}
+    \item La expresión del método $AM2$ es:
+    \begin{align*}
+        y_{k+1} = y_k +\frac{h}{12}(5f_{k+1} + 8f_{k} - f_{k-1}).
+    \end{align*}
+\end{enumerate}
+\end{ejemplo}
+
+\section{Métodos BDF}
+\noindent Los métodos BDF (en inglés, \textit{Backward differentiation formula}) son métodos basados en diferenciación numérica. Supongamos que conocemos el valor de la función $y(t)$ en $k+1$ puntos y queremos aproximar $y'(\overline{t})$. Una aproximación razonable es $y(\overline{t}) \thickapprox P_k'(\overline{t})$, siendo $P_k$ el polinomio de interpolación de $(t_0,y(t_0)),\ldots,(t_k,f(t_k))$.
+\\
+\newline
+El método $BDF$ de $q$ pasos viene dado por
+\begin{align*}
+    \frac{1}{h} \widetilde{R}'_q(0) = f(t_{k+1},y_{k+1})
+\end{align*}
+siendo $R_q$ el polinomio que interpola $(t_{k+1},y_{k+1}),\ldots,(t_{k-q+1},y_{k-q+1})$.
+
+\begin{ejemplo} \
+\begin{enumerate}
+\item La expresión del método $BDF1$ es:
+    \begin{align*}
+        y_{k+1} = y_k + hf(t_{k+1},y_{k+1}),
+    \end{align*}
+    es decir, coincide con Euler implícito.
+    \item La expresión del método $BDF2$ es:
+    \begin{align*}
+        y_{k+1} -\frac{4}{3}y_k + \frac{1}{3}y_{k-1} = \frac{2h}{3}f(t_{k+1},y_{k+1})
+    \end{align*}
+\end{enumerate}
+\end{ejemplo}
+
+\section{Análisis de los métodos multipaso}
+
+\noindent Todos los métodos multipaso se puede escribir de la forma:
+\begin{align*}
+    \sum_{i=0}^{q} \alpha_i y_{k+i} = h\sum_{i=0}^{q} \beta_i f_{k+i}
+\end{align*}
+
+\begin{obs}
+Para que un método multipaso tenga $q$ pasos ha de ocurrir que:
+\begin{itemize}
+    \item $\alpha_q \not = 0$.
+    \item $|\alpha_0| + |\beta_0| > 0$.
+\end{itemize}
+Si $\beta_q = 0$, entonces tenemos un método explícito.
+\end{obs}
+
+\subsection{Orden y consistencia}
+
+\begin{defi}
+Error en $t_k$ es $e_k = |y(t_k) - y_k|$.
+\end{defi}
+\begin{defi}
+Error es $e(h) = \max_{k} e_k$.
+\end{defi}
+
+\begin{defi}
+Definimos el error de discretización local en $t_{k+q}$ como $\varepsilon_{k+1} = y(t_{k+q}) - \widetilde{y}_{k+q}$, siendo $\widetilde{y}_{k+q}$ tal que:
+\begin{align*}
+    \alpha_q \widetilde{y}_{k+q} + \sum_{i=0}^{q-1} \alpha_i y(t_{k+i}) = h\beta_q f(t_{k+q},\widetilde{y}_{k+q}) + h\sum_{i=0}^{q-1} \beta_i f(t_{k+i},y(y_k+i)).
+\end{align*}
+\end{defi}
+
+\begin{defi}
+Se dice que el método es consistente si
+\begin{align*}
+    \lim_{h \to 0} \sum_{k=0}^{N - q} |\varepsilon_{k+q}| = 0.
+\end{align*}
+\end{defi}
+
+\begin{defi}
+Se dice que el método es de orden $p$ si $\varepsilon_{q+k} = O(h^{p+1})$, $k=0,1,2,\ldots$, para cualquier solución $y(t)$ de clase $\mathscr{C}^{p+1}$.
+\end{defi}
+
+\begin{defi}
+Dado un método de $q$ pasos
+\begin{align*}
+    \sum_{i=0}^{q} \alpha_i y_{k+i} = h\sum_{i=0}^{q} \beta_i f_{k+i}
+\end{align*}
+se define el \textbf{operador diferencia} de la siguiente manera: Dada $y:[t_0,t_0+T] \longrightarrow \mathbb{R}$ derivable, dado $h>0$, dado $t \in [t_0,t_0+T-qh]$, el operador diferencia viene dado por
+\begin{align*}
+    L(y,t,h) = \sum_{i=0}^{q}[\alpha_i y(t+ih) - h\beta_i y'(t+ih)].
+\end{align*}
+\end{defi}
+
+\begin{teo}
+El método
+\begin{align*}
+    \sum_{i=0}^{q} \alpha_i y_{k+i} = h\sum_{i=0}^{q} \beta_i f_{k+i}
+\end{align*}
+es orden $p$ si y solo si $L(y,t,h) = O(h^{p+1})$ para cualquier $y \in \mathscr{C}^{p+1}([t_0,t_0+T])$.
+\end{teo}
+
+\begin{teo}
+El método multipaso
+\begin{align*}
+    \sum_{i=0}^{q} \alpha_i y_{k+i} = h\sum_{i=0}^{q} \beta_i f_{k+i}
+\end{align*}
+es orden al menos $p$ si y solo si
+\begin{itemize}
+    \item $\sum_{i=0}^{q} \alpha_i = 0$.
+    \item $\sum_{i=0}^{q} \alpha_i i^l = l\sum_{i=0}^{q} \beta_i i^{l-1}$, $l = 1,\ldots,p$.
+\end{itemize}
+\end{teo}
+
+\begin{proof}
+Sea $y \in \mathscr{C}^{p+1}([t_0,t_0+T])$ y $h > 0$.  Hemos de probar que
+\begin{align*}
+    L(y,t,h) = \sum_{i=0}^{q}[\alpha_i y(t+ih) - h\beta_i y'(t+ih)] = O(h^{p+1}).
+\end{align*}
+Desarrollando el polinomio de Taylor de $y$ y evaluando en $t+ih$:
+\begin{align*}
+    y(t+ih) &= y(t) + y'(t)ih + y''(t)\frac{(ih)^2}{2} + \ldots + y^{(p)}(t)\frac{(ih)^p}{p!} + O(h^{p+1}) \\
+    &= \sum_{l=0}^{p} \frac{y^{(l)}(t)}{l!}i^lh^l + O(h^{p+1}).
+\end{align*}
+Actuando de forma análoga con $y'$:
+\begin{align*}
+    hy'(t+ih) &= y'(t)h + y''(t)ih + y'''(t)\frac{i^2h^3}{2} + \ldots + y^{(p)}(t)\frac{i^{p-1}h^p}{(p-1)!} + O(h^{p+1}) \\
+    &= \sum_{l=1}^{p} \frac{y^{(l)}(t)}{(l-1)!}i^{l-1}h^l + O(h^{p+1}).
+\end{align*}
+Con esto llegamos que
+\begin{align*}
+    L(y,t,h) &= \sum_{i=0}^{q} \left[ \alpha_i \sum_{l=0}^{p} \frac{y^{(l)}(t)}{l!}i^lh^l - \beta_i \sum_{l=1}^{p} \frac{y^{(l)}(t)}{(l-1)!}i^{l-1}h^l \right] + O(h^{p+1})\\
+    &= \left( \sum_{i=0}^{q} \alpha_i \right) y(t) + \sum_{l=1}^{p} \frac{y^{(l)}(t)}{l!}h^l\left( \sum_{i=0}^{q} \alpha_i i^l - l\sum_{i=0}^{q} \beta_i i^{l-1} \right).
+\end{align*}
+Luego, $L(t,y,h) = O(h^{p+1})$ si y solo si
+\begin{itemize}
+    \item $\sum_{i=0}^{q} \alpha_i = 0$.
+    \item $\sum_{i=0}^{q} \alpha_i i^l = l\sum_{i=0}^{q} \beta_i i^{l-1}$, $l = 1,\ldots,p$.
+\end{itemize}
+\end{proof}
+
+\begin{prop}
+El método de Adams-Moulton de $q$ pasos tiene orden $q+1$.
+\end{prop}
+
+\subsection{Estabilidad}
+\noindent Antes de comenzar con la estabilidad, necesitmos recordar las ecuaciones en diferencias lineales homogéneas y de coeficientes constantes. Supongamos que tenemos la siguiente ecuación:
+\begin{align*}
+    \alpha_q y_{k+q} + \alpha_{q-1} y_{k+q-1} \ldots + \alpha_0 y_k = 0, \ \ k = 0,1,2,\ldots \ \ \alpha_1,\ldots,\alpha_q \in \mathbb{R}, \ \ \alpha_q \not = 0
+\end{align*}
+Una sucesión $\{y_k\}_{k=0}^{\infty}$ es solución si satisface dicha ecuación. El conjunto de soluciones tiene estructura de espacio vectorial de dimensión $q$. Una base es:
+
+\begin{align*}
+    \left\{ \begin{array}{lcc}
+             y_0^0 = 1,\ y_1^0 = 0,\ \ldots,\ y_{q-1}^0 = 0,\ y_q^0,\ y_{q+1}^0,\ \ldots\\
+             \\ y_0^1 = 0,\ y_1^1 = 1,\ \ldots,\ y_{q-1}^1 = 0,\ y_q^1,\ y_{q+1}^1,\ \ldots\\
+             \vdots \\
+              y_0^{q-1} = 0,\ y_1^{q-1} = 0,\ \ldots,\ y_{q-1}^{q-1} = 1,\ y_q^{q-1},\ y_{q+1}^{q-1},\ \ldots\\
+             \end{array}
+   \right.
+\end{align*}
+Para resolver la ecuación en diferencias finitas, hemos de encontrar una expresión de $y_k$. ¿Existen soluciones de la forma $\{\lambda^k\}_{k=0}^{\infty}$ con $\lambda \in \mathbb{R} \backslash \{0\}$?
+\begin{align*}
+    0 = \alpha_q \lambda^{k+q} + \ldots+ \alpha_1 \lambda^{k+1} + \alpha_0 \lambda^{k} = \lambda^k[\alpha_q \lambda^{q} + \ldots + \alpha_1 \lambda + \alpha_0] \Longleftrightarrow \alpha_q \lambda^{q} + \ldots + \alpha_1 \lambda + \alpha_0 = 0.
+\end{align*}
+Denotaremos $p(\lambda) = \alpha_q \lambda^{q} + \ldots + \alpha_1 \lambda + \alpha_0$. Distinguimos los siguientes casos:
+\begin{enumerate}
+    \item Si $p(\lambda)$ tiene $q$ raíces reales y distintas $\lambda_1,\ldots,\lambda_q$. Entonces todas las soluciones puede escribirse de la forma
+    \begin{align*}
+        y_k = c_1\lambda_1^k + \ldots + c_q \lambda_q, \ \ c_1,\ldots,c_q \in \mathbb{R}.
+    \end{align*}
+    En este caso, podemos afirmar que todas las soluciones de la ecuación en diferencias están acotadas si $|\lambda_i| \leq 1$ para cada $i = 1,\ldots,q$.
+    \item Si $p(\lambda)$ tiene una raíz $\lambda$ con multiplicidad $m$, entonces es fácil comprobar que las sucesiones:
+    \begin{align*}
+        \{\lambda^k\}_{k=0}^{\infty}, \ \{k\lambda^k\}_{k=0}^{\infty},\ \ldots,\{k^{m-1}\lambda^k\}_{k=0}^{\infty}.
+    \end{align*}
+    son soluciones de la ecuación y son linealmente independientes. Por tanto, también será solución una combinación lineal de ellas, es decir: \begin{align*}
+        y_k = \beta_1 \lambda^k + \beta_2 k \lambda^k + \ldots +\beta_m k^{m-1}\lambda^k = Q(k)\lambda^k, \ \ \alpha_1,\ldots,\alpha_m \in \mathbb{R},
+    \end{align*}
+    siendo $Q$ un polinomio de grado menor o igual que $m-1$. Luego, si $\lambda$ es raíz real de multiplicidad $m$, son soluciones:
+    \begin{align*}
+    y_k = Q(k)\lambda^k,
+    \end{align*}
+    con $Q$ polinomio de grado menor o igual que $m-1$. En este caso, podemos afirmar que todas las soluciones de la ecuación en diferencias están acotadas si $|\lambda| < 1$ o $|\lambda| = 1$ pero $m=1$. 
+    \item Si $p(\lambda)$ tiene un par de raíces complejas (conjugadas). Sean $\mu_{\pm} = \alpha e^{\pm i \theta} = \alpha(\cos \theta \pm i\sen\theta)$ dichas raíces complejas. Es fácil comprobar que:
+    \begin{align*}
+        \{\alpha^k \cos(k\theta) \}_{k=0}^{\infty}, \ \{\alpha^k \sen(k\theta) \}_{k=0}^{\infty},
+    \end{align*}
+    son soluciones de la ecuación y son linealmente independientes. Por tanto, es solución una combinación lineal de ellas, es decir:
+    \begin{align*}
+        y_k = \alpha^k(c_1 \cos(k\theta) + c_2 \sen(k\theta)).
+    \end{align*}
+    En este caso, podemos afirmar que todas las soluciones de la ecuación en diferencias están acotadas si $|\alpha| \leq 1$.
+    \item Si $p(\lambda)$ tiene al par de raíces comeplejas $\mu_{\pm} = \alpha e^{\pm i \theta} = \alpha(\cos \theta \pm i\sen\theta)$ con multiplicidad $m$, entonces
+    \begin{align*}
+        y_k = \alpha^k(R_1(k)\cos(k\theta) + R_2(k)\sen(k\theta)),
+    \end{align*}
+    siendo $P$ y $Q$ polinomios de grado menor o igual que $m-1$. En este caso, podemos afirmar que todas las soluciones de la ecuación en diferencias están acotadas si $|\alpha| < 1$ o $|\alpha = 1|$ pero $m = 1$.
+
+\end{enumerate}
+En conclusión: Todas las soluciones de la ecuación en diferencias están acotadas si y solo las raíces $\lambda$ de $p$ sastisfacen una de las siguientes condiciones:
+\begin{itemize}
+    \item $|\lambda| < 1$.
+    \item $|\lambda| = 1$ y multiplicidadad 1.
+\end{itemize}
+(si $\lambda$ es complejo, $|\lambda|$ es su módulo).
+
+\begin{defi}
+Dado un método multipaso
+\begin{align*}
+    \sum_{i=0}^{q} \alpha_i y_{k+i} = h\sum_{i=0}^{q} \beta_i f_{k+i},
+\end{align*}
+se denomina
+\begin{itemize}
+    \item Primer polinomio característico a:
+    \begin{align*}
+        \rho(s) = \sum_{i=0}^{q} \alpha_i s^i.
+    \end{align*}
+    \item Segundo polinomio característico a:
+    \begin{align*}
+        \sigma(s) = \sum_{i=0}^{q} \beta_i s^i.
+    \end{align*}
+\end{itemize}
+\end{defi}
+
+\begin{defi}
+Se dice que el método verifica la condición de la raíz si todas las raíces $\lambda$ del primer polinomio característico verifican una de las siguientes condiciones:
+\begin{itemize}
+    \item $|\lambda| < 1$.
+    \item $|\lambda| = 1$ y multiplicidadad 1.
+\end{itemize}
+\end{defi}
+
+\begin{teo}
+Un método multipaso es estable si y solo si se verifica la condición de la raíz.
+\end{teo}
+
+\begin{obs}
+Si el método es consistente, entonces $\lambda = 1$ es siempre raíz del primer polinomio característico pues:
+\begin{align*}
+    \rho(1) = \alpha_0 + \ldots + \alpha_q = 0
+\end{align*}
+Para que sea estable, tiene que tener multiplicidad 1.
+\end{obs}
+
+\begin{ejemplo} \
+\begin{enumerate}
+    \item Los métodos Adams (AM ó AB) son todos estables.
+    \item Los métodos BDF son estables para $q = 1,\ldots,6$.
+\end{enumerate}
+\end{ejemplo}
+
+\begin{teo}[Primera barrera de Dahlquist] \
+\begin{itemize}
+    \item Un método multipaso estable de $q$ pasos tiene a lo sumo orden $q+1$ si $q$ es impar o $q+2$ si $q$ es par.
+    \item Si además es explícito, su orden es a lo sumo $q$.
+\end{itemize}
+\end{teo}
+
+\begin{teo}
+Un método multipaso que satisface:
+\begin{itemize}
+    \item La codición de la raíz.
+    \item $\alpha_0 + \ldots + \alpha_q = 0$.
+    \item $\sum_{i=0}^{q} \alpha_i i^l = l\sum_{i=0}^{q} \beta_i i^{l-1}$, $l = 1,\ldots,p$. 
+\end{itemize}
+es convergente. Si además el método es de orden $p$ y los $q$ primeros pasos se dan con un método unipaso de orden $p$, entonces existe $c > 0$ (independiente de $h$) tal que:
+\begin{align*}
+    \max_{i=0,\ldots,N} |y(t_i) - y_i| \leq ch^p.
+\end{align*}
+\end{teo}

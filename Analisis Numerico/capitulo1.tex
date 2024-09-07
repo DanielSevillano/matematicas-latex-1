@@ -1,0 +1,510 @@
+\chapter{Métodos numéricos para problemas de valor inicial}
+
+\section{Métodos de Taylor}
+\noindent Supongamos que queremos resolver la ecuación 
+\begin{align*}
+    y' = f(t,y) ,
+\end{align*}
+donde $t \in [t_0,t_0 + T]$, $f \in \mathscr{C}^{p-1}([t_0,t_0+T] \times \mathbb{R})$ (lo que implica que $y \in \mathscr{C}^p([t_0,t_0+T])$). ¿Qué condiciones verifican las derivadas de la solución de la ecuación? No es difícil probar que, en general se tiene que
+
+\begin{align*}
+    y^{(l+1)} = f^{(l)}(t,y), \quad t \in [t_0,t_0+T],
+\end{align*}
+donde $f^{(0)},\ldots,f^{(p-1)}$ se definen recursivamente como
+\begin{align*}
+    \left\{ \begin{array}{lcc}
+             f^{(0)}(t,y) = f(t,y)\\
+             f^{(l+1)}(t,y) = \frac{\partial f^{(l)}}{\partial t}(t,y) + f^{(0)}(t,y)\frac{\partial f^{(l)}}{\partial y}(t,y), \quadl = 0,\ldots,p-2 \\
+             \end{array}
+   \right.
+\end{align*}
+
+\section{Métodos de Taylor de orden $p$}
+
+\begin{align*}
+\boxed{
+    y_{k+1} = y_k + h\sum_{l=1}^{p} \frac{f^{(l-1)}(t_k,y_k)}{l!} h^{l-1}, \quadk = 0,1,\ldots,N.
+}
+\end{align*}
+A la función $\Phi(t,y;h) = \sum_{l=1}^{p} \frac{f^{(l-1)}(t_k,y_k)}{l!} h^{l-1}$ se le conoce como función incremento.
+
+\section{Métodos de Runge-Kutta}
+\noindent La expresión general de un método de Runge-Kutta es
+\begin{align*}
+    \boxed{
+    y_{k+1} = y_k + h \sum_{i=1}^{q} b_i f\left(t_k^{(i)},y_k^{(i)}\right),
+    }
+\end{align*}
+siendo
+\begin{itemize}
+    \item $q$ el número de etapas.
+    \item $b_1,\ldots,b_q$ coeficientes.
+    \item $t_k^{(i)} = t_k + c_ih$, $i = 1,\ldots,q$, donde $c_1,\ldots,c_q$ son coeficientes.
+    \item $y_k^{(i)} = y_k + h\sum_{j=1}^{q} a_{ij}f\left( t_k^{(j)},y_k^{(j)} \right)$, $i = 1,\ldots,q$, donde $a_{11},\ldots,a_{qq}$ son coeficientes. 
+\end{itemize}
+Esto nos da un sistema no lineal de $q$ ecuaciones y $q$ incógnitas.
+\\
+\newline
+Una forma de representar un método de Runge-Kutta es su \textit{tablero de Butcher}:
+\begin{align*}
+\begin{tabular}{c|ccc}
+$c_1$    & $a_{11}$ & $\cdots$ & $a_{1q}$ \\
+$\vdots$ & $\vdots$ & $\ddots$ & $\vdots$ \\
+$c_q$    & $a_{q1}$ & $\cdots$ & $a_{qq}$ \\ \hline
+       & $b_1$    & $\cdots$ & $b_q$
+\end{tabular}
+\end{align*}
+Diremos que el método es explícito si su tablero de Butcher es de la forma:
+
+\begin{align*}
+\begin{tabular}{c|cccc}
+$c_1$    & 0      & 0        & 0            & 0    \\
+$c_2$    & $a_{21}$ &    0   &    0        & 0    \\
+$\vdots$ & $\vdots$ & $\ddots$ & $\ddots$         & $\vdots$    \\
+$c_{q}$  & $a_{q1}$ & $\cdots$ & $a_{q(q-1)}$ & 0    \\ \hline
+       & $b_1 $   & $\cdots$ &$ b_{q-1}$    & $b_q$
+\end{tabular}
+\end{align*}
+
+\begin{obs}
+En todos los métodos Runge-Kutta que vamos a estudiar se cumple que
+\begin{align*}
+    c_i = \sum_{j=1}^{q} a_{ij}.
+\end{align*}
+\end{obs}
+
+\begin{ejemplo} \
+\begin{enumerate}
+    \item Tablero de Butcher del Método RK4.
+    \begin{align*}
+        \begin{tabular}{c|cccc}
+0   & 0   & 0   & 0   & 0   \\
+1/2 & 1/2 & 0   & 0   & 0   \\
+1/2 & 0   & 1/2 & 0   & 0   \\
+1   & 0   & 0   & 1   & 0   \\ \hline
+    & 1/6 & 1/3 & 1/3 & 1/6
+\end{tabular}
+    \end{align*}
+    \item Tablero de Butcher del Método del Trapecio. Recordemos que:
+    \begin{align*}
+        y_{k+1} = y_k + \frac{h}{2}(f(t_k,y_k) + f(t_{k+1},y_{k+1})),
+    \end{align*}
+    y su tablero de Butcher sería
+    \begin{align*}
+        \begin{tabular}{c|cc}
+0 & 0   & 0   \\
+1 & 1/2 & 1/2 \\ \hline
+  & 1/2 & 1/2
+\end{tabular}
+    \end{align*}
+\end{enumerate}
+\end{ejemplo}
+
+\section{Convergencia, consistencia y estabilidad}
+
+\begin{defi}
+Consideremos un método numérico de la forma
+\begin{align*}
+    y_{k+1} = y_k + h \Phi(t_k,y_k,h), \ \ k = 0,\ldots,N-1,
+\end{align*}
+siendo $\Phi : [t_0,t_0+T] \times \mathbb{R} \times [0,h^*] \longrightarrow \mathbb{R}$ continua. Se denomina
+\begin{itemize}
+    \item \textbf{Error en $t_k$} a:
+    \begin{align*}
+        e_k = |y(t_k) - y_k|, \ \ k = 0,\ldots,N.
+    \end{align*}
+    \item \textbf{Error} a:
+    \begin{align*}
+        e(h) = \max_{k = 0,\ldots,N} |e_k|.
+    \end{align*}
+\end{itemize}
+\end{defi}
+
+\begin{defi}
+Se dice que el método es \textbf{convergente} cuando
+\begin{align*}
+    \lim_{h \to 0} e(h) = 0.
+\end{align*}
+\end{defi}
+
+\begin{defi}
+Se denomina \textbf{error de discretización local} a
+\begin{align*}
+    \varepsilon_k = y(t_{k+1}) - y(t_k) - h\Phi(t_k,y(t_k),h), \ \ k = 0,\ldots,N-1.
+\end{align*}
+\end{defi}
+
+\begin{defi}
+    Se dice que el método es \textbf{consistente }si
+    \begin{align*}
+        \lim_{h \to 0} \sum_{k=0}^{N-1} |\varepsilon_k| = 0 .
+    \end{align*}
+\end{defi}
+
+\begin{defi}
+    Se dice que un método es \textbf{estable} si existe $M > 0$ (independiente de $h$) tal que, dados $\{y_k\}_{k=0}^{N}$, $\{z_k\}_{k=0}^{N}$, $\{\delta_k\}_{k=0}^{N-1}$ verificando
+    \begin{align*}
+        &y_{k+1} = y_k + h\Phi(t_k,y_k,h), \ \ k = 0,\ldots,N-1 \\
+        &z_{k+1} = z_k + h\Phi(t_k,z_k,h) + \delta_k, \ \ k = 0,\ldots,N-1
+    \end{align*}
+    se tiene que
+    \begin{align*}
+        \max_{k=0,\ldots,N} |y_k - z_k| \leq M\left[ |z_0 - y_0| + \sum_{k=0}^{N-1} |\delta_k| \right]
+    \end{align*}
+\end{defi}
+
+\begin{teo}
+Consistencia y estabilidad implican convergencia.
+\end{teo}
+
+\begin{proof}
+Por definición $\varepsilon_k = y(t_{k+1}) - y_k - h \Phi(t_k,y(t_k),h)$ para cada $k = 0,\ldots,N-1$, entonces
+\begin{align*}
+    y(t_{k+1}) =  y_k - h \Phi(t_k,y(t_k),h) + \varepsilon_k, \ k = 0,\ldots,N-1.
+\end{align*}
+Por otro lado, el método nos da
+\begin{align*}
+    y_{k+1} = y_k + h\Phi(t_k,y_k,h), \ k = 0,\ldots,N-1.
+\end{align*}
+Aplicando la definición de estabilidad para $z_k = y(t_k)$, $k = 0,\ldots,N-1$, $y_k$ la solución numérica y $\delta_k = \varepsilon_k$ tenemos que:
+\begin{align*}
+    0 \leq \max_{k=0,\ldots,N-1} |y(t_k) - y_k| \leq M \left[ |y_0 - y(t_0)| + \sum_{k=0}^{N-1} |\varepsilon_k| \right]  = M\sum_{k=0}^{N-1} |\varepsilon_k| ..
+\end{align*}
+Lo que nos dice que
+\begin{align*}
+    0 \leq e(h) \leq M\sum_{k=0}^{N-1} |\varepsilon_k| .
+\end{align*}
+Como $\lim_{h \to 0} \sum_{k=0}^{N-1} |\varepsilon_k| = 0$ (por definición de consistencia), el criterio de comparación nos dice que $\lim_{h \to 0} e(h) = 0$.
+\end{proof}
+
+\begin{teo}
+Un método es consistente si y solo si $\Phi(t,y,0) = f(t,y)$.
+\end{teo}
+
+\begin{teo}
+Si existe $\Lambda > 0$ (independiente de $h$) tal que
+\begin{align*}
+    |\Phi(t,y,h) - \Phi(t,z,h)| \leq \Lambda|y-z|
+\end{align*}
+para todo $t \in [t_0,t_0+T]$, cualesquiera $x,y \in \mathbb{R}$ y cualquier $h \in [0,h^*]$, entonces el método es estable.
+\end{teo}
+
+\begin{proof}
+Hemos de probar que existe $M > 0$ (independiente de $h$) tal que, dados $\{y_k\}_{k=0}^{N}$, $\{z_k\}_{k=0}^{N}$ y $\{\delta_k\}_{k=0}^{N-1}$ verificando
+    \begin{align*}
+       (1) & \ y_{k+1} = y_k + h\Phi(t_k,y_k,h), \ \ k = 0,\ldots,N-1, \\
+        (2) &\ z_{k+1} = z_k + h\Phi(t_k,z_k,h) + \delta_k, \ \ k = 0,\ldots,N-1,
+    \end{align*}
+    se tiene que
+    \begin{align*}
+        \max_{k=0,\ldots,N} |y_k - z_k| \leq M\left[ |z_0 - y_0| + \sum_{k=0}^{N-1} |\delta_k| \right].
+    \end{align*}
+    Sean $\{y_k\}_{k=0}^{N}$, $\{z_k\}_{k=0}^{N}$ verificando $(1)$ y $(2)$, tendríamos entonces
+    \begin{align*}
+        |z_{k+1} - y_{k+1}| &= |z_k + h\Phi(t_k,z_k,h) + \delta_k - y_k - h \Phi(t_k,y_k,h)| \\
+        &= |z_k -  y_k + h(\Phi(t_k,z_k,h) - \Phi(t_k,y_k,h)) +\delta_k| \\
+        & \leq |z_k - y_k| + h\Lambda|z_k - y_k| + |\delta_k| \\
+        & \underset{1 + x \leq e^x}{\leq} e^{h \Lambda} |z_k - y_k| + |\delta_k| \\
+        & \leq e^{h\Lambda} [e^{h\Lambda}|z_{k-1} - y_{k-1}| + |\delta_{k-1}|] + |\delta_k| \\
+        & \vdots \\
+        & \leq e^{(k+1)h\Lambda}|z_0 y_0| + e^{kh\Lambda}|\delta_0| + \ldots + e^{h\Lambda}|\delta_{k-1}| + |\delta_k| \\
+        & \leq e^{Nh\Lambda}\left[ |y_0 - z_0| + \sum_{k=0}^{N-1} |\delta_k| \right] \\
+        & \underset{h = T/N}{=} e^{T\Lambda}\left[ |y_0 - z_0| + \sum_{k=0}^{N-1} |\delta_k| \right]
+    \end{align*}
+    Basta tomar $M = e^{T\Lambda}$ (que no depende de $h$) como constante de estabilidad.
+\end{proof}
+
+\section{Notación Landau}
+
+\noindent Sean $f,g : [0,h^*] \longrightarrow \mathbb{R}$. 
+\begin{itemize}
+    \item Se dice que son ''infinitésimos'' si
+    \begin{align*}
+        \lim_{h \to 0} f(h) = 0, \quad\lim_{h \to 0} g(h) = 0.
+    \end{align*}
+    \item Se dice que $f = o(g)$ si 
+    \begin{align*}
+        \lim_{h \to 0} \frac{f(h)}{g(h)} = 0.
+    \end{align*}
+    \item Se dice que $f = O(g)$ si existe $C > 0$ (independiente de $h$) tal que $|f(h)| \leq C|g(h)|$.
+\end{itemize}
+Algunas propiedades inmediatas son
+\begin{enumerate}
+    \item Si $g = O(h^p)$ y $q < p$, entonces $g = O(h^q)$.
+    \item Si $f = O(h^p)$ y $g = O(h^q)$, entonces $f + g = O(h^{\min(p,q)})$.
+    \item Si $f = O(h^p)$ y $g = O(h^q)$, entonces $f \cdot g = O(h^{p+q})$. En particular, si $f = O(h^p)$, entonces $f \cdot h^q = O(h^{p+q})$.
+\end{enumerate}
+
+\section{Orden de un método}
+
+\begin{defi}
+    Se dice que un método es de \textbf{orden p} si, para toda solución $y \in \mathscr{C}^{p+q}([t_0,t_0+T])$, se tiene que
+    \begin{align*}
+        \sum_{k=0}^{N-1} \varepsilon_k = O(h^p).
+    \end{align*}
+\end{defi}
+
+\begin{teo}
+Si $f \in \mathscr{C}^p([t_0,t_0+T] \times \mathbb{R})$ y el método es estable y de orden $p$, entonces $e(h) = O(h^p)$.
+\end{teo}
+
+\begin{proof}
+Observamos que si $f \in \mathscr{C}^p$, todas las soluciones verifican que $y \in \mathscr{C}^{p+1}([t_0,t_0+T])$. La demostración es identica a la de convergencia y estabilidad implica convergencia. 
+\end{proof}
+
+\begin{teo}
+Supongamos que $f \in \mathscr{C}^p([t_0,t_0+T] \times \mathbb{R})$ y que $\Phi(t,y,h)$, $\frac{\partial \Phi}{\partial h}(t,y,h)$, \ldots, $\frac{\partial^p \Phi}{\partial h^p}(t,y,h)$ existen y son continuas en $[t_0,t_0+T] \times \mathbb{R} \times [0,h^*]$. Si se verifican las igualdades
+\begin{align*}
+    \left\{ \begin{array}{lcc}
+             \Phi(t,y,0) = f(t,y)\\
+            \\ \frac{\partial \Phi}{\partial h}(t,y,0) =  \frac{1}{2}f^{(1)}(t,y) \\
+            \\  \frac{\partial^2 \Phi}{\partial h^2}(t,y,0) = \frac{1}{3}f^{(2)}(t,y) \\
+             \vdots \\
+             \frac{\partial^{p-1} \Phi}{\partial h^{p-1}}(t,y,0) = \frac{1}{p}f^{(p-1)}(t,y) \\
+             \end{array}
+   \right.
+\end{align*}
+para todo $(t,y) \in [t_0,t_0+T] \times \mathbb{R}$, entonces el método de orden al menos $p$.
+\end{teo}
+
+\begin{proof}
+Por definición $\varepsilon_k = y(t_{k+1}) - y(t_k) - h\Phi(t_k,y(y_k),h)$.  Por un lado, si desarrollamos el polinomio de Taylor $y$ centrado en $t_k$ y evaluamos en $t_{k+1}$, obtenemos que
+\begin{align*}
+    y(t_{k+1}) - y(t_k) &= y'(t_k)h + \frac{y''(t_k)}{2}h^2 + \ldots + \frac{y^{(p)}(t_k)}{p!} + O(h^{p+1}) \\
+    & = f^{(0)}(t_k,y(t_k))h + \frac{f^{(1)}(t_k,y(t_k))}{2!}h^2 + \ldots + \frac{f^{(p-1)}(t_k,y(t_k))}{p!}h^p + O(h^{p+1})
+\end{align*}
+Si consideramos que $\Phi$ es una función que depende de $h$ y desarrollando su polinomio de Taylor centrado en $0$:
+\begin{align*}
+    h\Phi(t_k,y(t_k),h) = \Phi(t_k,y(t_k),0)h &+ \frac{\partial \Phi(t_k,y(t_k),0)}{\partial h}h^2 \\&+ \ldots + \frac{1}{(p-1)!}\frac{\partial^{p-1} \Phi(t_k,y(t_k),0)}{\partial h^{p-1}}h^p + O(h^{p+1}) .
+\end{align*}
+De esta manera
+\begin{align*}
+    \varepsilon_k = & [f^{(0)}(t_k,y(t_k)) - \Phi(t_k,y(t_k),0)]h + \left[\frac{1}{2}f^{(1)}(t_k,y(y_k)) - \frac{\partial \Phi(t_k,y(t_k),0)}{\partial h}  \right]h^2 \\
+    & +\ldots + \frac{1}{(p-1)!} \left[\frac{1}{p}f^{(p-1)}(t_k,y(y_k)) - \frac{\partial^{p-1} \Phi(t_k,y(t_k),0)}{\partial h^{p-1}}\right]h^p + O(h^{p+1}).
+\end{align*}
+Teniendo en cuentas las igualdades de la hipótesis del teorema, llegamos a que $\varepsilon_k = O(h^{p+1})$, es decir, existe $c > 0$ (independiente de $h$) tal que $|\varepsilon_k| \leq ch^{p+1}$, $k=0,1,\ldots,N-1$ y por tanto:
+\begin{align*}
+    \sum_{k=0}^{N-1} |\varepsilon_k| \leq \sum_{k=0}^{N-1} ch^{p+1} = Nch^{p+1} = (Nh)ch^p = Tch^p \Longrightarrow\sum_{k=0}^{N-1} |\varepsilon_k| = O(h^p).
+\end{align*}
+\end{proof}
+
+\begin{obs}
+Con la definición que hemos dado, si un método es de orden $p$, también es de orden $q$ si $q < p$. Se suele decir que el orden del método es el mayor de sus órdenes.
+\end{obs}
+
+\section{Análisis de los métodos RK}
+\noindent Consideremos un método Runge-Kutta arbitrario
+Consideremos un método Runge-Kutta con el siguiente tablero de Butcher
+\begin{align*}
+\begin{tabular}{c|ccc}
+c_1    & a_{11} & \cdots & a_{1q} \\
+\vdots & \vdots & \ddots & \vdots \\
+c_q    & a_{q1} & \cdots & a_{qq} \\ \hline
+       & b_1    & \cdots & b_q   
+\end{tabular}
+\end{align*}
+Veamos cuando este método es cosistente. Usado que un método es consistente si y solo si $\Phi(t,y,0) = f(t,y)$, tenemos
+\begin{align*}
+    &t^{(i)} = t + c_i \cdot h \underset{h = 0}{=} t, \ \ i = 1,\ldots,q, \\
+    &y^{(i)} = y + h\sum_{j=1}^{q} a_{ij}f\left( t^{(i)},y^{(i)}  \right) \underset{h = 0}{=} y, \\
+    &\Phi(t,y,0) = \sum_{i=1}^{q} b_if\left(t^{(i)},y^{(i)}\right) = f(t,y) \sum_{i=1}^{q} b_i = f(t,y) \Longleftrightarrow \sum_{j=1}^{q} b_i = 1.
+\end{align*}
+Por tanto,  hemos probado el siguiente teorema:
+
+\begin{teo}
+Un método RK es consistente si y solo si $\sum_{j=1}^{q} b_i = 1$.
+\end{teo}
+
+\begin{teo}
+Supongamos que $h^*$ es tal que $h^* \| A\|_{\infty} L < 1$ siendo
+\begin{align*}
+    A = \begin{pmatrix}
+    a_{11} & \cdots & a_{1q}\\
+    \vdots & \ddots & \vdots\\
+    a_{q1} & \cdots & a_{qq}
+\end{pmatrix}
+\end{align*}
+y $L$ la constante de Lipschitz de $f$, entonces el método está bien definido y existe $\Lambda > 0$ (independiente de $h$) tal que \begin{align*}
+    |\Phi(t,y,h) - \Phi(t,z,h)| \leq \Lambda|y-z|,
+\end{align*}
+para todo $t \in [t_0,t_0+T]$, cualesquiera $x,y \in \mathbb{R}$ y cualquier $h \in [0,h^*]$. En consecuencia, el método es estable.
+\end{teo}
+
+\begin{proof}
+Para probar que el método está bien definido, hemos de demostrar que dados $t,y$, existen $y^{(1)},\ldots,y^{(k)}$ (únicos) tales que
+\begin{align*}
+    \left\{ \begin{array}{lcc}
+             y^{(1)} & = y + h\sum_{j=1}^{q}a_{1j}f(t^{(j)},y^{(j)})\\
+            & \vdots \\
+            y^{(q)} &= y + h\sum_{j=1}^{q}a_{qj}f(t^{(j)},y^{(j)})
+             \end{array}
+   \right.
+\end{align*}
+Definimos $Y = \begin{bmatrix}
+y^{(1)}\\
+\vdots \\
+y^{(q)} 
+\end{bmatrix}$ y sea $\overrightarrow{e} = \begin{bmatrix}
+1\\
+\vdots \\
+1
+\end{bmatrix}$, entonces, podemos ver el sistema anterior de forma matricial como
+\begin{align*}
+    Y = y\overrightarrow{e} + hAF(Y)
+\end{align*}
+donde, $F(Y) = \begin{bmatrix}
+f(t^{(1)}, y^{(1)})\\
+\vdots \\
+f(t^{(q)},y^{(q)}) 
+\end{bmatrix}$. Definimos $G: \mathbb{R}^q \longrightarrow \mathbb{R}^q$ como $G(X) = y\overrightarrow{e} + hAF(X)$. Veamos que $G$ es contractiva. Sean $X,Y \in \mathbb{R}^q$:
+\begin{align*}
+    \|G(X) - G(Y)\|_{\infty} &= h\|A(F(X) - F(Y))\|_{\infty} \leq h\|A\|_{\infty}\|F(X) - F(Y)\|_{\infty} \\
+    & \leq h\|A\|_{\infty}L\|X-Z\|_{\infty} \leq h^*\|A\|_{\infty}L\|X-Z\|_{\infty}
+\end{align*}
+Como por hipótesis $h^*\|A\|_{\infty}L < 1$, tenemos que $G$ es contractiva, por tanto, tiene un único punto fijo, que es la solución de nuestro sistema de ecuaciones, con lo que el método está bien definido. Además, se puede obtener como límite de cualquier sucesión $\{Y_l\}_{l=0}^{\infty}$ dada por
+\begin{align*}
+    Y_{l+1} = y\overrightarrow{e} + hAF(Y_l), \ l =0,1,2,\ldots 
+\end{align*}
+Veamos ahora que $\Phi$ es de Lipschitz en la segunda variable. Sean $y,z \in \mathbb{R}$, observamos que
+\begin{align*}
+    \Phi(t,y,h) = \sum_{i=1}^{q}b_if(t^{(i)},y^{(i)})
+\end{align*}
+siendo $y^{(1)},\ldots,y^{(q)}$ tales que
+\begin{align*}
+    \left\{ \begin{array}{lcc}
+             y^{(1)} & = y + h\sum_{j=1}^{q}a_{1j}f(t^{(j)},y^{(j)})\\
+            & \vdots \\
+            y^{(q)} &= y + h\sum_{j=1}^{q}a_{qj}f(t^{(j)},y^{(j)})
+             \end{array}
+   \right.
+\end{align*}
+De igual modo
+\begin{align*}
+    \Phi(t,z,h) = \sum_{i=1}^{q}b_if(t^{(i)},z^{(i)})
+\end{align*}
+siendo $z^{(1)},\ldots,z^{(q)}$ tales que
+\begin{align*}
+    \left\{ \begin{array}{lcc}
+             z^{(1)} & = z + h\sum_{j=1}^{q}a_{1j}f(t^{(j)},z^{(j)})\\
+            & \vdots \\
+            z^{(q)} &= z + h\sum_{j=1}^{q}a_{qj}f(t^{(j)},z^{(j)})
+             \end{array}
+   \right.
+\end{align*}
+Al igual que antes, definimos $Y = \begin{bmatrix}
+y^{(1)}\\
+\vdots \\
+y^{(q)} 
+\end{bmatrix}$ y $Z = \begin{bmatrix}
+z^{(1)}\\
+\vdots \\
+z^{(q)} 
+\end{bmatrix}$, con lo que obtenemos
+\begin{align*}
+    Y &= y\overrightarrow{e} + hAF(Y) \\
+    Z &= z\overrightarrow{e} + hAF(Z)
+\end{align*}
+Entonces
+\begin{align*}
+    Y - Z  &= (y-z)\overrightarrow{e} + hA(F(Y) - F(Z)) \\
+    \|Y-Z\|_{\infty} & \leq |y-z| + h\|A\|_{\infty}\|F(Y) -F(Z)\|_{\infty} \\
+    &\leq |y-z| + h^*\|A\|_{\infty}L\|Y-Z\|_{\infty},
+\end{align*}
+de donde deducimos que
+\begin{align*}
+    \|Y-Z\|_{\infty} \leq \frac{1}{1 - h^*\|A\|_{\infty}L}|y-z|,
+\end{align*}
+pues $1 - h^*\|A\|_{\infty}L > 0$. Observamos además que
+\begin{align*}
+    \Phi(t,y,h) = \overrightarrow{b}F(Y), \ \ \Phi(t,z,h) = \overrightarrow{b}F(Z)
+\end{align*}
+siendo $\overrightarrow{b} = \begin{bmatrix}
+b_1\\
+\vdots \\
+b_q
+\end{bmatrix}$. Con todo esto:
+\begin{align*}
+    |\Phi(t,y,h) - \Phi(t,z,h)| &= |\overrightarrow{b}(F(Y) - F(Z))| \leq \|\overrightarrow{b}\|_{\infty}\|F(Y) - F(Z)\|_{\infty} \\
+    & \leq \|\overrightarrow{b}\|_{\infty}L\|Y-Z\|_{\infty} \\
+    & \leq \|\overrightarrow{b}\|_{\infty} \frac{L}{1 - h^*\|A\|_{\infty}L}|y-z|
+\end{align*}
+Tomando $\Lambda = \|\overrightarrow{b}\|_{\infty} \frac{L}{1 - h^*\|A\|_{\infty}L}$, que no depende de $h$, tenemos que $\Phi$ es de Lipschitz respecto a la segunda variable.
+\end{proof}
+
+\begin{cor}
+Si $\sum_{i=1}^{q} b_i = 1$ y $h^* \|A\|_{\infty}L < 1$, entonces el método RK está bien definido y es convergente.
+\end{cor}
+
+\begin{cor}
+Si $\sum_{i=1}^{q} b_i = 1$ y $h^* \rho(|A|)L < 1$, entonces el método RK está bien definido y es convergente, siendo $\rho(|A|)$ el radio espectral de
+\begin{align*}
+    |A| = \begin{pmatrix}
+    |a_{11}| & \cdots & |a_{1q}|\\
+    \vdots & \ddots & \vdots\\
+    |a_{q1}| & \cdots & |a_{qq}|
+\end{pmatrix}.
+\end{align*}
+\end{cor}
+
+\begin{obs}
+Este segundo corolario es más fino porque $\rho(|A|) \leq \|A\|_{\infty}$.
+\end{obs}
+
+\begin{cor}
+Todo método RK explícito tal que $\sum_{i=1}^{q} b_i = 1$, está bien definido y es convergente.
+\end{cor}
+
+\subsection{Orden de un método RK}
+\begin{enumerate}
+    \item Orden 1.
+    \begin{align*}
+        \sum_{i=1}^{q} b_i = 1
+    \end{align*}
+    \item Orden 2.
+    \begin{align*}
+        \sum_{i=1}^{q} b_ic_i = \frac{1}{2}
+    \end{align*}
+    \item Orden 3.
+    \begin{align*}
+        &\sum_{i=1}^{q} b_ic_i^2 = \frac{1}{3} 
+        &\sum_{i,j=1}^{q} b_ia_{ij}c_i = \frac{1}{6}
+    \end{align*}
+    \item Orden 4.
+    \begin{align*}
+        &\sum_{i=1}^{q} b_ic_i^3 = \frac{1}{4} 
+        &\sum_{i,j=1}^{q} b_ia_{ij}c_j^2 = \frac{1}{12} \\
+        &\sum_{i,j=1}^{q} b_ic_ia_{ij}c_j = \frac{1}{8} 
+        &\sum_{i,j,k=1}^{q} b_ia_{ij}a_{jk}c_k = \frac{1}{24} 
+    \end{align*}
+\end{enumerate}
+
+\begin{teo}
+Un método explícito de $q$ etapas tiene a lo sumo orden $q$.
+\end{teo}
+
+\begin{teo}
+Un método explícito de $q$ etapas con $q \ge 5$ tiene orden estrictamente menor que $q$.
+\end{teo}
+
+\begin{teo}
+Un método explícito de $q$ etapas con $q \ge 5$ puede tener mayor orden cuando se aplica a una ecuación que cuando se aplica un sistema.
+\end{teo}
+
+\begin{teo}
+Un método RK implícito de $q$ etapas tiene a lo sumo orden $2q$.
+\end{teo}
+
+\section{Estimador del error de discretización local}
+\noindent La idea es usar:
+\begin{itemize}
+    \item $\Phi(t,y,h)$, método de orden $p$ para avanzar en iteraciones.
+    \item $\Phi^*(t,y,h)$, método de orden $q > p$, para estimar el error.
+\end{itemize}
+Y el estimador de error que vamos a usar es
+\begin{align*}
+    \widetilde{\varepsilon_k} = h(\Phi^*(t,y,h) - \Phi(t,y,h))
+\end{align*}
+Se puede probar que $\varepsilon_k = \widetilde{\varepsilon_k} + O(h^p)$. ¿Cómo usamos el estimador para calcular el siguiente paso? El siguiente paso que daremos será
+\begin{align*}
+    h_{k+1} = \alpha \left( \frac{\varepsilon}{\widetilde{\varepsilon_k}} \right)^{\frac{1}{p+1}}h_k, \ \ \alpha \in (0,1]
+\end{align*}

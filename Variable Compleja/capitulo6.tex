@@ -1,0 +1,238 @@
+\chapter{Ceros de funciones holomorfas}
+
+\begin{teo}
+Sea $\Omega$ abierto de $\com$ y sea $f: \Omega \longrightarrow \com$ holomorfa y sea $a \in \Omega$ tal que $f(a) = 0$. Entonces solo una de las dos opcionea a continuación es válida:
+\begin{enumerate}
+    \item[(i)] $f \equiv 0$ en un entoro de $a$.
+    \item[(ii)] $a$ es un cero aislado de $f$, en cuyo caso, existen $n_0 \in \mathbb{N}$ y $g: \Omega \longrightarrow \com$ holomorfa, con $g(a) \not = 0$ tales que $f(z) = (z-a)^{n_0}g(z)$.
+\end{enumerate}
+\end{teo}
+
+\begin{proof}
+Como $f$ es holomorfa, entonces $f$ es analítica y en consecuencia, es desarrollable en serie de potencias. Sea $R > 0$ tal que $\Delta(a,R) \subset \Omega$. Entonces para cada $z \in \Delta(a,R)$ se tiene que
+\begin{align*}
+    f(z) = \sum_{n=0}^{\infty}{a_n (z-a)^n} = \sum_{n=0}^{\infty}{\frac{f^{(n)}(a)}{n!} (z-a)^n}
+\end{align*}
+Entonces ocurre una de las siguientes opciones:
+\begin{enumerate}
+    \item[(i)] Si $f^{(n)}(a) = 0$ para todo $n \in \mathbb{N}_0$, entonces $f \equiv 0$ en $\Delta(a,R)$.
+    \item[(ii)] Existe un primer natural $n_0 \in \mathbb{N}$ tal que $f^{(n_0)}(a) \not = 0$ ($n_0 \not = 0$, pues $f(a) = 0$). Definimos
+\end{enumerate}
+\begin{align*}
+    g(z) = \left\{ \begin{array}{lcc}
+             \frac{f(z)}{(z-a)^{n_0}} &  si  & z \not = a\\
+             \frac{f^{(n_0)}(a)}{n!} &  si & z = a \\
+             \end{array}
+   \right.
+\end{align*}
+$g$ es continua, en principio, en $\Omega \backslash \{a\}$. Veamos que $g$ es continua en $a$. Para $z \in \Delta(a,R)$:
+\begin{align*}
+    f(z) = \sum_{n=0}^{\infty}{\frac{f^{(n)}(a)}{n!} (z-a)^n} = (z-a)^{n_0}\sum_{n=n_0}^{\infty}{\frac{f^{(n)}(a)}{n!} (z-a)^{n-n_0}}
+\end{align*}
+donde esta otra serie de potencias tiene el mismo radio de convergencia que $f$ y tiene valor $\frac{f^{(n_0)}(a)}{n_0!}$ en $z = a$. Esto prueba que $g$ es continua en $\Omega$. Además, $g$ es holomorfa en $\Omega \backslash \{a\}$, y por un resultado previo, se tiene que $g$ es holomorfa en $\Omega$.
+\\
+\newline
+Como $g(a) \not = 0$, existe un entorno $U$ de $a$ tal que $g \not = 0$ en U y por tanto, $f(z) = (z-a)^{n_0}g(z) \not = 0$ para cada $z \in U \backslash \{a\}$, lo que prueba que $a$ es un cero aislado de $f$.
+\end{proof}
+
+\begin{defi}
+$Z(f) = \{ a \in D : f(a) = 0\}$
+\end{defi}
+
+\begin{teo}[Teorema de Identidad ded Weierstrass]
+Sea $f$ una función holomorfa y no constante en un dominio $D \subseteq \com$. Entonces el conjunto de sus ceros no puede tener puntos de acumulación en $D$.
+\end{teo}
+
+\begin{proof}
+Sea $A = \{ a \in D : a \text{ es punto de acumulación de } Z(f) \text{ en } D \}$. Observamos que $A \subset Z(f)$. También, por la definición de $A$, se tiene que $A$ es cerrado en $D$.
+\\
+\newline
+Veamos que $A$ es abierto de $D$. Sea $a \in A$, entonces existe una sucesión $\{a_n\} \subset Z(f)$ tal que $a_n \to a$. Esto nos dice que $a$ no puede ser un cero aislado de $f$, luego, por el teorema anterior, existe un entorno $U$ de $a$ tal que $f = 0$ en $U$. Esto nos dicec que $U \subset A$ y por tanto, $A$ es abierto de $D$.
+\\
+\newline
+Como $A$ es abierto y cerrado y $D$ es conexo, entonces $A = \emptyset$ o $A = D$. Pero $A \not = D$ porque $f$ no es constante, por tanto $A = \emptyset$.
+\end{proof}
+
+\begin{cor}
+Si $f$ es holomorfa en y no constante en $D$ dominio de $\com$, entonces los puntos de acumulación de $Z(f)$ están en $\partial D$.
+\end{cor}
+
+\begin{obs}
+\begin{itemize}
+    \item  Si $K \subset D$ es compacto, entonces $Z(f) \cap K$ es finito (o vacío). 
+    \item El conjunto $Z(f)$ es a lo sumo numerable.
+\end{itemize}
+\end{obs}
+
+\begin{cor}[Principio de Unicidad de Weierstrass]
+Si $f,g$ son holomorfas en un dominio $D \subseteq \com$ y $f(z) = g(z)$ para todo $z \in A$, siendo $A \subset D$ un conjunto de acumulación de $D$, entonces $f = g$ en $D$.
+\end{cor}
+
+\begin{teo}[Prinicipio del módulo máximo]
+Si $f$ es holomorfa en un dominio $D \subseteq \com$ y $|f|$ alcanza un máximo local en $z_0 \in D$, entonces $f$ es constante en $D$.
+\end{teo}
+
+\begin{proof}
+Como $|f|$ alcanza un máximo local en $z_0 \in D$, entonces $f$ es constante en un entorno $U$ de $z_0$. Por el principio de identidad de Weierstrass, $f$ es constante en $D$.
+\end{proof}
+
+\begin{teo}[Principio del módulo mínimo]
+Si $f$ es holomorfa y nunca cero en un dominio $D \subseteq \com$ y $|f|$ alcanza un mínimo local en $D$, entonces $f$ es constante en $D$.
+\end{teo}
+
+\begin{ejemplo}
+Sea $u(z) = \re(z)$. Sabemos que $u$ es armónica en $\com$ y que $u(z) = 0 \Longleftrightarrow \re(z) = 0$, que es un conjunto de acumulación de $\com$, pero, $u$ no es identicamente cero en $\com$.
+\end{ejemplo}
+
+\begin{teo}[Principio de Identidad de Weierstrass para funciones armónicas]
+Sea $D \subseteq \com$ un dominio. Sea $u: D \longrightarrow \mathbb{R}$ armónica. Supongamos que existe $a \in D$ y $r > 0$ tales que $\Delta(a,r) \subset D$ y $u \equiv 0$ en $\Delta(a,r)$. Entonces $u = 0$ en $D$.
+\end{teo}
+
+\begin{proof}
+Consideramos $f = u_x - iu_y$, que es holomorfa en $D$ y $f = 0$ en $\Delta(a,r)$ (por hipótesis). Por el principio de identidad de Weiertrass, $f = 0$ en $D$. Esto implica que $u_x \equiv 0 \equiv u_y$ en $D$, por tanto, $u$ es constante en $D$ y como $u = 0$ en $\Delta(a,r)$, tenemos que $u = 0$ en $D$.
+\end{proof}
+
+\begin{teo}[Principio del máximo y del mínimo para funciones armónicas]
+\begin{itemize}
+    \item Si $u$ es armónica en un dominio $D \subseteq \com$ y alcanza un máximo local en $D$, entonces $u$ es constante en $D$.
+    \item Si $u$ es armónica en un dominio $D \subseteq \com$ y alcanza un mínimo local en $D$, entonces $u$ es constante en $D$.
+\end{itemize}
+\end{teo}
+
+\begin{teo}[Regla de L'H\^opital]
+Sea $D \subseteq \com$ un dominio y $f,g: D \longrightarrow \com$ holomorfas. Supongamos que $f(a) = g(a) = 0$. Entonces los siguientes límites existen y son iguales
+\begin{align*}
+    \lim_{z \to a}{\frac{f(z)}{g(z)}}, \ \ \ \ \ \lim_{z \to a}{\frac{f'(z)}{g'(z)}}
+\end{align*}
+\end{teo}
+
+\begin{proof}
+Sean $n_f$ y $n_g$ los órdenes de $a$ como cero de $f$ y $g$ respectivamente. Entonces podemos escribir
+\begin{itemize}
+    \item $f(z) = (z-a)^{n_f}h_f(z)$, siendo $h_f$ holomofa en $D$ y $h_f(a) \not = 0$.
+    \item $g(z) = (z-a)^{n_g}h_g(z)$, siendo $h_g$ holomofa en $D$ y $h_g(a) \not = 0$.
+\end{itemize}
+Entonces
+\begin{itemize}
+    \item $f'(z) = n_f(z-a)^{n_f -1}h_f(z) + (z-a)^{n_f}h_f'(z) = (z-a)^{n_f -1}[n_fh_f(z) + (z-a)h_f'(z)]$, donde lo del interior del corchete es diferente de 0 para $z = a$. Luego, si $n_f -1 \ge 1$, entonces $a$ es cero de $f'$ de orden $n_f -1$.
+    \item De igual forma $g'(z) = n_g(z-a)^{n_g -1}h_g(z) + (z-a)^{n_g}h_g'(z) = (z-a)^{n_g -1}[n_gh_g(z) + (z-a)h_g'(z)]$.
+\end{itemize}
+Entonces
+\begin{align*}
+    \frac{f(z)}{g(z)} &= (z-a)^{n_f - n_g} \frac{h_f(z)}{h_g(z)} \xrightarrow[z \to a]{} \left\{ \begin{array}{lcc}
+             0 &  si  & n_f > n_g\\
+             \frac{h_f(a)}{h_g(a)} &  si & n_f = n_g \\
+             \infty &  si  & n_f < n_g\\
+             \end{array}
+   \right. \\
+   \frac{f'(z)}{g'(z)} &= (z-a)^{n_f - n_g} \frac{n_fh_f(z) + (z-a)h_f'(z)}{n_gh_g(z) + (z-a)h_g'(z)} \xrightarrow[z \to a]{} \left\{ \begin{array}{lcc}
+             0 &  si  & n_f > n_g\\
+             \frac{h_f(a)}{h_g(a)} &  si & n_f = n_g \\
+             \infty &  si  & n_f < n_g\\
+             \end{array}
+   \right.
+\end{align*}
+\end{proof}
+
+\begin{teo}[Principio del módulo máximo]
+Sea $f$ holomorfa en un dominio $D \subseteq \com$. Supongamos que existe $M > 0$ tal que
+\begin{align*}
+    \limsup_{D \ni z \to \xi} |f(z)| \leq M
+\end{align*}
+para todo $\xi \in \partial_{\infty} D = \left\{ \begin{array}{lcc}
+             \partial D &  si  & D \text{ es acotada}\\
+             \partial D \cup \{\infty\} &  si & D \text{ no es acotada} \\
+             \end{array}
+   \right.$. Entonces $|f(z)| \leq M$ para todo $z \in D$. Es más, si existe $z_0 \in D$ tal que $|f(z_0)| = M$, entonces $f$ es constante en $D$.
+\end{teo}
+
+\begin{proof}
+Sea $\alpha = \sup_{z \ion D} |f(z)| \in [0,\infty]$. Existe $\{z_n\} \subset D$, que podemos suponer con límite $z^*$ tal que $|f(z_n)| \xrightarrow[n \to \infty]{} \alpha$.
+\\
+\newline
+\underline{Caso 1}: Si $z^* \in D$ entonces
+\begin{align*}
+    |f(z^*)| = \left| f\left( \lim_{n \to \infty}{z_n}\right) \right| = \lim_{n \to \infty} |f(z_n)| = \alpha,
+\end{align*}
+lo que nos dice que $|f(z^*)|$ es máximo global. Luego, por la versión anterior del principio del módulo máximo, tenemos que $f$ es constante en $D$ y $|f| = \alpha$ en $D$. Entonces, para cada $\xi \in \partial_{\infty} D$,
+\begin{align*}
+    \alpha = \lim_{D \ni z \to \xi} |f(z)| = \limsip_{D \ni z \to \xi} |f(z)| \leq M,
+\end{align*}
+por tanto, $\alpha \leq M$, luego $|f(z)| \leq M$ para cada $z\in D$.
+\\
+\newline
+\underline{Caso 2}: Si $z^* \in \partial_{\infty} D$, para todo $\varepsilon > 0$ ocurre que
+\begin{align*}
+    \limsup_{D \ni z \to z^*}|f(z)| \leq M + \varepsilon
+\end{align*}
+Esto implica que existe un entorno de $z^*$, $V$ (en $\com^*$) tal que $|f(z)| < M + \varepsilon$, para cada $z \in V \cap D$. Ahora, como $z_n \xrightarrow[n \to \infty]{} z^*$, existe un $n_0 \in \mathbb{N}$ tal que $z_n \in V$ para todo $n \ge n_0$, con lo que $|f(z_n)| < M + \varepsilon$ para todo $n \ge n_0$. Esto implica que
+\begin{align*}
+    \alpha = \lim_{n \to \infty} |f(z_n)| \leq M + \varepsilon
+\end{align*}
+Como $\varepsilon$ era arbitrario, resulta que $\alpha \leq M$. 
+\\
+\newline
+Ahora, si existe $z_0 \in D$ tal que $|f(z_0)| = M$, entonces $|f|$ alcanza máximo local en $D$, luego $f$ es constante en $D$.
+\end{proof}
+
+\begin{teo}[Principio del módulo mínimo]
+Si $f$ es holomorfa y nunca cero en un dominio $D \subseteq \com$ y existe un $m \in \mathbb{R}$ tal que para todo $\xi \in \partial_{\infty} D$ se tiene que
+\begin{align*}
+    \limsup_{D \ni z \to \xi} |f(z)| \ge m
+\end{align*}
+entonces $|f(z)| \ge m$ para cada $z \in D$. Además, si existe $z_0 \in D$ tal que $|f(z_0)| = m$, entonces $f$ es constante en $D$.
+\end{teo}
+
+\begin{teo}[Principio del módulo máximo y del módulo mínimo para funciones armónicas]
+Sea $D \subseteq \com$ un dominio y sea $u$ armónica en $D$.
+\begin{enumerate}
+    \item Supongamos que existe $M \in \mathbb{R}$ tal que $\limsup_{D \ni z \to \xi} u(z) \leq M$ para todo $\xi \in \partial_{\infty} D$. Entonces $u(z) \leq M$ para cada $z \in D$. Además, si existe $z_0 \in D$ tal que $u(z_0) = M$, entonces $u$ es constante en $D$.
+    \item Supongamos que existe $m \in \mathbb{R}$ tal que $\limsup_{D \ni z \to \xi} u(z) \ge m$ para todo $\xi \in \partial_{\infty} D$. Entonces $u(z) \ge m$ para cada $z \in D$. Además, si existe $z_0 \in D$ tal que $u(z_0) = m$, entonces $u$ es constante en $D$.
+\end{enumerate}
+\end{teo}
+
+\begin{teo}[Lema de Schwarz]
+Sea $f$ holomorfa en el disco unidad $\mathbb{D}$ con $f(0) = 0$ y $f(\mathbb{D}) \subset \mathbb{D}$. Entonces:
+\begin{enumerate}
+    \item[(i)] $|f(z)| \leq z$ para cada $z \in \mathbb{D}$.
+    \item[(ii)] $|f'(0)| \leq 1$.
+\end{enumerate}
+Si se da la igualdad en $(i)$ para algún $z \not = 0$ o se da la igualdad $(ii)$, entonces existe $\lambda \in \partial \mathbb{D}$ tal que $f(z) = \lambda z$ para cada $z \in \mathbb{D}$.
+\end{teo}
+
+\begin{proof}
+Observamos que $f(0) = 0$. Consideramos
+\begin{align*}
+    g(z) = \left\{ \begin{array}{lcc}
+             \frac{f(z)}{z} &  si  & z \in \mathbb{D} \backslash \{0\}\\
+             f(0) &  si & z = 0 \\
+             \end{array}
+   \right.
+\end{align*}
+Entonces $g$ es continua en $\mathbb{D}$ y holomorfa en $\mathbb{D} \backslash\{0\}$, luego, $g$ es holomorfa en $\mathbb{D}$. Observamos que si $\xi \in \partial_{\infty} \mathbb{D} = \partial \mathbb{D}$, entonces
+\begin{align*}
+    \lim_{\mathbb{D} \ni z \to \xi} |g(z)| = \lim_{\mathbb{D} \ni z \to \xi} \frac{|f(z)|}{|z|} \leq 1
+\end{align*}
+Por el principio del módulo máximo, se tiene que $|g(z)| \leq 1$ para cada $z \in \mathbb{D}$.
+\end{proof}
+
+\begin{defi}Un automorfismo del disco unidad es una aplicación conforme de $\mathbb{D}$ sobre $\mathbb{D}$, que son de la forma $\lambda\varphi_a$, $|\lambda| = 1$, $|a| < 1$, siendo
+\begin{align*}
+    \varphi_a(z) = \frac{a-z}{1-\overline{a}z}
+\end{align*}
+\end{defi}
+
+\begin{teo}
+Sea $f: \mathbb{D} \longrightarrow \mathbb{D}$ holomorfa. Se cumple
+\begin{enumerate}
+    \item[(i)] Para $z_1,z_2 \in \mathbb{D}$,
+    \begin{align*}
+        \left| \frac{f(z_1) - f(z_2)}{1 -\overline{f(z_1)}f(z_2)} \right| = \left| \frac{z_1 - z_2}{1 - \overline{z_1}z_2} \right|
+    \end{align*}
+    \item[(ii)] Para $z \in \mathbb{D}$,
+    \begin{align*}
+        \frac{|f'(z)|}{1-|f(z)|^2} \leq \frac{1}{1-|z|^2}
+    \end{align*}
+\end{enumerate}
+Además, si se da la igualdad en $(i)$ para algún par $z_1,z_2 \in \mathbb{D}$ con $z_1 \not = z_2$ o se da la igualdad $(ii)$ para algún $z \in \mathbb{D}$, entonces, $f$ es un automorfismo en $\mathbb{D}$.
+\end{teo}

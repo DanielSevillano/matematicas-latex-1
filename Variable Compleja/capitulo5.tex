@@ -1,0 +1,1168 @@
+\chapter{Integración compleja. Versiones simples del teorema de Cauchy}
+
+\section{Primitivas}
+
+\begin{defi}
+Sea $\Omega \subset \com$ abierto y $f: \Omega \longrightarrow \com$ una función. Decimos que $F : \Omega \longrightarrow \com$ es primitiva de $f$ en $\Omega$ si
+\begin{enumerate}
+    \item $F$ es holomorfa en $\Omega$.
+    \item $F' = f$ en $\Omega$.
+\end{enumerate}
+\end{defi}
+
+\begin{ejemplo}
+\begin{enumerate}
+    \item Una primitiva de $e^z$ en $\com$ es $e^z$.
+    \item Una primitiva de $a_0 + a_1z + ... + a_nz^n$ en $\com$ es
+    \begin{align*}
+        a_0z + a_1\frac{z^2}{2} + ... + a_n \frac{z^{n+1}}{n+1} 
+    \end{align*}
+    \item Si $f(z) = \sum_{n=0}^{\infty}{a_n(z-a)^n}$ es una serie de potencias con radio de convergencia $R > 0$, entonces
+    \begin{align*}
+        F(z) =  \sum_{n=0}^{\infty}{\frac{a_n}{n+1}(z-a)^{n+1}}
+    \end{align*}
+    es una primitiva de $f$ en $\Delta(a,R)$.
+    \item Si $F$ es una primitiva de $f$ en $\Omega$, entonces $F + \lambda$ es una primitiva de $f$ en $\Omega$.
+    \item Si $D \subset \com$ es dominio y $F_1,F_2$ son primitivas de $f$ en $D$, entonces existe $\lambda \in \com$ tal que $F_2 = F_1 + h$ en $D$.
+    \begin{proof}
+    $F_2 - F_1$ es holomorfa en $D$ y $(F_2 - F_1)' = F_2' - F_1' = f - f = 0$. Luego, $F_2 - F_1$ es constante en $D$.
+     \end{proof}
+     \item Una primitiva de $\frac{1}{z}$ en $\com \backslash (-\infty,0]$ es $\logp z$.
+\end{enumerate}
+\end{ejemplo}
+
+\begin{prop}
+Sea $D \in \comz$ dominio. Entonces existe una rama del $\log z$ en $D$ si y solo si $\frac{1}{z}$ tiene primitiva en $D$.
+\end{prop}
+
+\begin{proof}
+$\boxed{\Longrightarrow}$ Supongamos que $g$ es una rama del $\log z$ en $D$, entonces sabemos que $g$ es derivable en $D$ y que $g'(z) = \frac{1}{z}$, $z \in D$, por tanto, $g$ es primitiva de $\frac{1}{z}$ en $D$.
+\\
+\newline
+$\boxed{\Longleftarrow}$ Supongamos que $g: D \longrightarrow \com$ es primitiva de $\frac{1}{z}$ en $D$. Entonces $g$ es holomorfa en $D$ y $g'(z) = \frac{1}{z}$, $z \in D$.
+\\
+\newline
+Consideremos $G(z) = ze^{-g(z)}$, $z \in D$. Entonces
+\begin{enumerate}
+    \item[(i)] $G$ es holomorfa en $D$.
+    \item[(ii)] Dado $z \in D$
+    \begin{align*}
+        G'(z) = e^{-g(z)} - ze^{-g(z)}g'(z) = e^{-g(z)} - ze^{-g(z)} \frac{1}{z}= e^{-g(z)} - e^{-g(z)} = 0
+    \end{align*}
+    Por tanto, $G$ es constante y no nula en $D$. De esta manera, si $\beta$ es un logaritmo de dicha constante, entonces tenemos que
+    \begin{align*}
+        G(z) = e^{\beta} = ze^{-g(z)} \Longrightarrow  z = e^{g(z) + \beta}, \ \ z \in D
+    \end{align*}
+    Luego, $g(z) + \beta$ es rama del $\log z$ en $D$.
+\end{enumerate}
+\end{proof}
+
+\begin{prop}
+Sea $D \subset \com$ dominio y $f: D \longrightarrow \com$ holomorfa y nunca nula en $D$. Entonces existe una rama del $\log (f)$ en $D$ si y solo si $\frac{f'}{f}$ tiene primitiva en $D$.
+\end{prop}
+
+\section{Integración de funciones complejas sobre intervalos}
+
+\begin{defi}
+Sea $[a,b]$ un intervalo real no degenerado. Decimos que $\varphi : [a,b] \longrightarrow \com$ es integrable en $[a,b]$ (Riemann o Lebesgue) si lo son $\re(\varphi)$ e $\im(\varphi)$ y en ese caso
+\begin{align*}
+    \int_{a}^{b}{\varphi(t) \ dt} = \int_{a}^{b}{\re(\varphi(t)) \ dt} + i\int_{a}^{b}{\im(\varphi(t)) \ dt} 
+\end{align*}
+\end{defi}
+
+\begin{obs}
+\begin{enumerate}
+    \item \underline{Linealidad}:
+    \begin{align*}
+        \int_{a}^{b}{\alpha_1\varphi_1(t) + \alpha_2\varphi_2(t) \ dt} = \alpha_1\int_{a}^{b}{\varphi_1(t) \ dt} + \alpha_2\int_{a}^{b}{\varphi_2(t) \ dt}
+    \end{align*}
+    \item \underline{Aditividad}: Si $c \in (a,b)$
+    \begin{align*}
+        \int_{a}^{b}{\varphi(t) \ dt} = \int_{a}^{c}{\varphi(t) \ dt} + \int_{c}^{b}{\varphi(t) \ dt}
+    \end{align*}
+    \item \underline{Notación}:
+    \begin{align*}
+        \int_{a}^{b}{\varphi(t) \ dt} = -\int_{b}^{a}{\varphi(t) \ dt} \ \ \ \text{y} \ \ \
+        \int_{c}^{c}{\varphi(t) \ dt} = 0
+    \end{align*}
+    \item \underline{Estimación}:
+    \begin{align*}
+        \left| \int_{a}^{b}{\varphi(t) \ dt} \right| \leq \int_{a}^{b}{|\varphi(t)| \ dt}
+    \end{align*}
+    \begin{proof}
+    Si $\varphi$ es integrable en $[a,b]$, entonces $|\varphi| = \sqrt{\re(\varphi)^2 + \im(\varphi)^2}$ es integrable en $[a,b]$.
+    \begin{itemize}
+        \item Si $I = \int_{a}^{b}{\varphi(t) \ dt}$, no hay nada que probar.
+        \item Supongamos que $I \not = 0$, entonces $I = |I|e^{i\theta}$, $\theta \in \arg (I)$.
+        \begin{align*}
+             \left| \int_{a}^{b}{\varphi(t) \ dt} \right| &= |I| = Ie^{-i\theta} = \int_{a}^{b}{e^{-i\theta}\varphi(t) \ dt} \\
+             &= \int_{a}^{b}{\re(e^{-i\theta}\varphi(t)) \ dt} + i\int_{a}^{b}{\im(e^{-i\theta}\varphi(t)) \ dt} \\
+             &= \int_{a}^{b}{\re(e^{-i\theta}\varphi(t)) \ dt} \leq \int_{a}^{b}{\left|\re(e^{-i\theta}\varphi(t))\right| \ dt} \\
+             &= \int_{a}^{b}{|\varphi(t)| \ dt}
+        \end{align*}
+    \end{itemize}
+    \end{proof}
+    \item Si $\varphi$ es continua en $[a,b]$, entonces $\varphi$ es integrable en $[a,b]$.
+    \item El Teorema Fundamental del Cálculo tenemos que si $\varphi : [a,b] \longrightarrow \com$ es derivable y $\varphi'$ es integrable en $[a,b]$ entonces:
+    \begin{align*}
+        \int_{a}^{b}{\varphi'(t) \ dt} = \varphi(b) - \varphi(a)
+    \end{align*}
+    \item \underline{Cambio de variable}: Si $h :[a,b] \longrightarrow \mathbb{R}$ es de clase $\mathscr{C}^1$ y $\varphi : h([a,b]) \longrightarrow \com$ es continua, entonces $\varphi = \varphi \circ h$ son integrables en $h([a,b])$, $[a,b]$ respectivamente y
+    \begin{align*}
+        \int_{a}^{b}{\varphi \circ h(t)h'(t) \ dt} = \int_{h(a)}^{h(b)}{\varphi(s) \ ds}
+    \end{align*}
+    \itm \underline{Integración por partes}: $\varphi, \psi : [a,b] \longrightarrow \com$ son de clase $\mathscr{C}^1$ a trozos entonces
+    \begin{align*}
+        \int_{a}^{b}{\varphi(t)\psi'(t)} = \left\Big[ \varphi(t)\psi(t)\right\Big]_a^b - \int_{a}^{b}{\psi(t)\varphi(t) \ dt}
+    \end{align*}
+\end{enumerate}
+\end{obs}
+
+\section{Curvas y caminos}
+
+\subsection{Curvas}
+
+Sea $\mathscr{C}$ el conjunto de pares $(I,\varphi)$ donde $I$ es intervalo compacto de $\mathbb{R}$ y $\varphi : I \longrightarrow \com$ continua. Definimos la relación de equivalencia
+\begin{align*}
+    (I,\varphi) \sim (J,\psi) \Longleftrightarrow\text{Existe } h: I \longrightarrow J \text{ homeomorfismo creciente tal que } \varphi = \psi \circ h
+\end{align*}
+
+\begin{align*}
+    \xymatrix{
+    I \ar[r]^{\varphi} & \com  & & J \ar[r]^{\psi} & \com  \\
+    & I \ar[r]^{h} \ar@/_1pc/[rr]_{\varphi} & J \ar[r]^{\psi} & \com 
+    }
+\end{align*}
+
+\begin{defi}
+\begin{itemize}
+    \item Una curva en $\com$ es un elemento de $\mathscr{C}/\sim$.
+    \item Cada representante de una curva $\gamma$ se llama parametrización de $\gamma$.
+    \item Cada homeomorfismo creciente que liga dos parametrizaciones se llama cambio de parámetro.
+\end{itemize}
+\end{defi}
+
+\begin{defi}
+Sea $\gamma$ una curva de $\com$ parametrizada por $\varphi : [a,b] \longrightarrow \com$. Definimos:
+\begin{itemize}
+    \item $origen(\gamma) = \varphi(a)$.
+    \item $extremo(\gamma) = \varphi(b)$.
+    \item $soporte(\gamma) = sop(\gamma) = \varphi([a,b])$.
+\end{itemize}
+\end{defi}
+
+\begin{obs}
+Estas definiciones son independientes de la parametrización elegida.
+\begin{proof}
+Sea $\psi : [c,d] \longrightarrow \com$ otra parametrización de $\gamma$, entonces existe $h : [a,b] \longrightarrow [c,d]$ homeomorfismo creciennte tal que $\varphi = \psi \circ h$. Entonces
+\begin{itemize}
+    \item $origen(\gamma) = \varphi(a) = \varphi(h^{-1}(c)) = \psi(c)$.
+    \item $extremo(\gamma) = \varphi(b) = \varphi(h^{-1}(d)) = \psi(d)$.
+    \item $sop(\gamma) = \varphi([a,b]) = \psi(h([a,b])) = \psi([c,d])$.
+\end{itemize}
+\end{proof}
+\end{obs}
+
+\begin{defi}
+Sea $\gamma$ una curva de $\com$.
+\begin{itemize}
+    \item Decimos que $\gamma$ es simple si una (todas) parametrización es inyectiva.
+    \item Decimos que $\gamma$ es cerrada si $origen(\gamma) = extremo(\gamma)$.
+    \item Decimos que $\gamma$ es una curva de Jordan si una (todas) parametrización suya $([a,b], \varphi)$ es cerrada y $\varphi$ es inyectiva en $[a,b)$.
+\end{itemize}
+\end{defi}
+
+\begin{ejemplo}
+\begin{enumerate}
+    \item El segmento de origen $z_1$ y extremo $z_2$, denotado por $[z_1,z_2]$, lo podemos parametrizar como
+    \begin{align*}
+        \varphi : [0,1] &\longrightarrow \com \\
+        t & \longmapsto \varphi(t) = z_1 + t(z_2 - z_1)
+    \end{align*}
+    \item La circunferecia de centro $a$ y radio $r$ recorrida una vez en sentido positivo (horario) empezando por $a+r$ se puede parametrizar como
+    \begin{align*}
+        \varphi : [0,2\pi) &\longrightarrow \com \\
+        t & \longmapsto \varphi(t) = a + re^{i\theta}
+    \end{align*}
+\end{enumerate}
+\end{ejemplo}
+
+\begin{defi}
+Sean $([a_1,b_1],\varphi_1)$ y $([a_2,b_2],\varphi_2)$ dos parametrizaciones de curvas $\gamma_1$ y $\gamma_2$ respectivamente con $\varphi_1(b_1) = \varphi_2(a_2)$, entonces
+\begin{align*}
+    \varphi(t) = \left\{ \begin{array}{lcc}
+             \varphi_1(t) &  si  & t \in [a_1,b_1]\\
+             \\ \varphi_2(t-b_1+a_2) &  si &t \in [b_1,b_1 + b_2 - a_2] \\
+             \end{array}
+   \right.
+\end{align*}
+es una parametrización de una curva $\gamma$, que se llama $\gamma_1 + \gamma_2$.
+\end{defi}
+
+\begin{obs}
+La definición es independiente de las parametrizaciones elegidas.
+\end{obs}
+
+\begin{ejemplo}
+La poligonnal de vértices $z_1,...,z_n$, denotada por $[z_1,...,z_n]$ se puede parametrizar como
+    \begin{align*}
+        [z_1,...,z_n] = [z_1,z_2] + ... + [z_{n-1},z_n]
+    \end{align*}
+\end{ejemplo}
+
+\begin{defi}
+Si $\gamma$ es una curva de $\com$ parametrizada por $\varphi : [a,b] \longrightarrow \com$, entonces su curva opuesta, $-\gamma$, viene parametrizada por
+\begin{align*}
+    -\gamma : [-b,-a] \longrightarrow \com, \ \ -\gamma(t) = \varphi(-t)
+\end{align*}
+\end{defi}
+
+\begin{obs}
+$\gamma + (-\gamma)$ no es una curva constante.
+\end{obs}
+
+\subsection{Funciones de variaciones acotadas}
+
+\begin{defi}
+Sea $\varphi : [a,b] \longrightarrow \com$ función.
+\begin{itemize}
+    \item Para una partición $\Pi = \{ a = t_0 < t_1 < ... < t_n = b \}$ de $[a,b]$, definimos la variación de $\varphi$ respecto de $\Pi$ como
+    \begin{align*}
+        Var(\varphi, \Pi) = \sum_{j=1}^{n}{|\varphi(t_j) - \varphi(t_{j-1})|}
+    \end{align*}
+    \item La variación total de $\varphi$ en $[a,b]$ se define como
+    \begin{align*}
+        Var_{[a,b]}(\varphi) = \sup_{\Pi \in \mathcal{P}([a,b])} Var(\varphi, \Pi)
+    \end{align*}
+    \item Decimos que $\varphi$ es de variación acotada en $[a,b]$ si $Var_{[a,b]}(\varphi)$ es finita.
+\end{itemize}
+\end{defi}
+
+\begin{obs}
+\begin{enumerate}
+    \item $\varphi$ no tiene que ser necesariamente continua.
+    \item Si $\varphi$ es continua, entonces $\varphi$ es una parametrización de una curva $\gamma$ y $Var(\varphi,\Pi)$ representa la longitud de una poligonal con vértices en $\gamma$, ordenados en orden creciente de los parámetros.
+    \item Si $\Pi_1 \subseteq \Pi_2$ entonces $Var(\varphi,\Pi_1) \leq Var(\varphi,\Pi_2)$.
+    \item 
+    \begin{enumerate}
+        \item Si $\varphi : [a,b] \longrightarrow \com$ es función y $[\alpha,\beta] \subset [a,b]$ entonces
+    \begin{align*}
+        Var_{[\alpha,\beta]}(\psi) \leq Var_{[a,b]}(\varphi)
+    \end{align*}
+    siendo $\psi = \varphi |_{[\alpha,\beta]}$.
+    \item Si $c \in (a,b)$ entonces
+    \begin{align*}
+        Var_{[a,b]}(\varphi) = Var_{[a,c]}(\psi_1) + Var_{[c,b]}(\psi_2)
+    \end{align*}
+     siendo $\psi_1 = \varphi |_{[a,c]}$ y $\psi_2 = \varphi |_{[c,b]}$.
+    \end{enumerate}
+    \begin{proof}
+    $a)$ Basta ver que $Var_{[a,b]}(\varphi)$ es cota superior de $\left\{ Var(\psi,\Pi) : \Pi \in \mathcal{P}([a,b]) \right\}$. Sea $\Pi = \{ \alpha = t_0 < t_1 < ... < t_n = \beta\}$ una partición de $[\alpha,\beta]$. Añadimos a $\Pi$ los extremos $a$ y $b$ si fueran necesarios para obtener una partición de $[a,b]$
+    \begin{align*}
+        P = \{s_0 = a < s_1 < ... < s_m = b\}
+    \end{align*}
+    Entonces
+    \begin{align*}
+        Var(\psi,\Pi) &= \sum_{j=1}^{n}{|\psi(t_j) - \psi(t_{j-1})|} = \sum_{j=1}^{n}{|\varphi(t_j) - \varphi(t_{j-1})|} \\
+        & \leq \sum_{k=1}^{m}{|\varphi(s_k) - \varphi(s_{k-1})|} = Var(\varphi, P) \leq Var_{[a,b]}(\varphi)
+    \end{align*}
+    $b)$ Se deja como ejercicio.
+    \end{proof}
+    \item Si $\varphi : [a,b] \longrightarrow \com$ es función y $h : [\alpha,\beta] \longrightarrow [a,b]$ es homeomorfismo, entonces
+    \begin{align*}
+        Var_{[a,b]}(\varphi) = Var_{[\alpha,\beta]}(\varphi \circ h)
+    \end{align*}
+    \begin{proof}
+    veamos primero que $Var_{[a,b]}(\varphi) \leq Var_{[\alpha,\beta]}(\varphi \circ h)$.
+    Sea $\Pi$ partición de $[\alpha,\beta]$, $\Pi = \{t_0 = a < t_1 < ... < t_n = \beta\}$. Entonces
+    \begin{itemize}
+        \item $\Pi^* = \{ a = h(t_0) < ... < b = h(t_n) \}$ es partición de $[a,b]$ si $h$ crece.
+        \item $\Pi^* = \{ b = h(t_0) < ... < a = h(t_n) \}$ es partición de $[a,b]$ si $h$ decrece.
+    \end{itemize}
+    y entonces
+    \begin{align*}
+        Var(\varphi,\Pi^*) &= \sum_{j=1}^{n}{|\varphi(h(y_j)) - \varphi(h(t_{j-1}))|} = \sum_{j=1}^{n}{|\varphi \circ h (t_j) - \varphi \circ h (t_{j-1})|} \\
+        &= Var(\varphi \circ h, \Pi) \leq Var_{[\alpha,\beta]}(\varphi \circ h)
+    \end{align*}
+    Lo que nos dice que $Var_{[a,b]}(\varphi) \leq Var_{[\alpha,\beta]}(\varphi \circ h)$. \\
+    \newline
+    Veamos ahora que $Var_{[a,b]}(\varphi) \ge Var_{[\alpha,\beta]}(\varphi \circ h)$. Se hace de forma análoga trabajando con la inversa de $h$ (que existe puesto que $h$ es homeomorfismo y por tanto, su inversa también es homeomorfismo).
+    \end{proof}
+\end{enumerate}
+\end{obs}
+
+\begin{cor}
+$\varphi$ es variación acotada si y solo si $\varphi \circ h$ es de variación acotada (cualquiera que sea el homeomorfimos $h$).
+\end{cor}
+
+\begin{ejemplo}
+\begin{enumerate}
+    \item Si $\varphi : [a,b] \longrightarrow \mathbb{R}$ es monótona, entonces $\varphi$ es de variación acotada.
+    \item Si $\varphi : [a,b] \longrightarrow \mathbb{R}$ es diferencia de funciones crecientes, entonces $\varphi$ es de variación acotada en $[a,b]$.
+    \item Existen funciones continuas que no son de variación acotada, por ejemplo:
+    \begin{align*}
+        \varphi : \left[ -\frac{2}{\pi},0 \right] &\longrightarrow \com \\
+        t &\longmapsto \varphi(t) = t +it\sen\left( \frac{1}{t}\right)
+    \end{align*}
+    \begin{itemize}
+        \item $\varphi$ es continua en $\left[ -\frac{2}{\pi},0 \right]$ ($\varphi(0) = 0$).
+        \item La idea de por qué no es de variación acotada es la siguiente. Definimos la partición 
+        \begin{align*}
+            \Pi_N = \{t_0 < t_1 < ... < t_{2N +1} < t_{\infty} \}, \ \ N \in \mathbb{N}
+        \end{align*}
+        donde 
+        \begin{align*}
+            t_j = -\frac{1}{\frac{\pi}{2} + j\pi}, \ \ j \in \mathbb{N}_{0}
+        \end{align*}
+        Observamos que
+        \begin{align*}
+            \varphi(t_j) = t_j - it_j\sen\left( \frac{\pi}{2} +j\pi \right) = t_j + i(-1)^jt_j
+        \end{align*}
+        Y con esto (y desarrollando algunos cálculos) tenemos que
+        \begin{align*}
+            Var(\varphi,\Pi_N) = ... \ge \frac{1}{\pi} \sum_{k=0}^{N}{\frac{1}{k+1}} \xrightarrow[N \to \infty]{} \infty
+        \end{align*}
+    \end{itemize}
+\end{enumerate}
+\end{ejemplo}
+
+\begin{prop}
+Si $\varphi : [a,b] \longrightarrow \com$ es de clase $\mathscr{C}^1$ en $[a,b]$, entonces $\varphi$ es de variación acotada en $[a,b]$ y
+\begin{align*}
+    Var_{[a,b]}(\varphi) = \int_{a}^{b}{\left|\varphi'(t)\right| \ dt}
+\end{align*}
+\end{prop}
+
+\begin{proof}
+Haremos la demostración en dos partes.
+\begin{itemize}
+    \item Probemos que $\int_{a}^{b}{\left|\varphi'(t)\right| \ dt}$ es cota superior de $\{Var(\varphi, \Pi) : \Pi \in \mathcal{P}([a,b])\}$. Sea $\Pi = \{t_0 = a < t_1 <... < t_n = b\}$ una partición de $[a,b]$. Entonces
+    \begin{align*}
+        Var(\varphi, \Pi) &= \sum_{j=1}^{n}{|\varphi(t_j) - \varphi(t_{j-1})|} = \sum_{j=1}^{n}{\left| \int_{t_{j-1}}^{t_j}{\varphi'(t)} \ dt \right|} \\
+        & \leq \sum_{j=1}^{n}{\int_{t_{j-1}}^{t_j}{|\varphi'(t)|} \ dt } = \int_{a}^{b}{\left|\varphi'(t)\right| \ dt}
+    \end{align*}
+    \item Probemos que $\int_{a}^{b}{\left|\varphi'(t)\right| \ dt}$ es supremo $\{Var(\varphi, \Pi) : \Pi \in \mathcal{P}([a,b])\}$. Sea $\varepsilon > 0$, queremos encontrar una partición $\Pi$ de $[a,b]$ tal que $Var(\varphi, \Pi) > \int_{a}^{b}{|\varphi'(t)| \ dt} - \varepsilon$. Como $\varphi'$ es continua en $[a,b]$, dado $\varepsilon > 0$, existe $\delta > 0$ tal que si $s,t \in [a,b]$ con $|s-t| < \delta$, entonces $|\varphi'(s) - \varphi'(t)| < \frac{\varepsilon}{2(b-a)}$. Así
+    \begin{align*}
+        \int_{a}^{b}{\left|\varphi'(t)\right| \ dt} &= \sum_{j=1}^{n}{\int_{t_{j-1}}^{t_j}{|\varphi'(t)|} \ dt } =  \sum_{j=1}^{n}{\int_{t_{j-1}}^{t_j}{|\varphi'(t) -\varphi'(t_j) + \varphi(t_j)|} \ dt } \\
+        & \leq \sum_{j=1}^{n}\left({\int_{t_{j-1}}^{t_j}{|\varphi'(t) -\varphi'(t_j)| + |\varphi(t_j)|} \ dt }\right) \\
+        &< \sum_{j=1}^{n}{\int_{t_{j-1}}^{t_j}{\frac{\varepsilon}{2(b-a)}}\ dt + \int_{t_{j-1}}^{t_j}{|\varphi'(t_j)| \ dt}} \\
+        &= \frac{\varepsilon}{2} + \sum_{j=1}^{n}{|\varphi'(t_j)|(t_j - t_{j-1})} = \frac{\varepsilon}{2} + \sum_{j=1}^{n}{|\varphi'(t_j)(t_j - t_{j-1})|} \\
+        &= \frac{\varepsilon}{2} + \sum_{j=1}^{n}{\left| \int_{t_{j-1}}^{t_j}{\varphi'(t_j)} \ dt \right|} = \frac{\varepsilon}{2} + \sum_{j=1}^{n}{\left| \int_{t_{j-1}}^{t_j}{\varphi'(t_j) - \varphi'(t) + \varphi'(t)} \ dt \right|} \\
+        & \leq \frac{\varepsilon}{2} + \sum_{j=1}^{n} \left( \left| \int_{t_{j-1}}^{t_j}{\varphi'(t_j) - \varphi'(t) }\right| + \left|\int_{t_{j-1}}^{t_j}{\varphi'(t) \ dt} \right|\right) \\
+        & \leq \frac{\varepsilon}{2} + \sum_{j=1}^{n} \left( \ \int_{t_{j-1}}^{t_j}{|\varphi'(t_j) - \varphi'(t) |} \left|\int_{t_{j-1}}^{t_j}{\varphi'(t) \ dt} \right|\right) \\
+        & < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} + \sum_{j=1}^{n}{\left|\int_{t_{j-1}}^{t_j}{\varphi'(t) \ dt} \right|} = \varepsilon + \sum_{j=1}^{n}{|\varphi(t_j) - \varphi(t_{j-1})|} = \varepsilon + Var(\varphi, \Pi)
+    \end{align*}
+\end{itemize}
+\end{proof}
+
+\begin{prop}
+Si $\varphi : [a,b] \longrightarrow \com$ es de clase $\mathscr{C}^1$ a trozos en $[a,b]$, entonces $\varphi$ es de variación acotada en $[a,b]$ y
+\begin{align*}
+    Var_{[a,b]}(\varphi) = \int_{a}^{b}{\left|\varphi'(t)\right| \ dt}
+\end{align*}
+\end{prop}
+
+\begin{defi}
+Sea $\gamma$ una curva en $\com$.
+\begin{itemize}
+    \item  Definimos la longitud de $\gamma$ como
+    \begin{align*}
+        long(\gamma) := Var_{[a,b]}(\varphi)
+    \end{align*}
+    donde $\varphi : [a,b] \longrightarrow \com$ es una parametrización cualquiera de $\gamma$.
+    \item Decimos que $\gamma$ es rectificable si $long(\gamma) < \infty$.
+    \item Decimos que $\gamma$ es un camino si tiene una parametrización de clase $\mathscr{C}^1$ a trozos.
+\end{itemize}
+\end{defi}
+
+\begin{obs}
+\begin{itemize}
+    \item Todo camino es rectificable.
+    \item $long(\gamma) = long(-\gamma)$.
+    \item Si $\gamma_1,\gamma_2$ son curvas tales que $extremo(\gamma_1) = origen(\gamma_2)$, entonces
+    \begin{align*}
+        long(\gamma_1 + \gama_2) = long(\gamma_1) + long(\gamma_2)
+    \end{align*}
+\end{itemize}
+\end{obs}
+
+\subsection{Integración sobre caminos}
+
+\begin{defi}
+Sea $\gamma$ un camino de $\com$ y sea $f$ una función continua sobre $sop(\gamma)$. Definimos la ingral de $f$ sobre $\gamma$ como
+\begin{align*}
+    \int_{\gamma}{f(z) \ dz} := \int_{a}^{b}{f(\varphi(t))\cdot \varphi'(t) \ dt}
+\end{align*}
+donde $\varphi : [a,b] \longrightarrow \com$ es una paramemtrización de clase $\mathscr{C}^1$ a trozos en $[a,b]$ de $\gamma$.
+\end{defi}
+
+\begin{lema}
+Si $\varphi : [a,b] \longrightarrow \com$ es una parametrización de clase $\mathscr{C}^1$ a trozos y $f$ una función continua sobre $\varphi([a,b])$, entonces
+\begin{align*}
+    \int_{a}^{b}{f(\varphi(z))\cdot \varphi'(t) \ dt} = \lim_{\|P\| \to 0}{S(f,\varphi,P)}
+\end{align*}
+donde $P \in \mathcal{P}([a,b])$, $P = \{t_0 = a < t_1 < ... < t_n = b\}$ y
+\begin{align*}
+    S(f,\varphi,P) = \sum_{j=1}^{n}f(\varphi(t_j))(\varphi(t_j) - \varphi(t_{j-1}))
+\end{align*}
+\end{lema}
+
+\begin{proof}
+Como $\varphi$ es de clase $\mathscr{C}^1$ a trozos en $[a,b]$, entonces $\varphi$ es de variación acotada en $[a,b]$ y
+\begin{align*}
+    Var_{[a,b]}(\varphi) = \int_{a}^{b}{\left|\varphi'(t)\right| \ dt}
+\end{align*}
+Sea $\varepsilon > 0$ y sea $0 < Var_{[a,b]}(\varphi) < V$. Como $f \circ \varphi$ es continua en $[a,b]$, entonces es uniformemente continua en $[a,b]$. Así, dado $\varepsilon >x 0$, existe $\delta > 0$ tal que si $s,t \in [a,b]$ con $|s-t| < \delta$, entonces $|f \circ \varphi(s) - f \circ \varphi(t)| < \varepsilon/V$. 
+\\
+\newline
+Ahora, si $P = \{t_0 = a < t_1 < ... < t_n = b\}$ es una partición de $[a,b]$ tal que $\|P\| < \delta$, entonces
+\begin{align*}
+    \left| \int_{a}^{b}{f(\varphi(z))\cdot \varphi'(t) \ dt} - {S(f,\varphi,P)} \right| &= \left| \sum_{j=1}^{n} \left[ \int_{t_{j-1}}^{t_j} f(\varphi(t))\varphi'(t) \ dt - f(\varphi(t_j))(\varphi(t_j) - \varphi(t_{j-1})) \right] \right| \\
+    &= \left| \sum_{j=1}^{n} \left[ \int_{t_{j-1}}^{t_j} f(\varphi(t))\varphi'(t) \ dt -f(\varphi(t_j))\int_{t_{j-1}}^{t_j}{\varphi'(t) \ dt} \right] \right| \\
+    &= \left| \sum_{j=1}^{n}  \int_{t_{j-1}}^{t_j} \Big[f(\varphi(t)) - f(\varphi(t_j))\Big]\varphi'(t) \ dt   \right| \\
+    & \leq  \sum_{j=1}^{n}  \int_{t_{j-1}}^{t_j} |f(\varphi(t)) - f(\varphi(t_j))| \cdot |\varphi'(t)| \ dt  \\
+    & <  \sum_{j=1}^{n}{\frac{\varepsilon}{V}\int_{t_{j-1}}^{t_j}|\varphi'(t)| \ dt} = \frac{\varepsilon}{V}\int_{a}^{b}{|\varphi'(t)| \ dt} \\
+    &= \frac{\varepsilon}{V}Var_{[a,b]}(\varphi) < \frac{\varepsilon}{V}V = \varepsilon
+\end{align*}
+\end{proof}
+
+\begin{lema}
+Sea $\varphi : [a,b] \longrightarrow \com$ una parametrización de clase $\mathscr{C}^1$ a trozos en $[a,b]$ y sea $f$ una función continua sobre $\varphi([a,b])$. Si $h : [\alpha,\beta] \longrightarrow [a,b]$ es un homeomorfismo, entonces
+\begin{align*}
+    \int_{a}^{b}{f(\varphi(z))\cdot \varphi'(t) \ dt} = \lim_{\|P\| \to 0}{S(f,\varphi \circ h,P)}
+\end{align*}
+\end{lema}
+
+\begin{proof}
+Como $\lim_{\|P\| \to 0}{S(f,\varphi,P)} = \int_{a}^{b}{f(\varphi(t))\varphi'(t) \ dt}$. 
+\\
+\newline
+Dado $\varepsilon > 0$, existe $\delta > 0$ tal que si $\|P\| < \delta$, entonces $\left|S(f,\varphi,P) - \int_{a}^{b}{f(\varphi(t))\varphi'(t) \ dt}\right| < \varepsilon$. Como $h : [\alpha,\beta] \longrightarrow [a,b]$ es homeomorfismo, dado $\varepsilon > 0$, existe $\delta > 0$ tal que si $s,t \in [\alpha,\beta] < \delta$ entonces $|h(s) - h(t)| < \varepsilon$. Sea $P = \{ t_0 = \alpha < t_1 < ... < t_n = \beta \}$ una partición de $[\alpha,\beta]$ con $\|P\| < \delta$. Definimos $P^h = \{h(t_0) = a < ... < h(t_n) = b \}$, que es una partición de $[a,b]$ con $\|P^h\| = \max_{j}{|h(t_j) - h(t_{j-1})|} < \delta$. Por tanto
+\begin{align*}
+    \left|S\left(f,\varphi,P^h\right) - \int_{a}^{b}{f(\varphi(t))\varphi'(t) \ dt}\right| < \varepsilon
+\end{align*}
+De aquí se sigue que
+\begin{align*}
+    \left|S(f,\varphi \circ h, P) \int_{a}^{b}{f(\varphi(t))\varphi'(t) \ dt}\right|
+    &= \left| \sum_{j=1}^{n} f(\varphi \circ h(t_j))\Big[\varphi \circ h(t_j) - \varphi \circ h(t_{j-1})\Big] -\int_{a}^{b}{f \circ \varphi (t) \varphi'(t) \ dt} \right| \\
+    &= \left| \sum_{j=1}^{n} f(\varphi( h(t_j)))\Big[\varphi( h(t_j)) - \varphi(h(t_{j-1}))\Big] -\int_{a}^{b}{f \circ \varphi (t) \varphi'(t) \ dt} \right| \\
+    &= \left|S\left(f,\varphi,P^h\right) - \int_{a}^{b}{f(\varphi(t))\varphi'(t) \ dt}\right| < \varepsilon
+\end{align*}
+\end{proof}
+
+\begin{obs}
+Algunas propiedades inmediatas son
+\begin{enumerate}
+    \item \underline{Linealidad}:
+    \begin{align*}
+        \int_{\gamma}{(\alpha f + \beta g)(z) \ dz} = \alpha\int_{\gamma}{f(z) \ dz} + \beta\int_{\gamma}{g(z) \ dz}
+    \end{align*}
+    \item 
+    \begin{align*}
+        \int_{-\gamma}{f(z) \ dz} = -\int_{\gamma}{f(z) \ dz}
+    \end{align*}
+    \item Dados $\gamma_1,\gamma_2$ caminnos tales que $extremo(\gamma_1) = origen(\gamma_2)$. Si $f$ es continua en $sop(\gamma_1 + \gamma_2)$ entonces
+    \begin{align*}
+        \int_{\gamma_1 + \gamma_2}{f(z) \ dz} = \int_{\gamma_1}{f(z) \ dz} + \int_{\gamma_2}{f(z) \ dz}
+    \end{align*}
+    \item
+        \begin{align*}
+        \int_{\gamma + (-\gamma)}{f(z) \ dz} = \int_{\gamma}{f(z) \ dz} + \int_{-\gamma}{f(z) \ dz} = \int_{\gamma}{f(z) \ dz} - \int_{\gamma}{f(z) \ dz} = 0
+    \end{align*}
+    \item Si $\gamma$ es camino cerrado  y $f$ es continua en $sop(\gamma)$, entonces $\int_{\gamma}{f(z) \ dz}$ es independiente del $origen(\gamma)$.
+\end{enumerate}
+\end{obs}
+
+\begin{prop}[Regla de Barrow]
+Si $\gamma$ es camino en $\com$ y $f$ es de clase $\mathscr{C}^1$ en un entorno del $sop(\gamma)$, entonces
+\begin{align*}
+    \int_{\gamma}{f'(z) \ dz} = f(extremo(\gamma)) - f(origen(\gamma))
+\end{align*}
+\end{prop}
+
+\begin{obs}
+\begin{enumerate}
+    \item \underline{Acotación de la integral}: Sea $\gamma$ camino de $\com$, $f$ continua en $sop(\gamma)$ y $\varphi : [a,b] \longrightarrow \com$ una paramatrización de clase $\mathscr{C}^1$ a trozos  en $[a,b]$ de $\gamma$, entonces 
+    \begin{align*}
+        \left| \int_{\gamma}{f(z) \ dz} \right| &= \left| \int_{a}^{b}{f(\varphi(t))\varphi'(t) \ dt} \right| \leq \int_{a}^{b}{\left|f(\varphi(t))\varphi'(t) \right|\ dt} \\
+        & \leq \max_{z \in sop(\gamma)} |f(z)|\int_{a}^{b}{\varphi'(t) \ dt} = \max_{z \in sop(\gamma)} |f(z)| \cdot long(\gamma)
+    \end{align*}
+    \item \underline{Intercambio límite e integral}: Sea $\gamma$ un camino de $\com$, $\{f_n\}$ una sucesión de funciones continua sobre $sop(\gamma)$ que converge uniformemente a una función continua $f$ en $sop(\gamma)$. Entonces
+    \begin{align*}
+        \lim_{n}{\int_{\gamma}{f_n(z) \ dz}} = \int_{\gamma}{\lim_{n}f_n(z) \ dz} = \int_{\gamma}{f(z) \ dz}
+    \end{align*}
+    \begin{proof}
+    Basta observar que
+    \begin{align*}
+        \left| \int_{\gamma}{f(z) \ dz} -  \int_{\gamma}{f_n(z) \ dz}\right|= \left| \int_{\gamma}{f(z) - f_n(z) \ dz} \right| \leq \max_{z \in sop(\gamma)} |f_n(z) - f(z)| \cdot long(\gamma)
+    \end{align*}
+    Como $\lim_n{\max_{z \in sop(\gamma)} |f_n(z) - f(z)| \cdot long(\gamma)} = 0$, pues $\{f_n\}$ converge uniformemente a $f$ en $sop(\gamma)$, entonces 
+    \begin{align*}
+        \lim_{n}  \left| \int_{\gamma}{f(z) \ dz} -  \int_{\gamma}{f_n(z) \ dz}\right| = 0
+    \end{align*}
+    \end{proof}
+    \item \underline{Intercambio límite y serie}: Sea $\gamma$ un camino en $\com$, $\sum_{n=1}^{\infty}{f_n}$ una serie de funciones continuas sobre $sop(\gamma)$ que converge uniformemente en $sop(\gamma)$, entonces
+    \begin{align*}
+        \sum_{n=1}^{\infty} \int_{\gamma}{f_n(z) \ dz} = \int_{\gamma}{\sum_{n=1}^{\infty} f_n(z) \ dz}
+    \end{align*}
+\end{enumerate}
+\end{obs}
+
+\begin{defi}
+Sea $\gamma$ camino de $\com$ representado por una parametrización $\varphi : [a,b] \longrightarrow \com$ de clase $\mathscr{C}^1$ a trozos en $[a,b]$. Sea $f$ una función continua sobre $sop(\gamma)$. Definimos
+\begin{itemize}
+    \item Integral de $f$ respecto del elemento de longitud de arco
+    \begin{align*}
+        \int_{\gamma}{f(z) \ |dz|} := \int_{a}^{b}{f(\varphi(t))|\varphi'(t)| \ dt}
+    \end{align*}
+    \item Integrales respecto de la parte real e imaginaria de $\gamma$
+    \begin{itemize}
+        \item 
+        \begin{align*}
+            \int_{\gamma}{f(z) \ dx} := \int_{a}^{b}{f(\varphi(t)) (\re \ \varphi)'(t)) \ dt}
+        \end{align*}
+        \item 
+        \begin{align*}
+            \int_{\gamma}{f(z) \ dy} := \int_{a}^{b}{f(\varphi(t)) (\im \ \varphi)'(t)) \ dt}
+        \end{align*}
+    \end{itemize}
+\end{itemize}
+\end{defi}
+
+\begin{obs}
+Las definiciones no dependen de la parametrización elegida.
+\end{obs}
+
+\begin{defi}
+Sea $D$ un dominio en $\com$ y sea $f: D \longrightarrow \com$ continua. Decimos que la integral de $f$ es independiente del camino en $D$ si para todo par de puntos $z_1,z_2 \in D$ y para todo par de caminos $\gamma_1,\gamma_2$ en $D$ con $origen(\gamma_1) = origen(\gamma_2) = z_1$ y $extremo(\gamma_1) = extremo(\gamma_2) = z_2$ se tiene que
+\begin{align*}
+    \int_{\gamma_1}{f(z) \ dz} = \int_{\gamma_2}{f(z) \ dz}
+\end{align*}
+\end{defi}
+
+\begin{obs}
+Esta definición es equivalente a que $\int_{\gamma}{f(z) \ dz} = 0$ para todo camino cerrado $\gamma$ en $D$.
+\end{obs}
+
+\begin{teo}
+Sea $D$ un dominio en $\com$ y $f: D \longrightarrow \com$ continua. Son equivalentes:
+\begin{enumerate}
+    \item[(i)] La integral de $f$ es independiente del camino en $D$.
+    \item[(ii)] $f$ tiene primitiva en $D$.
+\end{enumerate}
+\end{teo}
+
+\begin{proof}
+\
+\newline
+$\boxed{(i) \Longleftarrow (ii)}$ Sea $F$ primitiva de $f$ en $D$, entonces $F$ es holomorfa en $D$ y $F = f'$ en $D$, luego $F$ es de clase $\mathscr{C}^1$ en $D$. Así, si $\gamma$ es un camino cerrado en $D$, por la regla de Barrow
+\begin{align*}
+    \int_{\gamma}{f(z) \ dz} = \int_{\gamma}{F'(z) \ dz} = F(extremo(\gamma)) - F(origen(\gamma)) = 0
+\end{align*}
+$\boxed{(i) \Longrightarrow (ii)}$ Busquemos una primitiva de $f$ en $D$. Fijemos $a \in D$. Sea $\gamma_z$ un camino en $D$ de origen $a$ y extremo $z$ (siempre existe al menos uno). Definimos $F(z) = \int_{\gamma_z}{f(\xi) \ d\xi}$, que está bien definida pues la integral de $f$ es independiente del camino en $D$.
+\\
+\newline
+Probemos que $F$ es derivable en $D$ y $F' = f$ en $D$. Fijamos $z_0 \in D$. Sea $\gamma_0$ un camino en $D$ de origen $a$ y extremo $z_0$. Entonces $F(z_0) = \int_{\gamama_{z_0}}{f(\xi) \ d\xi}$. Como $z_0 \in D$ y $D$ e s dominio, entonces existe $r > 0$ tal que $\Delta(z_0,r) \subset D$. Para $z \in \Delta(z_0,r)$, consideramos el segmento $[z_0,z]$ que está en $\Delta(z_0,r)$ (pues un disco es convexo). Observamos que $\gamma_0 + [z_0,z]$ es un camino en $D$ de origen $a$ y extremo $z$, luego
+\begin{align*}
+    F(z) = \int_{\gamma_0 + [z_0,z]}{f(\xi) \ d\xi}
+\end{align*}
+Así
+\begin{align*}
+    \left| \frac{F(z) - F(z_0)}{z - z_0} - f(z_0)\right| &= \left| \frac{1}{z - z_0} \left[ \int_{\gamma_0}{f(\xi) \ d\xi} + \int_{[z_0,z]}{f(\xi) \ d\xi} - \int_{\gamma_0}{f(\xi) \ d\xi} - f(z_0) \right] \right| \\
+    &= \left| \frac{1}{z - z_0} \int_{[z_0,z]}{f(\xi) - f(z_0)\ d\xi}\right| \\
+    & \leq \frac{1}{z - z_0} \cdot \max_{\xi \in [z_0,z]}|f(\xi) - f(z_0)| \cdot long([z_0,z]) \\
+    & \leq \frac{1}{z - z_0} \cdot \max_{\xi \in [z_0,z]}|f(\xi) - f(z_0)| \cdot |z-z_0| \\
+    & = \max_{\xi \in [z_0,z]}|f(\xi) - f(z_0)| \xrightarrow[z \to z_0]{} 0
+\end{align*}
+Lo que prueba que $F$ es derivable en $D$ y que $F' = f$ en $D$.
+\end{proof}
+
+\begin{ejemplo}
+\begin{enumerate}
+    \item $\int_{\gamma}{z^n \ dz} = 0$ para todo $n \in \mathbb{N}_0$.
+    \item Si $n \in \mathbb{Z}$, $n < 0$ y $n \not = 1$, entonces $z^n$ es derivada de $\frac{z^{n+1}}{n+1}$ en $\com \backslash \{0\}$, por tanto, mientras $sop(\gamma) \subset \com \backslash \{0\}$,  $\int_{\gamma}{z^n \ dz} = 0$.
+    \item En general,  $\int_{\gamma}{P(z) \ dz} = 0$, para todo polinomio $P$.
+    \item  $\int_{\gamma}{\sum_{n=0}^{\infty}a_n(z-a)^n \ dz} = 0$ siempre que $sop(\gamma)$ esté en el disco de convergencia de la serie.
+    \item $\frac{1}{z}$ no tiene primitiva en $\com \backslash \{0\}$, luego la intergal de $\frac{1}{z}$ no es independiente del camino en $\com \backslash \{0\}$.
+\end{enumerate}
+\end{ejemplo}
+
+\section{Índice de un punto respecto de un camino cerrado}
+
+\begin{defi}
+Sea $\gamma$ un camino cerrado en $\com$ y $z_0 \in \com \backslash sop(\gamma)$. Definimos el índice de $z_0$ respecto de $\gamma$ como
+\begin{align*}
+    n(\gamma,z_0) = \frac{1}{2\pi i}\int_{\gamma}{\frac{1}{z-z_0} \ dz}
+\end{align*}
+\end{defi}
+
+\begin{teo}
+Sea $\gamma$ un camino cerrado en $\com$. Entonces
+\begin{enumerate}
+    \item[(i)] $n(\gamma,z) \in \mathbb{Z}$ para cualquier $z \in \com \backslash sop(\gamma)$.
+    \item[(ii)] $n(\gamma, \bullet)$ es una función continua en $\com \backslash sop(\gamma)$.
+    \item[(iii)] $n(\gamma,z) = 0$ para cada $z$ en la componente conexa de $\com \backslash sop(\gamma)$ no acotada.
+\end{enumerate}
+\end{teo}
+
+\begin{proof}
+\begin{enumerate}
+    \item[(i)] Sabemos que si $\gamma$ es un camino cerrado en $\com$ que no pasa por $z_0 \in \com$, entonces el número de vueltas netas que $\gamma$ da alrededor de $z_0$ viene dado por
+    \begin{align*}
+        n(\gamma,z_0) = \frac{1}{2\pi i}\int_{\gamma}{\frac{1}{z-z_0} \ dz} = \frac{1}{2\pi}\var_{\gamma}(\arg(z-z_0)) \in \mathbb{Z}
+    \end{align*}
+    \item[(ii)] Sea $z_0 \in \com \backslash sop(\gamma)$. Fijemos $\varepsilon > 0$. Como $\com \backslash sop(\gamma)$ es abierto, existe $r > 0$ tal que $\Delta(z_0,r) \subset \com \backslash sop(\gamma)$ ($|\xi - z_0| \ge r$ para todo $\xi \in sop(\gamma)$). Tomamos $\delta < \min\left\{ \frac{r}{2}, \frac{\varepsilon \pi r^2}{long(\gamma)}\right\}$. Si $z \in \Delta(z_0,\delta)$ y $\xi \in sop(\gamma)$, entonces
+    \begin{align*}
+        |\xi - z| \ge |\xi - z_0| - |\xi - z| \ge r - \delta > r - \frac{r}{2} = \frac{r}{2}
+    \end{align*}
+    Y además, si $z \in \com \backslash sop(\gamma)$ y $z \in \Delta(z_0,\delta)$, entonces
+    \begin{align*}
+        |n(\gamma,z) - n(\gamma,z_0)| &= \left| \frac{1}{2\pi i}\int_{\gamma}{\frac{1}{\xi - z} \ d\xi} - \frac{1}{2\pi i}\int_{\gamma}{\frac{1}{\xi - z_0} \ d\xi} \right| = \left| \frac{1}{2\pi i}\int_{\gamma}{\frac{1}{\xi - z} - \frac{1}{\xi - z_0} \ d\xi}  \right| \\
+        &= \frac{1}{2\pi}\left| \int_{\gamma}{\frac{z - z_0}{(\xi - z)(\xi - z_0)} \ d\xi}\right| \leq \frac{1}{2\pi} long(\gamma) \max_{\xi \in sop(\gamma)}\frac{|z-z_0|}{|\xi -z||\xi - z_0|} \\
+        & \leq \frac{long(\gamma)}{\pi r^2}\delta < \varepsilon,
+    \end{align*}
+    lo que prueba que $n(\gamma, \bullet)$ es una función continua en $\com \backslash sop(\gamma)$.
+    \item[(iii)] Teenemos que $sop(\gamma)$ es un compacto en $\com$, luego existe $R > 0$ tal que $sop(\gamma) \subset \delta(0,R)$. Sea $z \not \in \overline{\Delta(0,R)}$ ($|z| > R$). Entonces
+    \begin{align*}
+        |n(\gamma,z)| &= \left| \frac{1}{2\pi i} \int_{\gamma}{\frac{1}{\xi - z} \ d\xi} \right| \leq \frac{long(\gamma)}{2\pi} \max_{\xi \in sop(\gamma)}\frac{1}{|\xi - z|} \\
+        & \leq \frac{long(\gamma)}{2\pi} \frac{1}{d(z,sop(\gamma))} \xrightarrow[z \to \infty]{} 0
+    \end{align*}
+    Esto prueba que $|n(\gamma,z) \xrightarrow[z \to \infty]{} 0$. Por tanto, dado $\varepsilon > 0$, existe $R_0$ tal que si $|z| > R_0$, entonces $|n(\gamma,z)| < \frac{1}{2}$. Pero $n(\gamma,z) \in \mathbb{Z}$, luego $n(\gamma,z) = 0$ si $|z| > R_0$. Como  $n(\gamma, \bullet)$ es una función continua en $\com \backslash sop(\gamma)$, se tiene que $n(\gamma,z) = 0$ para todo $z$ en la componente conexa no acotada de $\com \backslash sop(\gamma)$.
+\end{enumerate}
+\end{proof}
+
+\section{Teorema de Cauchy para dominios convexos}
+
+\begin{defi}
+Decimos que $S \subseteq \com$ es un conjunto convexo si para cualesquiera $z_1,z_2 \in S$ se tiene que $[z_1,z_2] \subset S$.
+\end{defi}
+
+\begin{defi}
+Definimos
+\begin{itemize}
+    \item Triángulo $T$ de vértices $z_1,z_2,z_3 \in \com$ como
+    \begin{align*}
+        T = \overline{co}\{z_1,z_2,z_2\} = \{ t_1z_2 + t_2z_2 + t_3z_3 : t_1,t_2,t_3 \in [0,1], t_1 + t_2 + t_3 = 1\}
+    \end{align*}
+    \item Frontera del triángulo $T$ de vértices $z_1,z_2,z_3 \in \com$ como
+    \begin{align*}
+        \partial T = [z_1,z_2,z_3] = [z_1,z_2] + [z_2,z_3] + [z_3,z_1]
+    \end{align*}
+\end{itemize}
+\end{defi}
+
+\begin{teo}[Teorema de Cauchy para triángulos]
+Sea $\Omega$ un abierto de $\com$ y sea $T$ un triángulo en $\Omega$. Sea $f: \Omega \longrightarrow \com$ una función continua en $\Omega$ y holomorfa en $\Omega \backslash \{p\}$ siendo $p \in \Omega$. Entonces
+\begin{align*}
+    \int_{\partial T}{f(z) \ dz} = 0
+\end{align*}
+\end{teo}
+
+\begin{teo}[Teorema de Cauchy para dominios convexos]
+Sea $D$ un dominio convexo en $\com$. Sea $p \in D$ y $f: D \longrightarrow \com$ continua en $D$ y holomorfa en $D \backslash \{p\}$. Entonces
+\begin{align*}
+    \int_{\gamma}{f(z) \ dz} = 0
+\end{align*}
+para todo camino cerrado $\gamma$ en $D$.
+\end{teo}
+
+\begin{proof}
+Basta probar que $f$ tiene primitiva en $D$.
+\\
+\newline
+Fijamos $z_0 \in D$. Como $[z_0,z] \subset D$ (pues $D$ es convexo), definimos
+\begin{align*}
+    F(z) = \int_{[z_0,z]}{f(\xi) \ d\xi}
+\end{align*}
+Vamos a probar que $F$ es holomorfa en $D$ y que $F' = f$ en $D$. Para ellos, hemos de probar que fijado $z_1 \in D$ se tiene que
+\begin{align*}
+    \lim_{z \to z_1} \frac{F(z) - F(z_1)}{z - z_1} - f(z_1) = 0
+\end{align*}
+Observamos que si $z \in D$, entonces el triángulo $T = \overline{co}\{z_0,z_1,z\}$ está en $D$, luego por el teorema de Cauchy para triángulos
+\begin{align*}
+    0 = \int_{\partial T}{f(z) \ dz} &= \int_{[z_0,z_1]}{f(\xi) \ d\xi} + \int_{[z_1,z]}{f(\xi) \ d\xi} + \int_{[z,z_0]}{f(\xi) \ d\xi} \\
+    &= F(z_1) + \int_{[z_1,z]}{f(\xi) \ d\xi}- F(z)
+\end{align*}
+Luego
+\begin{align*}
+    \left| \frac{F(z) - F(z_1)}{z - z_1} - f(z_1) \right| &= \left| \frac{\int_{[z_1,z]}{f(\xi) \ d\xi}}{z-z_1} - \frac{\int_{[z_1,z]}{f(z_1) \ d\xi}}{z-z_1} \right| = \left| \frac{1}{z-z_1}\int_{[z_1,z]}{f(\xi) - f(z_1) \ d\xi}\right| \\
+    & \leq \frac{long([z_1,z])}{|z-z_1|} \max_{\xi \in [z_1,z]}(f(\xi) - f(z_1)) = \max_{\xi \in [z_1,z]}(f(\xi) - f(z_1)) \xrightarrow[z \to z_1]{} 0 
+\end{align*}
+\end{proof}
+
+\begin{obs}
+\begin{enumerate}
+    \item La conclusión del teorema de Cauchy para dominios convexos también es que $f$ tiene primitiva en $D$.
+    \item La hipótesis de que $D$ sea convexo se puede debilitar, por ejemplo, que $D$ sea estrellado con respecto a un punto $z_0 \in D$. En general, el teorema de Cauchy es cierto si $D$ es simplemente conexo.
+    \item El teorema de Cauchy no es cierto sobre dominios cualesquiera. Por ejemplo, $f(z) = \frac{1}{z}$ es holomorfa en $\comz$ y $f$ no tiene primitiva en $\comz$.
+    \item \underline{Existencia de conjugada armónica en dominios convexos}: Si $D$ es un dominio convexo y $u´: D \longrightarrow \mathbb{R}$ es armónica en $D$, entonces $u$ tiene conjugada armónica en $D$.
+    \begin{proof}
+    Consideramos $f(z) = u_x(z) - iu_y(z)$. Sabemos que $f$ es holomorfa en $D$ y por el teorema de Cauchy, $f$ tiene primitiva en $D$. Sea $F$ una función holomorfa en $D$ tal que $F' = f$ en $D$. Sea $U = \re(F)$ y $V = \im(F)$. Por Cauchy-Riemann, tenemos que
+    \begin{align*}
+        \left\{ \begin{array}{lcc}
+            U_x = V_y \\
+            U_y = -V_x\\
+             \end{array}
+        \right.
+    \end{align*}
+    en $D$. Observamos que $F = U + iV$. Por tanto
+    \begin{align*}
+        U_x - iU_y = F' = f = u_x - iu_y
+    \end{align*}
+    lo que nos dice que
+    \begin{align*}
+        \left\{ \begin{array}{lcc}
+            U_x = u_x \\
+            U_y = u_y\\
+             \end{array}
+        \right.
+    \end{align*}
+    en $D$. Por tanto, $U = u + \alpha$ en $D$, $\alpha \in \mathbb{R}$. O sea, $u = U - \alpha = \re(F) - \alpha = \re(F - \alpha)$.
+    \end{proof}
+\end{enumerate}
+\end{obs}
+
+\begin{teo}[Fórmula integral de Cauchy para dominios convexos]
+Sea $f$ una función holomorfa en un dominio convexo $D \subseteq \com$. Sea $\gamma$ un camino cerrado en $D$. Entonces
+\begin{align*}
+    f(z)n(\gamma,z) = \frac{1}{2\pi i}\int_{\gamma}{\frac{f(\xi)}{\xi - z} \ d\xi}
+\end{align*}
+para todo $z \in D \backslash sop(\gamma)$.
+\end{teo}
+
+\begin{proof}
+Sea $z \in D \backslash sop(\gamma)$. Consideramos 
+\begin{align*}
+    g(\xi) = \left\{ \begin{array}{lcc}
+             \frac{f(\xi) - f(z)}{\xi - z} &  si  & \xi \in D \backslash \{z\}\\
+             f'(z) &  si & \xi = z \\
+             \end{array}
+   \right.
+\end{align*}
+Observamos que $g$ es continua en $D$ y holomorfa en $D$ salvo en quizás en $z$. Por el teorema de Cauchy para dominios convexos:
+\begin{align*}
+    0 = \int_{\gamma}{g(\xi) \ d\xi} = \int_{\gamma}{\frac{f(\xi) - f(z)}{\xi - z} \ d\xi} = \int_{\gamma}{\frac{f(\xi)}{\xi - z} \ d\xi} - \int_{\gamma}{\frac{f(z)}{\xi - z} \ d\xi} 
+\end{align*}
+de donde deducimos que
+\begin{align*}
+    \int_{\gamma}{\frac{f(\xi)}{\xi - z} \ d\xi} = f(z)\int_{\gamma}{\frac{1}{\xi - z} \ d\xi} = f(z)n(\gamma,z)2\pi i
+\end{align*}
+\end{proof}
+
+\begin{teo}[Propiedad del valor medio]
+Sea $f$ una función holomorfa en un abierto $\Omega \subseteq \com$ y sean $a \in \Omega$ y $R > 0$ tales que $\Delta(a,R) \subset \Omega$. Entonces:
+\begin{enumerate}
+    \item[(i)] Propiedad del valor medio para circunferencias: Para cada $0 \leq r < R$ se tiene que
+    \begin{align*}
+        f(a) = \frac{1}{2\pi}\int_{0}^{2\pi}{f\left(a + re^{it}\right) \ dt}
+    \end{align*}
+    \item[(ii)] Propiedad del valor medio para discos: Para cada $0 < r < R$ se tiene que
+    \begin{align*}
+        f(a) = \frac{1}{\pi r^2}\int_{\Delta(a,r)}{f(\xi) \ dA(\xi)}
+    \end{align*}
+\end{enumerate}
+\end{teo}
+
+\begin{obs}
+$\xi = x + iy$, entonces $dA(\xi) = dxdy$.
+\end{obs}
+
+\begin{cor}[Propiedad del valor medio para funciones armónicas]
+Sea $u$ una función armónica en un abierto $\Omega \subseteq \com$ y sean $a \in \Omega$ y $R > 0$ tales que $\Delta(a,R) \subset \Omega$. Entonces:
+\begin{enumerate}
+    \item[(i)] Propiedad del valor medio para circunferencias: Para cada $0 \leq r < R$ se tiene que
+    \begin{align*}
+        u(a) = \frac{1}{2\pi}\int_{0}^{2\pi}{u\left(a + re^{it}\right) \ dt}
+    \end{align*}
+    \item[(ii)] Propiedad del valor medio para discos: Para cada $0 < r < R$ se tiene que
+    \begin{align*}
+        u(a) = \frac{1}{\pi r^2}\int_{\Delta(a,r)}{u(\xi) \ dA(\xi)}
+    \end{align*}
+\end{enumerate}
+\end{cor}
+
+\begin{teo}[Forma débil del principio del módulo máximo]
+Sea $f$ una función holomorfa en un abierto $\Omega \subseteq \com$. Si $|f|$ alcanza un máximo local en $a \in \Omega$, entonces $f$ es constante en un entorno de $a$.
+\end{teo}
+
+\begin{proof}
+Sea $R > 0$ tal que $\Delta(a,R) \subset \Omega$  y además, tal que $|f(z)| \leq |f(a)|$ para todo $z \ in \Delta(a,R)$. Entonces para cada $r \in (o,R)$, por el teorema del valor medio para discos:
+\begin{align*}
+    |f(a)| &= \left| \frac{1}{\pi r^2} \int_{\Delta(a,r)}{f(z) \ dA(z)} \right| \leq \frac{1}{\pi r^2} \int_{\Delta(a,r)}{|f(z)| \ dz} \\
+    & \leq  \frac{1}{\pi r^2} \int_{\Delta(a,r)}{|f(a)| \ dz} = |f(a)|
+\end{align*}
+Así, las desigualdades anteriores, son en realidad, igualdades, por tanto, 
+\begin{align*}
+    |f(a)| = \frac{1}{\pi r^2} \int_{\Delta(a,r)}{|f(z)| \ dz}
+\end{align*}
+Luego, como $|f|$ es continua, obtenemos que $|f| = |f(a)|$ en $\Delta(a,R)$. Recordemos además que si $f$ es holomorfa y $|f|$ es constante en un entorno de $a$, entonces $f$ es constante en dicho entorno.
+\end{proof}
+
+\begin{teo}[Forma débil del principio del módulo mínimo]
+Sea $f$ una función holomorfa en un abierto $\Omega \subseteq \com$, y tal que $f(z) \not = 0$ para todo $z \in \Omega$. Si $|f|$ alcanza un mínio local en $a \in \Omega$, entonces $f$ es constante en un entorno de $a$.
+\end{teo}
+
+\begin{proof}
+Basta observar que $\frac{1}{f}$ es una función holomorfa en $\Omega$ y que $\frac{1}{|f|}$ alcanza un máximo local en $a \in \Omega$. Solo hay que aplicar la forma débil del principio del módulo máximo para obtener el resultado del teorema.
+\end{proof}
+
+\begin{teo}[Forma débil del principio del máximo y del mínimo para funciones armónicas]
+Sea $u$ una función armónica en un abierto $\Omega \subseteq \com$. Entonces:
+\begin{enumerate}
+    \item[(i)] Si $u$ alcanza un máximo local en $a \in \Omega$, entonces $u$ es constante en un entorno de $a$.
+    \item[(ii)] Si $u$ alcanza un mínimo local en $a \in \Omega$, entonces $u$ es constante en un entorno de $a$.
+\end{enumerate}
+\end{teo}
+
+\newpage
+
+\section{Analiticidad de las funciones holomorfas}
+
+\begin{teo}[Diferenciación bajo el signo integral]
+Sea $\Omega$ un abierto de $\com$ y sea $\gamma$ un camino en $\com$. Supongamos que $h: sop(\gamma) \times \Omega \longrightarrow \com$ es una función tal que:
+\begin{enumerate}
+    \item[a)] $h$ es continua en $sop(\gamma) \times \Omega$.
+    \item[b)] Para cada $\xi \in sop(\gamma)$, la función $h_{\xi}: \Omega \longrightarrow \com$ dada por $h_{\xi}(z) = h(\xi,z)$ es holomorfa en $\Omega$.
+    \item[c)] La función $H : sop(\gamma) \times \Omega \longrightarrow \com$ dada por
+    \begin{align*}
+        H(\xi,z) = (h_{\xi})'(z) = \frac{\partial h}{\partial z}(\xi,z)
+    \end{align*}
+    es continua en $sop(\gamma) \times \Omega$.
+\end{enumerate}
+Entonces, la función $F(z) = \int_{\gamma}{h_{\xi}(z) \ d\xi}$, $z \in \Omega$, es holomorfa en $\Omega$ y
+\begin{align*}
+    F'(z) = \int_{\gamma}{(h_{\xi})'(z) \ d\xi}
+\end{align*}
+\end{teo}
+
+\begin{teo}[Analiticidad de la integral de Cauchy]
+Sea $\gamma$ un camino sobre $\com$ y sea $\varphi$ una función continua en $sop(\gamma)$. Consideremos la función
+\begin{align*}
+    F : \com \backslash sop(\gamma) \longrightarrow \com, \ \ F(z) = \int_{\gamma}{\frac{\varphi(\xi)}{\xi - z} \ d\xi}
+\end{align*}
+Entonces $F$, conocida como la integral de Cauchy de $\varphi$ sobre $\gamma$, está bien definida y es análitica en $\com \backslash sop(\gamma)$, o sea, es desarrollable en serie de potencias alrededor de cualquier punto de $\com \backslash sop(\gamma)$. Esto implica en $F$ es infinitamente derivable en $\com \backslash sop(\gamma)$.
+\\
+\newline
+Además, para cada $n \in \mathbb{N}$ se tiene que
+\begin{align*}
+    F^{(n)}(a) = n! \int_{\gamma}{\frac{\varphi(\xi)}{(\xi - a)^{n+1}} \ d\xi}
+\end{align*}
+para todo $a \in \com \backslash sop(\gamma)$.
+\end{teo}
+
+\begin{proof}
+$F$ está bien definida en $\com \backslash sop(\gamma)$. Sea $a \not \in sop(\gama)$. Sea $R > 0$ tal que $\Delta(a,R) \cap sop(\gamma) = \emptyset$. Sea $z \in \Delta(a,R)$ arbitrario, pero fijo. Observamos que si $\left| \frac{z-a}{\xi - a} \right| < 1$ tenemos que
+\begin{align*}
+    \frac{1}{\xi - z} &= \frac{1}{(\xi - a) - (z - a)} = \frac{1}{\xi - a} \cdot \frac{1}{1 - \frac{z-a}{\xi - a}} \\
+    &= \frac{1}{\xi - a} \sum_{n=0}^{\infty}{\left( \frac{z-a}{\xi -a}\right)^n} = \sum_{n=0}^{\infty}{\frac{(z-a)^n}{(\xi -a)^{n+1}}}
+\end{align*}
+siendo la convergencia de la serie absoluta y uniforme en cada subconjunto compacto de $A = \left\{ \xi \in \com : \left| \frac{z-a}{\xi - a} \right| < 1 \right\}$. En particular, $sop(\gamma) \subset A$ y es compacto, como además $\varphi$ es contina sobre $sop(\gamma)$ tenemos que
+\begin{align*}
+    F(z) &= \int_{\gamma}{\frac{\varphi(\xi)}{\xi - z} \ d\xi} = \int_{\gamma}{\sum_{n=0}^{\infty}{\frac{\varphi(\xi)}{(\xi - a)^{n}}}(z-a)^{n} \ d\xi} \\
+    &= {\sum_{n=0}^{\infty}{\left[\int_{\gamma}\frac{\varphi(\xi)}{(\xi - a)^{n}} \ d\xi \right]}(z-a)^{n} }
+\end{align*}
+Tomando $\{a_n\} = \{\int_{\gamma}\frac{\varphi(\xi)}{(\xi - a)^{n}} \ d\xi \} $, tenemos una expresión válida para cda $z \in \Delta(a,R)$, por lo que concluimos que $F$ es desarrollable e serie de potencias alrededor de $a$ con radio de convergencia al menos $dist(a,sop(\gamma))$.
+\\
+\newline
+Como esta serie debe coincidir con la serie de taylor de $F$ centrada en $a$, tenemos que
+\begin{align*}
+    F^{(n)}(a) = n! \cdot a_n = n!\int_{\gamma}\frac{\varphi(\xi)}{(\xi - a)^{n}} \ d\xi 
+\end{align*}
+\end{proof}
+
+\begin{teo}[Analiticidad de las funciones holomorfas]
+Sea $f$ holomorfa en un abierto $\Omega \subseteq \com$. Entonces $f$ es analítica en $\Omega$. Además, para cada $a \in \Omega$, el desarrollo en serie de potencias de $f$ en $a$ tiene radio de convergencia $R = dist(a, \com \backslash \Omega)$.
+\end{teo}
+
+\begin{proof}
+Sea $a \in \Omega$ y sea $R = dist(a, \com \backslash \Omega)$. Sea $C_r = \{ |\xi - a| = r \}$, para $r \in (0,R)$. Como $f$ es holomorfa en $\Delta(a,R)$, que es convexo, podemos aplicar la fórmula de la integral de Cauchy, con lo que tenemos que:
+\begin{align*}
+    f(z)n(C_r,z) = \frac{1}{2\pi i}\int_{C_r}{\frac{f(\xi)}{\xi - z} \ d\xi},
+\end{align*}
+para todo $z \in \Delta(a,R)$. En particular, si $z \in \Delta(a,r)$, tenemos que $n(C_r,z) = 1$ y por tanto
+\begin{align*}
+    f(z) = \frac{1}{2\pi i}\int_{C_r}{\frac{f(\xi)}{\xi - z} \ d\xi},
+\end{align*}
+lo que nos dice que $f$ concide en $\Delta(a,r)$ con la integral de cauchy de la función $\varphi = \frac{1}{2\pi i}f|_{C_r}$ a lo largo de $C_r$. De aquí se sigue que $f$ es análitica en $\Delta(a,r)$, y en particular, en $a$, y así
+\begin{align*}
+    f(z) = \sum_{n=0}^{\infty}\left( \frac{f(\xi)}{(\xi - z)^{n+1}} \ d\xi \right)(z-a)^n,
+\end{align*}
+para todo $z \in \Delta(a,r)$. Además, esta serie ha de coincidir con la serie de taylor de $f$ en $a$, o sea que para $n \in \mathbb{N}$, $a_n = \frac{f^{(n)}(a)}{n!}$ no cambia de valor por mucho que cambie el valor de $r \in (o,R)$, lo que nos dice que el radio de convergencia de la serie anterior es $R$.
+\end{proof}
+
+\begin{obs}
+Si $f$ es holomorfa en $\Omega$ y $\Delta(a,R) \subset \Omega$, entonces
+\begin{align*}
+    f^{(n)}(a) = \frac{n!}{2\pi i} \int_{|\xi -a| = r} \frac{f(\xi)}{(\xi - a)^{n+1}} \ d\xi
+\end{align*}
+para todo $r \in (0,R)$ y todo $z \in \Delta(a,r)$.
+\end{obs}
+
+\begin{teo}[Fórmula integral de la derivada $n$-ésima en dominios convexos]
+Sea $D$ un dominio convexo y sea $f$ una función holomorfa en $D$. Sea $\gamma$ un camino cerrado en $D$. Entonces, para cada $z \in D \backslash sop(\gamma)$ se tiene que:
+\begin{align*}
+    f^{(n)}(z)n(\gamma,z) = \frac{n!}{2\pi i} \int_{\gamma} \frac{f(\xi)}{(\xi - z)^{n+1}} \ d\xi
+\end{align*}
+\end{teo}
+
+\begin{proof}
+Por la fórmula de la integral de Cauchy en dominios convexos, tenemos que
+\begin{align*}
+    f(z)n(\gamma,z) = \frac{1}{2\pi i} \int_{\gamma} \frac{f(\xi)}{\xi - z} \ d\xi
+\end{align*}
+Observamos que $F(z) = \frac{1}{2\pi i} \int_{\gamma} \frac{f(\xi)}{\xi - z} \ d\xi$ es anlítica en $D \backslash sop(\gamma)$. Derivando:
+\begin{align*}
+    F^{(n)}(z) = \frac{n!}{2\pi i} \int_{\gamma} \frac{f(\xi)}{(\xi - z)^{n+1}} \ d\xi
+\end{align*}
+para todo $z \in D \backslash sop(\gamma)$. Esto nos dice que el lado izquierdo de la igualdad también es analítico en $D \backslash sop(\gamma)$. Como $n(\gamma,z)$ es una función a trozos tenemos que la derivada $n$-ésima del lado izquierdo de la igualdad es $f^{(n)}(z)n(\gamma,z)$, y
+por tanto,
+\begin{align*}
+    f^{(n)}(z)n(\gamma,z) = \frac{n!}{2\pi i} \int_{\gamma} \frac{f(\xi)}{(\xi - z)^{n+1}} \ d\xi
+\end{align*}
+\end{proof}
+
+\begin{ejemplo}
+\begin{enumerate}
+    \item Sea $f(z) = \sen z$. Observamos que esta función es holomorfa en $\mathbb{D}$.
+    \begin{align*}
+        \frac{1}{2\pi i} \int_{|z| = 1} \frac{\sen z}{z^3} \ d\xi &= \frac{1}{2\pi i}\int_{|\xi| = 1} \frac{\sen \xi}{(\xi - 0)^3} \ d\xi = \frac{1}{2!} \cdot \frac{2!}{2\pi i}\int_{|\xi| = 1} \frac{\sen \xi}{(\xi - 0)^3} \ d\xi =  \frac{1}{2!} \cdot f''(0) = 0
+    \end{align*}
+    \item Sea $0 < r < 1$,
+    \begin{align*}
+        \frac{1}{2\pi i}\int_{|z| = 2} \frac{1}{z^2(z^2 + 4)} \ dz = \frac{1}{2\pi i}\int_{|z| = r} \frac{\frac{1}{z^2+4}}{(z-0)^2} \ dz
+    \end{align*}
+    Observamos que $f(z) = \frac{1}{z^2 + 4}$ es holomorfa en $\mathbb{D}$ y $f'(z) = \frac{-2z}{(z^2+4)^2}$, por tanto
+    \begin{align*}
+        \frac{1}{2\pi i}\int_{|z| = r} \frac{\frac{1}{z^2+4}}{(z-0)^2} \ dz = f'(0) = 0
+    \end{align*}
+\end{enumerate}
+\end{ejemplo}
+
+\section{Consecuencias de la analiticidad}
+
+\begin{teo}
+Sea $\Omega$ abierto de $\com$ y sea $f: \Omega \longrightarrow \com$ continua en $\Omega$ y holomorfa en $\Omega \backslash \{p\}$, siendo $p \in \Omega$. Entonces $f$ es holomorfa en $\Omega$.
+\end{teo}
+
+\begin{proof}
+Basta demostrar que $f$ es holomorfa en $p$. Como $\Omega$ es abierto, existe $R > 0$ tal que $\Delta(p,R) \subset \Omega$. Por el teorema de Cauchy para dominios convexos, tenemos que $\int_{\gamma}{f(z) \ dz} = 0$ para todo camino cerrado $\gamma$ en $\Delta(p,R)$. Esto equivale a que $f$ tiene primitiva en $\Delta(a,R)$, o sea, existe $F$ holomorfa en $\Delta(p,R)$ tal que $F' = f$ en $\Delta(p,R)$. Como $F$ es holomorfa en $\Delta(p,R)$, entonces es analítica en $\Delta(p,R)$ y por tanto, $F' = f$ es holomorfa en $\Delta(p,R)$.
+\end{proof}
+
+\begin{teo}
+Sea $\Omega$ abierto de $\com$ y $f: \Omega \longrightarrow \com$ holomorfa. Sean $u = \re(f)$ y $v = \im(f)$. Entonces $u$ y $v$ son armónicas en $\Omega$ y de clase $\mathscr{C}^{\infty}(\Omega)$.
+\end{teo}
+
+\begin{proof}
+Como $f$ es holomorfa, entonces $f \in \mathscr{C}^{\infty}(\Omega)$, lo que nos dice que $u$ y $v$ son armónicas en $\Omega$ y por ser, $f \in \mathscr{C}^{\infty}(\Omega)$, se tiene que $u,v \in \mathscr{C}^{\infty}$ en $\Omega$.
+\end{proof}
+
+\begin{cor}
+Si $u$ es armónica en un abierto $\Omega \subseteq \com$, entonces $u \in \mathscr{C}^{\infty}(\Omega)$.
+\end{cor}
+
+\begin{proof}
+Como $u$ es armónica en $\Omega$, entonces $u$ es la parte real de una función holomorfa, por tanto, $u \in \mathscr{C}^{\infty}(\Omega)$.
+\end{proof}
+
+\begin{teo}[de Morera]
+Sea $\Omega \subseteq \com$ abierto y $f: \Omega \longrightarrow \com$ continua en $\Omega$. Supongamos que $\int_{\gamma}{f(z) \ dz} = 0$ para todo camino cerrado $\gamma$ de $\Omega$. Entonces $f$ es holomorfa en $\Omega$.
+\end{teo}
+
+\begin{proof}
+Fijamos $a \in \Omega$ y $R > 0$ tal que $\Delta(a,R) \subset \Omega$. Las hipótesis del teorema en $\Delta(a,R)$ implican que $f$ tiene primitiva en $\Delta(a,R)$, es decir, existe $F$ holomorfa en $\Delta(a,R)$ tal que $F' = f$ en $\Delta(a,R)$, por tanto, $f$ es holomorfa en $\Delta(a,R)$.
+\end{proof}
+
+\begin{teo}[de Morera para triángulos]
+Sea $\Omega \subseteq \com$ abierto y $f: \Omega \longrightarrow \com$ continua en $\Omega$. Supongamos que $\int_{\partial T}{f(z) \ dz} = 0$ siempre que $T$ sea un triángulo (sólido) enn $\Omega$. Entonces $f$ es holomorfa en $\Omega$.
+\end{teo}
+
+\begin{proof}
+Fijamos $a \in \Omega$ y $R > 0$ tal que $\Delta(a,R) \subset \Omega$. Definimos
+\begin{align*}
+    F(z) = \int_{[a,z]}{f(\xi) \ d\xi}
+\end{align*}
+Observamos que $F$ está bien ndefinida y, imitando la demostración del teorema de Cauchy para triángulos, tenemos que $F$ es una primitiva de $f$ en $\Delta(a,R)$. Por tanto, $F' = f$ es holomorfa en $\Delta(a,R)$.
+\end{proof}
+
+\begin{teo}[de Liouville]
+Si $f$ es entera y acotada, entonces $f$ es constante.
+\end{teo}
+
+\begin{proof}
+Sea $M$ tal que $|f(z)| < M$ para todo $z \in \com$. Sea $a \in \com$. Por la fórmula intergal de Cauchy, la primera derivada de $f$ en $a$ es
+\begin{align*}
+    f'(a) = \frac{1}{2\pi i}\int_{|z-a| = R}{\frac{f(z)}{(z-a)^2} \ dz}
+\end{align*}
+Tomando módulos
+\begin{align*}
+    |f'(a)| &= \left| \frac{1}{2\pi i}\int_{|z-a| = R}{\frac{f(z)}{(z-a)^2} \ dz} \right|  \leq \frac{1}{2\pi} long(|z-a| = R) \cdot \max_{|z-a| = R} \left| \frac{f(z)}{(z-a)^2} \right| \\
+    & \leq \frac{2\pi R}{2\pi} \cdot \frac{M}{R^2} = \frac{M}{R} \xrightarrow[R \to \infty]{} 0
+\end{align*}
+Como $f'(a)$ no depende de $R$, se tiene entonces que $f'(a) = 0$.
+\end{proof}
+
+\begin{teo}[Teorema Fundamental del Álgebra]
+Todo polinomio con coeficientes complejos no constante tiene una raíz.
+\end{teo}
+
+\begin{proof}
+Sea $P$ un polinomio no constante, entoces $\lim_{z \to \infty}{|P(z)| = \infty}$. Por reducción al absurdo, supongamos que $P$ no tiene raíces, entonces podemos considerar $f(z) = \frac{1}{P(z)}$, $z \in \com$ que es una función entera y acotada ($\lim_{z \to \infty}{f(z)} = 0$). Por el teorema de Liouville, se tiene que $f$ es constante y, por tanto, $P$ es constante, lo que es una contradicción, pues suponíamos que $P$ no era constante. Luego, $P$ tiene una raíz.
+\end{proof}
+
+\begin{teo}[de Liouville]
+Si $f$ es entera y no constante, entonces $f(\com)$ es denso en $\com$.
+\end{teo}
+
+\begin{proof}
+Por reducción al absurdo, supongamos que $f(\com)$ no es denso en $\com$, o sea, existen $w_0 \in \com$ y $r_0 > 0$ tales que $\Delta(w_0,r_0) \cap f(\com) = \emptyset$. Esto nos dice que $|f(z) - w_0| \ge r_0$ para todo $z \in \com$, por tanto, $1 \ge \left| \frac{r_0}{f(z) - w_0} \right|$. Consideramos $g(z) = \frac{r_0}{f(z) - w_0}$, $z \in \com$, que es una función entera, acotada y nunca cero. Aplicando el teorema de Liouville, tenemos que $g$ es una constante (y no nula). Esto implica que $f(z) = \frac{r_0}{g(z)} + w_0$ es constante en $\com$, lo que es una contradicción, luego $f(\com)$ es denso en $\com$.
+\end{proof}
+
+\begin{obs}
+Según este resultado, la imagen de una función entera no constante no puede omitir un disco, mucho menos un semiplano, pero ¿puede omitir una semirrecta? ¿qué pasa si $f$ es entera y $f(\com) \subset \com (-\infty,0]$? Una generalización del Teorema de Liouville nos dice que si una función entera se comporta como un polinomio en el infinito es que entonces es un polinomio.
+\end{obs}
+
+\begin{teo}[de Liouville]
+Si $f$ es entera y existen $M > 0$, $\alpha \ge 0$ y $R > 0$ tales que $|f(z)| \leq M|z|^{\alpha}$ para todo $|z| > R$, entonces $f$ es un polinomio de grado a lo sumo $\alpha$.
+\end{teo}
+
+\begin{proof}
+Como $f$ es entera, entonces $f$ es analítica y por tanto, $f$ es desarrollable en serie de potencias centrada en 0 y con radio de convergencia $\infty$. Sea
+\begin{align*}
+   f(z) = \sum_{n=0}^{\infty}{a_nz^n} 
+\end{align*}
+dicho desarrollo para cada $z \in \com$. Por la fórmula integral de Cauchy para la $n$-éseima derivada, nos dice que:
+\begin{align*}
+   \left| \frac{f^{(n)}(0)}{n!} \right| &= |a_n| = \left| \frac{1}{2\pi i}\int_{|z| = R}{\frac{f(z)}{z^{n+1}} \ dz}  \dz\right| \leq \frac{1}{2\pi}long(|z| = R) \cdot \max_{|z| = R} \left| \frac{f(z)}{z^{n+1}} \right| \\
+   &\leq \frac{2\pi R}{2\pi} \cdot \frac{MR^{\alpha}}{R^{n +1}} = M \cdot R^{\alpha - n} \xrightarrow[R \to \infty]{} 0
+\end{align*}
+ para $n > \alpha$. O sea, $a_n = 0$ si $n > \alpha$, luego, $f(z) = \sum_{n\leq \alpha}{a_nz^n}$, que es un polinomio de grado a lo sumo $\alpha$.
+\end{proof}
+
+\begin{teo}[de Liouville]
+Si $f$ es entera y existen $M > 0$, $\alpha \ge 0$ y una sucesión $\{R_k\} \subset \mathbb{R}$ creciente con $\lim_{k \to \infty}{R_k} = \infty$ y tales que $|f(z)| \leq M|z|^{\alpha}$ para $|z| = R_k$. Entonces $f$ es un polinomio de grado a lo sumo $\alpha$.
+\end{teo}
+
+\section{Sucesiones de funciones holomorfas}
+
+\begin{defi}
+Sea $\{f_n\}$ una sucesión de funciones holomorfas en un dominio $D \subseteq \com$ y sea $f: D \longrightarrow \com$ una función. Decimos que $\{f_n\}$ converge uniformemente en subconjuntos compactos de $D$ (o que converge normalmente en $D$) si para cada compacto $K \subset D$, se tiene que $f_n \xrightarrow[n \to \infty]{} f$ de manera uniforme, o sea, para $\varepsilon > 0$, existe $N_{K,\varepsilon} \in \mathbb{N}$ tal que $|f_n(z) - f(z)| < \varepsilon$ siempre que $z \in K$ y $n \ge N_{K,\varepsilon}$. 
+\end{defi}
+
+\begin{obs}
+Si $\{f_n\}$ es una sucesión de funciones holomorfas que converge uniformemente a $f$ en $D$ entonces $f$ es continua en $D$.
+\end{obs}
+
+\begin{lema}
+Sea $D$ un dominio en $\com$ y sean $f,f_n$ ($n \in \mathbb{N}$) funciones de $D$ en $\com$. Son equivalentes:
+\begin{enumerate}
+    \item Convergencia uniforme en compactos.
+    \item Convergencia local uniforme. Para cada $a \in D$, existe $R > 0$ tal que $\Delta(a,R) \subset D$ y $f_n \xrightarrow[n \to \infty]{} f$ de manera uniforme en $\Delta(a,R)$
+\end{enumerate}
+\end{lema}
+
+\begin{teo}[Teorema de Convergencia de Weierstrass]
+Sea $\{f_n\}$ una sucesión de funciones holomorfas en un dominio $D \subseteq \com$ que converge uniformemente en compactos de $D$ a una función $f: D \longrightarrow \com$. Entonces $f$ es holomorfa en $D$. Es más, la sucesión $\{f_n^{(m)}\}$ de las derivadas $m$-ésimas converge uniformemente en compactos de $D$ a $f^{(m)}$.
+\end{teo}
+
+\begin{proof}
+Es claro que $f$ es continua en $D$. Fijamos $z_0 \in D$ y $R_0$ tales que $\Delta(z_0,R_0) \subset D$. Probemos que $f$ es holomorfa en $\Delta(z_0,R_0)$, para ello, vamos a utilizar el teorema de Morera. Sea $\gamma$ un camino cerrado en $\Delta(z_0,R_0)$. Entonces:
+\begin{align*}
+    \int_{\gamma} f(z) \ dz = \int_{\gamma} \lim_{n \to \infty} f_n(z) \ dz = \lim_{n \to \infty} \int_{\gamma} f_n(z) \ dz = 0.
+\end{align*}
+El igual a 0 se debe a una aplicación directa del teorema de Cauchy para dominios convexos, ya que cada $f_n$ es holomorfa en $\Delta(z_0,R_0)$, que es convexo. Por el teorema de Morera, tenemos que $f$ es holomorfa en $\Delta(z_0,R_0)$.
+\\
+\newline
+Fijamos $m \in \mathbb{N}$. Sea $z_0 \in D$ y sean $r_1 > r_0 > 0$ tales que
+$\overline{\Delta(z_0,r_0)} \subset \overline{\Delta(z_0,r_1)} \subset D$. sea $z \in \Delta(z_0,r_0)$, por la fórmula de Cauchy para la derivada $m$-éseima, tenemos que
+\begin{align*}
+    \left| f_n^{(m)}(z) - f^{(m)}(z) \right| &= \left| \frac{m!}{2\pi i}  \int_{|\xi - z_0| = r_1} \frac{f_n(\xi)}{(\xi - z)^{m+1}} \ d\xi - \frac{m!}{2\pi i} \int_{|\xi - z_0| = r_1} \frac{f(\xi)}{(\xi - z)^{m+1}} \ d\xi \right| \\
+    &= \left| \frac{m!}{2\pi i} \int_{|\xi - z_0| = r_1} \frac{f_n(\xi) - f(\xi)}{(\xi - z)^{m+1}} \ d\xi \right| \leq \frac{m!}{2\pi} long(|\xi - z_0| = r_1) \cdot \max_{|\xi - z_0| = r_1} \frac{|f_n(\xi) - f(\xi)|}{|\xi - z|^{m+1}} \\
+    & \leq \frac{m! \cdot r_1}{(r_1 - r_0)^{m+1}} \cdot \max_{|\xi - z_0| = r_1} |f_n(\xi) - f(\xi)| 
+\end{align*}
+El lado derecho tiende a 0 cuando $n \to \infty$, independietemente de $z \in \overline{\Delta(z_0,r_0)}$, luego el lado izquierdo también, concluyendo que $f_n^{(m)} \to f^{(m)}$ de manera uniforme en $\overline{\Delta(z_0,r_0)}$.
+\end{proof}
+
+\section{Ramas del logaritmo y de la raíz $n$-ésima}
+
+\begin{teo}[Recopilatorio]
+Sea $D$ un dominio en $\com$ y sea $f: D \longrightarrow \com$ holomorfa y nunca nula en $D$.
+\begin{enumerate}
+    \item Si $g$ es una rama del $\log(f)$ en $D$, entonces cualquier otra rama del $\log(f)$ en $D$ es de la forma $g + 2\pi i$, $k \in \mathbb{Z}$.
+    \item Existe una rama del $\log(f)$ en $D$ $\Longleftrightarrow$ $\frac{f'}{f}$ tiene primitiva en $D$ $\Longleftrightarrow$ Para todo camino cerrado $\gamma$ en $D$ se tiene que $\frac{1}{2\pi i}\int_{\gamma} \frac{f'(z)}{f(z)} \ dz = 0$. En este caso, si $G$ es primitiva de $\frac{f'}{f}$ en $D$, entonces existe una constante $\beta \in \com$ tal que $G + \beta$ es rama holomorfa del $\log(f)$ en $D$.
+\end{enumerate}
+\end{teo}
+
+\begin{obs}
+La función $\frac{f'}{f}$ recibe el nombre de \textbf{derivada logarítimica de f}, la cual tiene sentido completo siempre que $f$ sea holomorfa y nunca cero. Tenemos las siguientes reglas:
+\begin{align*}
+    \frac{(fg)'}{fg} = \frac{f'}{f} + \frac{g'}{g}, \ \ \ \frac{\left(  \frac{f}{g}\right)'}{\frac{f}{g}} = \frac{f'}{f} - \frac{g'}{g}, \ \ \ \frac{(f^N)'}{f^N} = N \frac{f'}{f}.
+\end{align*}
+\end{obs}
+
+\begin{ejemplo}
+Sea $f(z) = \frac{z+1}{z-1}$, que es holomorfa y nunca cero en $D = \com \backslash \{-1,1\}$, ¿existe rama del $\log(f)$ en $D$? Sea $\gamma$ un camino cerrado en $D$, entonces
+\begin{align*}
+    \frac{1}{2\pi i} \int_{\gamma} \frac{f'(z)}{f(z)} \ dz = \frac{1}{2\pi i} \int_{\gamma} \frac{1}{z+1} - \frac{1}{z-1} \ dz = n(\gamma,1) - n(\gamma,-1),
+\end{align*}
+que no tiene porqué ser 0, por tanto, no existe rama del $\log(f)$ en $D$.
+\\
+\newline
+Consideramos ahora $D_1 = \com \backslash [-1,1]$, ¿existe rama del $\log(f)$ en $D$? Sea $\gamma$ camino cerrado en $D_1$, entonces -1 y 1 están en la misma componente conexa de $\com \backslash sop(\gamma)$ y 
+\begin{align*}
+    \frac{1}{2\pi i} \int_{\gamma} \frac{f'(z)}{f(z)} \ dz = n(\gamma,1) - n(\gamma,-1) = 0,
+\end{align*}
+por tanto, si existe rama del $\log(f)$ en $D_1$.
+\end{ejemplo}
+
+\begin{teo}[Recopilatorio]
+Sea $n \in \mathbb{N}$, $n \ge 2$. Sea $D$ un dominio de $\com$ y $f:D \longrightarrow \com$ holomorfa y nunca cero en $D$.
+\begin{enumerate}
+    \item Si $g$ es rama del $\log(f)$ en $D$, entonces $h = e^{\frac{g}{n}}$ es una rama de $\sqrt[n]{f}$ en $D$, y cualquier otra rama de $\sqrt[n]{f}$ en $D$ es de la forma $\xi \cdot h$, siendo $\xi^n = 1$.
+    \item Si $h$ es rama de $\sqrt[n]{f}$ en $D$, entonces $h$ es holomorfa en $D$ y $h' = \frac{f'}{nh^{n-1}}$ en $D$.
+    \item Si existe una rama de $\sqrt[n]{f}$ en $D$, entonces para todo camino cerrado $\gamma$ en $D$ se tiene que 
+    \begin{align*}
+        \frac{1}{2\pi i} \int_{\gamma} \frac{f'(z)}{f(z)} \ dz \ \ \ \text{es un múltiplo entero de n}. 
+    \end{align*}
+\end{enumerate}
+\end{teo}
+
+\begin{proof}
+Solo tenemos que probar $3$. Sea $h$ una rama de $\sqrt[n]{f}$ en $D$. Entonces
+\begin{align*}
+    \frac{f'}{f} = \frac{nh^{n-1}h'}{h^{n}} = n\frac{h'}{h}, \ \ \ \ \ z \in D.
+\end{align*}
+Sea $\gamma$ un camino cerrado en $D$, entonces:
+\begin{align*}
+    \frac{1}{2\pi i} \int_{\gamma} \frac{f'(z)}{f(z)} \ dz = n\int_{\gamma} \frac{h'(z)}{h(z)} \ dz \underset{w = h(z)}{=} n \int_{h \circ \gamma} \frac{dw}{w} = n \cdot n(h \circ \gamma, 0) \in \mathbb{Z}
+\end{align*}
+\end{proof}
+
+\begin{obs}
+Si $\gamma$ es un camino cerrado en $D$, entonces $h \circ \gamma$ es un camino cerrado en $h(D)$ y definimos
+\begin{align*}
+    \var_{\gamma}(\arg(h)) = \var_{h \circ \gamma}(\arg(z))
+\end{align*}
+\end{obs}
+
+\begin{ejemplo}
+Sea $f(z) = z^2 -1 = (z-1)(z+1)$, que es holomorfa y nunca cero en $D = \com \backslash \{-1,1\}$, ¿existe rama de $\sqrt[n]{f}$ en $D$? Sea $\gamma$ un camino cerrado en $D$, entonces:
+\begin{align*}
+    \frac{1}{2\pi i} \int_{\gamma} \frac{f'(z)}{f(z)} \ dz = \frac{1}{2\pi i} \int_{\gamma} \frac{1}{z+1} + \frac{1}{z-1} \ dz = n(\gamma,1) + n(\gamma,-1),
+\end{align*}
+que puede ser igual a, por ejemplo, 1 (basta tomar $\gamma$ la circunferencia de centro -1 y radio 1), por lo que no existe $\sqrt[n]{f}$ en $D$.
+\\
+\newline
+Sea $D_1 = \com \backslash [-1,1]$, ¿existe rama de $\sqrt[n]{f}$ en $D$? Sea $\gamma$ un camino cerrado en $D_1$, entonces -1 y 1 están en la misma componente conexa de $\com \backslash sop(\gamma)$ y por tanto
+\begin{align*}
+    \frac{1}{2\pi i} \int_{\gamma} \frac{f'(z)}{f(z)} \ dz = \frac{1}{2\pi i} \int_{\gamma} \frac{1}{z+1} + \frac{1}{z-1} \ dz = n(\gamma,1) + n(\gamma,-1) = 2n(\gamma,1),
+\end{align*}
+que es un múltiplo entero de $2$. Esto nos dice que hay posibilidades de que exista rama de $\sqrt{f}$ en $D_1$. Observamos que
+\begin{align*}
+    f(z) = (z-1)(z+1) = (z-1)^2\frac{z+1}{z-1}
+\end{align*}
+Recordamos que en el anterior ejercicio hemos probado que existe $g$ rama del $\log\left( \frac{z+1}{z-1} \right)$ en $D_1$,por tanto, 
+\begin{align*}
+    h(z) = (z-1)e^{\frac{g(z)}{2}}
+\end{align*}
+es rama de $\sqrt{f}$ en $D_1$, ya que es holomorfa en $D_1$ y $h(z)^2 = f(z)$, $z \in D_1$.
+\end{ejemplo}

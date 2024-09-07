@@ -1,0 +1,783 @@
+\chapter{Estimación puntual paramétrica}
+
+\section{Estadísticos y estimadores. Métodos para la construcción de estimadores}
+
+\begin{defi}
+Sea $X \sim \{ F_{\theta} : \theta \in \Theta  \}$ y sea $(X_1,...,X_n)$ una muestra aleatoria simple. Un \textbf{estadístico} es una función medible, $T : (X_1,...,X_n) \longrightarrow \mathbb{R}^k$, que no depende de ningún parámetro desconocido de la distribución.
+\end{defi}
+
+\begin{defi}
+Un \textbf{estimador} es un estadístico, $T$, definido de la forma
+\begin{align*}
+    T: (X_1,...,X_n) \longrightarrow \Theta
+\end{align*}
+\end{defi}
+
+\begin{ejemplo}
+Sea $X \sim Ber(p)$ y sea $(X_1,X_2,X_3)$ una muestra aleatoria simple.
+\begin{itemize}
+    \item Tenemos que
+    \begin{align*}
+        T(X_1,X_2,X_3) = \sum_{i=1}^{3}{X_i}
+    \end{align*}
+    es un estadístico para $p$. Además es un estimador para el número de veces que se alcanza el éxito en una muestra de tamaño 3.
+    \item Tenemos que
+    \begin{align*}
+        T(X_1,X_2,X_3) = \frac{\sum_{i=1}^{3}{X_i}}{3}
+    \end{align*}
+    es un estimador para $p$.
+\end{itemize}
+\end{ejemplo}
+
+\subsection{Método de los momentos}
+
+\begin{defi}
+Sea $(X_1,...,X_n)$ una muestra aletoria simple de una variable aleatoria $X$ que se distribuye con $F(x;\overrightarrow{\theta})$, siendo $\overrightarrow{\theta} =(\theta_1,...,\theta_k)$ el vector de parámetros que caracteriza la distribución. Si existen los momentos ordinarios hasta orden $k$ de $F(x;\overrightarrow{\theta})$, podemos encontrar un estimador para $\overrightarrow{\theta}$ igualando los momentos poblaciones y muestrales.
+\end{defi}
+
+\begin{obs}
+Si $\overrightarrow{\theta} =(\theta_1,...,\theta_k)$ es constante no podemos aplicar el método de los momentos para estimar $\overrightarrow{\theta}$.
+\end{obs}
+
+\begin{ejemplo}
+Sea $(X_1,...,X_n)$ una muestra aleatoria de una variable aleatoria $X \sim Po(\lambda)$. Entonces $\theta = \lambda >0$ y $\Theta = (0,+\infty)$.
+\\
+\newline
+Sabemos que $E_{\lambda}(X) = \lambda$ y 
+\begin{align*}
+    m_1 = \frac{\sum_{i=1}^{n}{X_i}}{n} = \overline{X}
+\end{align*}
+Usando este estimador para calcular $\lambda$ tenemos que
+\begin{align*}
+    E_{\lambda}(T) = \frac{1}{n}{E_{\lambda}{\left( \sum_{i=1}^{n}{X_i}\right)}} = \frac{1}{n} \cdot n\lambda = \lambda
+\end{align*}
+\end{ejemplo}
+
+\subsection{Método de la máxima verosimilitud}
+
+\begin{defi}
+Sea $(X_1,...,X_n)$ una muestra aleatoria simple de una población $X$ cuya distribución pertenece a $\{F_{\theta} : \theta \in \Theta \}$. Llamamos \textbf{función de verosimilitud }a la función de densidad conjunta o distribución de probabilidad conjunta considerada como función de $\theta$ para valores fijos de la muestra.
+\begin{itemize}
+    \item $L(\theta;x_1,...,,x_n) = f(x_1,...,x_n;\theta) = \prod_{i=1}^{n}{f(x_i;\theta)}$ para variables aleatorias absolutamente continuas.
+    \item $L(\theta;x_1,...,,x_n) = P(X_1 = x_1,...,X_n = x_n;\theta) = \prod_{i=1}^{n}{P(X_i = x_i;\theta)}$ para variables aleatorias discretas.
+\end{itemize}
+\end{defi}
+
+\begin{ejemplo}
+Sea $(X_1,...,,X_n)$ una muestra aleatoria simple de una variable aleatoria $X \sim U(0,\theta)$. Entonces
+\begin{align*}
+    L(\theta;x_1,...,x_n) = \prod_{i=1}^{n}{f(x_i;\theta)} = \prod_{i=1}^{n}{\frac{1}{\theta}} = \left( \frac{1}{\theta}\right)^n  \text{I}_{[\max{\{x_i\}},\infty)}(\theta)
+\end{align*}
+\end{ejemplo}
+
+\begin{defi}
+Sea $X \sim \{ F_{\theta} : \theta \in \Theta \}$. Sea $(X_1,...,X_n)$ una muestra aleatoria simple. Decimos que $\hat{\theta} = \hat{\theta}(X_1,...,X_n) = T = T(X_1,...,X_n)$ es un \textbf{estimador de máxima verosimilitud} para $\theta$ si
+\begin{align*}
+    \hat{\theta} = \max_{\theta \in \Theta}{L(\theta;x_1,...,x_n)}
+\end{align*}
+para toda realización de muestra $(x_1,...,x_n)$ y siempre que dicha exista.
+\end{defi}
+
+\begin{ejemplo}
+Sea $(X_1,..,,,X_n)$ una muestra aleatoria simple de una variable aleatoria $X \sim Ber(\theta)$, donde $\theta \in \Theta = [0,1]$. Sabemos que
+\begin{align*}
+    P_{\theta}(X_i = x_i) = \theta^{x_i}(1- \theta)^{1 - x_i}, \ \ x_i = 0,1
+\end{align*}
+Consideramos una relación de la muestra $(x_1,...,x_n)$ ($x_i = 0, 1$). La función de verosimilitud es
+\begin{align*}
+    L(\theta;x_1,...,x_n) = \prod_{i=1}^{n}{P_{\theta}(X_i = x_i)} = \prod_{i=1}^{n}{\theta^{x_i}(1- \theta)^{1 - x_i}} = \theta^{\sum_{i=1}^{n}{x_i}}(1 - \theta)^{n - \sum_{i=1}^{n}{x_i}}
+\end{align*}
+Consideramos ahora la media muestral, es decir,
+\begin{align*}
+    \overline{X} = \frac{\sum_{i=1}^{n}{X_i}}{n}, \ \ \text{que es un valor en } [0,1]
+\end{align*}
+Entonces podemos escribir la función de verosimilitud como
+\begin{align*}
+    L(\theta) = \theta^{\overline{x}}(1- \theta)^{n - n\overline{x}}, \ \ \theta \in [0,1]
+\end{align*}
+Tomando logaritmos
+\begin{align*}
+    \log(L(\theta)) = n\overline{x}\log(\theta) + (n-n\overline{x})\log(1 - \theta)
+\end{align*}
+\begin{align*}
+    \boxed{
+$l(\theta;x_1,...,x_n) = \log(L(\theta;x_1,...,x_n))$ se llama $\log$-verosimilitud.
+}
+\end{align*}
+Entonces
+\begin{align*}
+    &l(\theta) = n\overline{x}\log(\theta) + (n-n\overline{x})\log(1 - \theta) \\
+    &l'(\theta) = \frac{n\overline{x}}{\theta} - \frac{n - n\overline{x}}{1 - \theta}
+\end{align*}
+Observamos que
+\begin{align*}
+    l'(\theta) = 0 &\Longleftrightarrow \frac{n\overline{x}}{\theta} - \frac{n - n\overline{x}}{1 - \theta} = 0 \\
+    &\Longleftrightarrow n\overline{x} - n\overline{x}\theta - n\theta + n\overline{x}\theta = 0 \\
+    &\Longleftrightarrow n\overline{x} = n\theta; \ \ \overline{x} = \hat{\theta}
+\end{align*}
+Luego en $\hat{\theta} = \overline{x}$ hay un punto crítico de $l$ (faltaría comrprobar que $l''(\hat{\theta}) < 0$).
+\\
+\newline
+\underline{Conclusión}: Para la realización de una muestra, $(x_1,...,x_n)$, el valor de $\theta$ donde se alcanza el máximo de la función de verosimilitud es
+\begin{align*}
+    \hat{\theta} = \overline{x} = \frac{\sum_{i=1}^{n}{x_i}}{n}
+\end{align*}
+En general, sea cual sea la realización de la muestra
+\begin{align*}
+    \hat{\theta} = \overline{X} = \frac{\sum_{i=1}^{n}{X_i}}{n}
+\end{align*}
+\end{ejemplo}
+
+\begin{ejemplo}
+Sea $(X_1,...,X_n)$ una muestra aletoria simple de una variable aleatoria $X \sim U(0,\theta)$. Sea $(x_1,...,x_n) \in \mathfrak{X}$ una realización de la muestra aleatoria simple.
+\begin{align*}
+    \mathfrak{X} = \{ (x_1,...,x_n) \in \mathbb{R}^n : x_i \in (0,\theta), i = 1,..,n \}
+\end{align*}
+La función de verosimilitud es por tanto
+\begin{align*}
+    L(\theta;x_1,...,x_n) = \prod_{i=1}^{n}{f(x_i;\theta)} = \prod_{i=1}^{n}{\frac{1}{\theta}\text{I}_{(0,\theta)}(x_i)} = \left( \frac{1}{\theta} \right)^{n} \text{I}_{(\max\{x_i\}, \infty)}(\theta)
+\end{align*}
+Observamos que $\hat{\theta} = \max\{x_i\} > 0$ y el estimador de máxima verosimilitud para $\theta$ es $\hat{\theta} = \max\{x_i\}$.
+\end{ejemplo}
+
+\begin{ejemplo}
+Sea $(X_1,...,X_n)$ una muestra aletoria simple de una variable aleatoria $X \sim N(\mu,\sigma^2)$. Definimos $\theta = (\mu,\sigma^2)$ y tenemos que $\theta \in \Theta = \mathbb{R}\times(0,+\infty)$. Sea $(x_1,...,x_n)$ una realización de la muestra. La función de verosimilitud es
+\begin{align*}
+    L(\mu,\sigma^2;x_1,...,x_n) &= f(x_1,...,x_n;\mu,\sigma^2) = \prod_{i=1}^{n}{f(x_i;\mu,\sigma^2)} 
+    = \prod_{i=1}^{n}{\frac{1}{\sqrt{2\pi}\sigma}}e^{-\frac{1}{2}\left( \frac{x_i -\mu}{\sigma} \right)^2}\\
+    &= \left( \frac{1}{\sqrt{2\pi}} \right)^n \left( \frac{1}{\sigma} \right)^n e^{-\frac{1}{2}\sum_{i=1}^{n}{\left( \frac{x_i -\mu}{\sigma} \right)^2}} \\
+    &= \left( \frac{1}{\sqrt{2\pi}} \right)^n \left( \frac{1}{\sigma} \right)^n e^{-\frac{1}{2\sigma^2}\sum_{i=1}^{n}{\left( x_i -\mu \right)^2}}
+\end{align*}
+Con esto, tenemos que
+\begin{align*}
+    l(\mu,\sigma^2) = -n\log(\sqrt{2\pi}) -n\log(\sigma) - \frac{1}{2\sigma^2}\sum_{i=1}^{n}{\left( x_i -\mu \right)^2}
+\end{align*}
+Para calcular el estimador de máxima verosimilitud, veamos cuando ocurre que
+\begin{align*}
+    (1) \ \frac{\partial l(\mu,\sigma^2)}{\partial \mu} = 0 \text{ \ \ \ y \ \ \ } (2) \ \frac{\partial l(\mu,\sigma^2)}{\partial \sigma^2} = 0
+\end{align*}
+Recordamos que $s = \sigma^2$ ($\sqrt{s} = \sigma$)
+\begin{align*}
+    &(1) \ \frac{\partial l(\mu,\sigma^2)}{\partial \mu} = 0 \Longleftrightarrow \frac{1}{\sigma^2}\sum_{i=1}^{n}{(x_i -\mu)} = 0 \Longleftrightarrow \hat{\mu} = \frac{\sum_{i=1}^{n}{x_i}}{n} \\
+    &(2) \ \frac{\partial l(\mu,\sigma^2)}{\partial \sigma^2} = 0 \Longleftrightarrow -\frac{n}{\sigma} + \frac{1}{\sigma^2}\sum_{i=1}^{n}{(x_i -\mu)^2} = 0 \Longleftrightarrow \hat{\sigma^2} = \frac{\sum_{i=1}^{n}{(x_i -\mu)^2}}{n}
+\end{align*}
+Por tanto, los estimadores de máxima verosimilitud para $\mu$ y $\sigma^2$ son
+\begin{align*}
+    \hat{\mu} = \frac{\sum_{i=1}^{n}{x_i}}{n} \text{ \ \ \ y \ \ \ } \hat{\sigma^2} = \frac{\sum_{i=1}^{n}{(x_i -\mu)^2}}{n}
+\end{align*}
+\end{ejemplo}
+
+\begin{obs}
+En general, dada $(X_1,...,X_n)$, el estimador de máxima verosimilitud de $\mu$ y $\sigma^2$ es
+\begin{align*}
+    \hat{\mu} = \frac{\sum_{i=1}^{n}{X_i}}{n} \text{ \ \ \ y \ \ \ } \hat{\sigma^2} = \frac{\sum_{i=1}^{n}{(X_i -\overline{X})^2}}{n} = Var_n(\overrightarrow{X})
+\end{align*}
+El estimador de máxima verosimilitud para $\mu$ es insesgado, es decir
+\begin{align*}
+    E(\hat{\mu}) = E\left( \frac{\sum_{i=1}^{n}{X_i}}{n} \right) = \mu
+\end{align*}
+El estimador de máxima verosimilitud para $\sigma^2$ no es insesgado, es decir
+\begin{align*}
+    E(\hat{\sigma^2}) = E\left( \frac{\sum_{i=1}^{n}{(X_i -\overline{X})^2}}{n} \right)  \not = \sigma^2
+\end{align*}
+\end{obs}
+
+\begin{teo}[Teorema de invarianza]
+Sea $X \sim f(x,\theta)$ con $\theta$ desconocido y sea $\hat{\theta}$ el estimador de máxima verosimilitutud de $\theta$. Sea $\tau : \Theta \longrightarrow \Lambda$. Si $\tau$ es biyectiva, entonces el estimador de máxima verosimilitud para $\tau(\theta)$ es $\tau(\hat{\theta})$.
+\end{teo}
+
+\begin{proof}
+Esta demostración es cortesía de Miguel Ángel Quesada Martínez.
+\\
+\newline
+Definimos $\rho = \tau(\theta)$, entonces $\theta = \tau^{-1}(\rho)$. Reparametrizemos la verosimilitud usando el nuevo parámetro $\rho$ en lugar de $\theta$.
+\begin{align*}
+    L^*(\rho;x_1,...,x_n) = \prod_{i=1}^{n}{f(x_i;\tau^{-1}(\rho))} = L(\tau^{-1}(\rho);x_1,...,x_n)
+\end{align*}
+Con esto, tenemos que
+\begin{align*}
+    L^*(\hat{\rho};x_1,...,x_n) &= \sup_{\rho} L^*(\rho;x_1,...,x_n) = \sup_{\rho} L(\tau^{-1}(\rho);x_1,...,x_n) \\
+    &= \sup_{\theta} L(\theta;x_1,...,x_n) = L(\hat{\theta};x_1,...,x_n) = L^*(\tau(\hat{\theta});x_1,...,x_n)
+\end{align*}
+Por tanto, tenemos que el máximo de $L^*(\rho;x_1,...,x_n)$ se alcanza cuando $\hat{\rho} = \tau(\hat{\theta})$, luego el estimador de máxima verosimilitud para $\rho = \tau(\theta)$ es $\tau(\hat{\theta})$.
+\end{proof}
+
+\begin{ejemplo}
+Sea $X \sim Exp(\theta)$, $\theta > 0$. Calculemos el estimador de máxima verosimilitud para $P(X \leq t^*)$, $t^*$ fijo. Para ellos vamos a aplicar el Teorema de la invarianza. Obtendremos primero el estimador de máxima verosimilitud para $\theta$ y luego para $F_X(t^*)$ ya que
+\begin{align*}
+    F_X(t^*) = P(X \leq t^*) = 1 - e^{-\theta t^*}
+\end{align*}
+Sea $(X_1,...,X_n)$ una muestra aleatoria simple de $X$ y $(x_1,...,x_n)$ una realización de la muestra. La función de verosimilitud es
+\begin{align*}
+    L(\theta;x_1,...,,x_n) &= f(x_1,...,x_n;\theta) = \prod_{i=1}^{n}{f(x_i;\theta)} = \prod_{i=1}^{n}{\theta e^{-\theta x_i}} 
+    = \theta^n e^{-\theta \sum_{i=1}^{n}{x_i}}
+\end{align*}
+Entonces
+\begin{align*}
+    &l(\theta) = n\log(\theta) - \theta \sum_{i=1}^{n}{x_i} \\
+    &l'(\theta) = \frac{n}{\theta} - \sum_{i=1}^{n}{x_i} \\
+    &l'(\theta) = 0 \Longleftrightarrow \frac{n}{\theta} - \sum_{i=1}^{n}{x_i} = 0 \Longleftrightarrow \hat{\theta} = \frac{n}{\sum_{i=1}^{n}{x_i}}
+\end{align*}
+Observamos que
+\begin{align*}
+    l''(\theta) = - \frac{n}{\sigma^2} < 0 \Longleftarrow l''(\hat{\theta}) < 0
+\end{align*}
+El estimador de máxima verosimilitud para $\theta$ es entonces
+\begin{align*}
+    \hat{\theta} = \frac{n}{\sum_{i=1}^{n}{x_i}}
+\end{align*}
+Por lo tanto, el estimador de máxima verosimilitud para $F_X(t^*)$ será $T = 1 - e^{\hat{\theta} t^*}$
+\end{ejemplo}
+
+\section{Propiedades de los estimadores}
+
+\begin{defi}
+Sean $T_1$ y $T_2$ dos estimadores de $g(\theta)$. Diremos que $T_1$ es más concentrado que $T_2$ si y solo si
+\begin{align*}
+    P_{\theta}\left( g(\theta) - \lambda \leq T_1 \leq g(\theta) + \lambda \right) \ge P_{\theta}\left( g(\theta) - \lambda \leq T_2 \leq g(\theta) + \lambda \right)
+\end{align*}
+para todo $\lambda > 0$ y para todo $\theta \in \Theta$.
+\\
+\newline
+Un estimador $T$ de $g(\theta)$ diremos que es el más concentrado si y solo si $T$ es más concentrado que $T'$, para todo $T'$ estimador de $g(\theta)$.
+\end{defi}
+
+\begin{defi}
+Sea $T$ un estimador de $g(\theta)$. Llamaremos \textbf{error cuadrático medio del estimador T}, a
+\begin{align*}
+    ECM_T(\theta) = MSE_T(\theta) = E_{\theta}((T - g(\theta))^2)
+\end{align*}
+Dados $T_1$ y $T_2$ estimadores de $g(\theta)$, $T_1$ es preferible a $T_2$ si
+\begin{align*}
+    ECM_{T_1}(\theta) \le ECM_{T_2}(\theta)
+\end{align*}
+\end{defi}
+
+\begin{obs}
+El estimador $S^2$  es preferible al estimador $Var_n(X)$.
+\end{obs}
+
+\begin{prop}
+El error cuadrático medio se puede escribir de la forma
+\begin{align*}
+    ECM_T(\theta) = Var_{\theta}(T) + (E_{\theta}(T) - g(\theta))^2
+\end{align*}
+\end{prop}
+
+\begin{proof}
+\begin{align*}
+    ECM_T(\theta) &= E_{\theta}((T - g(\theta))^2) = E_{\theta}((T - E_{\theta}(T) + E_{\theta}(T) - g(\theta))^2) \\
+    &= E_{\theta}((T - E_{\theta}(T))^2) + E_{\theta}((E_{\theta}(T) - g(\theta))^2) + 2E_{\theta}((T  -E_{\theta}(T))(E_{\theta}(T) - g(\theta))) \\
+    &= Var_{\theta}(T) + (E_{\theta}(T) - g(\theta))^2
+\end{align*}
+Observamos que en la última igualdad usamos que $2E_{\theta}((T  -E_{\theta}(T))(E_{\theta}(T) - g(\theta))) = 0$ puesto que $(E_{\theta(T)} - g(\theta))$ es una constante con respecto a la esperanza, luego
+\begin{align*}
+    2E_{\theta}((T  -E_{\theta}(T))(E_{\theta}(T) - g(\theta))) &= 2(E_{\theta}(T) - g(\theta))E_{\theta}((T  -E_{\theta}(T))) \\
+    &= 2(E_{\theta}(T) - g(\theta))(E_{\theta}(T)  -E_{\theta}(T)) = 0
+\end{align*}
+\end{proof}
+
+\begin{defi}
+\begin{itemize}
+    \item \textbf{Precisón del estimador T} : $Var_{\theta}(T) = E_{\theta}((T-E_{\theta}(T))^2)$.
+    \item \textbf{Sesgo del estimador T}: $b_{\theta}(T) = E_{\theta}(T) - g(\theta)$.
+\end{itemize}
+\end{defi}
+
+\subsection{Estimadores insesgados o centrados}
+
+\begin{defi}
+Diremos un estimador $T$ de $g(\theta)$ es insesgado si y solo si $E_{\theta}(T) = g(\theta)$ para todo $\theta \in \Theta$.
+\end{defi}
+
+\begin{obs}
+Si $T$ es estimador insesgado de $g(\theta)$, entonces $ECM_{T}(\theta) = Var_{\theta}(T)$ para todo $\theta \in \Theta$.
+\end{obs}
+\begin{ejemplo}
+Sea $(X_1,...,X_n)$ una muestra aleatoria simple de una variable aleatoria
+\begin{align*}
+    X \sim \{F_{\theta} : \theta \in \Theta \}
+\end{align*}
+¿Es posible encontrar un estimador insesgado para $\alpha_k = E\left(X^k\right)$? Sea $\theta = E\left(X^k\right)$. Consideremos el estimador
+\begin{align*}
+    T(X_1,...,X_n) = m_k= \frac{\sum_{i=1}^{n}{X_i^k}}{n}
+\end{align*}
+Observamos que
+\begin{align*}
+    E_{\theta}(T) = E_{\theta}\left( \frac{\sum_{i=1}^{n}{X_i^k}}{n} \right) = \frac{1}{n}E\left( \sum_{i=1}^{n}{X_i^k} \right) = \frac{1}{n} \cdot n \cdot E\left( X^k\right) = E\left( X^k\right)
+\end{align*}
+\end{ejemplo}
+
+\begin{ejemplo}
+Sea $X_1$ una muestra aleatoria simple de una variable aleatoria $X \sim Ber(\theta)$, $\theta \in (0,1)$. ¿Es posible encotnrar un estimador insesgado para $\theta$ a partir de la muestra de tamaño 1?
+\\
+\newline
+Sea $T : \mathfrak{X} \longrightarrow (0,1)$, $T = X_1$ Entonces
+\begin{itemize}
+    \item $P(T = 0) = P(X_1 = 0) = P(X = 0) = 1 - \theta$.
+    \item $P(T = 1) = P(X_1 = 1) = P(X = 1) = \theta$.
+    \item $E_{\theta}(T) = 0 \cdot P(T = 0) + 1 \cdot P(T = 1) = 0 \cdot (1 - \theta) + \theta = \theta$.
+\end{itemize}
+\end{ejemplo}
+
+\begin{ejemplo}
+Sea $X_1$ una muestra aleatoria simple de una variable aleatoria $X \sim Ber(\theta)$, $\theta \in (0,1)$. ¿Es posible encotnrar un estimador insesgado para $\theta^2 = g(\theta)$ a partir de la muestra de tamaño 1?
+\\
+\newline
+Sea $T : \mathfrak{X} \longrightarrow (0,1)$, $T = X_1^2$. Entonces
+\begin{itemize}
+    \item $P(T = 0) = P(X_1^2 = 0) = P(X_1 = 0) = 1 - \theta$.
+    \item $P(T = 1) = P(X_1^2 = 1) = P(X_1 = 1) = \theta$.
+    \item $E_{\theta}(T) = 0 \cdot P(T = 0) + 1 \cdot P(T = 1) = 0 \cdot (1 - \theta) + \theta = \theta \not = \theta^2$.
+\end{itemize}
+¿Cómo definimos $T$ para que sea un estimador insesgado para  $\theta^2$? Para que ocurra que
+\begin{align*}
+    E_{\theta}(T) = T(0) (1 - \theta)+ T(1) \theta = \theta^2
+\end{align*}
+Algo razonable es que $T(1) = \theta$, pero esto no puede ser porque $T$ es estimador, y en su expresión no puede algo que dependa de los que queremos estimar.
+\\
+\newline
+Con esto hemos demostrado que
+\begin{itemize}
+    \item Si $T$ es insesgado para $\theta$, entonces $g(T)$ no tiene por qué ser insesgado para $g(\theta)$.
+    \item No siempre es posible encontrar un estimador para $g(\theta)$.
+\end{itemize}
+\end{ejemplo}
+
+\begin{ejemplo}
+Sea $X_1$ una muestra aleatoria simple de una variable aleatoria $X \sim Po(\theta)$, $\theta > 0$. ¿Es posible encotnrar un estimador insesgado para $e^{-3\theta} = g(\theta)$ a partir de la muestra de tamaño 1? Observamos que
+\begin{itemize}
+    \item $E_{\theta}(X) = \theta$ y $V_{\theta}(X) = \theta$.
+    \item $\Theta = (0,+\infty)$ y $\mathfrak{X} = \{0,1,2,...\}$.
+    \item La distribución de probabilidad de $X$ es
+    \begin{align*}
+        P_{\theta}(X = i) = e^{-\theta} \frac{\theta^i}{i!}, \ \ i \in \{0,1,2,...\}
+    \end{align*}
+\end{itemize}
+Queremos $T$ estimador insesgado para $g(\theta) = e^{-3\theta}$, es decir, que $E_{\theta}(T) = e^{-3\theta}$.
+\begin{align*}
+    E_{\theta}(T) = \sum_{i=0}^{\infty}{T(i)P(X_1 = i)} = \sum_{i=1}^{\infty}{T(i)e^{-\theta} \frac{\theta^i}{i!}}
+\end{align*}
+Observamos que
+\begin{align*}
+    \sum_{i=1}^{\infty}{T(i)e^{-\theta} \frac{\theta^i}{i!}} = e^{-3\theta} \Longleftrightarrow  \sum_{i=1}^{\infty}{T(i)\frac{\theta^i}{i!}} = e^{-2\theta} = \sum_{i=1}^{\infty}{\frac{(-2\theta)^i}{i!}}
+\end{align*}
+Luego, podemos tomar $T(i) = (-2)^i$. Pero, $T(1) = -2 < 0$, por tanto, no podemos encontrar un estimador insesgado.
+\end{ejemplo}
+
+\subsection{Estimadores consistentes}
+
+\begin{defi}
+Sea $\{T_n = T(X_1,...,X_n)\}$ una sucesión de estimadores. Se dice que es \textbf{consistente débil} para estimar una función $g(\theta)$ del parámetro poblacional si
+\begin{align*}
+    \lim_{n \to \infty}{P_{\theta}(|T_n - g(\theta)| > \varepsilon)} = 0
+\end{align*}
+para todo $\varepsilon > 0$ y para todo $\theta \in \Theta$.
+\end{defi}
+En esta definición estamos utilizando la convergencia en probabilidad, $P_{\theta}$, de la sucesión de estimadores $\{T_n\}$ hacia la función del parámetro $g(\theta)$.
+
+\begin{defi}
+Sea $\{T_n = T(X_1,...,X_n)\}$ una sucesión de estimadores de $g(\theta)$. Diremos que $\{T_n\}$ es \textbf{consistente en media cuadrática} si y solo si
+\begin{align*}
+    \lim_{n \to \infty}{ECM_{T_n}(\theta)} = \lim_{n \to \infty}{E_{\theta}((T_n - g(\theta))^2)} = 0
+\end{align*}
+para todo $\theta \in \Theta$.
+\end{defi}
+
+\begin{obs}
+La propiedad de consistencia en media cuadrática implica que
+\begin{align*}
+    \lim_{n \to \infty}{V_{\theta}(T_n)} = 0 \ \ \text{ y } \ \ \lim_{n \to \infty}{b_{\theta}(T_n)} = 0
+\end{align*}
+\end{obs}
+
+\begin{lema}
+Si $\{T_n\}$, con $T_n = T(X_1,...X_n)$, es una sucesión de estimadores consistente en media cuadrática de $g(\theta)$, entonces $\{T_n\}$ es un estimador consistente débil de $g(\theta)$.
+\end{lema}
+
+\begin{proof}
+Tenemos que ver que
+\begin{align*}
+    \lim_{n \to \infty}{P_{\theta}(|T_n - g(\theta)| > \varepsilon)} = 0 \Longleftrightarrow  \lim_{n \to \infty}{P_{\theta}(|T_n - g(\theta)| \leq \varepsilon)} = 1
+\end{align*}
+Observamos que, por la desigualdad de Chebychev
+\begin{align*}
+    {P_{\theta}(|T_n - g(\theta)| \leq \varepsilon)} = P_{\theta}(-\varepsilon + g(\theta) \leq T_n \leq \varepsilon + g(\theta)) \ge 1 - \frac{E((T_n - g(\theta))^2)}{\varepsilon^2}
+\end{align*}
+Como $\{T_n\}$ es consistente en media cuadrática de $g(\theta)$, se tiene que
+\begin{align*}
+    \lim_{n \to \infty}{ECM_{T_n}(\theta)} = \lim_{n \to \infty}{E_{\theta}((T_n - g(\theta))^2)} = 0
+\end{align*}
+Por tanto,
+\begin{align*}
+    \lim_{n \to \infty}{P_{\theta}(|T_n - g(\theta)| \leq \varepsilon)} \ge \lim_{n \to \infty}{\left(1 - \frac{E((T_n - g(\theta))^2)}{\varepsilon^2}\right)} = 1
+\end{align*}
+\end{proof}
+
+\section{Estadísticos suficientes}
+
+A lo largo del curso estudiaremos dos principios de reducción de datos:
+\begin{itemize}
+    \item El \textbf{principio de verosimilitud}, que describe una función del parámetro $\theta$ que contiene toda la información sobre ese parámetro a partir de unos valores de muestra fijos y que proporcionan estimadores de máxima verosimilitud.
+    \item El \textbf{principio de suficiencia}, que es un método de reducción de datos pero sin abandonar la información que se tenga sobre $\theta$ y que proporciona estadísticos suficientes.
+\end{itemize}
+
+\subsection{El principio de suficiencia}
+
+\begin{defi}[Suficiente I]
+Sea $(X_1,...,X_n)$ una muestra aleatoria simple de una población $X \sim \{F_{\theta} : \theta \in \Theta\}$ ($\theta$ unidimensional). Diremos que un estadístico $T = T(X_1,...,X_n)$ es \textbf{suficiente} para $\theta$ si y solo si la distribución de $(X_1,...,X_n)$ dado que $T = t$ no depende de $\theta$ para cualquier valor $t$ de $T$. 
+\end{defi}
+
+\begin{defi}[Suficiente II]
+Sea $(X_1,...,X_n)$ una muestra aleatoria simple de una población $X \sim \{F_{\theta} : \theta \in \Theta\}$ ($\theta$ unidimensional). Diremos que un estadístico $T = T(X_1,...,X_n)$ es \textbf{suficiente} si y solo si la distribución condicionada de $S | T = t$ no depende de $\theta$, para todo estadístico $S$.
+\end{defi}
+
+\begin{prop}
+Suficiente I $\Longleftrightarrow$ Suficiente II.
+\end{prop}
+
+\begin{ejemplo}
+Sea $(X_1,...,X_n)$ una muestra aleatoria simple de una variable aleatoria $X \sim Ber(\theta)$. Consideremos el estadístico (que veremos que es suficiente) $T(X_1,...,X_n) = \sum_{i=1}^{n}{X_i}$. Calculemos la distribución de $(X_1,...,X_n)$ dado que $T = t$.
+\begin{itemize}
+    \item Si $x_1 + ... + x_n \not = t$, entonces
+    \begin{align*}
+        P(X_1 = x_1, ..., X_n = x_n | T = t) = \frac{P(X_1 = x_1, ..., X_n = x_n ; T = t)}{P(T = t)} = 0 
+    \end{align*}
+    \item Si $x_1 + ... + x_n = t$, entonces
+    \begin{align*}
+         P(X_1 = x_1, ..., X_n = x_n | T = t) &= \frac{P(X_1 = x_1, ..., X_n = x_n ; T = t)}{P(T = t)} \\
+         &= \frac{P(X_1 = x_1, ..., X_n = x_n)}{P(T = t)}
+    \end{align*}
+    \begin{itemize}
+        \item $P(X_1 = x_1, ..., X_n = x_n) = \theta^{\sum_{i=1}^{n}{x_i}}(1-\theta)^{n - \sum_{i=1}^{n}{x_i}} = \theta^{t}(1-\theta)^{n - t}$.
+        \item $P(T = t) = \binom{n}{t}\theta^{t}(1-\theta)^{n - t}$, pues $T = \sum_{i=1}^{n}{X_i} \sim Bi(n,\theta)$.
+    \end{itemize}
+    Luego, 
+    \begin{align*}
+        \frac{P(X_1 = x_1, ..., X_n = x_n)}{P(T = t)} = \frac{\theta^{t}(1-\theta)^{n - t}}{\binom{n}{t}\theta^{t}(1-\theta)^{n - t}} = \frac{1}{\binom{n}{t}}
+    \end{align*}
+    que no depende de $\theta$, por tanto, $T$ es un estimador suficiente.
+\end{itemize}
+\end{ejemplo}
+
+\begin{teo}[Teorema de Factorización de Neyman-Fisher]
+Sea $(X_1,...,X_n)$ una muestra aleatoria simple de una población cuya distribución pertenece a la familia de distribuciones $\{F_{\theta} : \theta \in \Theta \}$. Entonces, un estadístico $T(X_1,...,X_n)$ es suficiente para $\theta$ si y solo si
+\begin{align*}
+    f(x_1,...,x_n;\theta) = g(T(x_1,...,x_n);\theta) \cdot h(x_1,...,x_n)
+\end{align*}
+donde $g$ y $h$ son funciones medibles no negativas tales que $g$ depende de $\theta$ y $h$ no depende de $\theta$.
+\end{teo}
+
+\begin{proof}
+Esta demostración es cortesía de Miguel Ángel Quesada Martínez. Haremos la demostración solamente para el caso discreto.
+\\
+\newline 
+$\boxed{\Longrightarrow}$ Supongamos que $T$ es un estadístico suficiente para $\theta$, por definición, esto quiere decir que $P(X = x | T = t)$ es independiente de $\theta$ para cualquier $t$ y podemos escribir:
+\begin{align*}
+    P_{\theta}(X = x) &= P_{\theta}[X_1 = x_1,...,X_n = x_n , T(X_1,...,X_n) = t] \\
+    & = P_{\theta}[X_1 = x_1,...,X_n = x_n | T(X_1,...,X_n)]  \cdot P_{\theta}[ T(X_1,...,X_n) = t]
+\end{align*}
+Si definimos
+\begin{align*}
+    &g(T(x_1,...,x_n);\theta) = P_{\theta}[T(x_1,...,x_n) = t] \\
+    &h(x_1,...,x_n) = \left\{ \begin{array}{lcc}
+             0 &  si  &  P(X = x) = 0\\
+             P_{\theta}[X_1 = x_1,...,X_n = x_n | T(X_1,...,X_n)] &  si & P(X = x) > 0\\
+             \end{array}
+   \right.
+\end{align*}
+Es claro que $P_{\theta}(X_1 = x_1,...,X_n = x_n) = g(T(x_1,...,x_n);\theta) \cdot h(x_1,...,x_n)$.
+\\
+\newline
+$\boxed{\Longleftarrow}$ Supongamos que $P_{\theta}(X_1 = x_1,...,X_n = x_n) = g(T(x_1,...,x_n);\theta) \cdot h(x_1,...,x_n)$. Si fijamos $t_0$ tenemos que
+\begin{align*}
+    P_{\theta}(T = t_0) = \sum_{\{x : T(x) = t_0\}}{P_{\theta}(X = x)} = \sum_{\{x : T(x) = t_0\}}{g(t_0,\theta)h(x)} = g_{\theta}(t_0) \cdot \sum_{\{x : T(x) = t_0\}}{h(x)}
+\end{align*}
+Supongamos que $P_{\theta}(T = t_0) > 0$, entonces
+\begin{align*}
+    P_{\theta}(X = x | T = t_0) = \frac{P(X = x, T = t_0)}{P(T = t_0)} = \left\{ \begin{array}{lcc}
+             0 &  si  &  T(x) \not = t_0\\
+             \frac{P_{\theta}(X = x)}{P_{\theta}(T = t_0)} &  si & T(x) = t_0 \\
+             \end{array}
+   \right.
+\end{align*}
+Así vemos que si $T(x) = t_0$
+\begin{align*}
+     P_{\theta}(X = x | T = t_0) = \frac{P(X = x, T = t_0)}{P(T = t_0)} = \frac{g_{\theta}(t_0)h(x)}{g_{\theta}(t_0)\sum_{\{x : T(x) = t_0\}}{h(x)}} = \frac{h(x)}{\sum_{\{x : T(x) = t_0\}}{h(x)}}
+\end{align*}
+la cual no depende de $\theta$.
+\end{proof}
+
+\underline{Propiedades de los estadísticos suficientes}:
+Sea $T$ estadístico suficiente para $\{F_{\theta} : \theta \in \Theta\}$ :
+\begin{enumerate}
+    \item $T$ es suficiente para $\{F_{\theta} : \theta \in \Theta' \subset \Theta\}$.
+    \item Si $T = m(U)$, $m$ medible y $U$ estadístico para $\theta$, entonces $U$ es suficiente para $\theta$.
+    \item Si $m$ es biyectiva, entonces $m(T)$ es suficiente.
+\end{enumerate}
+
+\begin{defi}
+Sea $(X_1,...X_n)$ una muestra aleatoria simple de una población $X$ con distribución $f(x,\overrightarrow{\theta})$, con $\overrightarrow{\theta} = (\theta_1,...,\theta_r)$, $\overrightarrow{\theta} \in \Theta$, vector de parámetros desconocidos. Diremos que un estadístico $(T_1,...,T_k)$ es un \textbf{estadístico conjuntamente suficiente} si y solo si la distribución de $(X_1,...,X_n)$ dado que $(T_1 = t_1, ..., T_k = t_k)$ no depende de $\theta$.
+\end{defi}
+
+\begin{teo}[Teorema de factorización generalización]
+Sea $(X_1,...X_n)$ una muestra aleatoria simple de una población $X$ con distribución $f(x,\overrightarrow{\theta})$. Un conjunto de estadísticos $(T_1,...,T_k)$ es un estadístico conjuntamente suficiente si y solo si la densidad conjunta de $(X_1,...,X_n)$ se puede factorizar de la forma
+\begin{align*}
+    f(x_1,...,x_n;\overrightarrow{\theta}) = g(t_1,...,t_k;\overrightarrow{\theta})h(x_1,...,x_n)
+\end{align*}
+donde $g$ y $h$ son funciones medibles no negativas.
+\end{teo}
+
+\begin{ejemplo}
+Sea $(X_1,...X_n)$ una muestra aleatoria simple de una población $X \sim U(\theta_1,\theta_2)$, con $0 < \theta_1 < \theta_2$. Entonces la distribución de $(X_1,...,X_n)$ viene dada por
+\begin{align*}
+    f(x_1,...,x_n;\theta_1,\theta_2) &= \prod_{i=1}^{n}{f(x_i;\theta_1,\theta_2)} = \left( \frac{1}{\theta_2 - \theta_1}\right)^n \prod_{i=1}^{n}{\text{I}_{(\theta_1,\theta_2)}(x_i)} \\
+    &= \left( \frac{1}{\theta_2 - \theta_1}\right)^n \cdot \text{I}_{(0,\min\{x_i\})}(\theta_1) \cdot \text{I}_{(\max\{x_i\},\infty)}(\theta_2) \\
+    &= g(t_1,t_2;\theta_1,\theta_2) h(x_1,...,x_n)
+\end{align*}
+donde
+\begin{align*}
+    &g(t_1,t_2;\theta_1,\theta_2) = \left( \frac{1}{\theta_2 - \theta_1}\right)^n \cdot \text{I}_{(0,\min\{x_i\})}(\theta_1) \cdot \text{I}_{(\max\{x_i\},\infty)}(\theta_2)\\
+    &h(x_1,...,x_n) = 1
+\end{align*}
+Entonces $(T_1,T_2) = (\min_{i=1,..n}\{x_i\}, \max_{i=1,..n}\{x_i\})$ es un estadístico conjuntamente suficiente para $(\theta_1,\theta_2)$.
+\end{ejemplo}
+
+\begin{ejemplo}
+Sea $(X_1,...X_n)$ una muestra aleatoria simple de una población $X \sim N(\mu,\sigma)$. Veamos que 
+\begin{align*}
+    (T_1,T_2) = \left( \sum_{i=1}^{n}{X_i}, \sum_{i=1}^{n}{X_i^2}\right)
+\end{align*}
+es un estadístico conjunto suficiente para $(\mu,\sigma^2)$.
+\begin{align*}
+    f(x_1,...,x_n;\mu,\sigma^2) &= \frac{1}{\sigma\sqrt{2\pi}}\exp\left[ -\frac{1}{\sigma^2}\sum_{i=1}^{n}{(x_i - \mu)^2}\right] \\
+    &= \frac{1}{\sigma\sqrt{2\pi}}\exp\left[ -\frac{1}{\sigma^2}\sum_{i=1}^{n}{(x_i^2 + \mu^2 - 2\mu x_i)}\right] \\
+    &= \frac{1}{\sigma\sqrt{2\pi}}\exp\left[ -\frac{1}{\sigma^2}\left(\sum_{i=1}^{n}{x_i^2} + n\mu^2 - 2\mu\sum_{i=1}^{n}{x_i}\right)\right]
+\end{align*}
+Si aplicamos el teorema de factorización, se tiene que
+\begin{align*}
+    f(x_1,...,x_n;\mu,\sigma^2) = g(t_1,t_2;\mu,\sigma^2)h(x_1,...,x_n)
+\end{align*}
+siendo
+\begin{align*}
+    &g(t_1,t_2;\mu,\sigma^2) = \frac{1}{\sigma\sqrt{2\pi}}\exp\left[ -\frac{1}{\sigma^2}\left(\sum_{i=1}^{n}{x_i^2} + n\mu^2 - 2\mu\sum_{i=1}^{n}{x_i}\right)\right] \\
+    &h(x_1,...,x_n) = 1
+\end{align*}
+Por lo tanto, $(T_1,T_2) = \left( \sum_{i=1}^{n}{X_i}, \sum_{i=1}^{n}{X_i^2}\right)$ es un estadístico conjungamente suficiente para $(\mu,\sigma^2)$.
+\end{ejemplo}
+
+\begin{obs}
+Los estadísticos suficientes no son únicos. Es fácil demostrar que $T = \frac{\overline{X}}{n}$ es un estadístico suficiente y que $(T_1,T_2) = (\overline{X},  S^2)$ es un estadístico conjuntamente suficiente para $(\mu,\sigma^2)$.
+\end{obs}
+
+\subsection{Familia exponencial uniparamétrica}
+
+\begin{defi}
+Diremos que $f(x;\theta)$ pertenece a la familia exponencial uniparamétrica si
+\begin{align*}
+    f(x;\theta) = a(\theta)b(x)\exp[c(\theta)d(x)] \text{ para cada } \theta \in \Theta,
+\end{align*}
+siendo $a(\theta) > 0$ y $b(x) > 0$.
+\end{defi}
+
+\begin{obs}
+Sea $(X_1,...X_n)$ una muestra aleatoria simple de una población con distribución $f(x;\theta)$ que pertenece a la familia exponencial uniparamétrica. Entonces
+\begin{align*}
+    f(x_1,...,x_n;\theta) &= \prod_{i=1}^{n}{f(x_i;\theta)} = \prod_{i=1}^{n}{a(\theta)b(x)\exp[c(\theta)d(x)]}\\
+    &= (a(\theta))^n\prod_{i=1}^{n}{b(x_i)}\exp\left[c(\theta)\sum_{i=1}^{n}{d(x_i)} \right] \\
+    &= g(t;\theta)h(x_1,...,x_n)
+\end{align*}
+siendo
+\begin{align*}
+    &g(t;\theta) =  (a(\theta))^n\exp\left[c(\theta)\sum_{i=1}^{n}{d(x_i)} \right] \\
+    &h(x_1,...,x_n) = \prod_{i=1}^{n}{b(x_i)}
+\end{align*}
+Por tanto, el estadístico $T = \sum_{i=1}^{n}{d(X_i)}$ es un estadístico suficiente para $\theta$.
+\end{obs}
+
+\begin{ejemplo}
+Sea $(X_1,...X_n)$ una muestra aleatoria simple de una población $X \sim Po(\theta)$, $\theta > 0$. ¿Pertenece a la familia exponencial uniparamétrica?
+\begin{align*}
+    P(X = x; \theta) &= e^{-\theta}\frac{\theta^x}{x!} = \frac{1}{x!}e^{-\theta}e^{x\log\theta} = \exp(-\theta)\frac{1}{x!}\exp(x\log\theta) \\
+    &= a(\theta)b(x)\exp[c(\theta)d(x)]
+\end{align*}
+siendo
+\begin{align*}
+    &a(\theta) = \exp(-\theta) \ \ \ b(x) = \frac{1}{x!} \\
+    &c(\theta) = \log\theta \ \ \ \ \ \ d(x) = x
+\end{align*}
+Usando la observación anterior tenemos que $T = \sum_{i=1}^{n}{X_i}$ es un estadístico suficiente para $\theta$.
+\end{ejemplo}
+
+\subsection{Familia exponencial $k$-paramétrica}
+
+\begin{defi}
+Diremos que $f\left(x;\overrightarrow{\theta}\right)$, $\overrightarrow{\theta} = (\theta_1,...,\theta_k)$, pertenece a la familia exponencial $k$-paramétrica si
+\begin{align*}
+    f(x;\overrightarrow{\theta}) = a\left(\overrightarrow{\theta}\right)b(x)\exp\left[ \sum_{j=1}^{k}{c_j\left(\overrightarrow{\theta}\right)d_j(x)}\right]
+\end{align*}
+\end{defi}
+
+\begin{ejemplo}
+Sea $(X_1,...X_n)$ una muestra aleatoria simple de una población $X \sim Ga(\alpha,\beta)$. ¿Pertenece a la familia exponencial biparamétrica?
+\begin{align*}
+    f(x;\alpha,\beta) &= \frac{\beta^{\alpha}}{\Gamma(\alpha)}e^{-\beta x}x^{\alpha -1} = \frac{\beta^{\alpha}}{\Gamma(\alpha)}e^{-\beta x}e^{\alpha\log x} \frac{1}{x} \\
+    &= a\left(\alpha,\beta\right)b(x)\exp\left[ \sum_{j=1}^{2}{c_j\left(\alpha,\beta\right)d_j(x)}\right]
+\end{align*}
+siendo
+\begin{align*}
+    \xymatrix{
+    a(\alpha, \beta) =  \frac{\beta^{\alpha}}{\Gamma(\alpha)} & c_1(\alpha,\beta) = \alpha & d_1(x) = \log x \\
+    b(x) = \frac{1}{x} & c_2(\alpha,\beta) = -\beta & d_2(x) = x
+    }
+\end{align*}
+Por tanto
+\begin{align*}
+    (T_1,T_2) = \left( \sum_{i=1}^{n}{d_1(X_i)}, \sum_{i=1}^{n}{d_2(X_i)}\right) = \left( \sum_{i=1}^{n}{\log(X_i)}, \sum_{i=1}^{n}{X_i}\right)
+\end{align*}
+es un estadístico conjuntamente suficiente para $(\alpha,\beta)$.
+\end{ejemplo}
+
+\section{Estimadores insesgados y de mínima varianza}
+
+\subsection{Teorema de Cramer-Rao. Información de Fisher}
+
+\begin{defi}
+Sea $(X_1,...X_n)$ una muestra aleatoria simple de la distribución $f(x;\theta)$, $\theta \in \Theta$. Un estimador $T^*(X_1,...,X_n)$ de $g(\theta)$ diremos que es un \textbf{estimador insesgado uniformemente de mínima varianza} de $g(\theta)$ si y solo si
+\begin{enumerate}
+    \item[(i)] $E_{\theta}(T^*) = g(\theta)$.
+    \item[(ii)] $Var_{\theta}(T^*) \leq Var_{\theta}(T)$ para cualquier otro estimador de $g(\theta)$ que verifique que $E_{\theta}(T) = g(\theta)$ para todo $\theta \in \Theta$.
+\end{enumerate}
+\end{defi}
+
+\begin{teo}[Cramer-Rao]
+Sea $(X_1,...X_n)$ una muestra aleatoria simple de la distribución $f(x;\theta)$, $\theta \in \Theta \subset \mathbb{R}$. Sea $T^*$ un estimador insesgado para $g(\theta)$. Si se verifican las siguientes condiciones de regularidad
+\begin{enumerate}
+    \item[(i)] $\{ (x_1,...,x_n) \in \mathfrak{X} : f(x_1,...,x_n;\theta) > 0 \}$ no depende de $\theta$.
+    \item[(ii)] Existe $\frac{\partial}{\partial \theta} \log(f(x;\theta))$ para todo $x$ y todo para todo $\theta \in \Theta$.
+    \item[(iii)]
+    \begin{align*}
+        \frac{\partial}{\partial \theta} \int \cdots \int \prod_{i=1}^{n}{f(x_i;\theta)} dx_1 ... dx_n = \int \cdots \int \frac{\partial}{\partial \theta}  \prod_{i=1}^{n}{f(x_i;\theta)} dx_1 ... dx_n
+    \end{align*}
+    \item[(iv)]
+    \begin{align*}
+        \frac{\partial}{\partial \theta} \int \cdots \int T^*(x_1,...,x_n)\prod_{i=1}^{n}{f(x_i;\theta)} dx_1 ... dx_n = \\
+        \int \cdots \int T^*(x_1,...,x_n)\frac{\partial}{\partial \theta} \prod_{i=1}^{n}{f(x_i;\theta)} dx_1 ... dx_n
+    \end{align*}
+    \item[(v)] Para todo $\theta \in \Theta$
+    \begin{align*}
+        0 < E_{\theta}\left[ \left( \frac{\partial}{\partial \theta}\log(f(X;\theta)) \right)^2\right] < \infty
+    \end{align*}
+    entonces
+    \begin{align*}
+        Var_{\theta}(T^*) \ge \frac{(g'(\theta))^2}{nE_{\theta}\left[ \left( \frac{\partial}{\partial \theta}\log(f(X;\theta)) \right)^2\right]}
+    \end{align*}
+\end{enumerate}
+\end{teo}
+
+\begin{obs}
+Si existe un estimador $T$ para el que se alcanza la igualdad, entonces $T$ es un estimador insesgado uniformemente de mínima varianza y a ese estimador lo llamaremos \textbf{estimador eficiente}.
+\end{obs}
+
+\begin{ejemplo}
+Sea $(X_1,...,X_n)$ una muestra aleatoria simple de una población $X$ con función de densidad
+\begin{align*}
+    f(x;\theta) = \theta e^{-\theta x}
+\end{align*}
+para todo $x > 0$ y siendo $\theta > 0$. Sea $g(\theta) = \frac{1}{\theta}$. Calculemos una cota de Cramer-Rao para un estimador insesgado $T$ de $g(\theta)$.
+\begin{obs}
+Bajo las condiciones del Teorema de Cramer-Rao y si existe la segunda derivada de $\log f(X;\theta)$ respecto de $\theta$, se tiene que
+\begin{align*}
+    E_{\theta}\left[ \left( \frac{\partial}{\partial \theta} \log f(X;\theta)\right)^2\right] = - E_{\theta}\left[  \frac{\partial^2}{\partial \theta^2} \log f(X;\theta) \right]
+\end{align*}
+\end{obs}
+Observamos que $\log f(X;\theta) = \log \theta - \theta X$. Derivando
+\begin{align*}
+    &\frac{\partial}{\partial \theta}\log f(X;\theta) = \frac{1}{\theta} - X \\
+   & \frac{\partial^2}{\partial \theta^2} \log f(X;\theta) = - \frac{1}{\theta^2} \Longrightarrow E_{\theta}\left[ \frac{\partial^2}{\partial \theta^2} \log f(X;\theta) \right] = E_{\theta}\left[ -\frac{1}{\theta^2}\right] =  -\frac{1}{\theta^2}
+\end{align*}
+Aplicando el teorema de Cramer-Rao
+\begin{align*}
+    \text{Cota} &= \frac{(g'(\theta))^2}{nE_{\theta}\left[ \left( \frac{\partial}{\partial \theta}\log(f(X;\theta)) \right)^2\right]} = \frac{(g'(\theta))^2}{n- E_{\theta}\left[  \frac{\partial^2}{\partial \theta^2} \log f(X;\theta) \right]} =
+   \frac{\left(\frac{1}{\theta} \right)^2}{\frac{n}{\theta^2}} = \frac{1}{n \theta^2}
+\end{align*}
+Calculemosahora un estimador insesgado por el método de los momentos para $g(\theta) = \frac{1}{\theta}$. Observamos que si $X \sim Exp(\theta)$, entonces $E(X) = \frac{1}{\theta}$. Mediante el método de los momentos, el estimador para la media, $\frac{1}{\theta}$, sería $\overline{X}$.
+\\
+\newline
+Sea $T = \overline{X}$. $T$ es estimador insesgado para $g(\theta)$ y
+\begin{align*}
+    Var_{\theta}(T) = Var_{\theta}{\overline{X}} = \frac{\frac{1}{\theta^2}}{n} = \frac{1}{n \theta^2}
+\end{align*}
+Por tanto, $T$ alcanza la cota de Cramer-Rao, lo que nos dice que $T = \overline{X}$ es estimador insesgado uniformemente de mínima varianza para $g(\theta) = \frac{1}{\theta}$.
+\\
+\newline
+Aplicando el teorema de invarianza, vimos que el estimador de máxima verosimilitud para $\theta$ es $\frac{n}{\sum_{i=1}^{x}{X_i}}$, y por tanto, el estimador de máxima verosimilitud para $\frac{1}{\theta}$ es $\frac{\sum_{i=1}^{x}{X_i}}{n} = \overline{X}$.
+\end{ejemplo}
+
+\subsection{Teorema de Rao-Blackwell. Teorema de Lehmann-Scheffé}
+
+\begin{teo}[Rao-Blackwell]
+Sea $X_1,...,X_n$ una muestra aleatoria simple de $X$ con distribución $f(x;\theta)$ y sea $\{S_1,...,S_k\}$ un conjunto de estadísticos conjuntamente suficientes para $\theta$. Sea $T$ un estimador insesgado de $g(\theta)$. Sea $T^*$ dado como $T^* = E_{\theta}[T | S_1,...,S_k]$. Entonces:
+\begin{enumerate}
+    \item[(i)] $T^*$ es un estadístico y es función de los estadísticos suficientes $S_1,...,S_k$.
+    \item[(ii)] $E_{\theta}(T^*) = g(\theta)$ ($T^*$ es un estimador insesgado).
+    \item[(iii)] $Var_{\theta}(T^*) \leq Var_{\theta}(T)$, para todo $\theta \in \Theta$.
+\end{enumerate}
+Además existe $\theta_0 \in \Theta$ tal que
+\begin{align*}
+    Var_{\theta_0}(T^*) < Var_{\theta_0}(T)
+\end{align*}
+salvo que $T = T^*$ con probabilidad 1.
+\end{teo}
+
+\begin{ejemplo}
+Sea $X_1,...,X_n$ una muestra aleatoria simple de una distribución $Ber(\theta)$. Consideremos $T = X_1$, que es un estimador insesgado para $\theta$ y $S = \sum_{i=1}^{n}{X_i}$, que es un estadístico suficiente para $\theta$ y sea $g(\theta) = \theta$. Veamos que se verifica el teorema de Rao-Blackwell.
+\\
+\newline
+Sea $T^* = E(T | S) = E\left(X_1 | \sum_{i=1}^{n}{X_i}\right)$. El teorema afirma que $T^*$ es un estimador insesgado para $\theta$.
+\\
+\newline
+Calculamos ahora los valores de la variable aleatoria $E(T | S)$.
+\begin{align*}
+    E\left(T | S = s \right) &= E\left(T \left|  \sum_{i=1}^{n}{X_i} = s \right.\right) 
+    = 0 \cdot P\left(X_1 = 0 \left|  \sum_{i=1}^{n}{X_i} = s \right.\right) + 1 \cdot P\left(X_1 = 1 \left|  \sum_{i=1}^{n}{X_i} = s \right.\right) \\
+    &= P\left(X_1 = 1 \left|  \sum_{i=1}^{n}{X_i} = s \right.\right) = \frac{P\left(\sum_{i=1}^{n}{X_i} = s  \left|  X_1 = 1 \right.\right) \cdot P(X_1 = 1)}{P\left(\sum_{i=1}^{n}{X_i} = s\right)} \\
+    &= \frac{P\left(\sum_{i=2}^{n}{X_i} = s - 1  \left|  X_1 = 1 \right.\right) \cdot P(X_1 = 1)}{P\left(\sum_{i=1}^{n}{X_i} = s\right)} \\
+    &= \frac{\theta \binom{n-1}{s-1}\theta^{s-1}(1 - \theta)^{n-1-(s-1)}}{\binom{n}{s}\theta^s(1-\theta)^{n-s}} = ... = \frac{s}{n}
+\end{align*}
+Consideramos el estimador
+\begin{align*}
+    T^* = \frac{S}{n} = E(T | S) = \frac{\sum_{i=1}^{n}{X_i}}{n}
+\end{align*}
+Comprobamos que el teorema se verifica:
+\begin{enumerate}
+    \item[(i)] $T^*$ es un estadístico (en este caso estimador) que es función del estadístico $S$.
+    \item[(ii)] $T^*$ es un estimador insesgado para $\theta$.
+    \item[(iii)]
+    \begin{align*}
+        Var_{\theta}(T^*) = \frac{\theta (1 - \theta)}{n} \leq \theta (1 - \theta) = Var_{\theta}(T)
+    \end{align*}
+\end{enumerate}
+\end{ejemplo}
+
+\begin{defi}
+Sea $X_1,...,X_n$ una muestra aleatoria simple de una población $X$ con distribución $f(x;\theta)$, $\theta \in \Theta$. Un estadístico $T = T(X_1,...,X_n)$ se dice completo si y solo si el hecho de que $E_{\theta}[g(T)] = 0$ implica que $P_{\theta}[g(T) = 0] = 1$ para todo $\theta \in \Theta$, donde $g(T)$ es un estadístico.
+\newline
+Al estadístico $T = T(X_1,...,X_n)$ se le llama \textbf{estadístico completo}.
+\end{defi}
+
+\begin{teo}
+Sea $X_1,...,X_n$ una muestra aleatoria simple de una variable aleatoria $X$ con distribución $f(x;\theta)$, $\theta \in \Theta$. Si $f(x;\theta)$ pertenece a la familia exponencial uniparamétrica entonces $T = \sum_{i=1}^{n}{d(X_i)}$ es un estadístico minimal, suficiente y completo para $\theta$.
+\end{teo}
+
+\begin{defi}
+Un estadístico $T$ suficiente diremos que es \textbf{minimal} si dado otro estadístico suficiente $T'$, existe una función medible $\varphi$ tal que $T = \varphi(T')$.
+\end{defi}
+
+\begin{teo}[Lehmann-Scheffé I]
+Sea $X_1,...,X_n$ una muestra aleatoria simple de una variable aleatoria $X$ con distribución $f(x;\theta)$, $\theta \in \Theta$. Sea $S$ un estadístico suficiente y completo para $h(\theta)$. Si $T^*(S)$ es un estimador insesgado para $h(\theta)$, entonces $T^*(S)$ es un estimador insesgado uniformemente de mínima varianza para $h(\theta)$.
+\end{teo}
+
+\begin{teo}[Lehmann-Scheffé II]
+Sea $X_1,...,X_n$ una muestra aleatoria simple de una variable aleatoria $X$ con distribución $f(x;\theta)$, $\theta \in \Theta$. Si $T_2$ es un estadístico suficiente y completo para $h(\theta)$ y $T_1$ es un estadístico insesgado para $h(\theta)$, entonces $E_{\theta}(T_1 | T_2)$ es el estimador insesgado uniformemente de mínima varianza para $h(\theta)$.
+\end{teo}

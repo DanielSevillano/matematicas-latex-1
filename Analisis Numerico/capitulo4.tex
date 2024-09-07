@@ -1,0 +1,828 @@
+\chapter{Problemas de contorno}
+\noindent El problema que vamos a estudiar a lo largo de este capítulo es
+\begin{align*}
+    \left\{ \begin{array}{lcc}
+             y'' = f(t,y,y'), \ \ t \in [a,b]\\
+             y(a) = \alpha, \ y(b) = \beta \\
+             \end{array}
+   \right.
+\end{align*}
+
+\section{Derivación numérica}
+
+\noindent Consideramos los valores de una función $u$ en los puntos de una partición $x_0,x_1,\ldots,x_{N+1}$. Si la partición es uniforme, entonces $x_i = x_0 + ih$ para cada $i = 0,1,\ldots,N+1$. ¿Cómo podemos aproximar $u^{(k)}(c)$ usando solo puntos de la malla?
+
+\subsection{Fórmulas de derivación numérica}
+\noindent Consideramos una partición uniforme $x_i = x_0 + ih$, $i = 0,1,\ldots,N+1$. Las fórmula de derivación numérica son de la forma:
+\begin{align*}
+    u^{(k)}(c) \thickapprox D^k_{n+1}u(c) = \frac{1}{h^k} \sum_{j=1}^{r} \alpha_j u(x_{i+j}), \ \ l < r.
+\end{align*}
+
+\begin{ejemplo}
+Aproximación de la segunda derivada de $u$ en $x_i$ usando $u(x_{i-1})$, $u(x_i)$ y $u(x_{i+1})$.
+\begin{align*}
+    u''(x_i) = (u')'(x_i) &\thickapprox \frac{u'(x_i + h/2) - u'(x_i -h/2)}{h} \\
+    & \thickapprox \frac{\dfrac{u(x_{i+1}) - u(x_i)}{h} - \dfrac{u(x_i) - u(x_{i-1})}{h}}{h} \\
+    &= \frac{u(x_{i-1}) - 2u(x_i) +u(x_{i+1})}{h^2}.
+\end{align*}
+Luego:
+\begin{align*}
+    u''(x_i) \thickapprox D^2_3u(x_i) = \frac{u(x_{i-1}) - 2u(x_i) +u(x_{i+1})}{h^2}.
+\end{align*}
+\end{ejemplo}
+
+\begin{defi}
+Diremos que una fórmula $u^{(k)}(c) \thickapprox D^k_{n+1}u(c)$ tiene orden $p$ si
+\begin{align*}
+    u^{(k)}(c) = D^k_{n+1}u(c) + O(h^p),
+\end{align*}
+para funciones $u$ de clase $p+k$.
+\end{defi}
+
+\begin{ejemplo}
+Veamos que
+\begin{align*}
+    u''(x_i) \thickapprox D^2_3u(x_i) = \frac{u(x_{i-1}) - 2u(x_i) +u(x_{i+1})}{h^2}
+\end{align*}
+tiene orden 2. Desarrollando el polinomio de taylor de $u$ en $x_i$ y evaluando en $x_{i+1}$ y $x_{i-1}$ respectivamente, obtenemos que: 
+\begin{align*}
+    u(x_{i+1}) &= u(x_i + h) = u(x_i) + u'(x_i)h + \frac{u''(x_i)}{2}h^2 + \frac{u'''(x_i)}{6}h^3 + \frac{u^{(4)}(x_i)}{24}h^4\ldots \\
+    u(x_{i-1}) &= u(x_i - h) = u(x_i)- u'(x_i)h + \frac{u''(x_i)}{2}h^2 - \frac{u'''(x_i)}{6}h^3 + \frac{u^{(4)}(x_i)}{24}h^4 + \ldots
+\end{align*}
+Luego:
+\begin{align*}
+    \frac{u(x_{i-1}) - 2u(x_i) +u(x_{i+1})}{h^2} = u''(x_i) + \frac{u^{(4)}(x_i)}{12}h^2 + \ldots
+\end{align*}
+Siendo rigurosos, si derarrollamos el polinomio de taylor de orden 4 de $u$ en $x_i$, llegamos a que
+\begin{align*}
+    D_3^2u(x_i) = u''(x_i) + O(h^2),
+\end{align*}
+es decir, esta fórmula tiene orden 2.
+\end{ejemplo}
+
+\begin{obs}
+Consideremos la fórmula de derivación numérica $u^{(k)}(c) \thickapprox D^k_{n+1}u(c)$. Si $n \ge k$, el máximo orden que puede tener la fórmula es $n+1 -k$. Pero si la fórmula es centrada en $x_i$ y $n$ y $k$ tienen la misma paridad, entonces el orden máximo es $n-k+2$.
+\end{obs}
+
+\subsection{Método de los coeficientes indeterminados}
+
+\noindent Supongamos que queremos obtener una fórmula para
+\begin{align*}
+    u'(x_i) \thickapprox D_3^1u(x_i) = \frac{\alpha_0u(x_i) + \alpha_1u(x_{i+1}) + \alpha_2(x_{i+2})}{h}
+\end{align*}
+¿Cómo encontramos $\alpha_0$, $\alpha_1$ y $\alpha_2$? Al igual que antes, si desarrollamos el polinomio de taylor de $u$ en $x_i$ y lo evaluamos en $x_{i+1}$ y $x_{i+2}$ respectivamente, obtenemos que:
+\begin{align*}
+    u(x_{i+1}) &= u(x_i + h) =  u(x_i) + u'(x_i)h + \frac{u''(x_i)}{2}h^2 + \frac{u'''(x_i)}{6}h^3 + \frac{u^{(4)}(x_i)}{24}h^4\ldots \\
+    u(x_{i+2}) &= u(x_i + 2h) =  u(x_i) + u'(x_i)2h + u''(x_i)2h^2 + \frac{u'''(x_i)}{6}8h^3 + \frac{u^{(4)}(x_i)}{24}16h^4\ldots \\
+\end{align*}
+Luego:
+\begin{align*}
+     hD_3^1u(x_i) &= \alpha_0u(x_i) + \alpha_1u(x_{i+1}) + \alpha_2(x_{i+2}) \\
+    &= [\alpha_0 + \alpha_1 + \alpha_2]u(x_i) + [\alpha_1 + 2\alpha_2]u'(x_i) + \left[ \frac{\alpha_1}{2} + 2\alpha_2 \right]u''(x_i)h^2 + \left[ \frac{\alpha_1}{6} + \frac{8\alpha_2}{6} \right]u'''(x_i)h^3 + \ldots 
+\end{align*}
+Como vamos a aproximar la primera derivada, queremos que el coeficiente que acompaña a $u(x_i)$ sea 0 y que el coeficiente que acompaña a $u'(x_i)$ sea 1. Aún nos queda otra ecuación (pues llevaríamos 2 ecuaciones y tenemos 3 incógnitas). Podemos hacer que el coeficiente que acompaña a $u''(x_i)$ sea 0 y así tener el mayor orden posible. Nos quedaría entonces:
+\begin{align*}
+    \left\{ \begin{array}{lcc}
+             \alpha_0 + \alpha_1 + \alpha_2 = 0\\
+             \alpha_1 + 2\alpha_2 = 1 \\
+             \frac{\alpha_1}{2} + 2\alpha_2 = 0
+             \end{array}
+   \right.
+\end{align*}
+que tiene por solución $\alpha_0 = -3/2$, $\alpha_1 = 2$ y $\alpha_2 = -1/2$. Por tanto:
+\begin{align*}
+    u'(x_i) \thickapprox D_3^1u(x_i) = \frac{-3u(x_i) + 4\alpha_1u(x_{i+1}) -(x_{i+2})}{2h},
+\end{align*}
+y por la forma en la que la hemos construido, se puede comprobar que es de orden 2.
+
+\subsection{Método interpolatorio}
+\noindent Supongamos que conocemos el valor de la función $u$ en la partición uniforme $x_i = x_0 +ih$, $i = 0,1,\ldots,N+1$. Es razonable aproximar  $u^{(k)}(c) \thickapprox P^{(k)}(c)$, siendo $P$ el polinomio que interpola $(x_{i+l}, u(x_{i+l})), \ldots, (x_{i+r},u(x_{i+r}))$. Si usamos la forma de Lagrange del polinomio de interpolación:
+\begin{align*}
+    P(x) &= \sum_{j=1}^{r} u(x_{i+j})\ell_j(x), \\
+    \ell_j(t) &= \frac{(x-x_{i+l}) \cdots \widehat{(x - x_{i+j})} \cdots (x-x_{i+r})}{(x_{i+j} -x_{i+l}) \cdots \widehat{(x_{i+j} - x_{i+j})} \cdots (x_{i+j} - x_{i+r})}.
+\end{align*}
+Con lo que tenemos
+\begin{align*}
+    P^{(k)}(c) = \frac{1}{h^k} \sum_{j=1}^{r} \alpha_j u(x_{i+j}),
+\end{align*}
+donde $\frac{\alpha_j}{h^k} = l^{(k)}_{i+j}(c)$. En particular, si usamos $k+1$ puntos para aproximar la $k-$ésima derivada:
+\begin{align*}
+    u^{(k)}(c) \thickapprox P^{(k)}(c) = k! \cdot a_k = k! \cdot u[x_{i+l},\ldots,x_{i+r}].
+\end{align*}
+
+\section{Problemas lineales: existencia y unicidad de solución}
+\noindent Vamos a estudiar problemas del tipo:
+\begin{align*}
+    \left\{ \begin{array}{lcc}
+             y'' = p(x)y' + q(x)y + r(x), \ \ x \in [a,b]\\
+             y(a) = \alpha, \ y(b) = \beta \\
+             \end{array}
+   \right.
+\end{align*}
+siendo $p,q,r :[a,b] \longrightarrow \mathbb{R}$ continuas.
+\\
+\newline
+Primero vamos a ver cuando tiene solución el problema homogéneo, es decir, el problema:
+\begin{align*}
+    (P)\left\{ \begin{array}{lcc}
+             y'' = p(x)y' + q(x)y, \ \ x \in [a,b]\\
+             y(a) = \alpha, \ y(b) = \beta \\
+             \end{array}
+   \right.
+\end{align*}
+Sabemos que el problema de Cauchy:
+\begin{align*}
+    (PC)\left\{ \begin{array}{lcc}
+             y'' = p(x)y' + q(x)y, \ \ x \in [a,b]\\
+             y(a) = \alpha, \ y'(a) = s \\
+             \end{array}
+   \right.
+\end{align*}
+tiene solución única en $[a,b]$, que denotaremos por $y(x;s)$. Si somos capaces de encontrar un $s$ tal que $y(b;s) = \beta$, entonces $(P)$ tiene solución. Como el problema $(P)$ es lineal, la ecuación $y(b;s) = \beta$ es también lineal. Consideramos entonces los problemas:
+\begin{align*}
+    \left\{ \begin{array}{lcc}
+             y'' = p(x)y' + q(x)y, \ \ x \in [a,b]\\
+             y(a) = 1, \ y'(a) = 0 \\
+             \end{array}
+   \right., \ \ \ \left\{ \begin{array}{lcc}
+             y'' = p(x)y' + q(x)y, \ \ x \in [a,b]\\
+             y(a) = 0, \ y'(a) = 1 \\
+             \end{array}
+   \right.
+\end{align*}
+y denotemos por $y_1$ e $y_2$ a sus soluciones respectivamente. Entonces el conjunto de solucioes de $y'' = p(x)y' + q(x)y$ es
+\begin{align*}
+    y(x) = c_1y_1(x) + c_2y_2(x).
+\end{align*}
+Ajustando $c_1$ y $c_2$ para que $y(a) = \alpha$ e $y'(a) = s$:
+\begin{align*}
+    y(a) = c_1y_1(a) + c_2y_2(a) = c_1, \ c_1 = \alpha\Longleftrightarrow c_1 = \alpha ,\\
+    y'(a) = c_1y_1'(a) + c_2y_2'(a) = c_2,  \ c_2 = \beta\Longleftrightarrow c_2 = \beta .
+\end{align*}
+Por tanto, $y(x;s) = \alpha y_1(x) + sy_2(x)$. Luego, la ecuación a resolver es:
+\begin{align*}
+    (E) \ y(b;s) = \alpha y_1(b) + sy_2(b) = \beta.
+\end{align*}
+Distinguimos tres casos:
+\begin{enumerate}
+    \item[(a)] Si $y_2(b) \not = 0$ entonces $s = \frac{\beta - \alpha y_1(b)}{y_2(b)}$, es decir, $(P)$ tiene solución y es única.
+    \item[(b)] Si $y_2(b) = 0$ y $\alpha y_1(b) \not = \beta$, entonces $(P)$ no tiene solución.
+    \item[(c)] Si $y_2(b) = 0$ y $\alpha y_1(b)  = \beta$, entonces $(P)$ tiene infinitas soluciones, pues $y(x;s)$ es solución para cualquier $s$.
+\end{enumerate}
+Si el problema es no homogéneo, el conjunto de soluciones de $y'' = p(x)y' + q(x)y + r(x)$ es
+\begin{align*}
+    y(x) = y_p(x) + y_h(x).
+\end{align*}
+siendo $y_p$ una solución particular de $y'' = p(x)y' + q(x)y + r(x)$ e $y_h$ una solución de la ecuación homogénea. Acabamos de probar que $y_h = c_1y_1 + c_2y_2$ ($y_1$ e $y_2$ son las de antes). Vamos a tomar como solución particular, la solución del problema:
+\begin{align*}
+    \left\{ \begin{array}{lcc}
+             y'' = p(x)y' + q(x)y + r(x), \ \ x \in [a,b]\\
+             y(a) = 0, \ y'(a) = 0 \\
+             \end{array}
+   \right.
+\end{align*}
+que es solución ademñas, de algún problema de contorno. Luego, todas las soluciones de $y'' = p(x)y' + q(x)y + r(x)$ son de la forma:
+\begin{align*}
+    y(x) = y_p(x) + c_1y_1(x) + c_2y_2(x).
+\end{align*}
+Ahora solo hemos de ajusta $c_1$ y $c_2$ para que $y'(a) = \alpha$ e $y'(a) = s$. Es fácil comprobar, que esto implica que $c_1 = \alpha$ y que $c_2 = s$. Por tanto, hemos de resolver la ecuación:
+\begin{align*}
+    (E) \ y_p(b) + \alpha y_1(b) + s y_2(b) = \beta.
+\end{align*}
+Distinguimos tres casos (similares a los de antes).
+
+\section{Método de diferencias finitas}
+\noindent Consideremos el problema:
+\begin{align*}
+    \left\{ \begin{array}{lcc}
+             y'' = p(x)y' + q(x)y + r(x), \ \ x \in [a,b]\\
+             y(a) = \alpha, \ y(b) = \beta \\
+             \end{array}
+   \right.
+\end{align*}
+siendo $q(x) > 0$ para cada $x \in [a,b]$. 
+\begin{enumerate}
+    \item Tomamos una partición uniforme en $[a,b]$ de $N+2$ puntos, es decir, $x_i = a +ih$, siendo $i = 0,1,\ldots,N+1$.
+    \item Elegimos una fórmula de derivación numérica que aproxime $y''(x_i)$ e  $y'(x_i)$ usando solo puntos de la malla para $i = 1,\ldots,N$.
+\end{enumerate}
+
+\begin{ejemplo}
+Consideremos las fórmulas de derivación numérica:
+\begin{align*}
+    y''(x_i) &\thickapprox D_3^2y(x_i) = \frac{y(x_{i-1}) - 2y(x_i) + y(x_{i+1})}{h^2} \\
+    y'(x_i) &\thickapprox D_2^1y(x_i) = \frac{y(x_{i+1}) - y(x_{i-1})}{2h}
+\end{align*}
+que son de orden 2. Entones la solución de 
+\begin{align*}
+    \left\{ \begin{array}{lcc}
+             y'' = p(x)y' + q(x)y + r(x), \ \ x \in [a,b]\\
+             y(a) = \alpha, \ y(b) = \beta \\
+             \end{array}
+   \right.
+\end{align*}
+verifica:
+\begin{align*}
+    &y(x_0) = \alpha \\
+    &\frac{y(x_{i-1}) - 2y(x_i) + y(x_{i+1})}{h^2} - p(x_i)\frac{y(x_{i+1}) - y(x_{i-1})}{2h} -q(x_i)y(x_i) = r(x_i) + O(h^2), \ i = 1,\ldots,N \\
+    &y(x_{N+1}) = \beta
+\end{align*}
+Ahora, aproximamos $y(x_i) \thickapprox u_i$:
+\begin{align*}
+    &u_0 = \alpha \\
+    &\frac{u(x_{i-1}) - 2u(x_i) +u_{i+1}}{h^2} - p(x_i)\frac{u_{i+1} - u_{i-1}}{2h} -q(x_i)u_i = r(x_i) , \ i = 1,\ldots,N \\
+    &u_{N+1} = \beta
+\end{align*}
+que es un sistema de $N+2$ ecuaciones y $N+2$ incógnitas. Para $i = 2,\ldots,N-1$, tenemos que:
+\begin{align*}
+    \left( \frac{1}{h^2} + \frac{p(x_i)}{2h} \right) u_{i-1} - \left( \frac{2}{h^2} + q(x_i)\right)u_i + \left( \frac{1}{h^2} - \frac{p(x_i)}{2h} \right)u_{i+1} = r(x_i)
+\end{align*}
+Multiplcando por $-h^2/2$:
+\begin{align*}
+    -\frac{1}{2}\left(1 + \frac{p(x_i)}{2}h \right)u_{i-1} + \left(1 + \frac{q(x_i)}{2}h^2 \right)u_{i} - \frac{1}{2}\left(1 - \frac{p(x_i)}{2}h \right)u_{i+1} = -\frac{h^2}{2}r(x_i)
+\end{align*}
+Definimos para cada $i = 2,\ldots,N-1$:
+\begin{align*}
+    b_i &= \frac{1}{2}\left(1 + \frac{p(x_i)}{2}h \right) \\
+    a_i &= 1 + \frac{q(x_i)}{2}h^2  \\
+    c_i &= \frac{1}{2}\left(1 - \frac{p(x_i)}{2}h \right)
+\end{align*}
+Para $i = 1$:
+\begin{align*}
+    -b_1u_0 + a_1u_1 - c_1u_2 = -\frac{h^2}{2}r(x_1) \Longleftrightarrow a_1u_1 - c_1u_2 = -\frac{h^2}{2} + b_1\alpha
+\end{align*}
+Para $i = N$:
+\begin{align*}
+    -b_Nu_{N-1} + a_Nu_N = -cNU_{N+1}-\frac{h^2}{2}r(x_N) \Longleftrightarrow -b_Nu_{N-1} + a_Nu_N = -\frac{h^2}{2}r(x_N) + c_N\beta
+\end{align*}
+Luego, nos queda el sistema lineal $A \overrightarrow{u} = \overrightarrow{f}$, siendo
+\begin{align*}
+    A = \begin{bmatrix}
+a_1 & -c_1 &  &  & \\
+-b_2 & a_2 & -c_2 &  & \\
+ & \ddots & \ddots & \ddots & \\
+ &  & -b_{N-1} & a_{N-1} & -c_{N-1} \\
+ &  &  & -b_N & a_N
+\end{bmatrix}, \ \overrightarrow{f} = -\frac{h^2}{2} \begin{bmatrix}
+r(x_1)\\
+r(x_2) \\
+\vdots\\
+r(x_{N-1}) \\
+r(x_N)
+\end{bmatrix} + \begin{bmatrix}
+b_1 \alpha\\
+0 \\
+\vdots\\
+0 \\
+c_N\beta
+\end{bmatrix}
+\end{align*}
+\end{ejemplo}
+
+\begin{defi}
+Se dice que la matriz $A$ es de diagonal estrictamente dominante por filas si
+\begin{align*}
+    |a_{i,i}| > \sum_{j \not = i} |a_{i,j}|, \ \ i = 1,\ldots,N.
+\end{align*}
+\end{defi}
+
+\begin{teo}
+Si una matriz es de diagonal estrictamente dominante por filas, entonces su determinante es distinto de cero.
+\end{teo}
+
+\begin{ejemplo} \
+\begin{itemize}
+    \item Si $p = 0$, entonces $A$ es diagonal estrictamente dominante por filas. \begin{proof}
+    Si $p = 0$, entonces
+    \begin{align*}
+        |a_i| = 1 + \frac{h^2}{2}q(x_i) > |b_i| + |c_i| = \frac{1}{2} + \frac{1}{2} = 1
+    \end{align*}
+    \end{proof}
+    \item Si $p \not = 0$ y $h < \frac{2}{\|p\|_{\infty}}$, entonces $A$ es diagonal estrictamente dominante por filas.
+    \begin{proof}
+    Observamos que
+    \begin{align*}
+        & p(x_i) \ge -|p(x_i)| \ge - \|p\|_{\infty} \\
+        & b_i = \frac{1}{2} \left(1 + p(x_i) \right) \ge \frac{1}{2} \left(1 - \|p\|_{\infty} \right) > 0 \\
+        &c_i = \frac{1}{2} \left(1- p(x_i) \frac{h}{2} \right) \ge \frac{1}{2} \left(1 - \|p\|_{\infty}\frac{h}{2} \right) > 0
+    \end{align*}
+    Entonces
+    \begin{align*}
+        |b_i| + |c_i| = b_i + c_i = 1 < 1 + \frac{h^2}{2}q(x_i) = a_i = |a_i|.
+    \end{align*}
+    \end{proof}
+\end{itemize}
+\end{ejemplo}
+
+\subsection{Resolución numérica del sistema}
+\noindent Para resolver $AX = F$ podemos usar la factorización $LU$. Es decir, podemos expresar $A = LU$ siendo $L$ una mtriz triangular inferior y $U$ una matriz triangular superior.
+\\
+\newline
+Además, si $A$ es tridiagonal, entonces, podemos encontrar $L$ y $U$ de la siguiente forma:
+\begin{align*}
+    L = \begin{bmatrix}
+    1 &  &  &  & \\
+    l_{2,1} & 1 &  &  & \\
+    & \ddots & \ddots &  & \\
+    & & \ddots & \ddots & & \\
+    &  &  & l_{N,N-1} & 1
+\end{bmatrix}, \ U  = \begin{bmatrix}
+    u_{11} & u_{12}  &  &  & \\
+     & u_{22} & u_{23}  &  & \\
+    &  & \ddots &  \ddots & \\
+    & &  & \ddots &  u_{N-1,N} & \\
+    &  &  &  & u_{N,N}
+\end{bmatrix}
+\end{align*}
+Una vez tenemos $A = LU$, para resolver $AX = F$, o equivalentemente, $LUX = F$, tenemos que hacer lo siguiente:
+\begin{enumerate}
+    \item Resolver $LY = F$.
+    \item Resolver $UX = Y$.
+\end{enumerate}
+que son dos sistemas muy fáciles de resolver (por la forma que tienen $L$ y $U$).
+
+\section{Análisis del método}
+
+\begin{defi}
+Definimos el operador $\mathcal{L}$, como el operador que a una función $y: [a,b] \longrightarrow \mathbb{R}$ de clase $\mathscr{C}^2$ le asocia la función $\mathcal{L}y$ definida por:
+\begin{align*}
+    \mathcal{L}y = y''(x) - p(x)y'(x) - q(x)y(x).
+\end{align*}
+\end{defi}
+\noindent Con esto, la ecuación $y'' =  p(x)y' + q(x)y + r(x)$ es equivalente a resolver $\mathcal{L}y = r$. Sea $\mathcal{P} = \{ x_0 < \ldots < x_{N+1}\}$ una partición uniforme del intervalo $[a,b]$. Para cada vector $U \in \mathbb{R}^{N+2}$, $U^T = (u_1,\ldots,u_N)$, definimos $\mathcal{L}_h$ que le asocia a $U$ el vector de $\mathbb{R}^N$ cuyas componentes son:
+\begin{align*}
+    \mathcal{L}_hU_i = \frac{u_{i-1} - 2u_i + u_{i+1}}{h^2} -p(x_i)\frac{u_{i+1} - u_{i-1}}{2h} - q(x_i)u_i, \ i = 1,\ldots,N.
+\end{align*}
+Con esto, el método de diferencia finitas se puede escribir como:
+\begin{align*}
+    \left\{ \begin{array}{lcc}
+             \mathcal{L}_hU_i = r(x_i), \ i = 1,\ldots,N\\
+             u_0 = \alpha, \ u_{N+1} = \beta\\
+             \end{array}
+   \right.
+\end{align*}
+Dada una función $y(x)$, representamos por $Y$ al vector $Y^T = (y(x_0), \ldots, y(x_{n+1}))$.
+
+\begin{defi}
+Se denomina error en $x_i$ a $e_i = y(x_i) - u_i$.
+\end{defi}
+
+\begin{defi}
+Se denomina error a $e(h) = \max_{i} |e_i|$.
+\end{defi}
+
+\begin{defi}
+Se dice que el método es convergente si:
+\begin{align*}
+    \lim_{h \to 0} e(h) = 0.
+\end{align*}
+\end{defi}
+
+\begin{defi}
+Se denomina error de discretización local en $x_i$ a:
+\begin{align*}
+    \tau_i = \mathcal{L}_hY_i - r(x_i), \ i = 1,\ldots,N,
+\end{align*}
+siendo $Y^T = (y(x_0), \ldots, y(x_{N+1}))$ e $y(x)$ solución del problema.
+\end{defi}
+
+\begin{defi}
+Se dice que el esquema es consistennte si
+\begin{align*}
+    \lim_{h \to 0} \tau(h) = 0,
+\end{align*}
+siendo $\tau(h) = \max_{i} \tau_i$.
+\end{defi}
+
+\begin{defi}
+Diremos que el método es estable si existe $M > 0$ (independiente de $h$) tal que $V = \begin{bmatrix}
+v_0 \\
+\vdots\\
+v_{N+1}
+\end{bmatrix}$ y $\{\delta_k\}_{i=1}^{N}$ son tales que $\mathcal{L}_hV_i = \delta_i, \ i = 1,\ldots,N$.
+\end{defi}
+
+\begin{teo}
+Consistencia y estabilidad implican convergencia.
+\end{teo}
+
+\begin{defi}
+Se dice que el método es de orden $p$ si $\tau(h) = O(h^p)$.
+\end{defi}
+
+\begin{teo}
+Si un método es estable y de orden $p$, entonces $e(h) = O(h^p)$.
+\end{teo}
+
+\begin{cor}
+El método
+\begin{align*}
+    \left\{ \begin{array}{lcc}
+             \mathcal{L}_hU_i = r(x_i), \ i = 1,\ldots,N\\
+             u_0 = \alpha, \ u_{N+1} = \beta\\
+             \end{array}
+   \right.
+\end{align*}
+es de orden 2.
+\end{cor}
+
+\begin{teo}
+Si $q(x) > 0$ para cada $x \in [a,b]$ y $h \leq \frac{2}{\|p\|_{\infty}}$ (o h cualquiera si $p = 0$) entonces
+\begin{align*}
+    \left\{ \begin{array}{lcc}
+             \mathcal{L}_hU_i = r(x_i), \ i = 1,\ldots,N\\
+             u_0 = \alpha, \ u_{N+1} = \beta\\
+             \end{array}
+   \right.
+\end{align*}
+es un método estable.
+\end{teo}
+
+\begin{cor}
+El método
+\begin{align*}
+    \left\{ \begin{array}{lcc}
+             \mathcal{L}_hU_i = r(x_i), \ i = 1,\ldots,N\\
+             u_0 = \alpha, \ u_{N+1} = \beta\\
+             \end{array}
+   \right.
+\end{align*}
+es convergente.
+\end{cor}
+
+\section{Otras condiciones de contorno}
+
+\noindent Consideremos el problema:
+\begin{align*}
+        \left\{ \begin{array}{lcc}
+             y'' = p(x)y' + q(x)y + r(x), \ \ x \in [a,b]\\
+             y'(a) = \sigma, \ y(b) = \beta \\
+             \end{array}
+   \right.
+\end{align*}
+Para $i = 1,\ldots,N$ consideramos
+\begin{align*}
+    \frac{u_{i-1} - 2u_i + u_{i+1}}{h^2} -p(x_i)\frac{u_{i+1} - u_{i-1}}{2h} - q(x_i)u_i = r(x_i).
+\end{align*}
+Para $i = N$, tenemos que $u_{N+1} = \beta$, así podemos considerar:
+\begin{align*}
+    \frac{u_{N-1} - 2u_N}{h^2} + p(x_N)\frac{u_{N-1}}{2h} -q(x_N)u_N = r(x_N) - \frac{\beta}{h^2} + p(x_N)\frac{\beta}{2h}.
+\end{align*}
+Para $i = 1$, tenemos que $y'(a) = \sigma \thickapprox \frac{y(x_1)-y(x_0)}{h}$, aproximamos, $\sigma = \frac{u_1 - u_0}{h}$, así podemos considerar
+\begin{align*}
+    \frac{u_0 - 2u_1 + u_2}{h^2} - p(x_1)\frac{u_2-u_1}{2h} - q(x_1)u_0 = r(x_0).
+\end{align*}
+Para $i = 0$, si aproximamos $\sigma = \frac{u_1 - u_0}{h}$, despejando, $u_0 = u_1 - \sigma h$ y sustituyendo en la ecuación para $i = 1$ y multiplicándola por $-h^2/2$, nos queda que:
+\begin{align*}
+    -b_1u_0 +a_qu_1 - c_1u_2 = -\frac{h^2}{2}r(x_1) \underset{u_0 = u_1 - \sigma h}{\Longleftrightarrow} (-b_1 +a_1)u_1 - c_1u_2 = -r(x_1)\frac{h^2}{2} + b_1\sigma h
+\end{align*}
+Con todo esto que hemos hecho, nos queda el sistema $AU = F$, siendo
+\begin{align*}
+     A = \begin{bmatrix}
+-b_1 +a_1 & -c_1 &  &  & \\
+-b_2 & a_2 & -c_2 &  & \\
+ & \ddots & \ddots & \ddots & \\
+ &  & -b_{N-1} & a_{N-1} & -c_{N-1} \\
+ &  &  & -b_N & a_N
+\end{bmatrix}, \ F = -\frac{h^2}{2} \begin{bmatrix}
+r(x_1)\\
+r(x_2) \\
+\vdots\\
+r(x_{N-1}) \\
+r(x_N)
+\end{bmatrix} + \begin{bmatrix}
+b_1 \sigma h\\
+0 \\
+\vdots\\
+0 \\
+c_N\beta
+\end{bmatrix}
+\end{align*}
+
+Otra alternativa a este método es el usar un nodo fantasma.
+\begin{align*}
+    \sigma = y'(a) \thickapprox \frac{y(a+h) -y(a-h)}{2h}
+\end{align*}
+Añadimos
+\begin{itemize}
+    \item $\sigma = \frac{u_1 -u_{-1}}{2h}$.
+    \item
+    \begin{align*}
+        \frac{u_{-1} -2u_0 +u_1}{h^2} - p(x_0)\frac{u_1 -u_0}{2h} -q(x_0)u_0 = r(x_0)
+    \end{align*}
+\end{itemize}
+Despejando $u_{-1}$ tenemos que
+\begin{align*}
+    -b_0u_{-1} +a_0u_0 -c_0u_1 = -\frac{h^2}{2}r(x_0) \underset{u_{-1} = u_1 - 2\sigma h}{\Longleftrightarrow} a_0u_0 -u_1 = -\frac{h^2}{2}r(x_0) -2b_0\sigma h
+\end{align*}
+Con esto, nos queda el sistema $AU = F$, siendo
+
+\begin{align*}
+     A = \begin{bmatrix}
+a_0 & -1 & & & \\     
+-b_1 +a_1 & -c_1 &  &  & \\
+-b_2 & a_2 & -c_2 &  & \\
+ & \ddots & \ddots & \ddots & \\
+ &  & -b_{N-1} & a_{N-1} & -c_{N-1} \\
+ &  &  & -b_N & a_N
+\end{bmatrix}, \ F = -\frac{h^2}{2} \begin{bmatrix}
+r(x_0)\\
+r(x_1) \\
+\vdots\\
+r(x_{N-1}) \\
+r(x_N)
+\end{bmatrix} + \begin{bmatrix}
+-2b_b\sigma h \sigma h\\
+0 \\
+\vdots\\
+0 \\
+c_N\beta
+\end{bmatrix}
+\end{align*}
+En el caso mñas general, tendriamos el problema:
+\begin{align*}
+        \left\{ \begin{array}{lcc}
+             y'' = p(x)y' + q(x)y + r(x), \ \ x \in [a,b]\\
+             c_1y(a) + c_2y'(a) = \alpha \\
+             d_1y(b) + d_2y'(b) = \beta
+             \end{array}
+   \right.
+\end{align*}
+
+\section{Problemas no lineales}
+\noindent Son problemas de la forma
+\begin{align*}
+        \left\{ \begin{array}{lcc}
+             y'' = f(x,y,y'), \ \ x \in [a,b]\\
+             y(a) = \alpha, \ y(b) = \beta
+             \end{array}
+   \right.
+\end{align*}
+siendo $f: [a,b] \times \mathbb{R}^2 \longrightarrow \mathbb{R}$.
+
+\begin{teo}
+Si $f: [a,b] \times \mathbb{R}^2 \longrightarrow \mathbb{R}$ es de clase $\mathscr{C}^1$, tiene derivadas parciales acotadas y existe $L^* > 0$ tal que
+\begin{align*}
+    \frac{\partial f}{\partial y}(x,y,y') \ge L^*
+\end{align*}
+para cualquier $x \in [a,b]$ y cualesquiera $(y,y') \in \mathbb{R}^2$, entonces el problema
+\begin{align*}
+        \left\{ \begin{array}{lcc}
+             y'' = f(x,y,y'), \ \ x \in [a,b]\\
+             y(a) = \alpha, \ y(b) = \beta
+             \end{array}
+   \right.
+\end{align*}
+tiene una única solución.
+\end{teo}
+
+\subsection{Método de diferencias finitas}
+
+\noindent Sea $\mathcal{P} = \{ x_0 = a, x_1,\ldots,x_{N+1} = b\}$ una malla equidistante del intervalo $[a,b]$, es decir, $h = \frac{b-1}{N+1}$ y $x_i = a +ih$ para cada $i = 0,\ldots,N+1$. La solución del problema verifica que $y''(x_i) = f(x_i,y(x_i),y'(x_i))$ para cada $i = 1,\ldots,N$. Aproximando las derivadas:
+\begin{align*}
+    \frac{y(x_{i-1}) - 2y(x_i) +y(x_{i+1})}{h^2} = f\left(x_i,y(x_i), \frac{y(x_{i+1}) -y(x_{i-1})}{2h} \right) + O(h^2).
+\end{align*}
+Actuado como antes, buscamos $u_0,\ldotsu_{N+1}$ tales que
+\begin{align*}
+    &u_0 = \alpha \\
+    & \frac{u_{i-1} - 2u_i + u_{i+1}}{h^2} = f\left(x_i, u_i, \frac{u_{i+1} -u_{i-1}}{2h} \right), \ i = 1,\ldots,N \\
+    & u_{N+1} = \beta
+\end{align*}
+Con lo que tenemos un sistema no linenal con $N$ ecuaciones y $N$ incógnitas.
+
+\subsection{Métodos de punto fijo}
+
+\noindent Un sistema no lineal se puede expresar como $F(U) = 0$, siendo
+\begin{align*}
+    U = \begin{bmatrix}
+u_1\\
+\vdots\\
+u_N
+\end{bmatrix} \in \mathbb{R}^N, \ F : D \subset \mathbb{R}^N \longrightarrow \mathbb{R}^N, \ F(U) = \begin{bmatrix}
+f_1(u_1,\ldots,u_N)\\
+\vdots\\
+f_N(u_1,\ldots,u_N)
+\end{bmatrix}
+\end{align*}
+Si somos capaces de reescribir la ecuación que queremos resolver en una forma equivalente como $U = G(U)$, siendo $G: D \subset \mathbb{R}^N \longrightarrow \mathbb{R}^N$, podríamos aplicar un método de punto fijo, por ejemplo
+\begin{align*}
+            \left\{ \begin{array}{lcc}
+             U_0 \in D\\
+             U_{l+1} = G(U_l), \ l = 0,1,2,\ldots
+             \end{array}
+   \right.
+\end{align*}
+
+\begin{obs}
+Siempre podemos reescribir una ecuación $F(U) = 0$ como $G(U) = U$. En la práctica tomaremos $G(U) = U -AF(U)$, con $A$ matriz invertible. $G(U) = U$ es efectivamente, equivalente a $F(U) = 0$ porque
+\begin{align*}
+    G(U) = U \Longleftrightarrow U - AF(U) = U \Longleftrightarrow AF(U) = 0 \underset{A \text{ invertible}}{=} F(U) = 0
+\end{align*}
+\end{obs}
+
+\begin{defi}
+Se dice que $G: \mathbb{R}^N \longrightarrow \mathbb{R}^N$ es contractiva si existe $C \in [0,1)$ tal que
+\begin{align*}
+    \| G(U) - G(V) \| \leq C \| U - V \| ,
+\end{align*}
+para alguna norma $\|.\|$ de $\mathbb{R}^N$.
+\end{defi}
+
+\begin{teo}[Teorema de Punto Fijo]
+Si $G: \mathbb{R}^N \longrightarrow \mathbb{R}^N$ es contractiva, entonces tiene un único punto fijo $U^*$ y además, todas las sucesiones
+\begin{align*}
+            \left\{ \begin{array}{lcc}
+             U_0 \in \mathbb{R}^N\\
+             U_{l+1} = G(U_l), \ l = 0,1,2,\ldots
+             \end{array}
+   \right.
+\end{align*}
+convergen a $U^*$.
+\end{teo}
+
+\begin{teo}
+Supongamos que $G: \mathbb{R}^N \longrightarrow \mathbb{R}^N$ es de clase $\mathscr{C}^1$ y existe $C \in [0,1)$ tal que
+\begin{align*}
+    \left| \frac{\partial G_i}{\partial u_j}(U) \right| < \frac{C}{N}
+\end{align*}
+para cada $U \in \mathbb{R}^n$ y cualesquiera $i,j \in \{1,\ldots,n\}$. Entonces $G$ es contractiva.
+\end{teo}
+
+\begin{proof}
+Sean $U,V \in \mathbb{R}^N$ y sea $\psi(t) = G(V +t(U-V))$, $t \in [0,1]$. Sean $\psi_i(t) = G_i(V +t(U-V))$, $i = 1,\ldots,n$ las componentes de $\psi$. Entonces
+\begin{align*}
+    G_i(U) = G_i(V) = \psi_i(1) - \psi_1(0), \ i = 1,\ldots,N
+\end{align*}
+Por el teorema del valor medio, existe $\xi_i$ tal que
+\begin{align*}
+    \psi_i(1) - \psi_i(0) &= \psi'_i(\xi_i)(1-0) \\
+    & \sum_{j=1}^{N} \frac{\partial G_i}{ \partial u_j}(V + \xi_i(U-V)) \cdot (u_j - v_j), \ i = 1,\ldots,N
+\end{align*}
+Tomando valor absolutos:
+\begin{align*}
+    |G_i(U) - G_i(V)| &\leq \sum_{j=1}^{N} \left| \frac{\partial G_i}{ \partial u_j}(V + \xi_i(U-V)) \right| \cdot |u_j - v_j| \\
+    & \leq \sum_{j=1}^{N} \frac{C}{N} \|U - V\|_{\infty} = N \frac{C}{N} \|U-V\|_{\infty} = C\|U-V\|_{\infty}
+\end{align*}
+De aquí deducimos que
+\begin{align*}
+    \|G(U) - G(V)\|_{\infty} = \max_{i = 1,\ldots,N} |G_i(U) - G_i(V)| \leq C \|U-V\|_{\infty}
+\end{align*}
+\end{proof}
+
+\begin{prop}
+Si $G: \mathbb{R}^N \longrightarrow \mathbb{R}^N$ es contractiva, de clase $\mathscr{C}^2$, todas las derivadas parciales de segundo orden son acotadas y 
+\begin{align*}
+    \frac{\partial G_i}{\partial u_j}(U^*) = 0 
+\end{align*}
+para cualesquiera $i,j \in \{1,\ldots,n\}$ siendo $U^*$ el único punto fijo de $G$, entonces el método es de orden 2.
+\end{prop}
+
+\begin{proof}
+Sea $\psi(t) = G(U^* + t(U-U^*))$, $t \in [0,1]$. Para cada $i = 1,..,N$ tenemos que
+\begin{align*}
+    G_i(U) - G_i(U^*) = \psi_i(1) - \psi_i(0)
+\end{align*}
+Usando el teorema de taylor, sabemos que existe $\xi_i$ tal que
+\begin{align*}
+    \psi_i(1) - \psi_i(0) &= \psi'_i(0)(1-0) + \frac{\psi''_i(\xi_i)}{2!} (1-0)^2 \\
+    &= \psi'_i(0) + \frac{\psi''_i(\xi_i)}{2!}
+\end{align*}
+Observamos que 
+\begin{align*}
+    \psi'_i(0) = \sum_{j=1}^{N} \frac{\partial G_i}{\partial u_j}(U^*) = 0
+\end{align*}
+Por tanto:
+\begin{align*}
+    \psi_i(1) - \psi_i(0) = \frac{\psi''_i(\xi_i)}{2}, \ i = 1,\ldots,N
+\end{align*}
+Calculemos la segunda derivada de $\psi_i$
+\begin{align*}
+    & \psi_i(t) = G_i(U^* + t(U-U^*)) \\
+    & \psi'_i(t) = \sum_{j=1}^{N} \frac{\partial G_i}{\partial u_j}(U^* + t(U-U^*)) \cdot (u_j - u_j^*) \\
+    & \psi'_i(t) = \sum_{j,k=1}^{N} \frac{\partial^2 G_i}{\partial u_j\partial u_k}(U^* + t(U-U^*)) \cdot (u_j - u_j^*) \vdot (u_k - u_k^*)
+\end{align*}
+Si suponemos que $M$ es cota superior para las segundas derivadas parciales, entonces
+\begin{align*}
+    |\psi_i''(t)| \leq N M \|U - V\|_{\infty}^2
+\end{align*}
+Por tanto,
+\begin{align*}
+    |G_i(U) - G_i(U^*)| = \frac{\psi''_i(\xi_i)}{2} \leq \frac{1}{2} NM \|U - V\|_{\infty}^2 \underset{C = NM/2}{=} C\|U-U^*\|_{\infty}^2
+\end{align*}
+De aquí deducimos que
+\begin{align*}
+    \|G(U) - G(U^*)\|_{\infty} = \max_{i = 1,\ldots,N} |G_i(U) - G_i(U^*)| \leq C \|U-U^*\|_{\infty}^2
+\end{align*}
+\end{proof}
+
+\begin{obs}
+Como hemos dicho antes, podemos rescribir $F(U) = 0$ como $G(U) = U$, tomando $G(U) = U -AF(U)$, siendo $A$ una matriz invertible. ¿Cómo hay que tomar $A$ para que el método sea de orden 2?
+\\
+\newline
+Si queremos usar la proposición anterior, hemos de asegurar que $\frac{\partial G_i}{\partial u_j}(U^*) = 0$ para cualesquiera $i,j \in \{1,\ldots,n\}$, siendo $U^*$ el único punto fijo de $G$.
+\begin{align*}
+    G(U) = U - AF(U) \Longleftrightarrow G_i(U) = u_i - \sum_{l=1}^{N}a_{il}F_l(u_1,\ldots,u_N), \ i = 1,\ldots,N
+\end{align*}
+Entonces
+\begin{align*}
+    \frac{\partial G_i}{\partial u_j} = \left\{ \begin{array}{lcc}
+             1 - \sum_{l=1}^{N} a_{il} \frac{\partial F_l}{\partial u_j} & si & j = i\\
+             - \sum_{l=1}^{N} a_{il} \frac{\partial F_l}{\partial u_j} & si & j \not = i
+             \end{array}
+   \right.
+\end{align*}
+Es fácil ver que $DG(U) = I - A \cdot DF(U)$. Como queremos que $DG(U^*) = 0$:
+\begin{align*}
+    0 = DG(U^*) = I - A \cdot DF(U^*) \Longleftrightarrow A \cdot DF(U^*) = I
+\end{align*}
+Si $DF(U^*)$ es invertible, hemos de tomar $A = DF(U^*)^{-1}$, que sería la mejor elección para $A$. Sin embargo en la práctica no conocemos $U^*$, pero suponiendo que el método que usamos es convergente, podemos aproximar $U^*$ por $U_L$, con lo que nos quedaría el siguiente método
+\begin{align*}
+            \left\{ \begin{array}{lcc}
+             U_0 \in \mathbb{R}^N\\
+             U_{l+1} = G(U_l) = U_l - DF(U_l)^{-1} F(U_l), \ l = 0,1,2,\ldots
+             \end{array}
+   \right.
+\end{align*}
+que es conocido como el método de Newton.
+\end{obs}
+
+\begin{teo}
+Si $F : \mathbb{R}^N \longrightarrow \mathbb{R}^N$ es de clase $\mathscr{C}^2$, $U^*$ es un cero de $F$ y si $DF(U^*)$ es invertible, entonces existe $\delta > 0$ tal que las sucesiones
+\begin{align*}
+            \left\{ \begin{array}{lcc}
+             U_0 \in B_{\infty}(U^*,\delta)\\
+             U_{k+1} = U_k- DF(U_k)^{-1} F(U_k), \ k = 0,1,2,\ldots
+             \end{array}
+   \right.
+\end{align*}
+están bien definidas y convergen hacia $U^*$ con segundo orden, es decir, existe $M > 0$ tal que
+\begin{align*}
+    \|U_{k+1} - U^*\|_{\infty} \leq M \| U_k - U^*\|_{\infty}^2
+\end{align*}
+\end{teo}
+
+\begin{obs} \
+\begin{enumerate}
+    \item Si $N = 1$, este es el método de Newton en $\mathbb{R}$.
+    \item En la práctica no es necesario calcular $DF(U_l)^{-1}$, para programar el método es mucho más eficiente hacer lo siguiente:
+    \begin{align*}
+        U_{k+1} -U_k = -DF(U_k)^{-1}F(U_k) \Longleftrightarrow DF(U_k)(U_K - U_{K+1}) = F(U_k)
+    \end{align*}
+    Si llamamos $X_k = U_k - U_{k+1}$, entonces resolvemos $DF(U_k)X_k = F(U_k)$ y luego tomamos $U_{k+1} = U_k - X_k$.
+\end{enumerate}
+\end{obs}
+
+\subsection{Aplicación de los métodos de diferencias finitas para problemas de contorno no lineales}
+
+\noindent Consideremos el problema
+\begin{align*}
+        \left\{ \begin{array}{lcc}
+             y'' = f(x,y,y'), \ \ x \in [a,b]\\
+             y(a) = \alpha, \ y(b) = \beta
+             \end{array}
+   \right.
+\end{align*}
+Por comodidad supondremos que $\alpha = \beta = 0$. Entonces un método de diferencias finitas podria ser:
+
+\begin{align*}
+    & \frac{-2u_1 + u_2}{h^2} = f\left( x_1,u_1, \frac{u_2}{2h} \right)\ \ i = 1 \\
+    & \frac{u_{i-1} - 2u_i + u_{i+1}}{h^2} = f\left(x_i, u_i, \frac{u_{i+1} -u_{i-1}}{2h} \right), \ i = 2,\ldots,N-1 \\
+    & \frac{-2u_{N-1} + u_N}{h^2} = f\left( x_N,u_N, \frac{-u_{N-1  }}{2h} \right) \ \ i = N
+\end{align*}
+
+Observamos que $U = \begin{bmatrix}
+u_1\\
+\vdots\\
+u_N
+\end{bmatrix}$ verifica $\Phi(U) = 0$ siendo
+
+\begin{align*}
+    &\Phi_1(u_1,\ldots,u_N) = \frac{-2u_1 + u_2}{h^2} - f\left( x_1,u_1, \frac{u_2}{2h} \right) \\
+    & \Phi_i(u_1,\ldots,u_N) = \frac{u_{i-1} - 2u_i + u_{i+1}}{h^2} - f\left(x_i, u_i, \frac{u_{i+1} -u_{i-1}}{2h} \right), \ i = 2,\ldots,N-1 \\
+    & \Phi_N(u_1,\ldots,y_n) = \frac{-2u_{N-1} + u_N}{h^2} - f\left( x_N,u_N, \frac{-u_{N-1  }}{2h} \right)
+\end{align*}
+Observamos que
+\begin{align*}
+    \frac{\partial \Phi_i}{\partia u_j} = \left\{ \begin{array}{lcc}
+             \frac{1}{h^2} + \frac{1}{2h} \cdot \frac{\partial f}{\partial y'} & si & h = i-1 \\
+             -\frac{2}{h^2} - \frac{\partial f}{\partial y} & si & j = i \\
+             \frac{1}{h^2} - \frac{1}{2h} \cdot \frac{\partial f}{\partial y'} & si & h = i+1 \\
+             0 & si & \text{es otro caso}
+             \end{array}
+   \right.
+\end{align*}
+Así,
+\begin{align*}
+    D\Phi(U) = -\frac{2}{h^2} \begin{bmatrix}
+a_1 & -c_1 &  &  & \\
+-b_2 & a_2 & -c_2 &  & \\
+ & \ddots & \ddots & \ddots & \\
+ &  & -b_{N-1} & a_{N-1} & -c_{N-1} \\
+ &  &  & -b_N & a_N
+\end{bmatrix}
+\end{align*}
+siendo
+\begin{align*}
+    & a_i = 1 + \frac{h^2}{2} \cdot \frac{\partial f}{\partial y} \left(x_i,u_i, \frac{u_{i+1} - u_{i-1}}{2h} \right) \\
+    & b_i = \frac{1}{2} \left[ 1 + \frac{h}{2} \cdot \frac{\partial f}{\partial y'} \left(x_i,u_i, \frac{u_{i+1} - u_{i-1}}{2h} \right) \right] \\
+    & c_i = \frac{1}{2} \left[ 1 - \frac{h}{2} \cdot \frac{\partial f}{\partial y'} \left(x_i,u_i, \frac{u_{i+1} - u_{i-1}}{2h} \right) \right]
+\end{align*}

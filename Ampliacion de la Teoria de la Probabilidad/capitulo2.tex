@@ -1,0 +1,505 @@
+\chapter{Función característica}
+
+\section{Función característica}
+
+\begin{defi}
+Sea $X$ una variable aleatoria en $(\Omega, \mathcal{A}, P)$. La función característica asociada a $X$ es $\varphi_X : \mathbb{R} \longrightarrow \mathbb{C}$ dada por
+\begin{align*}
+    \varphi_X(t) = E\left[ e^{itX} \right] = \int_{\mathbb{R}} e^{itx} \ dF(x).
+\end{align*}
+Si $Y : \Omega \longrightarrow \mathbb{R}^d$, $d \ge 1$, es un vector de variables aleatorias, entonces $\varphi_Y : \mathbb{R}^d \longrightarrow \mathbb{C}$ viene dada por
+\begin{align*}
+    \varphi_Y(t) = \int_{\mathbb{R}^d} e^{i<t,x>} \ dF(x),
+\end{align*}
+siendo $<,>$ un producto escalar en $\mathbb{R}^d$.
+\end{defi}
+
+\begin{obs}
+    Como $e^{itx} = \cos(tx) + i \sen(tx)$, entonces
+    \begin{align*}
+        \varphi_X(t) = \int_{\mathbb{R}} \cos(tx) \ dF(x) + i \int_{\mathbb{R}} \sin(tx) \ dF(x).
+    \end{align*}
+\end{obs}
+\noindent Algunas propiedades de la función característica son
+\begin{enumerate}
+    \item $\varphi(0) = 1$.
+    \item $|\varphi(t)| \leq 1$ para todo $t \in \mathbb{R}$.
+    \begin{proof}
+        \begin{align*}
+            |\varphi(t)| = \left|E \left[ e^{itX} \right] \right| \leq E \left[ \left| e^{itX} \right| \right] = 1.
+        \end{align*}
+    \end{proof}
+    \item $\varphi(-t) = \overline{\varphi(t)}$ para todo $t \in \mathbb{R}$.
+    \begin{proof}
+        \begin{align*}
+            \varphi(-t) &= E \left[ e^{-itX} \right] = E[\cos(-tx) + i\sin(-tx)] = E[\cos(tx) - i\sin(tx)] \\
+            &= \overline{E[\cos(tx)] + iE[\sin(tx)]} = \overline{E[\cos(tx) + i\sin(tx)]} = \overline{\varphi(t)}.
+        \end{align*}
+    \end{proof}
+    \item $\varphi$ es una función definida positiva, es decir, para cada $n \in \mathbb{N}$ y para cada $z \in \mathbb{C}^n$, $z = (z_1,...,z_n)$ se tiene que
+    \begin{align*}
+        \sum_{k,j=1}^{n} z_k \varphi(t_j-t_k)\overline{z_j} \ge 0.
+    \end{align*}
+    \begin{proof}
+        \begin{align*}
+            \sum_{k,j=1}^{n} z_k \varphi(t_j-t_k)\overline{z_j} &=\sum_{k,j=1}^{n} z_k E\left[ e^{i(t_j-t_k)X} \right]\overline{z_j} = \sum_{k,j=1}^{n} z_k E\left[ e^{it_jX}e^{-it_kX} \right]\overline{z_j} \\
+            &= E \left[ \sum_{k,j=1}^{n} z_k e^{it_jX}e^{-it_kX} \overline{z_j} \right] = E \left[ \sum_{k=1}^{n} z_k e^{-t_kX} \left( \sum_{j=1}^{n} \overline{z_j} e^{it_jX} \right)\right] \\
+            &= E \left[ \sum_{k=1}^{n} z_k e^{-t_kX} \overline{ \left( \sum_{j=1}^{n} z_j e^{-it_jX} \right)}\right] = E \left[ \left| \sum_{k=1}^{n} z_k e^{-it_kX} \right|^2 \right] \ge 0.
+        \end{align*}
+    \end{proof}
+\end{enumerate}
+
+\begin{teo}
+    $\varphi$ es uniformemente continua.
+\end{teo}
+
+\begin{proof}
+    Sean $t,h \in \mathbb{R}$, entonces
+    \begin{align*}
+        |\varphi(t+h) - \varphi(t)| &= \left| E\left[ e^{i(t+h)X} \right] - E\left[ e^{itX} \right] \right| = \left|E\left[ e^{i(t+h)X} - e^{itX} \right] \right| \\
+        &= \left|E\left[ e^{itX}\left( e^{ihX} - 1 \right) \right] \right| \leq E\left[ \left|e^{itX}\left( e^{ihX} - 1 \right) \right|\right] \\
+        &= E\left[ \left|e^{itX}\right|\left| e^{ihX} - 1 \right| \right] = E\left[\left| e^{ihX} - 1 \right| \right]
+    \end{align*}
+    Como 
+    \begin{itemize}
+        \item $\left| e^{ihX} - 1\right| \leq \left| e^{ihX} \right| + 1 = 2$.
+        \item $\left| e^{ihX} - 1 \right| \xrightarrow[h \to 0]{} 0$.
+    \end{itemize}
+    Por el Teorema de la Convergencia Dominada, $E\left[ e^{ihX} - 1\right] \xrightarrow[h \to 0]{} 0$, de donde, $|\varphi(t+h) - \varphi(t)| \xrightarrow[h \to 0]{} 0 $ para cada $t \in \mathbb{R}$, lo que nos dice que $\varphi$ es uniformemente continua.
+\end{proof}
+
+\begin{teo}[de inversión]
+    Sea $X$ una varaible aleatoria en $(\Omega, \mathcal{A}, P)$ con función de distribución $F$ y función característica $\varphi$. Dados $a,b \in \mathbb{R}$, $a < b$, se tiene que
+    \begin{align*}
+        \frac{F(b) + F(b^-)}{2} - \frac{F(a) + F(a^-)}{2} = \lim_{T \to \infty} \int_{-T}^{T} \frac{e^{-itb} - e^{-ita}}{-it} \varphi(t) \ dt.
+    \end{align*}
+\end{teo}
+
+\begin{proof}
+    Observamos que
+    \begin{align*}
+        \left| \frac{e^{-itb} - e^{-ita}}{-it} \right| = \left| \int_{a}^{b} e^{-itx} \ dx \right| \leq \int_{a}^{b} \left| e^{itx} \right| = b - a < \infty.
+    \end{align*}
+    Usando el Teorema de Fubini
+    \begin{align*}
+        \frac{1}{2\pi} \int_{-T}^{T} \frac{e^{-itb} - e^{-ita}}{-it} \varphi(t) dt &= \frac{1}{2\pi} \int_{-T}^{T} \frac{e^{-itb} - e^{-ita}}{-it} \left( \int_{-\infty}^{\infty} e^{itx} \ dF(x)\right) dt \\
+        &=\frac{1}{\pi} \int_{-\infty}^{\infty}\int_{-T}^{T} \frac{e^{-it(x-a) - i^{it(x-b)}}}{2it} \ dt \ dF(x).
+    \end{align*}
+    Llamemos 
+    \begin{align*}
+        I(t) := \int_{-T}^{T} \frac{e^{-it(x-a) - i^{it(x-b)}}}{2it} \ dt,
+    \end{align*}
+    así
+    \begin{align*}
+        I(T) &= \int_{-T}^{T} \frac{\cos(t(x-a)) + i\sen(t(x-a)) - \cos(t(x-b)) - i\sen(t(x-b))}{2it} \ dt \\
+        &= \int_{0}^{T} \frac{i2\sen(t(x-a)) - i2\sen(t(x-b))}{2it} \ dt = \int_{0}^{T} \left( \frac{\sen(t(x-a))}{t} - \frac{\sen(t(x-b))}{t} \right) dt.
+    \end{align*}
+    Definimos ahora la función
+    \begin{align*}
+        H(y) = \int_{0}^{y} \frac{\sen(t)}{t},
+    \end{align*}
+    que sabemos que verifica que $H(-y) = H(y)$ y $\lim_{y \to \infty} H(y) = \pi/2$. Consideremos ahora el cambio de variables $u = t(x-a)$, de esta forma
+    \begin{align*}
+        \int_{0}^{T} \frac{\sen(t(x-a))}{t} \ dt = \int_{0}^{T(x-a)} \frac{\sin(u)}{u} \ du = H(T(x-a)) \xrightarrow[T \to \infty]{} \left\{ \begin{array}{lcc}
+             -\pi/2 & x < a\\
+             0  & x = a \\
+             \pi/2 & x > a
+             \end{array}
+   \right. .
+    \end{align*}
+    Actuando de igual forma para el cambio $u = t(x-b)$, llegamos a que
+    \begin{align*}
+        \lim_{T \to \infty} \int_{0}^{T} \left( \frac{\sen(t(x-a))}{t} - \frac{\sen(t(x-b))}{t} \right) dt = \left\{ \begin{array}{lcc}
+            0 & x < a \\
+             \pi/2 & x = a\\
+             \pi  & a < x < b \\
+             \pi/2 & x < b \\
+             0 & x > b
+             \end{array}
+   \right. .
+    \end{align*}
+    Entonces
+    \begin{align*}
+        \lim_{T \to \infty} \frac{1}{2\pi} \int_{-T}^{T} \frac{e^{-itb} - e^{-ita}}{-it} \varphi(b) \ dt &= \lim_{T \to \infty} \frac{1}{\pi} \int_{-\infty}^{\infty} I(t) \ dF(x) = \int_{-\infty}^{\infty} \lim_{T \to \infty} \frac{1}{\pi} I(t) \ dF(x) \\
+        &= \frac{1}{\pi}\left( \frac{\pi}{2}P(X = a) + \pi P(a < X < b) + \frac{\pi}{2} P(X = b) \right) \\
+        &= \frac{1}{\pi} \left( \frac{\pi}{2}(F(a) - F(a^-)) + \pi(F(b^-) - F(a)) + \frac{\pi}{2}(F(b) - F(b^-)) \right) \\
+        &= \frac{F(b) + F(b^-)}{2} - \frac{F(a) + F(a^-)}{2}.
+    \end{align*}
+\end{proof}
+
+\begin{cor}
+        Sea $X$ una varaible aleatoria en $(\Omega, \mathcal{A}, P)$ con función de distribución $F$ y función característica $\varphi$. Dados $a,b \in C(F)$, $a < b$, se tiene que
+    \begin{align*}
+        F(b) - F(a) = \lim_{T \to \infty} \int_{-T}^{T} \frac{e^{-itb} - e^{-ita}}{-it} \varphi(t) \ dt.
+    \end{align*}
+\end{cor}
+
+\begin{teo}
+    Sean $X_1$ y $X_2$ variables aleatorias con funciones de distribución $F_1$ y $F_2$ y funciones características $\varphi_1$ y $\varphi_2$ respectivamente. Entonces $F_1 = F_2$ si y solo si $\varphi_1 = \varphi_2$.
+\end{teo}
+
+\begin{proof}
+    $\boxed{\Longrightarrow}$ Supongamos que $F_1 = F_2$, entonces
+    \begin{align*}
+        \varphi_1(t) = E\left[ e^{itX_1} \right] = \int_{\mathbb{R}} e^{itx} \ dF_1(x) = \int_{\mathbb{R}} e^{itx} \ dF_2(x) = E\left[ e^{itX_2} \right] = \varphi_2(t).
+    \end{align*}
+    $\boxed{\Longleftarrow}$ Supongamos que $\varphi_1 = \varphi_2 \equiv \varphi$. Sean $a < b$, $a,b \in C(F_1) \cap C(F_2)$. Por el Teorema de Inversión
+    \begin{align*}
+        F_1(b) - F_1(a) = F_2(b) - F_2(a),
+    \end{align*}
+    tomando límite $a \to \infty$, tenemos que
+    \begin{align*}
+        F_1(b) - 1 = F_2(b) - 1 \Longleftrightarrow F_1(b) = F_1(b),
+    \end{align*}
+    de donde deducimos que $F_1$ y $F_2$ coinciden en un denso de $\mathbb{R}$ y por tanto, $F_1 = F_2$ en todo $\mathbb{R}$.
+\end{proof}
+
+\begin{teo}
+    Existe $k \in (0,\infty)$ tal que para todo $a > 0$ y toda medida de probabilidad $P_F$ (puede ser cualquier medida de probabilidad arbitraria) tal que
+    \begin{align*}
+        P_F\left( \left[ - \frac{1}{a}, \frac{1}{a} \right]^c \right) \leq \frac{k}{a} \int_{0}^{a} (1 - \text{Re} \ \varphi_F(t)) \ dt.
+    \end{align*}
+\end{teo}
+
+\begin{proof}
+    Nótese que
+    \begin{align*}
+        \re ( \varphi_F(t)) = \re E\left[e^{itX} \right] = \re E[\cos(tx) + i\sen(tx)] = E[\cos(tx)],  
+    \end{align*}
+    de donde
+    \begin{align*}
+        1 - \re (\varphi_F(t)) = E[1- \cos(tx)].
+    \end{align*}
+    Así,
+    \begin{align*}
+        \frac{1}{a} \int_{0}^{a} (1 - \re (\varphi_F(t))) \ dt &= \frac{1}{a} \int_{0}^{a} \int_{\mathbb{R}} (1 - \cos(tx)) \ dF(x) \ dt = \int_{\mathbb{R}} \frac{1}{a} \int_{0}^{a} (1 - \cos(tx)) \ dt \ dF(x) \\
+        &= \int_{\mathbb{R}} \frac{1}{a} \left( \int_{0}^{a} 1 \ dt - \int_{0}^{a} \cos(tx) \ dt\right) \ dF(x) = \int_{\mathbb{R}} \left( 1 - \frac{\sen(ax)}{ax} \right) \ dF(x) \\
+        & \ge \int_{|ax|>1} \left( 1 - \frac{\sen(ax)}{ax} \right) \ dF(x) \ge \inf_{|t| > 1} \left( 1 - \frac{\sen(t)}{t} \right) \cdot  P_F\left( \left[ - \frac{1}{a}, \frac{1}{a} \right]^c \right)
+    \end{align*}
+    Basta tomar
+    \begin{align*}
+        k = \frac{1}{\inf_{|t| > 1} \left( 1 - \frac{\sen(t)}{t} \right)}
+    \end{align*}
+    para obtener el resultado.
+\end{proof}
+
+\begin{cor} \label{cor1}
+    Sea $\{X_n\}$ una sucesión de variables aleatorias, con $F_n$, $P_n$ y $\varphi_n$ asociada a $X_n$. Supongamos que
+    \begin{enumerate}
+        \item[1.] Existe $\delta > 0$ tal que $\varphi_n \xrightarrow[n \to \infty]{} \varphi(t)$ para todo $t \in [-\delta,\delta]$.
+        \item[2.] $\varphi$ es continua en $0$.
+    \end{enumerate}
+    Entonces $\{X_n\}$ es ajustada, es decir, $\{F_n\}$ forma una familia ajustada.
+\end{cor}
+
+\begin{teo} \label{teo1}
+    Sea $\{F_n\}$ una familia ajustada de funciones de distribución. Si todas las subsucesiones convergentes tienen el mismo límite $F$, entonces $F_n \xrightarrow[]{d} F$.
+\end{teo}
+
+\begin{proof}
+    Supongamos por reducción al absurdo que $F_n \not \xrightarrow[]{d} F$, entonces existe $x \in C(F)$ tal que $F_n(x) \not \xrightarrow[]{} F(x)$, es decir, existe una subsucesión $\{F_{n_k}\}$ tal que $F_{n_k}(x) \xrightarrow[]{} \alpha \not = F(x)$. Por hipótesis, $\{F_{n_k}\}$ es ajustada, por el Teorema de Prokhorov, existe $\{F_{n_k'}\} \subset \{F_{n_k}\}$ tal que $F_{n_k'} \xrightarrow[]{} F$ (por hipótesis). Como $x \in C(F)$, entonces $F_{n_k'} \xrightarrow[]{} F(x) \not = \alpha$, lo que es una cotradicción. 
+\end{proof}
+
+\begin{teo}[Continuidad de Levy]
+    Sea $\{X_n\}$ una sucesión de variables aleatorias con $\varphi_n$ función característica asociada a $X_n$. Si existe $\varphi$ función tal que
+    \begin{enumerate}
+        \item $\varphi_n(t) \longrightarrow \varphi(t)$ para todo $t \in \mathbb{R}$.
+        \item $\varphi$ es continua en $0$.
+    \end{enumerate}
+    Entonces $X_n \xrightarrow[]{d} X$, donde $X$ es la variable aleatoria con función característica $\varphi$.
+\end{teo}
+
+\begin{proof}
+    Por el Corolario \ref{cor1} tenemos que $\{X_n\}$ es una familia ajustada. Veamos que el límite de las subssucesioes de $\{F_n\}$ es único, con lo que bastaría usar el Teorema \ref{teo1} para llegar al resultado.
+    \\
+    \newline
+    Sean $\{F_{n_k}\}$ y $\{F_{n_j}\}$ subsucesiones tales que
+    \begin{align*}
+        F_{n_k} \xrightarrow[]{d} G_1, \quad F_{n_j} \xrightarrow[]{d} G_2.
+    \end{align*}
+    Consideremos las sucesiones asociadas de funciones características
+    \begin{align*}
+        \varphi_{n_k}(t) \longrightarrow \varphi_{G_1}(t), \quad \varphi_{n_j}(t) \longrightarrow \varphi_{G_2}(t)
+    \end{align*}
+    para todo $t \in \mathbb{R}$. Como $\{\varphi_{n_k}\}$ y $\{\varphi_{n_j}\}$ son subsucesiones de $\{\varphi_n\}$, entonces, por hipótesis, $\varphi_{G_1}(t) = \varphi_{G_2}(t) = \varphi(t)$ para todo $t \in \mathbb{R}$. De aquí, deducimos que
+    \begin{align*}
+        \int_{\mathbb{R}} e^{itx} \ dG_1(x) = \int_{\mathbb{R}} e^{itx} \ dG_2(x).
+    \end{align*}
+    Como la función $t \longmapsto e^{itx}$, $x \in \mathbb{R}$, es continua y acotada, entonces esta igualdad implica que $P_{G_1} = P_{G_2}$. Por el Teorema de Correspondencia, tenemos que $G_1 = G_2$. Por  el Teorema \ref{teo1} $F_n \xrightarrow[]{d} F$, es decir, $X_n \xrightarrow[]{d} X$.
+\end{proof}
+
+\begin{teo}
+    $\{F_n\}$ es ajustada si y solo si
+    \begin{align*}
+        \lim_{t \to 0} \left[ \limsup_{n \to \infty} Re(1 - \varphi_n(t)) \right] = 0.
+    \end{align*}
+\end{teo}
+
+\begin{obs}[Teorema Central del Límite de De Moivre]
+Sea $\{X_n\}$ una sucesión de variables aleatorias tales que $X_n \sim Bi(n,p)$. Tenemos entonces que $E[X_n] = p$ y $Var[X_n] = npq$, siendo $q = 1 - p$. Si definimos las variables aleatorias 
+\begin{align*}
+    Z_n = \frac{X_n - np}{\sqrt{npq}},
+\end{align*}
+tenemos que $Z_n \xrightarrow[]{d} Z$, siendo $Z \sim N(0,1)$.
+\begin{proof}
+    \begin{align*}
+        \varphi_{Z_n}(t) &= E \left[ e^{itZ_n} \right] = E \left[ e^{it\frac{X_n - np}{\sqrt{npq}}} \right] = E \left[ e^{it\frac{X_n}{\sqrt{npq}}} e^{-it\frac{np}{\sqrt{npq}}} \right] = e^{-it\frac{np}{\sqrt{npq}}} E \left[ e^{it\frac{X_n}{\sqrt{npq}}} \right]  \\
+        &= e^{-it\frac{np}{\sqrt{npq}}} \varphi_{X_n}\left( \frac{t}{\sqrt{npq}} \right) .
+    \end{align*} 
+    Como $X_n \sim Bi(n,p)$, entonces $\varphi_{X_n}(t) = \left( pe^{-it} + q \right)^n$. Por tanto,
+    \begin{align*}
+        \varphi_{Z_n}(t) &= e^{-it\frac{np}{\sqrt{npq}}} \left( pe^{-i \frac{t}{\sqrt{npq}}} + q \right)^n = \left( pe^{i\frac{tq}{\sqrt{npq}}} + qe^{-i\frac{tp}{\sqrt{npq}}} \right)^n
+    \end{align*}
+    Tomando límite cuando $n \to \infty$,
+    \begin{align*}
+        \lim_{n \to \infty} \varphi_{Z_n}(t) = \lim_{n \to \infty} \left( pe^{i\frac{tq}{\sqrt{npq}}} + qe^{-i\frac{tp}{\sqrt{npq}}} \right)^n \Longrightarrow \text{Indeterminación tipo ''$1^{\infty}$''}
+    \end{align*}
+    Recordemos que si
+    \begin{align*}
+        \lim_{x \to \infty} f(x) = 1, \quad \lim_{n \to \infty} g(x) = \infty,
+    \end{align*}
+    entonces,
+    \begin{align*}
+        \lim_{x \to \infty} f(x)^{g(x)} = e^{\lim_{x \to \infty} g(x)(f(x) - 1)}.
+    \end{align*}
+    Usando esto, tenemos que
+    \begin{align*}
+        \lim_{n \to \infty} \varphi_{Z_n}(t) = \exp\left[ \lim_{n \to \infty} n\left(pe^{i\frac{tq}{\sqrt{npq}}} + qe^{-i\frac{tp}{\sqrt{npq}}} - 1 \right) \right].
+    \end{align*}
+    Desarrollando la serie de Taylor de $e^{i\frac{tq}{\sqrt{npq}}}$:
+    \begin{align*}
+        e^{i\frac{tq}{\sqrt{npq}}} &= \sum_{k=0}^{\infty} \frac{\left( i \frac{tq}{\sqrt{npq}} \right)^k}{k!} = 1 + i\frac{tq}{\sqrt{npq}} + \frac{\left( i\frac{tq}{\sqrt{npq}} \right)^2}{2!} + o\left( \frac{t^2}{npq} \right),
+    \end{align*}
+    de donde,
+    \begin{align*}
+        pe^{i\frac{tq}{\sqrt{npq}}} + qe^{-i\frac{tp}{\sqrt{npq}}} - 1 &= p\left[ 1 + i\frac{tq}{\sqrt{npq}} + \frac{\left( i\frac{tq}{\sqrt{npq}} \right)^2}{2!}) \right] 
+            + q \left[ 1 - i\frac{tp}{\sqrt{npq}} + \frac{\left( -i\frac{tp}{\sqrt{npq}} \right)^2}{2!} \right] -1 + o\left( \frac{t^2}{npq} \right)  \\
+            &= p(iq)^2 \frac{t^2}{2npq} + q(ip)^2 \frac{t^2}{2npq} + o\left( \frac{t^2}{npq} \right)
+            = -pq^2 \frac{t^2}{2npq} - qp^2 \frac{t^2}{2npq} + o\left( \frac{t^2}{npq} \right) \\
+            &= -\frac{t^2}{2npq} \left(pq^2 + qp^2 \right) + o\left( \frac{t^2}{npq} \right) = -\frac{t^2}{2npq} pq + o\left( \frac{t^2}{npq} \right)  \\
+            &= -\frac{t^2}{2n} + o\left( \frac{t^2}{npq} \right) = -\frac{t^2}{2n} + o\left( \frac{t^2}{n} \right).
+    \end{align*}
+    Finalmente, 
+    \begin{align*}
+        \lim_{n \to \infty} \varphi_{Z_n}(t) &= \exp\left[ \lim_{n \to \infty} n\left(pe^{i\frac{tq}{\sqrt{npq}}} + qe^{-i\frac{tp}{\sqrt{npq}}} - 1 \right) \right] 
+    = \exp\left[ \lim_{n \to \infty} n \left( -\frac{t^2}{2n} + o\left( \frac{t^2}{n} \right) \right) \right] \\
+    &= e^{-t^2/2} = \varphi_Z(t),
+    \end{align*}
+    siendo $Z \sim N(0,1)$. Por el Teorema de Levy, $Z_n \xrightarrow[]{d} Z$, $Z \sim N(0,1)$.
+\end{proof}
+\end{obs}
+
+\begin{prop}
+    Si $E[|X|^n] < \infty$ para cierto $n \ge 1$, entonces existen y son finitos $E[X^r]$ para cada $1 \leq r \leq n$.
+\end{prop}
+
+\begin{defi}
+    El espacio $L^r$ es el conjunto de las variables aleatorias $X$ tales que $E[|X|^r] < \infty$, es decir,
+    \begin{align*}
+        L^r = \left\{ X \text{ variable aleatoria} : \int_{\mathbb{R}} |x|^r dF(x) < \infty\right\}.
+    \end{align*}
+\end{defi}
+
+\begin{teo}
+    Sea $X \in L^n$, para cierto $n \ge 1$, con función característica $\varphi$. Entonces existen las derivadas $\varphi^{(k)}$ para $k = 1,...,n$, son uniformemente continuas y
+    \begin{align*}
+        \varphi^{(k)}(t) = i^k \int_{\mathbb{R}} x^k e^{itx} dF(x).
+    \end{align*}
+    Además,
+    \begin{align*}
+        \varphi^{(k)}(0) = i^k E[X^k],
+    \end{align*}
+    y
+    \begin{align*}
+        \varphi(t) = 1 + \sum_{k=1}^{n} \frac{(it)^k}{k!}E[X^k] + o(t^n).
+    \end{align*}
+\end{teo}
+
+\begin{prop}
+    Sean $X$ e $Y$ variables aleatorias independientes con fuciones características $\varphi_X$ y $\varphi_Y$ respectivamente. Entonces la función característica de la variable aleatoria $S = X + Y$ es $\varphi_S(t) = \varphi_X(t) \cdot \varphi_Y(t)$.
+\end{prop}
+
+\begin{obs}
+    En general, si $X_1,\ldots,X_n$ son variables aleatorias independientes y $S = X_1 + \ldots + X_n$, entonces
+    \begin{align*}
+        \varphi_S(t) = \prod_{i=1}^{n} \varphi_{X_i}(t).
+    \end{align*}
+\end{obs}
+
+\begin{lema}
+    \begin{align*}
+        \left| e^{it} - \sum_{k=0}^{n} \frac{(iy)^k}{k!} \right| \leq \min \left\{ \frac{2|y|^n}{n!}, \frac{|y|^{n+1}}{(n+1)!}\right\}.
+    \end{align*}
+\end{lema}
+
+\begin{teo}
+    Si $\varphi$ es absolutamente integrable, entonces $F$ es absolutamente continua y su función de densidad es
+    \begin{align*}
+        f(x) = \frac{1}{2\pi} \int_{\mathbb{R}} e^{itx} \varphi(t) \ dt.
+    \end{align*}
+\end{teo}
+
+\begin{lema}[Riemann-Lebesgue]
+    Si $F$ es absolutamente continua entonces
+    \begin{align*}
+        \lim_{t \to \infty} |\varphi(t)| = 0, \quad \lim_{t \to -\infty} |\varphi(t)| = 0.
+    \end{align*}
+\end{lema}
+
+\begin{lema}
+    \begin{align*}
+        P(X = a) = \lim_{T \to \infty} \frac{1}{2T} \int_{-T}^{T} e^{-ita} \varphi(t) \ dt.
+    \end{align*}
+\end{lema}
+
+\section{Función generatriz de momentos y Función generatriz de cumulantes}
+\begin{defi}
+    Sea $X$ una variable aleatoria con función característica $\varphi$, es define la función generatriz de cumulantes de $X$ como $\kappa : \mathbb{R} \longrightarrow \mathbb{C}$ dada por
+    \begin{align*}
+        \kappa(t) = \log \varphi(t).
+    \end{align*}
+\end{defi}
+
+\begin{prop}
+    Sean $X_1,\ldtos, X_n$  variables aleatorias independientes con funciones características $\varphi_1,\ldots,\varphi_n$ respectivamente. Sea $S = X_1 + \ldots + X_n$, entonces
+    \begin{align*}
+        \kappa_S(t) = \sum_{i=1}^{n} \kappa_{X_i}(t).
+    \end{align*}
+\end{prop}
+
+\begin{teo}
+    Si $E[|X|^n] < \infty$ para cierto $n \ge 1$. Entonces
+    \begin{align*}
+        \kappa(t) = \sum_{j=0}^{n} \frac{(it)^j}{j!} C_j + o(t^n),
+    \end{align*}
+    siendo
+    \begin{align*}
+        C_j = \frac{\kappa^{(j)}(0)}{i^j}.
+    \end{align*}
+    $C_j$ se conoce como el cumulante de orden $j$.
+\end{teo}
+
+\begin{obs}
+$C_1 = E[X]$ y $C_2 = Var[X]$.
+\end{obs}
+
+\begin{obs}
+    Si $X \sim N(\mu, \sigma^2)$, entonces $C_1 = \mu$, $C_2 = \sigma^2$ y $C_n = 0$ para todo $n \ge 3$.
+\end{obs}
+
+\begin{defi}
+    Sea $X$ una variable aleatoria con $\sigma = \sqrt{Var[X]}$. Se definen
+    \begin{itemize}
+        \item Sesgo: $C_3 / \sigma^3$.
+        \item Curtosis: $C_4 / \sigma^4$.
+    \end{itemize}
+\end{defi}
+
+\begin{defi}
+    Sea $X$ una variable aleatoria con función característica $\varphi$, es define la función generatriz de momentos de $X$ como
+    \begin{align*}
+        \psi(t) = E \left[ e^{tX} \right] = \int_{\mathbb{R}} e^{tx} \ dF(x),
+    \end{align*}
+    siempre que exista $h > 0$ tal que $\psi$ esté definida para todo $|t| < h$.
+\end{defi}
+
+\begin{obs}
+    Si existe $\psi$, entonces $E[|X|^n] < \infty$ para todo $n \in \mathbb{N}$.
+\end{obs}
+
+\begin{defi}
+    Sea $X$ una variable aleatoria que toma valores en $\mathbb{Z}_+ = \{0,1,2,\ldots\}$. La función generatrz de probabilidad de $X$ es
+    \begin{align*}
+        G_X(t) = E \left[t^X \right] = \sum_{n=0}^{\infty} t^n P(X = n), \quad |t| < 1.
+    \end{align*}
+\end{defi}
+
+\begin{obs}
+    \begin{align*}
+        G_X^{(k)}(t) &= \sum_{n=k}^{\infty} n(n-1) \ldots (n-k+1) t^{n-k}P(X = n) \\
+        G_X^{(k)}(0) &= k! P(X = k) \Longrightarrow P(X = K) = \frac{G_X^{(K)}(0)}{k!}.
+    \end{align*}
+\end{obs}
+
+\begin{obs}
+    Sea $X = Y_1+\ldots+Y_N$, siendo $Y_i$ variables aleatorias independientes e igualmente distribuidas y $N$ una variable aleatoria en $Z_+$. Entonces $X$ sigue una distribución compuesta y su función característiva es
+    \begin{align*}
+        \varphi_X(t) &= E \left[e^{itX} \right] = E\left[ E \left[e^{itX} | N \right]\right] = \sum_{n=0}^{\infty} E \left[ e^{itX} | N = n \right] P(N = n) \\
+        &= \sum_{n=0}^{\infty} E \left[ e^{it \sum_{i=1}^{n} Y_i} | N = n \right] P(N = n) = \sum_{n=0}^{\infty} \left( \varphi_Y(t) \right)^n P(N = n) \\
+        &= G_N \left( \varphi_Y(t) \right)
+    \end{align*}
+\end{obs}
+
+\begin{lema}
+    Sean $\mu_1,\ldots,\mu_n$ medidas de probabilidad con funciones características $\varphi_1,\ldots,\varphi_n$ respectivamente. Sean $\alpha_1,\ldots,\alpha_n \in [0,1]$ tales que $\sum_{i=1}^{n} \alpha_i = 1$. Entonces, la función característica asociada a la medida de probabilidad $\sum_{i=1}^{n} \alpha_i \mu_i$ es $\sum_{i=1}^{n} \alpha_i \varphi_i$.
+\end{lema}
+
+\begin{proof}
+    \begin{align*}
+        \varphi(t) &= \int_{\mathbb{R}} e^{itx} d(\alpha_1 \mu_1 + \ldots + \alpha_n \mu_n) 
+        = \alpha_1 \int_{\mathbb{R}} e^{itx} \ d\mu_1 + \ldots + \alpha_n \int_{\mathbb{R}} e^{itx} \ d\mu_n
+    \end{align*}
+\end{proof}
+
+\begin{defi}
+    Una función $g : \mathbb{R} \longrightarrow \mathbb{C}$ es definida positiva si
+    \begin{align*}
+        \sum_{j=1}^{n} \sum_{i=1}^{n} g(t_j - t_i) z_j \overline{z_k} \ge 0,
+    \end{align*}
+    para cualesquiera $t_1,\ldots,t_ n\in \mathbb{R}$ y cualesquiera $z_1,\ldots,z_n\in \mathbb{C}$.
+\end{defi}
+
+\begin{obs}
+    La función característica es definida positiva (se probó al inicio de este mismo capítulo).
+\end{obs}
+
+\begin{teo}
+    Si $g$ es definida postiva y continua en 0, entonces $g$ es uniformemente continua en $\mathbb{R}$.
+\end{teo}
+
+\begin{lema}[Herglotz]
+    Si $\phi : \mathbb{Z} \longrightarrow \mathbb{C}$ es definida postiva y $\phi(0) = 1$, entonces existe $\mu$ distribución de probabilidad en $[-\pi,\pi]$ tal que $\phi$ es su función característica ascociada, es decir, 
+    \begin{align*}
+        \phi(t) = \int_{-\pi}^{\pi} e^{itx} \ d\mu,
+    \end{align*}
+    para todo $t \in \mathbb{Z}$.
+\end{lema}
+
+\begin{teo}[Bochner]
+    Sea $\varphi : \mathbb{R} \longrightarrow \mathbb{C}$ verificando:
+    \begin{enumerate}
+        \item[(i)] es definida positiva,
+        \item[(ii)] continua en 0,
+        \item[(iii)] $\varphi(0) = 1$.
+    \end{enumerate}
+    Entonces, $\varphi$ es fución característica.
+\end{teo}
+
+\begin{cor}
+    Toda combinación lineal convexa de funciones características es función característica.
+\end{cor}
+
+\begin{prop}
+    La función $\varphi_T$ dada por 
+    \begin{align*}
+        \varphi_T(t) = \max \left\{ 1 - \dfrac{|t|}{T},0 \right\} \equiv \begin{cases}
+            1 - \dfrac{|t|}{T}, & |t| \leq T \\
+            0, & |t| > T
+        \end{cases}, \quad T \in \mathbb{R},
+    \end{align*}
+    es función característica.
+\end{prop}
+
+\begin{lema}
+    Sea $\varphi : \mathbb{R} \longrightarrow \mathbb{R}$ tal que $\varphi(0) = 1$, no negativa, par y $\varphi$ es una poligonal convexa no creciete en $\mathbb{R}^+$. Entonces $\varphi$ es función característica.
+\end{lema}
+
+\begin{teo}[Criterio de Pólya]
+    Sea $\varphi: \mathbb{R} \longrightarrow \mathbb{R}$ tal que:
+    \begin{enumerate}
+        \item[(i)] $\varphi(0) = 1$,
+        \item[(ii)] $\varphi$ no negativa, par y contiuna.
+        \item[(iii)] $\varphi$ convexa y no creciente en $\mathbb{R}^+$.
+    \end{enumerate}
+    Entonces $\varphi$ es función característica.
+\end{teo}

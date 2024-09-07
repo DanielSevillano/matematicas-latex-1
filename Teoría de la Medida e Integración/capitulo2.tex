@@ -1,0 +1,808 @@
+\chapter{Funciones medibles}
+\section{Funciones medibles}
+
+\begin{defi}
+Consideremos dos espacios medibles $(X, \mathcal{M}_X)$ e $(Y, \mathcal{M}_Y)$. Sea $f : X \longrightarrow Y$. Decimos que $f$ es medible (o $(\mathcal{M}_X, \mathcal{M}_Y)-medible$) si
+\begin{align*}
+    f^{-1}(A) \in \mathcal{M}_X \text{ para todo } A \in \mathcal{M}_Y.
+\end{align*}
+\end{defi}
+
+\begin{ejemplo}
+\begin{enumerate}
+    \item[(a)] Si $\mathcal{M}_X = \mathcal{P}(X)$ y $\mathcal{M}_Y$ es una $\sigma$-álgebra sobre $Y$, entonces toda aplicación $f: X \longrightarrow Y$ es medible.
+    \item[(b)] Si  $\mathcal{M}_X$ es una $\sigma$-álgebra sobre $X$ y $\mathcal{M}_Y = \{ \emptyset, Y \}$, entonces toda aplicación $f: X \longrightarrow Y$ es medible.
+\end{enumerate}
+\end{ejemplo}
+\begin{defi}
+Consideremos dos espacios medibles $(X, \mathcal{M}_X)$ e $(Y, \mathcal{M}_Y)$. Sean $E \in \mathcal{M}_X$ y $f : E \longrightarrow Y$. Decimos que $f$ es medible si es $(\mathcal{M}_E, \mathcal{M}_Y)-medible$, donde
+\begin{align*}
+    \mathcal{M}_E = \{ B = D \cap \ E : D \in \mathcal{M}_X \} = \{ B \subset E : B \in \mathcal{M}_X \}.
+\end{align*}
+Es claro que $f$ es medible si
+\begin{align*}
+    f^{-1}(A) \in \mathcal{M}_E \text{ para todo } A \in \mathcal{M}_Y.
+\end{align*}
+\end{defi}
+
+\begin{obs}
+ Si $f: X \longrightarrow Y$ es medible y $E \in \mathcal{M}_X$ entonces $f|_E: E \longrightarrow Y$ es medible. En efecto, basta tener en cuennta que
+ \begin{align*}
+     (f|_E)^{-1}(A) = \{ x \in E : f(x) \in A \} = f^{-1}(A) \cap E \text{, para todo } A \in \mathcal{M}_Y.
+ \end{align*}
+ \end{obs}
+ \begin{teo}
+Consideremos dos espacios medibles $(X, \mathcal{M}_X)$ e $(Y, \mathcal{M}_Y)$. Sean $E \in \mathcal{M}_X$ y $f : E \longrightarrow Y$. Sea $\mathcal{E}$ una colección de conjuntos que genera la $\sigma$-álgebra $\mathcal{M}_Y$. Las afirmaciones siguientes son equivalentes:
+ \begin{enumerate}
+     \item[(a)] f es medible.
+     \item[(b)] $f^{-1}(E) \in \mathcal{M}_X$ para todo $E \in \mathcal{E}$. 
+ \end{enumerate}
+ \end{teo}
+ \begin{proof}
+ $(a) \Longrightarrow (b)$. Es evidente pues $\mathcal{E} \subset \mathcal{M}_Y$.
+ \\
+ \newline
+ $(b) \Longrightarrow (a)$. Sea $F = \{ A \subset  Y : f^{-1}(A) \in \mathcal{M}_X\}$. Por (b) tenemos que $\mathcal{E} \subset F$, lo que implica que $\mathcal{M}(\mathcal{E}) \subset \mathcal{M}(F)$. Nótese que $\mathcal{M}_Y = \mathcal{M}(\mathcal{E})$ y $\mathcal{M}(F) = F$, luego, $\mathcal{M}_Y \subset F$. Por tanto, si $A \in \mathcal{M}_Y$, entonces $A \in \mathcal{M}(F)$, luego $f^{-1}(A) \in \mathcal{M}_X$.
+ \end{proof}
+ 
+ \begin{defi}
+ Consideremos un espacio medibles $(X, \mathcal{M}_X)$. Sea $f : X \longrightarrow \mathbb{R}$. Decimos que $f$ es medible o ($\mathcal{M}_X - medible$) si es ($\mathcal{M}_X, \mathcal{B}_{\mathbb{R}}$)-medible, es decir, si
+ \begin{align*}
+     f^{-1}(B) \in \mathcal{M}_X \text{, para todo } B \in \mathcal{B}_{\mathbb{R}}.
+ \end{align*}
+ \end{defi}
+ \begin{prop}
+ Consideremos un espacio medibles $(X, \mathcal{M}_X)$. Sea $f : X \longrightarrow \mathbb{R}$. Las afirmaciones siguientes son equivalentes:
+ \begin{enumerate}
+     \item[(a)] f es medible.
+     \item[(b)] $f^{-1}((a, +\infty)) = \{ x \in X : f(x) > a\} \in \mathcal{M}_X$ para todo $a \in \mathbb{R}$.
+     \item[(c)] $f^{-1}([a, +\infty)) = \{ x \in X : f(x) \ge a\} \in \mathcal{M}_X$ para todo $a \in \mathbb{R}$.
+     \item[(d)] $f^{-1}((-\infty,a]) = \{ x \in X : f(x) \leq a\} \in \mathcal{M}_X$ para todo $a \in \mathbb{R}$.
+     \item[(e)] $f^{-1}((-\infty,a)) = \{ x \in X : f(x) < a\} \in \mathcal{M}_X$ para todo $a \in \mathbb{R}$.
+     \item[(f)] $f^{-1}(I) = \{ x \in X : f(x) \in I \} \in \mathcal{M}_X$ para todo intervalo acotado $I$.
+     \item[(g)] $f^{-1}(I) = \{ x \in X : f(x) \in I \} \in \mathcal{M}_X$ para todo intervalo acotado y abierto $I$.
+     \item[(h)] $f^{-1}(I) = \{ x \in X : f(x) \in I \} \in \mathcal{M}_X$ para todo intervalo acotado y cerrado $I$.
+     \item[(i)] $f^{-1}(I) = \{ x \in X : f(x) \in I \} \in \mathcal{M}_X$ para todo intervalo acotado $I = [c,d)$.
+     \item[(j)] $f^{-1}(I) = \{ x \in X : f(x) \in I \} \in \mathcal{M}_X$ para todo intervalo acotado $I = (c,d]$.
+     \item[(f)] $f^{-1}(G) = \{ x \in X : f(x) \in G \} \in \mathcal{M}_X$ para todo abierto $G \subset \mathbb{R}$.
+ \end{enumerate}
+ \end{prop}
+ 
+\begin{defi}
+ Consideremos un espacio medibles $(X, \mathcal{M}_X)$. Sea $f : X \longrightarrow \mathbb{R}^n$. Decimos que $f$ es medible si es ($\mathcal{M}_X, \mathcal{B}_{\mathbb{R}^n}$)-medible, es decir, si
+\begin{align*}
+     f^{-1}(B) \in \mathcal{M}_X \text{, para todo } B \in \mathcal{B}_{\mathbb{R}^n}.
+\end{align*}
+\end{defi}
+
+\begin{prop}
+ Consideremos un espacio medibles $(X, \mathcal{M}_X)$. Sea $f : X \longrightarrow \mathbb{R}^n$. Las afirmaciones siguientes son equivalentes:
+ \begin{enumerate}
+     \item[(a)] $f$ es medible.
+     \item[(b)] $f^{-1}(I) = \{ x \in X : f(x) \in I\} \in \mathcal{M}_X$ para todo intervalo I de $\mathbb{R}^n$.
+  \end{enumerate}
+\end{prop}
+
+\begin{prop}
+Consideremos un espacio medibles $(X, \mathcal{M}_X)$. Sea $f : X \longrightarrow \mathbb{R}^n$ y sean $(f_1, ..., f_n)$ las componentes de  $f$. Las afirmaciones siguientes son equivalentes:
+\begin{enumerate}
+    \item[(a)] f es medible.
+    \item[(b)] Todas las funciones componentes $f_i$ son medibles.
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+$(a) \Longrightarrow (b)$. Supongamos que f es medible, veamos que cada $f_i$ es medible. Por comodidad en la notación, supongamos que $i = 1$.
+\begin{align*}
+    (f_1)^{-1}([a,b]) &= f^{-1}([a,b] \times \mathbb{R} \times ... \times \mathbb{R})\\
+\end{align*}
+Nótese que $F = [a,b] \times \mathbb{R} \times ... \times \mathbb{R} \subset \mathbb{R}^n$ es cerrado y como f es medible, entonces 
+\begin{align*}
+    f^{-1}([a,b] \times \mathbb{R} \times ... \times \mathbb{R}) = f^{-1}(F) \in \mathcal{M}_X
+\end{align*}
+luego $f_1: X \longrightarrow \mathbb{R}$ es medible (análogo para el resto de componentes).
+\\
+\newline
+$(b) \Longrightarrow (a)$. Supongamos que todas las funciones componentes $f_i$ son medibles, veamos que $f$ es medible. Sea $I = I_1 \times I_2 \times ... \times I_n$ intervalo de $\mathbb{R}^n$.
+\begin{align*}
+    f^{-1}(I) &= \{ x \in X : f(x) \in I\}\\
+    &= \{ x \in X : f_1(x) \in I\} \cap \{ x \in X : f_2(x) \in I\} \cap ... \cap \{ x \in X : f_n(x) \in I\}\\
+    &= \bigcap_{i=1}^{n}{\{ x \in X : f_i(x) \in I\}}\\
+    &= \bigcap_{i=1}^{n}{f_{1}^{-1}(I_i)}
+\end{align*}
+Como $I_i$ es intervalo de $\mathbb{R}$ y $f_i$ es medible, entonces $f_{1}^{-1}(I_i) \mathcal{M}_X$ luego $\bigcap_{i=1}^{n}{\{ x \in X : f_i(x) \in I\}} \in \mathcal{M}_X$, es decir, $f$ es medible.
+\end{proof}
+
+\begin{ejemplo}
+\end{ejemplo}
+\textit{Funciones características}. Sea $(X \mathcal{M})$ un espacio medible y sea $A \subset X$. La función característica de A, $\mathcal{X}_A: X \longrightarrow \mathbb{R}$ se define como
+\begin{align*}
+    \mathcal{X}_A(x) =  \left\{ \begin{array}{lcc}
+             1 &  si  &x \in A\\
+             0 &  si &x \not \in A \\
+             \end{array}
+   \right.
+\end{align*}
+Veamos que $\mathcal{X}_A$ es medible si y solo si $A \in \mathcal{M}_X$. Sea $B \in \mathcal{B}_{\mathbb{R}}$, entonces $\mathcal{X}_{A}^{-1}(B) = \{ x \in X : \mathcal{X}_A(x) \in B \}$:
+\begin{enumerate}
+    \item[(a)] Si $0 \not \in B$ y $1 \not \in B$ entonces $\mathcal{X}_{A}^{-1}(B) = \emptyset \in \mathcal{M}_X$.
+    \item[(b)] Si $0 \in B$ y $1 \not \in B$ entonces $\mathcal{X}_{A}^{-1}(B) = A^c$.
+    \item[(c)] Si $0 \not \in B$ y $1 \in B$ entonces $\mathcal{X}_{A}^{-1}(B) = A$.
+    \item[(d)] Si $0 \in B$ y $1 \in B$ entonces $\mathcal{X}_{A}^{-1}(B) = X \in \mathcal{M}_X$.
+\end{enumerate}
+Por tanto $\mathcal{X}_A$ es medible si y solo si $A, A^c \in \mathcal{M}_X$, es decir, si y solo si A es medible, esto es, si y solo si $A \in \mathcal{M}_X$
+
+\begin{prop}
+Supongamos que $E$ y $F$ son conjuntos medibles disjuntosx y sean $X = E \cup F$, $f: E \longrightarrow \mathbb{R}$ y $g: F \longrightarrow \mathbb{R}$ son funciones medibles. Entonces la función $h: X \longrightarrow \mathbb{R}$ dafinida por
+\begin{align*}
+    h(x) =  \left\{ \begin{array}{lcc}
+             f(x) &  si  &x \in E\\
+             g(x) &  si  &x \in F \\
+             \end{array}
+   \right.
+\end{align*}
+es un función medible.
+\end{prop}
+\begin{proof}
+Sea $B \in \mathcal{B}_{\mathbb{R}}$
+\begin{align*}
+    h^{-1}(B) &= \{ x \in X : h(x)  \in B\} = \{ x \in E : h(x) \in B\} \cup \{ x \in F : h(x) \in B\}\\
+    &= \{ x \in X : f(x) \in B\} \cup \{ x \in X : g(x) \in B\} = A_1 \cup A_2 \in \mathcal{M}
+\end{align*}
+pues $A_1, A_2 \in \mathcal{M}$. Por tanto, h es medible.
+\end{proof}
+\begin{obs}
+Si $f: X \longrightarrow Y$ es medible y $E \in \mathcal{M}_X$ entonces $f|_E: E \longrightarrow Y$ es medible.
+\end{obs}
+\subsection{El caso de $\mathbb{R}^n$}
+\begin{defi}
+ Decimos que una función $f: \mathbb{R}^n \longrightarrow \mathbb{R}$ es medible Lebesgue si es medible cuando consideramos en $\mathbb{R}^n$ la $\sigma$-álgebra de Lebesgue, es decir, si para todo conjunto de Borel $B \in \mathbb{R}$ se tiene que $f^{-1}(B)$ es medible-Lebesgue o, equivalentemente, por ejemplo, si
+ \begin{align*}
+     \{ x : f(x) < a \} \text{ es medible Lebesgue para todo } a \in \mathbb{R}.
+ \end{align*}
+ De la misma forma, dceimos que  $f: \mathbb{R}^n \longrightarrow \mathbb{R}$ es medible Borel cuando en $\mathbb{R}^n$ consideramos la $\sigma$-álgebra de Borel, es decir, si para todo conjunto de Borel $B$ de $\mathbb{R}$ se tiene que $f^{-1}(B)$ es medible Borel o, equivalentemente, por ejemplo si
+ \begin{align*}
+     \{ x : f(x) < a \} \text{ es medible Borel para todo } a \in \mathbb{R}.
+ \end{align*}
+ Como la  $\sigma$-álgebra de Borel está contenida en la  $\sigma$-álgebra de Lebesgue, se sigue que si $f$ es medible Borel entonces $f$ es medible Lebesgue.
+\end{defi}
+
+\begin{prop}
+Si $f: \mathbb{R}^n \longrightarrow \mathbb{R}$ es continua entonces $f$ es medible-Borel y, por lo tanto, medible-Lebesgue.
+\end{prop}
+\begin{proof}
+La demostración es inmediata puesto que la imagen inversa de un abierto mediante una aplicación continua es un abierto.
+\end{proof}
+
+\begin{prop}
+\label{prop:comp}
+Sea $f: X \longrightarrow \mathbb{R}^n$ medible y $\Phi: \mathbn{R}^n \longrightarrow \mathbb{R}$ continua (o, más generalmente, medible Borel). Entonces $\Phi \circ{} f$ es medible.
+\end{prop}
+
+\begin{proof}
+Sea $G$ un abierto de $\mathbb{R}$. Sabemos que
+\begin{align*}
+    (\Phi \circ{} f)^{-1}(G) = f^{-1}(\Phi^{-1}(G))
+\end{align*}
+Como $\Phi$ es medible Borel y G es abierto entonces $H = \Phi^{-1}(G)$ es un medible Borel. Por ser $f$ medible, $f^{-1}(H)$ es medible.
+\end{proof}
+
+\section{Operaciones con funciones medibles}
+\begin{prop}
+Sean $f,g: X \in \mathbb{R}$ dos funciones medibles y sea $c \in \mathbb{R}$.
+\begin{enumerate}
+    \item[(a)] $f+g$, $fg$, $cf$ están definidas en $X$ y son medibles.
+    \item[(b)] Si $F = \{ x \in X : g(x) \not = 0 \}$ entonces F es medible, $\frac{f}{g}$ está bien definida en F y es medible.
+    \item[(c)] Si $k \in \mathbb{N}$ entonces $f^k: X \in \mathbb{R}$ es medible.
+    \item[(d)] Si $p \ge 0$ entonces la función $|f|^p: E \longrightarrow \mathbb{R}$ es medible.
+\end{enumerate}
+\end{prop}
+\begin{proof}
+\begin{enumerate}
+    \item[(a)] Para $f + g$ consideramos $\Phi: \mathbb{R}^2 \longrightarrow \mathbb{R}$, $\Phi(s,t) = s + t$ y $H: X \longrightarrow \mathbb{R}^2$ dada por $H(x) = (f(x), g(x))$. Es claro que
+    \begin{align*}
+        f + g = \Phi \circ{} H
+    \end{align*}
+    Aplicando la Proposición \ref{prop:comp} se sigue que $f + g$ es medible. La demostración es análoga para $fg$ y $cf$.
+    \item[(b)] El conjunto $F$ es medible por ser $g$ medible. Sea $G = \mathbb{R} \times (\mathbb{R} \backslash \{0\})$. Es claro que $G$ es abierto. Por otra parte, si $H: X \longrightarrow \mathbb{R}^2$ es $H(x) = (f(x),g(x))$ y $\Phi:G \longrightarrow \mathbb{R}$ es $\Phi(s,t) = \frac{s}{t}$ se tiene que $H(\mathbb{R}^2) \subset G$ y
+    \begin{align*}
+        \frac{f}{g} = \Phi \circ{} H
+    \end{align*}
+    Aplicando una pequeña variante de la Proposión \ref{prop:comp} se tiene que $\frac{f}{g}$ es medible.
+    \item[(c)] Consideramos $\Phi: \mathbb{R} \longrightarrow \mathbb{R}$, $\Phi(s) = s^k$, es claro que
+    \begin{align*}
+        f^k = \Phi \circ{} f
+    \end{align*}
+    Aplicando la Proposición \ref{prop:comp} se sigue que $f^k$ es medible.
+    \item[(d)]
+\end{enumerate}
+\end{proof}
+\section{Conjuntos medibles determinados por funciones medibles}
+\begin{prop}
+\label{prop:cmedible}
+Si $f,g: X \longrightarrow \mathbb{R}$ son funciones medibles entonces los conjuntos $\{ x \in X : f(x) < g(x)\}$, $\{ x \in X : f(x) \leq g(x)\}$ y $\{ x \in X : f(x) = g(x)\}$ son medibles.
+\end{prop}
+\begin{proof}
+Para el primer conjunto basta observar lo siguiente:
+\begin{align*}
+    \{ x \in X : f(x) < g(x)\} = \bigcup_{r \in \mathbb{Q}}{( \{ x \in X : f(x) < r\} \cap \{ x \in X : r < g(x)\} )} 
+\end{align*}
+Los conjuntos $\{ x \in X : f(x) < r\}$ y $\{ x \in X : r < g(x)\}$ son medibles, por serlo las funciones $f$ y $g$. Por lo tanto, la intersección es medible y, en consecuencia, $\{ x \in X : f(x) < g(x)\}$ es medible por ser una unión numerable de conjuntos medibles.
+\\
+\newline
+El segundo conjunto $\{ x \in X : f(x) \leq g(x)\}$ es medible por ser diferencia de conjuntos medibles:
+\begin{align*}
+    \{ x \in X : f(x) < g(x)\} = X \backslash \{ x \in X : f(x) < g(x)\}
+\end{align*}
+(el segundo conjunto es medible por lo demostrado anteriormente).
+\\
+\newline
+Por último
+\begin{align*}
+    \{ x \in X : f(x) = g(x)\} = \{ x \in X : f(x) \leq g(x)\} \backslash \{ x \in X : f(x) < g(x)\}
+\end{align*}
+Luego es es medible por ser diferencia de dos conjuntos medibles.
+\end{proof}
+
+\section{Límite de sucesiones de funciones medibles}
+\begin{prop}
+Sea $f_n: X \longrightarrow \mathbb{R}$ una sucesión de funciones medibles tal que para todo $x \in X$ existe en $\mathbb{R}$ el límite de $\{ f_n(x)\}$. Entonces $f: X \longrightarrow \mathbb{R}$ dada por $f(x) = \lim_{n \to +\infty}{f_n(x)}$ es medible.
+\end{prop}
+
+\begin{proof}
+Sea $a \in \mathbb{R}$. Definimos $A = \{ x \in X : f(x) > a\}$.
+\\
+\newline
+\begin{align*}
+    x \in A &\Longleftrightarrow f(x) > a \Longleftrightarrow \lim_{n \to +\infty}{f_n(x)} > a \Longleftrightarrow \exits j \in \mathbb{N} : f_n(x) > a + \frac{1}{j}\\
+    &\Longleftrightarrow \exists j,n_0 \in \mathbb{N} : \lim_{n \to +\infty}{f_n(x)} > a + \frac{1}{j} \ \forall  n \ge n_o\\
+    &\Longleftrightarrow x \in \bigcup_{j=1}^{\infty}{\left( \bigcup_{n_0 = 1}^{\infty}{\left( \bigcap_{n = n_0}^{\infty}{\{ x \in X : f_n(x) > a \}}\right)} \right)}
+\end{align*}
+Por tanto
+\begin{align*}
+    A = \bigcup_{j=1}^{\infty}{\left( \bigcup_{n_0 = 1}^{\infty}{\left( \bigcap_{n = n_0}^{\infty}{\{ x \in X : f_n(x) > a \}}\right)} \right)}
+\end{align*}
+Como $\{ x \in X : f_n(x) > a \}$ es medible, entonces la intersección de un número infinito numerable de conjuntos medible es medible, por lo que, la unión de un número infinito numerable vuelve a ser numerable, con lo que tenemos que A es medible.
+\end{proof}
+\begin{ejemplo}
+Sea $f_n: \mathbb{R} \longrightarrow \mathbb{R}$ dada por
+\begin{align*}
+    f_n(x) =  \left\{ \begin{array}{lcc}
+             n &  si  &x \ge 0\\
+             0 &  si  &x <0 \\
+             \end{array}
+   \right.
+\end{align*}
+entonces
+\begin{align*}
+    \lim_{n \to +\infty}{f_n(x)} =  \left\{ \begin{array}{lcc}
+             +\infty &  si  &x \ge 0\\
+             0 &  si  &x <0 \\
+             \end{array}
+   \right.
+\end{align*}
+\end{ejemplo}
+\section{Funciones medibles con valores en $[-\infty, +\infty]$}
+Necesitaremos trabajar con funciones $f: X \longrightarrow \overline{\mathbb{R}}$, donde $\overline{\mathbb{R}} = [-\infty, +\infty]$. Para ellos necesitaremos tener una $\sigma$-álgebra de Borel de $\overline{\mathbb{R}}$ y también debemos tener definido un orden y operaciones en este conjunto.
+
+\subsection{$\overline{\mathbb{R}} = [-\infty,+\infty]$: orden y operaciones}
+Consideramos $[-\infty, +\infty] = \mathbb{R} \cup \{ -\infty\} \cup \{+\infty\}$ (denotado también por $\overline{\mathbb{R}}$) con su orden natural, es decir, el orden de $\mathbb{R}$ con $-\infty \leq a \leq +\infty$ para todo $a \in [-\infty, +\infty]$.
+\begin{defi}
+\begin{enumerate}
+    \item[(a)] Si $a,b \in \mathbb{R}$, $a+b$ y $ab$ son la suma y producto naturales.
+    \item[(b)] $(+\infty)$ + c = c + $(+\infty) = +\infty$ para todo $c \in \mathbb{R}$.
+    \item[(c)] $(-\infty)$ + c = c + $(-\infty) = -\infty$ para todo $c \in \mathbb{R}$.
+    \item[(d)] $(+\infty) +  (+ \infty) = +\infty $. 
+    \item[(e)] $(-\infty) +  (- \infty) = -\infty $. 
+    \item[(f)] $c(+\infty) = (+\infty)c = +\infty$ para todo $c \in \mathbb{R}$, $c > 0$.
+    \item[(g)] $c(-\infty) = (-\infty)c = -\infty$ para todo $c \in \mathbb{R}$, $c > 0$.
+    \item[(h)] $c(+\infty) = (+\infty)c = -\infty$ para todo $c \in \mathbb{R}$, $c < 0$.
+    \item[(i)] $c(-\infty) = (-\infty)c = +\infty$ para todo $c \in \mathbb{R}$, $c < 0$.
+    \item[(j)] $(+\infty)(+\infty) = +\infty$.
+    \item[(k)] $(+\infty)(-\infty) = (-\infty)(+\infty) = -\infty$.
+    \item[(l)] $(-\infty)(-\infty) = +\infty$.
+    \item[(m)] $0(+\infty) = (+\infty)0 = 0$.
+    \item[(n)] $0(-\infty) = (-\infty)0 = 0$.
+\end{enumerate}
+\end{defi}
+
+\subsection{Límites en $\overline{\mathbb{R}}$}
+\begin{defi}
+Sean $\{a_n\}_{n = 1}^{\infty}$ una sucesión de elemetos en $\overline{\mathbb{R}}$. Si $l \in \mathbb{R}$ o $l = +\infty$ las definiciones son como antes. Por otra parte, $\lim_{n \to +\infty}{a_n} = -\infty$ si para todo $K < 0$, $K \not = -\infty$, existe $N \in \mathbb{N}$ tal que para todo $n \ge N$ se tiene que $a_n < K$.
+\end{defi}
+\begin{obs}
+Si $\{a_n\}_{n = 1}^{\infty}$ es una sucesión creciente (o decreciente) de elementos de $\overline{\mathbb{R}}$ entonces $\{a_n\}_{n = 1}^{\infty}$ siempre tiene un límite en $\overline{\mathbb{R}}$.
+\end{obs}
+\subsection{Topología y $\sigma$-álgebra de Borel en $\overline{\mathbb{R}}$}
+En $\overline{\mathbb{R}}$ se puede introducir una topología natural de forma que las definiciones de $\lim_{n \to +\infty}{a_n} = l \in \overline{\mathbb{R}}$ que conocemos coinciden con la definición de límite asociada a la topología.
+\begin{defi}
+Para cada $a \in \overline{\mathbb{R}}$ definimos un sistema (fundamental) de entornos $\{ E_{\varepsilon}(a) : \varepsilon > 0\}$:
+\begin{enumerate}
+    \item[(a)] Si $a \in \mathbb{R}$, $E_{\varepsilon}(a) = (a-\varepsilon, a+\varepsilon)$.
+    \item[(b)] Si $a = +\infty$, $E_{\varepsilon}(a) = (\varepsilon, +\infty]$.
+    \item[(c)] Si $a = - \infty$, $E_{\varepsilon}(a) = [-\infty, \varepsilon)$.
+\end{enumerate}
+Decimos que un subconjunto $G \subset \overline{\mathbb{R}}$ es abierto de $\overline{\mathbb{R}}$ si para cada $a \in G$ existe $\varepsilon > 0$ tal que $E_{\varepsilon(a)} \subset G$. La familia de los abiertos de $\overline{\mathbb{R}}$ constituyen una topología en $\overline{\mathbb{R}}$ y la topología inducida en $\mathbb{R}$ es la topología usual de $\mathbb{R}$.
+\end{defi}
+
+Una vez tenemos una topología natural de $\overline{\mathbb{R}}$ consideramos la $\sigma$-álgebra de Borel de $\overline{\mathbb{R}}$, denotada por $\mathcal{B}_{\overline{\mathbb{R}}}$, asociada a dicha topología. Es fácil ver
+\begin{align*}
+    \mathcal{B}_{\overline{\mathbb{R}}} = \{ B \cup D : B \in \mathcal{B}_{\mathbb{R}} \ y \ D \subset \{ -\infty, +\infty\} \}
+\end{align*}
+
+\begin{prop}
+La $\sigma$-álgebra de Borel de $\overline{\mathbb{R}}$ está generada por cada una de las siguientes familias de intervalos:
+\begin{enumerate}
+    \item[(a)] $\mathcal{E}_1 = \{ (a, +\infty] : a \in \mathbb{R}\}$.
+    \item[(b)] $\mathcal{E}_1 = \{ [a, +\infty] : a \in \mathbb{R}\}$.
+    \item[(c)] $\mathcal{E}_1 = \{ [-\infty, a] : a \in \mathbb{R}\}$.
+    \item[(d)] $\mathcal{E}_1 = \{ [-\infty, a) : a \in \mathbb{R}\}$.
+\end{enumerate}
+(Como antes, la proposición vale también cuando a es racional).
+\end{prop}
+\begin{proof}
+Veamos que $\mathcal{E}_1$ general $\mathcal{B}_{\overline{\mathbb{R}}}$. Sea $\overline{\tau} = \{ \text{familia de abiertos de } \overline{\mathbb{R}}\}$
+\\
+\newline
+$\subset$. Nótese que 
+\begin{align*}
+    \mathcal{E}_1 \subset \overline{\tau} \Longrightarrow \mathcal{M}(\mathcal{E}_1) \subset \mathcal{M}(\overline{\tau}) = \mathcal{B}_{\overline{\mathbb{R}}}
+\end{align*}
+Por tanto $\mathcal{M}(\mathcal{E}_1) \subset \mathcal{B}_{\overline{\mathbb{R}}}$
+\\
+\newline
+$\supset$. Sea $G \in \overline{\tau}$. Entonces
+\begin{align*}
+    G = (G \cap \mathbb{R}) \cup (G \cap (\overline{\mathbb{R}} \backslash \mathbb{R})) = (G \cap \mathbb{R}) \cup (G \cap \{ -\infty, +\infty \})
+\end{align*}
+Definimos $H = G \cap \mathbb{R}$ y $S = G \cap \{ -\infty, +\infty \}$. Veamos que
+\begin{align*}
+    H,S \in \mathcal{M}(\mathcal{E}_1) \Longrightarrow \overline{\tau} \subset \mathcal{M}(\mathcal{E}_1) \Longrightarrow \mathcal{M}(\overline{\tau}) = \mathcal{B}_{\overline{\mathbb{R}}} \subset \mathcal{M}(\mathcal{E}_1)
+\end{align*}
+En primer lugar, $S \subset \{ -\infty, +\infty \}$.
+\begin{enumerate}
+    \item[(i)] $S = \emptyset \in \mathcal{M}(\mathcal{E}_1)$.
+    \item[(ii)] $S = \{ +\infty \} = \bigcap_{n=1}^{\infty}{(n, +\infty]} \in \mathcal{M}(\mathcal{E}_1)$, pues $(n, +\infty] \in \mathcal{E}_1$ para cada $n \in \mathbb{N}$.
+    \item[(iii)] $S = \{ -\infty \} = \bigcap_{n=1}^{\infty}{[-\infty,n]} \in \mathcal{M}(\mathcal{E}_1)$, pues $[-\infty,n] = (n, +\infty]^c \in \mathcal{M}(\mathcal{E}_1)$ para cada $n \in \mathbb{N}$.
+    \item[(iv)] = $S = \{ -\infty, +\infty \} = \{ -\infty \} \cup \{ +\infty\} \in \mathcal{M}(\mathcal{E}_1)$ por lo probado en $(ii)$ y $(iii)$.
+\end{enumerate}
+En segundo lugar, $H \subset \mathbb{R}$ abierto, entonces $\H = \bigcup_{i=1}^{\infty}{(a_i,b_i)}$. Nótese que
+\begin{align*}
+    (a_i,b_i) = (a_i,+\infty] \backslash [b_i, +\infty] = (a_i, +\infty) \backslash \left( \bigcap_{n=1}^{\infty}{\left( b_i - \frac{1}{n}, +\infty\right] } \right) \in \mathcal{M}(\mathcal{E}_1)
+\end{align*}
+luego $H \in \mathcal{M}(\mathcal{E}_1))$. Y por tanto $G = H \cup S \in \mathcal{M}(\mathcal{E}_1)$, es decir,  $\mathcal{B}_{\overline{\mathbb{R}}} \subset \mathcal{M}(\mathcal{E}_1)$
+\\
+\newline
+Por todo lo probado, tenemos que $\mathcal{M}(\mathcal{E}_1) = \mathcal{B}_{\overline{\mathbb{R}}}$
+\end{proof}
+
+\subsection{Funciones medibles con valores en $\overline{\mathbb{R}}$}
+\begin{defi}
+Consideremos un espacio medible $(X, \mathcal{M}_X)$. Sea $f: X \in \overline{\mathbb{R}}$. Decimos que $f$ es medible si es $(\mathcal{M}_X, \mathcal{B}_{\overline{\mathbb{R}}})-medible$, es decir, si
+\begin{align*}
+    f^{-1}(B) \in \mathcal{M}_X, \text{ \ \ \ para todo } B \in \mathcal{B}_{\overline{\mathbb{R}}}
+\end{align*}
+\end{defi}
+
+\begin{prop}
+Consideremos un espacio medible $(X, \mathcal{M}_X)$. Sea $f: X \longrightarrow \overline{\mathbb{R}}$. Las afirmaciones siguientes son equivalentes:
+\begin{enumerate}
+    \item[(a)] $f$ es medible.
+    \item[(b)] $f^{-1}((a,+\infty]) = \{ x \in X : f(x) > a\} \in \mathcal{M}_X$ para todo $a \in \mathbb{R}$.
+    \item[(c)] $f^{-1}([a,+\infty]) = \{ x \in X : f(x) \ge a\} \in \mathcal{M}_X$ para todo $a \in \mathbb{R}$.
+    \item[(d)] $f^{-1}([-\infty,a]) = \{ x \in X : f(x) \leq a\} \in \mathcal{M}_X$ para todo $a \in \mathbb{R}$.
+    \item[(e)] $f^{-1}([-\infty,a)) = \{ x \in X : f(x) < a\} \in \mathcal{M}_X$ para todo $a \in \mathbb{R}$.
+\end{enumerate}
+\end{prop}
+\begin{obs}
+$f: X \longrightarrow \mathbb{R}$ medible, entonces $f: X \longrightarrow \overline{\mathbb{R}}$ es medible.
+\end{obs}
+\subsection{El caso de $\mathbb{R}^n$}
+\begin{defi}
+ Decimos que una función $f: \mathbb{R}^n \longrightarrow \overline{\mathbb{R}}$ es medible Lebesgue si es medible cuando consideramos en $\mathbb{R}^n$ la $\sigma$-álgebra de Lebesgue, es decir, si para todo conjunto de Borel $B \in \mathbb{R}$ se tiene que $f^{-1}(B)$ es medible-Lebesgue o, equivalentemente, por ejemplo, si
+ \begin{align*}
+     \{ x : f(x) < a \} \text{ es medible Lebesgue para todo } a \in \mathbb{R}.
+ \end{align*}
+ De la misma forma, dceimos que  $f: \mathbb{R}^n \longrightarrow \overline{\mathbb{R}}$ es medible Borel cuando en $\mathbb{R}^n$ consideramos la $\sigma$-álgebra de Borel, es decir, si para todo conjunto de Borel $B$ de $\mathbb{R}$ se tiene que $f^{-1}(B)$ es medible Borel o, equivalentemente, por ejemplo si
+ \begin{align*}
+     \{ x : f(x) < a \} \text{ es medible Borel para todo } a \in \mathbb{R}.
+ \end{align*}
+ Como la  $\sigma$-álgebra de Borel está contenida en la  $\sigma$-álgebra de Lebesgue, se sigue que si $f$ es medible Borel entonces $f$ es medible Lebesgue.
+\end{defi}
+
+\subsection{Conjuntos medibles determinados por funciones medibles}
+Dadas dos funciones medibles, se pueden considerar conjuntos muy natirales asociados a ella, conjuntos que resultan medibles.
+
+\begin{prop}
+Si $f,g: X \longrightarrow \overline{\mathbb{R}}$ son funciones medibles entonces los conjuntos $\{ x \in X : f(x) < g(x)\}$, $\{ x \in X : f(x) \leq g(x)\}$ y $\{ x \in X : f(x) = g(x)\}$ son medibles.
+\end{prop}
+
+\begin{prop}
+\label{prop:hmedible}
+Supongamos que $E$ y $F$ son conjuntos medibles disjuntos y sean $X = E \cup F$, $f: E \longrightarrow \overline{\mathbb{R}}$ y $g: F \longrightarrow \overline{\mathbb{R}}$ son funciones medibles. Entonces la función $h: X \longrightarrow \overline{\mathbb{R}}$ dafinida por
+\begin{align*}
+    h(x) =  \left\{ \begin{array}{lcc}
+             f(x) &  si  &x \in E\\
+             g(x) &  si  &x \in F \\
+             \end{array}
+   \right.
+\end{align*}
+es un función medible.
+\end{prop}
+Las demostraciones de ambas proposiciones son iguales que las análogas para aplicaciones que toman valores en $\mathbb{R}$.
+
+\subsection{Operaciones con funciones medibles}
+
+\begin{prop}
+\label{prop:fmedibles}
+Sean $f,g: X \longrightarrow \overline{\mathbb{R}}$ dos funciones medibles
+\begin{enumerate}
+    \item[(a)] Si $F$ es el conjunto medible donde $f+g$ está bien definida entonces $F$ es medible y $f+g: F \longrightarrow \overline{\mathbb{R}}$ es medible.
+    \item[(b)] $fg: X \longrightarrow \overline{\mathbb{R}}$ es medible.
+    \item[(c)] Si $k \in \mathbb{N}$ entonces $f^k: X \longrightarrow \overline{\mathbb{R}}$ es medible.
+    \item[(d)] Si $p \ge 0$ entonces la función $|f|^p: x \longrightarrow \overline{\mathbb{R}}$ es medible (se entiende $(+\infty)^p = +\infty$ para $p > 0$ y $(+\infty)^0 = 1$).
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+Haremos sólo la prueba de $(a)$. Las demás se hacen igual. La única diferencia es que la función $f+g$ puede estar definida en un subconjunto de $X$. Observamos que $F = \bigcup_{i=1}^{7}{F_i}$ donde
+\begin{align*}
+    &F_1 = \{ x \in X : f(x),g(x) \in \mathbb{R} \},  &F_2 = \{x \in X :f(x) \in \mathbb{R}, g(x) = +\infty \}\\
+    &F_3 = \{x \in X :f(x) \in \mathbb{R}, g(x) = -\infty \},  &F_4 = \{x \in X :g(x) \in \mathbb{R}, f(x) = +\infty \}\\
+    &F_5 = \{x \in X :g(x) \in \mathbb{R}, f(x) = -\infty \},  &F_6 = \{x \in X :g(x) = +\infty , f(x) = +\infty \}\\
+    &F_7 = \{x \in X :g(x) = -\infty , f(x) = -\infty \}
+\end{align*}
+Es claro que cada uno de los conjuntos $F_i$ es medible y que las restricciones de $f$ y $g$ a cada uno de los conjuntos $F_i$ es medible. Por la Proposición \ref{prop:hmedible}, basta ver que $f+g$ a restringida a cada conjunto $F_i$ es medible. Para $i \ge 2$ es obvio porque $f+g$ es constante en $F_i$. Para $i = 1$, la medibilidad se sigue de la Proposición \ref{prop:cmedible}.
+\end{proof}
+
+\section{Supremo e ínfimo de sucesiones de funciones medibles}
+
+\begin{prop}
+\label{prop:sup}
+Sea $f_n: X \longrightarrow \overline{\mathbb{R}}$ una sucesión de funciones medibles. Entonces $g = \sup_n{f_n}$ y $h = \inf_n{f_n}$ son funciones medibles, donde
+\begin{align*}
+    g(x) = \sup{\{ f_n(x) : n \in \mathbb{N}\}} \ \ \ y  \ \ \ h(x) = \inf{\{ f_n(x) : n \in \mathbb{N}\}}
+\end{align*}
+Observe que el supremo y el ínfimo se toman en $\overline{\mathbb{R}}$ por lo que pueden tomar los valores $+\infty$ y $-\infty$.
+\end{prop}
+
+\begin{proof}
+Veamos que $g^{-1}((a,+\infty])$ es un conjunto medible para todo $a \in \mathbb{R}$. Observamos lo siguiente:
+\begin{align*}
+    g^{-1}((a,+\infty]) &= \{ x \in X : \sup_n{f_n(x)} > a\} = \{ x \in X : \text{existe } n \in \mathbb{N} \text{ tal que }f_n(x) > a\}\\
+    &= \bigcup_{n \in \mathbb{N}}{\{ x \in X : f_n(x) > a \}} = \bigcup_{n \in \mathbb{N}}{f_n^{-1}((a,+\infty])}
+\end{align*}
+De aquí se sigue que $g^{-1}((a,+\infty])$ es medible por ser una unión numerable de conjuntos medibles.
+\\
+\newline
+Para el ínfimo se procede de forma semejante. Ahora veamos que $h^{-1}([-\infty,a))$ es un conjunto medible para todo $a \in \mathbb{R}$. Observamos lo siguiente
+\begin{align*}
+    h^{-1}([-\infty,a)) &= \{ x \in X : \inf_n{f_n(x)} < a\} = \{ x \in X : \text{existe } n \in \mathbb{N} \text{ tal que }f_n(x) < a\}\\
+    &= \bigcup_{n \in \mathbb{N}}{\{ x \in X : f_n(x) < a \}} = \bigcup_{n \in \mathbb{N}}{f_n^{-1}([-\infty,a))}
+\end{align*}
+\end{proof}
+
+\begin{cor}
+Sean $f,g: X \longrightarrow \overline{\mathbb{R}}$ dos funciones medibles. Entonces $\max(f,g)$ y $\min(f,g)$ son medibles, donde las funciones máximo y mínimo se definen como
+\begin{align*}
+    \max(f,g)(x) = \max\{ f(x), g(x)\} \ \ \ y \ \ \ \min(f,g)(x) = \min\{ f(x), g(x)\}
+\end{align*}
+\end{cor}
+
+\begin{proof}
+Basta tomar la sucesión de funciones $f_n$, donde $f_1 = f$ y $f_n = g$ para todo $n \ge 2$. Entonces $\max(f,g) ) = \sup_n{f_n}$ y $\min(f,g) = \inf_n{f_n}$ y usando la proposición anterior, se sigue que ambas funciones son medibles.
+\end{proof}
+
+\begin{defi}
+ Dada una función $f: X \longrightarrow \overline{\mathbb{R}}$ se definen su parte positiva y negativa como
+ \begin{align*}
+     f^+ = \max\{ f, 0\} \ \ \ y \ \ \ f^- = \max\{ -f, 0\}
+ \end{align*}
+ La función $|f|$, valor absoluto de f, se defime como $|f|(x) = |f(x)|$. Es fácil ver que
+ \begin{align*}
+     f = f^+ - f^- \ \ \ y \ \ \ |f| = f^+ + f^-
+\end{align*}
+\end{defi}
+ Usando el resultado anterior y la Proposición \ref{prop:fmedibles} se sigue inmediatamente el corolario siguiente.
+ 
+ \begin{cor}
+ Si $f: X \longrightarrow \overline{\mathbb{R}}$ es una función medible entonces $f^+$, $f^-$ y $|f|$ son medibles.
+ \end{cor}
+ 
+ \subsection{Límites inferior y superior}
+ 
+ Vamos a introducir las nociones de límites superior e inferior de una sucesión de funciones. Para ello, necesitamos recordar los conceptos correspondientes a sucesiones de números.
+ 
+\begin{defi}
+ Si $\{a_n\}$ es una sucesión de números reales, o cono mayor generalidad, una sucesión de elementos en $\overline{\mathbb{R}}$, el límite superior de dicha sucesión se define como:
+\begin{align*}
+     \limsup_{n \to \infty}{a_n} := \lim_{n \to \infty}{b_n},
+\end{align*}
+donde
+\begin{align*}
+     b_n = \sup{\{ a_k : k \ge n\}} = \sup_{k \ge n}{a_k}.
+\end{align*}
+Nótese que la sucesión $b_n$ está bien definida en $\overline{\mathbb{R}}$ y, además, es decreciente. Por ello, el límite de $b_n$ existe en $\overline{\mathbb{R}}$ y coincide con su ínfimo de $\overline{\mathbb{R}}$. Por consiguiente,
+\begin{align*}
+    \limsup_{n \to \infty}{a_n} = \lim_{n \to \infty}{b_n} = \inf{\{ b_n : n \in \mathbb{N}\}}
+\end{align*}
+De manera más simplificada escribimos
+\begin{align*}
+    \limsup_{n \to \infty}{a_n} = \lim_{n \to \infty}{b_n} = \inf_n{(\sup_{k \ge n}{a_k})}
+\end{align*}
+\end{defi}
+
+\begin{defi}
+ Si $\{a_n\}$ es una sucesión de números reales, o cono mayor generalidad, una sucesión de elementos en $\overline{\mathbb{R}}$, el límite inferior de dicha sucesión se define como:
+\begin{align*}
+     \liminf_{n \to \infty}{a_n} := \lim_{n \to \infty}{c_n},
+\end{align*}
+donde
+\begin{align*}
+     c_n = \inf{\{ a_k : k \ge n\}} = \inf_{k \ge n}{a_k}.
+\end{align*}
+Nótese que la sucesión $c_n$ está bien definida en $\overline{\mathbb{R}}$ y, además, es creciente. Por ello, el límite de $c_n$ existe en $\overline{\mathbb{R}}$ y coincide con su supremo de $\overline{\mathbb{R}}$. Por consiguiente,
+\begin{align*}
+    \liminf_{n \to \infty}{a_n} = \lim_{n \to \infty}{c_n} = \sup{\{ c_n : n \in \mathbb{N}\}}
+\end{align*}
+De manera más simplificada escribimos
+\begin{align*}
+    \liminf_{n \to \infty}{a_n} = \lim_{n \to \infty}{c_n} = \sup_n{(\inf_{k \ge n}{a_k})}
+\end{align*}
+\end{defi}
+
+\begin{prop}
+Una sucesión $\{ a_n \}$ tiene límite en $\overline{\mathbb{R}}$ si y sólo si
+\begin{align*}
+    \limsup_{n \to \infty}{a_n} = \liminf_{n \to \infty}{a_n}
+\end{align*}
+y, en ese caso,
+\begin{align*}
+    \lim_{n \to \infty}{a_n} = \limsup_{n \to \infty}{a_n} = \liminf_{n \to \infty}{a_n}
+\end{align*}
+\end{prop}
+
+\begin{obs}
+$\limsup_{n \to \infty}{(-a_n)} = -\liminf_{n \to \infty}{a_n}$.
+\end{obs}
+\begin{prop}
+Sean $\{ a_n\}$ y $\{ b_n \}$ sucesiones de $\overline{\mathbb{R}}$. Si $\lim_{n \to \infty}{a_n} = a \in \mathbb{R}$, entonces $\limsup_{n \to \infty}{(a_n + b_n)} = a + \limsup_{n \to \infty}{b_n}$.
+\end{prop}
+
+\begin{defi}
+ Sea $f_n: X \longrightarrow \overline{\mathbb{R}}$ una sucesión de funciones, se definen los límites superior e inferior como
+\begin{align*}
+     \limsup_{n \to \infty}{f_n} = \lim_{n \to \infty}{(\sup\{ f_k : k \ge n \}}) = \inf_n(\sup\{ f_k : k \ge n\}) = \inf_n(\sup_{k \ge n}{f_k})
+\end{align*}
+y
+\begin{align*}
+     \liminf_{n \to \infty}{f_n} = \lim_{n \to \infty}{(\inf \{ f_k : k \ge n \}}) = \sup_n(\inf\{ f_k : k \ge n\}) = \sup_n(\inf_{k \ge n}{f_k}).
+\end{align*}
+\end{defi}
+
+\begin{prop}
+Sea $f_n: X \longrightarrow \overline{\mathbb{R}}$ una sucesión de funciones medibles. Entonces $g = \lim{\sup_n{f_n}}$ y $h = \lim{\inf_n{f_n}}$ son funciones medibles.
+\end{prop}
+
+\begin{proof}
+Sean $F_n = \sup_{k \ge n}{f_k}$ y $G_n = \inf_{k \ge n}{f_k}$. Por la Proposición \ref{prop:sup}, $F_n$ y $G_n$ son funciones medibles. Como $g = \inf_n{F_n}$ y $h = \sup_n{G_n}$, aplicando de nuevo la Proposición \ref{prop:sup}, concluimos la demostración.
+\end{proof}
+
+\begin{prop}
+Sea $f_n: X \longrightarrow \overline{\mathbb{R}}$ una sucesión de funciones medibles tal que para todo $x \in X$ existe en $\overline{\mathbb{R}}$ el límite de $f_n(x)$. Entonces $f = \lim{f_n}$ es medible.
+\end{prop}
+
+\begin{proof}
+Esto es claro por la proposición anterior porque la existencia del límite implica que $f = \limsup_n{f_n}$ (y $f = \liminf_n{f_n}$).
+\end{proof}
+
+\begin{ejemplo}
+Sea $f_n: X \longrightarrow \overline{\mathbb{R}}$ una sucesión de funciones medibles. Demostrar que es medible el conjunto de los $x \in X$ para los que existe en $\overline{\mathbb{R}}$ el límite de $f_n(x)$. Demuéstrese lo mismo para el conjunto de los $x \in X$ para los existe el límite en $\mathbb{R}$ el límite de $f_n(x)$.
+\end{ejemplo}
+
+\section{Funciones simples}
+
+\begin{defi}
+Una \textbf{función simple} $s: X \longrightarrow \mathbb{R}$ es una función que toma un número finito de valores, es decir, $s(X) = \{ a_1, a_2, ..., a_n\}$. 
+\end{defi}
+
+\begin{defi}
+Sea $s: X \longrightarrow \mathbb{R}$ una función simple y sea $s(X) = \{ a_1, a_2, ..., a_n\}$ $(a_i \not = a_j \ si \ i \not = j)$. Sea $A_i = \{ x \in X : s(x) = a_i\} = s^{-1}(\{ a_i \})$. Se verifica entonces que
+\begin{align*}
+    s = \sum_{i = 1}^{n}{a_i \mathcal{X}_{A_i}}.
+\end{align*}
+A esta expresión de $s$ se le denomina \textbf{expresión canónica de s}.
+\end{defi}
+Las siguentes propiedades son evidentes:
+\begin{enumerate}
+    \item[1.] $A_i \not = \emptyset$ para todo $i \in \{1, ...,n\}$.
+    \item[2.] $A_i \cap A_j = \emptyset$ si $i \not = j$.
+    \item[3.] $X = \bigcup_{i=1}^{n}{A_i}$.
+    \item[4.] $s$ es medible si y sólo si $A_i$ es medible para cada $i \in \{1, ...,n\}$. Veamoslo.
+    \\
+    \newline
+    $\Rightarrow$ Supongamos que $s$ es medible, entonces $A_i = s^{-1}(\{ a_i\})$ es la contraimagen de un conjunto cerrado (un boreliano) por un función medible, por lo tanto $A_i$ es medible para todo $i \in \{1, ...,n\}$.
+    \newline
+    $\Leftarrow$ Supongamos que $A_i$ es medible para cada $i \in \{1, ...,n\}$, entonces $\mathcal{X}_{A_i}$ es medible para cada $i \in \{1, ...,n\}$. Como $s = \sum_{i = 1}^{n}{a_i \mathcal{X}_{A_i}}$, resulta que $s$ es combinación lineal de funciones medibles y, por consiguiente, es medible.
+\end{enumerate}
+
+\begin{obs}
+Si tomamos un número finito de conjuntos medibles $E_j, \ j = 1,...,n$, y números reales $d_j, \ j = 1,...,n$, entonces la función $f = \sum_{j = 1}^{n}{d_j \mathcal{X}_{E_j}}$ es una función simple y medible aunque los conjuntos $E_j$ no sean disjuntos.
+\end{obs}
+\begin{teo}
+Sea $f: X \longrightarrow [0, +\infty]$ una función medible. Entonces, existe una sucesión $\{ s_n\}_{n=1}^{\infty}$ de funciones simples, medibles y no negativas tal que:
+\begin{enumerate}
+    \item[1)] $s_n(x) \leq s_{n+1}(x)$ para todo $x \in X$ y todo $n \in \mathbb{N}$.
+    \item[2)] $\lim_{n \to \infty}{s_n(x)} = f(x)$ para todo $x \in X$.
+\end{enumerate}
+Si, además, $f$ es acotada, entonces $\{ s_n\}_{n=1}^{\infty}$ converge uniformemente a $f$ en $X$.
+\end{teo}
+\begin{proof}
+Para cada $n \in \mathbb{N}$ y cada $i \in \{ 1, ..., n2^n\}$ definimos los intervalos siguientes:
+\begin{align*}
+    I_{n,i} = \left[ \frac{i-1}{2^n}, \frac{i}{2^n} \right).
+\end{align*}
+Es claro que esta familia de intervalos es una partición del intervalo $[0,n)$. Para $i = n2^n + 1$ ponemos $I_{n,i} = [n, +\infty]$. Ahora, se tiene un partición del intervalo $[0, +\infty]$, es decir, una familia finita de intervalos $I_{n,i}$, $i \in \{1,...,n2^n \}$ es una familia disjunta y
+\begin{align*}
+    [0, +\infty] = \bigcup_{i=1}^{n2^n + 1}{I_{n,i}}.
+\end{align*}
+Observemos que para cada intervalo $I_{n+1,i}$ existe un único $I_{n,j}$ tal que $I_{n+1,i} \subset I_{n,j}$. Definamos
+\begin{align*}
+    E_{n,i} = \{ X \in X : f(x) \in I_{n,i} \} = f^{-1}(I_{n,i}).
+\end{align*}
+Claramente, por ser $f$ medible, los conjuntos $E_{n,i}$ son medibles y, fijado $n$, son disjuntos dos a dos y 
+\begin{align*}
+    X = \bigcup_{i=1}^{n2^n +1}{E_{n,i}}.
+\end{align*}
+Para cada $n \in \mathbb{N}$, sea $s_n$ la función
+\begin{align*}
+    s_n(x) &= \left\{ \begin{array}{lcc}
+             0 &  si  & x \in E_{n,1}\\
+             \frac{1}{2^n} &  si  & x \in E_{n,2} \\
+             \vdots & \vdots & \vdots \\
+             \frac{i-1}{2^n} & si & x \in E_{n,i}\\
+             \vdots & \vdots & \vdots  \\
+             n & si & x \in E_{n,n2^n+1}
+             \end{array}
+   \right.
+   = \sum_{i=1}^{n2^n}{\frac{i-1}{2^n}\mathcal{X}_{E_{n,i}}} + n\mathcal{X}_{E_{n,n2^n+1}} = \sum_{i=1}^{n2^n +1}{\min(I_{n,i})\mathcal{X}_{E_{n,i}}}.
+\end{align*}
+Es evidente que $s_n$ es simple, medible y no negativa. Veamos que esta sucesión tiene las propiedades requeridas.
+\begin{enumerate}
+    \item[1)] Veamos que $s_n(x) \leq s_{n+1}(x)$ para todo $x \in X$ y todo $n \in \mathbb{N}$.
+    \\
+    \newline
+    Sea $n \in \mathbb{N}$ y $x \in X$. Existe un único conjunto $E_{n+1,i} = f^{-1}(I_{n+1,i})$ ( o un único $I_{n+1,i}$) tal que $x \in E_{n+1,i}$. Como ya hemos observado, dado ese intervalo $I_{n+1,i}$ existe un único $I_{n,j}$ tal que $I_{n+1,i} \subset I_{n,j}$ y, en consecuencia, $x \in E_{n,j}$ y $\min(I_{n,j}) \leq \min(I_{n+1,j})$. Luego, como $s_n(x) = \min(I_{n,j})$ y $s_{n+1}(x) = \min(I_{n+1,i})$, concluimos que
+    \begin{align*}
+        s_n(x) \leq s_{n+1}(x).
+    \end{align*}
+    \item[2)] Veamos ahora que $x_n(x)$ converge hacai $f(x)$ para todo $x \in X$. Analizaremos dos casos
+    \begin{enumerate}
+        \item[(i)] Si $f(x) = +\infty$ tenemos que $s_n(x) = n$ para todo $n$ y, claramente, $\lim_{n \to \infty}{s_n(x)} = \lim_{n \to \infty}{n} = +\infty =  f(x)$.
+        \item[(ii)] Si $f(x) < \infty$ entonces existe un $n_0 \in \mathbb{N}$ tal que $f(x) < n_0$. Entonces $f(x) < n$ para todo $n > n_0$. Luego, para cada $n >x n_0$, existe $i \in \{ 1,...,n2^n$\} tales que $x \in E_{n,i}$, es decir, $f(x) \in \left[ \frac{i-1}{2n}, \frac{i}{2^n} \right)$. Como $s_n(x) = \frac{i-1}{2^n}$, se tiene que
+        \begin{align*}
+            |s_n(x) - f(x)| < \frac{1}{2^n} \ \ \ \text{para todo } n \ge n_0.
+        \end{align*}
+        Tomando límites en la expresión anterior, obtenemos
+        \begin{align*}
+            \lim_{n \to \infty}{|s_n(x) - f(x)|} = 0,
+        \end{align*}
+        y, por consiguiente, el límite de $s_n(x)$ es $f(x)$.
+    \end{enumerate}
+    \item[3)] Supongamos ahora que $f$ está acotada. Entonces existe $n_0$ tal que $f(x) < n_0$ para todo $x \in X$ y, por consisguiente, $f(x) < n$ para todo $n \ge n_0$ y para todo $x \in X$. Luego, razonando como antes,
+    \begin{align*}
+        |s_n(x) - f(x)| < \frac{1}{2^n} \ \ \ \text{para todo } n \ge n_0 \ \text{y todo } x \in X.
+    \end{align*}
+    Consecuentemente,
+    \begin{align*}
+        \sup_{x \in X}{|s_n(x) - f(x)|} \leq \frac{1}{2^n} \ \ \ \text{para todo } n \ge n_0.
+    \end{align*}
+    Tomando límites en la expresión anterior, obtenemos
+        \begin{align*}
+            \lim_{n \to \infty}{\sup_{x \in X}{|s_n(x) - f(x)|}} = 0,
+        \end{align*}
+        lo que prueba que $s_n$ converge unformemente a $f$ en $X$.
+\end{enumerate}
+\end{proof}
+
+\begin{cor}
+Saea $f : X \longrightarrow \overline{\mathbb{R}}$ una función medible. Entonces, existe una sucesión de funciones simples y medibles $\{ \varphi_n\}_{n=1}^{\infty}$ tal que:
+\begin{enumerate}
+    \item[1.] $|\varphi_n(x)| \leq |\varphi_{n+1}(x)|$ para todo $n \in \mathbb{N}$ y para todo $x \in X$.
+    \item[2.] Para cada $x \in X$, $\lim_{n \to \infty}{\varphi_n(x)} = f(x)$.
+\end{enumerate}
+Además, si $f$ es acotada, la convergencia de $\{\varphi_n\}$ es uniforme.
+\end{cor}
+
+\begin{proof}
+Sabemos que $f = f^+ - f^-$, donde $f^+$ y $f^-$ son la parte positiva y la parte negativa de $f$, respectivamente. Sabemos además que $f^+$ y $f^-$ son medibles yno negativas (toman valores en $[0, +\infty]$). Por el teorema anterior, existen dos sucesiones $\{ s_n \}_{n=1}^{\infty}$ y $\{ t_n \}_{n=1}^{\infty}$, $s_n,t_n: X \longrightarrow [0,+\infty)$, de funciones simples, medibles, no negativas tales que $s_n(x) \leq s_{n+1}(x)$, $t_n(x) \leq t_{n+1}(x)$, $\lim{s_n(x)} = f^+(x)$ y $\lim{t_n(x)} = f^-(x)$. Así, si $\varphi_n = s_n - t_n$ para cada $n \in \mathbb{N}$,
+\begin{align*}
+    f = f^+ - f^- = \lim_{n \to \infty}{s_n} - \lim_{n \to \infty}{t_n} = \lim_{n \to \infty}{(s_n - t_n)} = \lim_{n \to \infty}{\varphi_n}.
+\end{align*}
+Entonces,
+\begin{align*}
+    |\varphi_n(x)| &= |s_n(x) - t_n(x)| = s_n(x) + t_n(x)\\
+    &\leq s_{n+1}(x) + t_{n+1}(x) = |s_{n+1}(x)- t_{n+1}(x)| = |\varphi_{n+1}(x)|
+\end{align*}
+Para cada $x \in X$. Nótese que $|s_n(x) - t_n(x)| = s_n(x) + t_n(x)$ pues $0 \leq s_n \leq f^+$ y $0 \leq t_n \leq f^-$, luego existen las siguientes tres posibilidades
+\begin{enumerate}
+    \item[(i)]  $s_n > 0$ y $t_n = 0$.
+    \item[(ii)] $s_n = 0$ y $t_n > 0$.
+    \item[(iii)] $s_n = 0$ y $t_n = 0$.
+\end{enumerate}
+Luego, podemos ver que se cumple dicha desigualdad.
+\end{proof}
+\\
+\newline
+Por otra parte, si $f$ es acotadaa tenemos que $f^+$ y $f^-$ son acotadas. Entonces $s_n$  y $t_n$ convergen uniformemente en $X$ a $f^+$ y $f-$ respectivamente. Luego $\varphi_n = s_n - t_n$ converge uniformemente en $X$ hacia $f^+ - f^- = f$.
+
+\section{El papel de los conjuntos de medida 0}
+
+Supongamos que $(X, \mathcal{M}, \mu)$ es un espacio de medida (hasta aquí, en este capítulo hemos trabajado con espacios medibles $(X, \mathcal{M})$). Nos encontraremos frecuetemente con que una propiedad se da para todos los puntos salvo en un conjunto de medida 0. Normalmente, esto nos permitirá trabajar como si la propiedade se diera en todos los puntos del conjunto.
+
+\begin{defi}
+Supongamos que $(X, \mathcal{M}, \mu)$ es un espacio de medida. Sea P una propiedad que pueden tener o no los elementos $x \in X$. Decimos que P se cumple para casi todo $x \in X$ si el conjunto $\{ x \in X : x \text{ no cumple } P \}$ está contenido en un conjunto medible de medida cero $(\{ x \in X : x \text{ no cumple } P \} \subset N \ y \ \mu(N) = 0)$, dicho de otra manera, si existe N medible con $\mu(N) = 0$ tal que P se cumple para todo $x \in N^c$.
+\end{defi}
+
+\begin{obs}
+\begin{enumerate}
+    \item[(1)] Si el espacio de medida es completo y $P$ se cumple para casi todo $x \in X$ entonces el conjunto $\{ x \in X : x \text{ no cumple } P \}$ es medible y es de medida cero (por supuesto, el conjunto $\{ x \in X : x \text{ cumple } P \}$ también es medible).
+    \item[(2)] Podría parecer que si $f(x) = g(x)$ para casi todo punto y una de las funciones es medible entonces la otra es medible. Sin embargo, esto no es así salvo que estemos en un espacio de medida completo. Por ejemplo:
+    \\
+    \newline
+    Consideremos $(\mathbb{R}, \mathcal{B}_{\mathbb{R}}, m)$, donde $m$ es la medida de Lebesgue. Sean $C \in \mathcal{B}_{\mathbb{R}}$ el conjunto de Cantor, sabemos que existe $A \subset C$ tal que $A \not \in \mathcal{B}_{\mathbb{R}}$. Definimos
+    \begin{align*}
+        &f: \mathbb{R} \longrightarrow \mathbb{R}, \ f(x) = 0\\
+        &g: \mathbb{R} \longrightarrow \mathbb{R}, \ g(x) = \left\{ \begin{array}{lcc}
+             0 &  si  &x \in A\\
+             1 &  si  &x \not \in  A \\
+             \end{array}
+   \right.
+   = \mathcal{X}_{A^c}
+    \end{align*}
+    Nótese que $A = \{ x \in \mathbb{R} : f(x) \not = g(x)\} \subset C$, luego $f = g$ en casi todo punto de $X$, pero $f$ si es medible y $g$ no es medible.
+\end{enumerate}
+\end{obs}
+\begin{prop}
+Supongamos que $(X, \mathcal{M}, \mu)$ es un espacio de medida completo. Sean $f,g: X \longrightarrow \overline{\mathbb{R}}$ dos funciones tales que $f(x) = g(x)$ para casi todo punto. Si $f$ es medible entonces $g$ es medible.
+\end{prop}
+
+\begin{proof}
+Sea $A = \{ x \in X : f(x) \not = g(x)\}$. Por ser $f = g$ en casi todo punto de $X$ y por ser $(X, \mathcal{M}, \mu)$ un espacio de medida completo, se tiene que $A$ es medible y $\mu(A) = 0$. Sea $B = \{ x \in X : f(x) = g(x)\}$. $B$ es medible pues $B = X \backslash A$. Veamos que $g$ es medible. Sea $a \in \mathbb{R}$. Entonces,
+\begin{align*}
+    \{ x \in X = g(x) > a \} &= (\{ x \in X : g(x) > a\} \cap A) \cup (\{ x \in X : g(x) > a\} \cap B)\\
+    &= (\{ x \in X : g(x) > a\} \cap A) \cup (\{ x \in X : f(x) > a\} \cap B)
+\end{align*}
+El conjunto $\{ x \in X : g(x) > a\} \cap A$ es medible, porque es un subconjunto de $A$, $\mu(A) = 0$ y estamos en un espacio de medida completo. El conjunto $\{ x \in X : f(x) > a\} \cap B$ es medible, puesto que es una intersección de conjuntos medible. Por tanto $\{ x \in X = g(x) > a \}$ es medible, lo que prueba la proposición.
+\end{proof}
+
+\begin{prop}
+Sea $(X, \mathcal{M}, \mu)$ un espacio de medida completo. Supongamos que $\{ f_n\}_{n=1}^{\infty}$ es una sucesión de funciones medibles de $X$ en $\rcom$ $(X \in \mathcal{M})$. Sea $f: X \longrightarrow \rcom$ una función. Si $\{ f_n\}_{n=1}^{\infty}$ converge hacia $f$ en casi todo punto de $X$, entonces $f$ es medible. 
+\end{prop}
+
+\begin{proof}
+Sea $A = \{ x \in X : \lim_{n \to \infty}{f_n(x)} = f(x)\}$ y sea $B = X \backslash A$. Sabemos que $A$ y $B$ son medibles y que $\mu(B) = 0$. Definimos $F_n: X \longrightarrow \rcom$,
+\begin{align*}
+    F_n(x) = \left\{ \begin{array}{lcc}
+             f_n(x) &  si  &x \in A\\
+             0 &  si  &x \not \in  A \\
+             \end{array}
+        \right.
+\end{align*}
+Así definida, $F_n = f_n \mathcal{X}_A$ para todo $n \in \mathbb{N}$. Como $f_n$ y $\mathcal{X}_A$ son medibles, entonces $F_n$ es medible para todo $n \in \mathbb{N}$. Si $x \in X$,
+\begin{align*}
+    \lim_{n \to \infty}{F_n(x)} = \left\{ \begin{array}{lcc}
+             \lim_{n \to \infty}{f_n(x)} = f(x) &  si  &x \in A\\
+             0 &  si  &x \not \in  A \\
+             \end{array}
+        \right.
+\end{align*}
+Por lo tano, $\lim_{n \to \infty}{F_n} = f \mathcal{X}_A$. Por tanto $f \mathcal{X}_A$ es medible (por ser límite de una sucesión de funciones medibles).
+\\
+\newline
+Veamos que $f \mathcal{X}_A = f$ para casi todo punto. Sea
+\begin{align*}
+    D = \{ x \in X : (f \mathcal{X}_A)(x) \not = f(x) \}
+\end{align*}
+Entonces $D \subset B$. Como $\mu(B) = 0$ y $\mu$ es completa se tiene $\mu(D) = 0$. Una vez sabemos que $f \mathcal{X}_A = f$ para casi todo punto, como $\mu$ es completa y $f \mathcal{X}_A$ es medible entonces $f$ es medible (por la proposición anterior).
+\end{proof}

@@ -1,0 +1,76 @@
+\documentclass{book}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amsfonts}
+\usepackage[mathscr]{euscript}
+\usepackage[spanish]{babel}
+\usepackage{mathrsfs}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{vmargin}
+\usepackage{hyperref}
+\usepackage{vmargin}
+\usepackage[all]{xy}
+\usepackage{relsize}
+\usepackage{bigints}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage[autostyle]{csquotes} 
+\usepackage{tcolorbox}
+\tcbuselibrary{listingsutf8}
+\usepackage{float}
+\usepackage{bbold}
+
+\usepackage{mathtools}
+\DeclarePairedDelimiter\autobracket{(}{)}
+\newcommand{\br}[1]{\autobracket*{#1}}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead[\leftmark]{}
+\rhead[]{\rightmark}
+\fancyfoot[LE]{\thepage}
+\fancyfoot[RE]{\includegraphics[width=0.045\textwidth]{insta.png} \text{@jorgeroddom}}
+\fancyfoot[RO]{\thepage}
+\fancyfoot[LO]{\includegraphics[width=0.045\textwidth]{insta.png} \text{@jorgeroddom}}
+
+\title{\Huge \textbf{Probabilidad}}
+\author{Jorge Rodríguez Domínguez}
+\date{}
+
+\newcommand{\re}[]{\text{Re}}
+
+\definecolor{light-gray}{gray}{0.85}
+
+%\newmdtheoremenv[backgroundcolor=light-gray]{teo}{Teorema}[chapter]
+\newtheorem{teo}{Teorema}[chapter]
+%\newmdtheoremenv[backgroundcolor=light-gray]{cor}[teo]{Corolario}
+\newtheorem{cor}[teo]{Corolario}
+%\newmdtheoremenv[backgroundcolor=light-gray]{lema}[teo]{Lema}
+\newtheorem{lema}[teo]{Lema} 
+%\newmdtheoremenv[backgroundcolor=light-gray]{prop}[teo]{Proposición}
+\newtheorem{prop}[teo]{Proposición}
+
+\theoremstyle{definition}
+%\newmdtheoremenv[backgroundcolor=light-gray]{defi}[teo]{Definición}
+\newtheorem{defi}[teo]{Definición}
+\newtheorem{ejemplo}[teo]{Ejemplo}
+\newtheorem{obs}[teo]{Observación}
+% \newtheorem{obs}[teo]{Observación}
+
+
+
+
+\begin{document}
+% =========================================
+\frontmatter
+\include{indice}
+% =========================================
+\mainmatter
+\include{capitulo1}
+\include{capitulo2}
+\include{capitulo3.tex}
+\end{document}

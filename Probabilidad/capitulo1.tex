@@ -1,0 +1,124 @@
+\chapter{Introducción}
+
+\begin{defi}
+Un conjunto $\mathcal{A}$ de subconjuntos de $\Omega$ es un $\sigma$-álgebra si verifica
+\begin{enumerate}
+    \item[(a)] $\Omega \in \mathcal{A}$.
+    \item[(b)] Si $A \in \mathcal{A}$ entonces $A^c \in \mathcal{A}$.
+    \item[(c)] Si $\{A_n\}$, $A_n \in \mathcal{A}$ entonces $\cup_{n}{A_n} \in \mathcal{A}$.
+\end{enumerate}
+Consecuencias inmediatas
+\begin{itemize}
+    \item $\emptyset \in \mathcal{A}$.
+    \item Si $A_n \in A$ entonces $\cap_{n}{A_n} \in \mathcal{A}$.
+    \item Si $A_1,...,A_n \in \mathcal{A}$ entonces $\cup_{i=1}^{n}{A_i} \in \mathcal{A}$ y $\cap_{i=1}^{n}{A_i} \in \mathcal{A}$.
+\end{itemize}
+\end{defi}
+
+\begin{defi}
+Sea $\mathscr{C}$ familia de todos los intervalos. Entonces $\mathscr{C}$ define la $\sigma$-álgebra de Borel. Se denota $\mathbb{B}_1$ en $\mathbb{R}$.
+\end{defi}
+
+\begin{defi}
+Sea $(\Omega, \mathcal{A})$ un espacio medible. Una probabilidad es una medida $P: \mathcal{A} \longrightarrow [0,+\infty)$ tal que
+\begin{enumerate}
+    \item[(1)] $P(\Omega) = 1$.
+    \item[(2)] $\{A_n\}$, $A_n \in \mathcal{A}$ con $A_i \cap A_j = \emptyset$ si $i \not = j$, entonces
+    \begin{align*}
+        P(\cup_{n}{A_n}) = \sum_{n}{P(A_n)}.
+    \end{align*}
+\end{enumerate}
+Consecuencias 
+\begin{itemize}
+    \item $P(A) = 1 - P(A^c)$, $A \in \mathcal{A}$.
+    \item $P(\emptyset) = 0$.
+    \item $A, B \in \mathcal{A}$ entonces $P(A \backslash B) = P(A) - P(A \cap B)$.
+    \item $A, B \in \mathcal{A}$ y $A \subseteq B$ entonces $P(A) \leq P(B)$.
+    \item $A, B \in \mathcal{A}$ entonces $P(A \cup B) = P(A) + P(B) - P(A \cap B)$. En general
+    \begin{align*}
+        P(\cup_{i=1}^{n}{A_i}) &= \sum_{i=1}^{n}{P(A_i)} - \sum_{i < j}{P(A_i \cap A_j)} + \sum_{i< j < k}{P(A_i \cap A_j \cap A_k)}\\
+        & - ... + (-1)^{n-1}P(A_1 \cap ... \cap A_n).
+    \end{align*}
+\end{itemize}
+\end{defi}
+
+\begin{defi}
+Sea $\{A_n\}$, $A_n \in \mathcal{A}$. Definimos
+\begin{itemize}
+    \item Límite superior de la sucesión $\{A_n\}$ como
+    \begin{align*}
+        \limsup_{n}{A_n} = \bigcap_{m=1}^{+\infty}{\left(\bigcup_{n=m}^{+\infty}{A_n}\right)} = A^*.
+    \end{align*}
+    \item Límite inferior de la sucesión $\{A_n\}$ como
+    \begin{align*}
+        \liminf_{n}{A_n} = \bigcup_{m=1}^{+\infty}{\left(\bigcap_{n=m}^{+\infty}{A_n}\right)} = A_*.
+    \end{align*}
+\end{itemize}
+Consecuencias
+\begin{itemize}
+    \item $\liminf_{n}{A_n} \subseteq \limsup_{n}{A_n}$.
+    \item Una sucesión $\{A_n\}$, $A_n \in \mathcal{A}$ es convergente si $A^* = A_*$.
+\end{itemize}
+\end{defi}
+
+\begin{teo}
+Sea $(\Omega, \mathcal{A})$ un espacio medible. La aplicación $P: \mathcal{A} \longrightarrow [0,+\infty)$ verificando
+\begin{enumerate}
+    \item[(1)] $P(\Omega) = 1$.
+    \item[(2)] $A_1,...,A_n \in \mathcal{A}$ con $A_i \cap A_j = \emptyset$ si $i \not = j$, entonces
+    \begin{align*}
+        P(\cup_{i=1}^{n}{A_i}) = \sum_{i=1}^{n}{P(A_i)}.
+    \end{align*}
+    \item[(3)] Si $\{A_n\} \downarrow \emptyset$, $A_n \in \mathcal{A}$, $P(\lim_{n}{A_n}) = \lim_{n}{P(A_n)} = 0$
+\end{enumerate}
+Entonces $P$ es una medida de probabilidad.
+\end{teo}
+
+\begin{defi}
+Sea $(\Omega, \mathcal{A})$ espacio de probabilidad. Sean $A, B \in \mathcal{A}$. A es independiente de B si $P(A \ | \ B) = P(A)$ ($P(B) > 0$).
+\\
+\newline
+Recuérdese que
+\begin{align*}
+    P(A \ | \ B) = \frac{P(A \cap B)}{P(B)}, \ \ \ P(B) > 0.
+\end{align*}
+\end{defi}
+
+\begin{obs}
+La independencia es recírproca, es decir, $A$ es independiente de $B$ si y solo si $B$ es independiente de $A$.
+\end{obs}
+
+\begin{teo}[Teorema de la Probabilidad Compuesta]
+\begin{align*}
+    P(A_1 \cap ... \cap A_n) = P(A_1)P(A_2 \ | \ A_1)P(A_3 \ | \ A_1 \cap A_2)...P(A_n \ | \ A_1 \cap ... \cap A_{n-1}).
+\end{align*}
+\end{teo}
+
+\begin{teo}[Teorema de la Probabilidad Total]
+Sea $(\Omega, \mathcal{A}, P)$ espacio de probabilidad. Sea $\{A_n\}$ partición de $\Omega$, $P(A_n) > 0$ conocidas y sea $B \in \mathcal{A}$. Entonces
+\begin{align*}
+    P(B) = \sum_{n \in \mathbb{N}}{P(B \ | \ A_n)P(A_n)}.
+\end{align*}
+\begin{itemize}
+    \item $P(A_n)$ se conoce como probabilidad a priori y $\sum_{n \in \mathbb{N}}{P(A_n)} = 1$.
+    \item $P(B \ | \ A_n)$ se conocen como verosimilitudes.
+\end{itemize}
+\end{teo}
+
+\begin{teo}[Teorema de Bayes]
+Bajos las mismas condiciones que el teorema de la probabilidad total:
+\begin{align*}
+    P(A_i \ | \ B) = \frac{P(B \ | \ A_i)P(A_i)}{\sum_{n \in \mathbb{N}}{P(B \ | \ A_n)P(A_n)}} \ (\text{probabilidad a posteriori}).
+\end{align*}
+Y además, $\sum_{n \in \mathbb{N}}{P(A_n \ | \ B)}= 1$.
+\end{teo}
+
+\begin{obs}
+\begin{itemize}
+    \item $A$ es independiente de $B$ si y solo si $A$ es independiente de $B^c$ si y solo si $A^c$ es independiente de $B^c$.
+    \item $\{A_1,...,A_n\}$ es una familia de sucesos independientes si cualquier $\{i_1,...,i_r\}$ verifica
+    \begin{align*}
+        P(A_{i_1} \cap ... \cap A_{i_r}) = \prod_{j=1}^{r}{P(A_{i_j})}.
+    \end{align*}
+\end{itemize}
+\end{obs}

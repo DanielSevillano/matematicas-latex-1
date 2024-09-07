@@ -1,0 +1,211 @@
+\setcounter{chapter}{-1}
+\chapter{Distribuciones importantes}
+
+\section{Distribuciones discretas}
+
+\subsection{Distribución Uniforme}
+Diremos que $X \sim U\{x_1,...,x_n\}$, $x_i \in \mathbb{R}$, si $P(X = x_i) = \frac{1}{n}$, $i = 1,...,n$. Puede verse también de la forma
+\begin{align*}
+    P(X = x_i) = \frac{1}{n}\text{I}_{\{x_1,...,x_n\}}(x)
+\end{align*}
+Además, $E(X) = \frac{x_1 + ... + x_n}{n}$.
+
+\subsection{Distribución de Bernoulli}
+Diremos que $X \sim Ber(p)$, $0 < p < 1$ si
+\begin{align*}
+    P(X = 1) = p \ \ \ \text{y} \ \ \ P(X = 0) = 1 - p \equiv q
+\end{align*}
+Visto de otra forma:
+\begin{align*}
+    P(X = x) = p^x(1 - p)^{1-x}, \ x = 0,1
+\end{align*}
+Además, $E(X) = p$ y $V(X) = pq$.
+
+\subsection{Distribución Binomial}
+Realizamos $n$ pruebas independientes de Bernoulli todas ellas con probabilidad de éxito igual a $p$.
+\newline
+Definimos \textit{X = número de éxitos en las n pruebas de Bernoulli}. Entonces $X \sim Bi(n,p)$.
+\begin{itemize}
+    \item Su distribución de probabilidad es
+    \begin{align*}
+    P(X = i) = \binom{n}{i}p^i(1-p)^{n-i}, \ i \in D_X = \{0,1,...,n\} 
+\end{align*}
+    \item $E(X) = np$ y $V(X) = npq$.
+    \item \textit{Reproductividad}: Si $X_1 \sim Bi(n_1,p)$ y $X_2 \sim Bi(n_2,p)$ entonces $X_1 + X_2 \sim Bi(n_1 + n_2, p)$.
+\end{itemize}
+
+\subsection{Distribución Geométrica}
+Realizamos pruebas independientes de Bernoulli, todas con probabilidad de éxito igual a $p$. Definimos \textit{X = número de fracasos hasta conseguir el primer éxito}. Entonces $X \sim Ge(p)$.
+\begin{itemize}
+    \item Su distribución de probabilidad es
+    \begin{align*}
+    P(X = i) = (1-p)^i p, \ \ i \in \{0,1,2,...\}
+\end{align*}
+    \item $E(X) = \frac{q}{p}$ y $V(X) = \frac{q}{p^2}$.
+\end{itemize}
+
+\subsection{Distribución Binomial Negativa}
+Realizamos pruebas independientes de Bernoulli, todas con probabilidad de éxito igual a $p$. Definimos \textit{X = número de fracasos hasta conseguir el m-ésimo éxito}. Entonces $X \sim BN(m,p)$.
+\begin{itemize}
+    \item Su distribución de probabilidad es
+    \begin{align*}
+    P(X = i) = \binom{m+i-1}{i}p^m(1-p^)^i, \ \ i \in \{0,1,2,...\}
+\end{align*}
+    \item $E(X) = \frac{mq}{p}$ y $V(X) = \frac{q}{p^2}$.
+    \item \textit{Reproductividad}: Si $X_1 \sim BN(m_1,p)$ y $X_2 \sim BN(m_2,p)$ son independientes, entonces
+    \begin{align*}
+        X_1 + X_2 \sim BN(m_1 + m_2,p)
+    \end{align*}
+\end{itemize}
+
+\subsection{Distribución de Poisson}
+Diremos que $X \sim Po(\lambda)$, $\lambda > 0$ si 
+\begin{align*}
+    P(X = n) = e^{-\lambda}\frac{\lambda^n}{n!}, \ \ n \in \{0,1,2,...\}
+\end{align*}
+\begin{itemize}
+    \item $E(X) = \lambda$ y $V(X) = \lambda$.
+    \item \textit{Reproductividad}: Si $X_1 \sim Po(\lambda_1)$ y $X_2 \sim Po(\lambda_2)$ son independientes, entonces
+    \begin{align*}
+        X_1 + X_2 \sim Po(\lambda_1 + \lambda_2)
+    \end{align*}
+\end{itemize}
+
+\section{Distribuciones continuas}
+
+\subsection{Distribución uniforme}
+Diremos que $X \sim U(a,b)$ si su función de densidad es
+\begin{align*}
+    f(x) = \frac{1}{b-a} \cdot \text{I}_{(a,b)}(x)
+\end{align*}
+Además, $E(X) = \frac{b+a}{2}$ y $V(X) = \frac{(b-a)^2}{12}$.
+
+\subsection{Distribución Exponencial}
+Diremos que $X \sim Exp(\lambda)$, $\lambda > 0$ si su función de densidad es
+\begin{align*}
+    f(x) = \lambda e^{-\lambda x} \cdot \text{I}_{(0,+\infty)}(x)
+\end{align*}
+Además, $E(X) = \frac{1}{\lambda}$ y $V(X) = \frac{1}{\lambda^2}$.
+
+\subsection{Distribución Gamma}
+
+Diremos que $X \sim Ga(\alpha, \beta)$ si su función de densidad es
+\begin{align*}
+    f(x) = \frac{\beta^{\alpha}}{\Gamma(\alpha)}e^{-\beta x}x^{\alpha - 1} \cdot \text{I}_{(0,+\infty)}(x)
+\end{align*}
+
+\begin{itemize}
+    \item $E(X) = \frac{\alpha}{\beta}$ y $V(X) = \frac{\alpha}{\beta^2}$.
+    \item \textit{Reproductividad}: Si $X_1,...,X_n$ son variables aleatorias independientes con $X_i \sim Exp(\lambda) = Ga(\alpha = 1, \beta = \lambda)$ entonces $\sum_{i=1}^{n}{X_i} \sim Ga(\alpha = n, \beta = \lambda)$.
+    \\
+    \newline
+    Si $X_1,...,X_n$ son variables aleatorias independientes con $X_i \sim Ga(\alpha_i, \beta)$ entonces $\sum_{i=1}^{n}{X_i} \sim Ga\left(\alpha = \sum_{i=1}^{n}{\alpha_i}, \beta \right)$.
+\end{itemize}
+
+\subsection{Distribución $\chi_{(n)}^2$}
+Diremos que $X \sim \chi_{(n)}^2$ si $X \sim Ga\left( \alpha = \frac{n}{2}, \beta = \frac{1}{2}\right)$.
+\begin{itemize}
+    \item $E(X) = n$ y $V(X) = 2n$.
+    \item \textit{Relación con otras distribuciones}:
+    \begin{enumerate}
+        \item $X \sim U(0,1)$, entonces $-2\log(X) \sim \chi_{(2)}^2$.
+        \item $X \sim N(\mu,\sigma)$, entonces $\left( \frac{X - \mu}{\sigma}\right)^2 \sim \chi_{(1)}^2$.
+        \item $X_1,...,X_m$ son variables aleatorias independientes con $X_i \sim \chi_{(n_i)}^2$, entonces
+        \begin{align*}
+            \sum_{i=1}^{m}{X_i} \sim \chi_{(n)}^2, \ \ n = \sum_{i=1}^{m}{n_i}
+        \end{align*}
+    \end{enumerate}
+\end{itemize}
+
+\subsection{Distribución Beta}
+Diremos que $X \sim Be(\alpha, \beta)$, $\alpha,\beta >0$, si su función de densidad es
+\begin{align*}
+    f(x) = \frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha)\Gamma(\beta)}x^{\alpha -1}(1-x)^{\beta -1} \cdot \text{I}_{(0,1)}(x)
+\end{align*}
+\begin{obs}
+$X \sim Be(\alpha = 1, \beta = 1) \equiv U(0,1)$.
+\end{obs}
+
+\subsection{Distribución Normal}
+Diremos que $X \sim N(\mu, \sigma)$, $\mu \in \mathbb{R}$, $\sigma >0$, si su función de densidad es
+\begin{align*}
+    f(x) = \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{1}{2} \frac{(x -\mu)^2}{\sigma^2}}, \ \ x \in \mathbb{R}
+\end{align*}
+
+\begin{itemize}
+    \item $E(X) = \mu$ y $V(X) = \sigma^2$.
+    \item La distribución es simétrica respecto de $\mu$.
+    \item $E(X) = Me = Mo = \mu$.
+    \item Distribución $N(0,1)$. Se suele denotar como $Z \sim N(0,1)$ y su función de densidad es
+    \begin{align*}
+        \phi(z) = \frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}z^2}, \ \ z \in \mathbb{R}
+    \end{align*}
+    Si $X \sim N(\mu,\sigma)$, entonces $Z = \frac{X - \mu}{\sigma} \sim N(0,1)$.
+    \item \textit{Propiedades}:
+    \begin{enumerate}
+        \item $X \sim N(\mu,\sigma)$, entonces $Y = a + bX \sim N(a + b\mu, |b|\sigma)$.
+        \item $X_1,,...,,X_n$ son variables aleatorias indepedientes con $X_i \sim N(\mu_i,\sigma_i)$, entonces
+        \begin{align*}
+            \sum_{i=1}^{n}{X_i} \sim N\left( \sum_{i=1}^{n}{\mu_i}, \sqrt{\sum_{i=1}^{n}{\sigma_i^2}} \right)
+        \end{align*}
+        \item $X_1,,...,,X_n$ son variables aleatorias indepedientes con $X_i \sim N(\mu,\sigma)$, entonces
+        \begin{align*}
+            \overline{X} = \frac{\sum_{i=1}^{n}{X_i}}{n} \sim N\left( \mu, \frac{\sigma}{\sqrt{n}} \right)
+        \end{align*}
+        \item Si $X \sim N(\mu,\sigma)$, entonces $Y = \left( \frac{X - \mu}{\sigma}\right)^2 \sim \chi_{(1)}^2$.
+    \end{enumerate}
+\end{itemize}
+
+\newpage
+\section{Cambio de variables}
+\begin{teo}[Teorema de cambio de variables]
+Sea X una variable aleatoria absolutamente continua con función de densidad $f_X$ concentrada en un intervalo $I \subseteq \mathbb{R}$. Sea $g: I \longrightarrow \mathbb{R}$ una función medible, derivable, con derivada continua y estrictamente monótona. Entonces $Y = g(x)$ es variable aleatoria absolutamente continua con función de densidad
+\begin{align*}
+    f_Y(y) = f_X(g^{-1}(y)) \cdot |(g^{-1}(y))'|.
+\end{align*}
+\end{teo}
+
+Si no se verifican las condiciones del teorema de cambio de variables, entonces calculamos la función de distribución de $Y$.
+
+\section{Vectores aleatorios}
+
+\begin{defi}
+Sea $\textbf{\textit{X}} = (X_1, X_2,..., X_n)$ un vectores de funciones definido en $(\Omega, \mathcal{A}, P)$ a $\mathbb{R}^n$, donde para cada $\omega \in \Omega$
+\begin{align*}
+    \textbf{\textit{X}}(\omega) = (X_1(\omega), X_2(\omega),..., X_n(\omega))
+\end{align*}
+Diremos que \textbf{\textit{X}} es un vector aleatorio o una variable aleatoria n-dimensional si, para cada vector de números reales, $\textbf{a} = (a_1,a_2,...,a_n)$, la imagen inversa del intervalo n-dimensional $I = \{ (x_1,...,x_n) : x_i \leq a_i, i = 1,2,...,n \}$ pertenece a la $\sigma$-álgebra $\mathcal{A}$, es decir,
+\begin{align*}
+    \textbf{\textit{X}}^{-1}(I) = \{ \omega \in \Omega : X_1(\omega) \leq a_1, ..., X_n(\omega) \leq a_n \} \in \mathcal{A}.
+\end{align*}
+\end{defi}
+
+\subsection{Función de distribución conjunta}
+
+Dado un vector aleatorio \textbf{\textit{X}}, se define la función de distribución conjunta como la función $F_{\textbf{\textit{X}}} : \mathbb{R}^n \longrightarrow [0,1]$ definida de la forma
+\begin{align*}
+    F_{\textbf{\textit{X}}}(x_1,x_2,...,x_n) = P(X_1 \leq x_1, X_2 \leq x_2, ..., X_n \leq x_n).
+\end{align*}
+
+\begin{teo}
+La función de distribución de probabilidad de un vector aleatorio satisface las siguientes propiedades:
+\begin{enumerate}
+    \item[(P1)] $F(+\infty,+\infty,...,+\infty) = 1$.
+    \item[(P2)] $F(x_1,...,x_{i-1},-\infty,x_{i+1},...,x_n) = 0$.
+    \item[(P3)] La función de distribución conjunta es creciente para cada componente.
+    \item[(P4)] La función de distribución conjunta es continua por la derecha para cada componente.
+\end{enumerate}
+\end{teo}
+
+\subsection{Distribución del máximo y del mínimo}
+
+Sea \textit{\textbf{X}} = $(X_1,...,X_n)$ un vector aleatorio con función de distribución $F_{\textit{\textbf{X}}}$ y sean las variables aleatorias $M = \max(X_1,...,X_n)$ y $N = \min(X_1,...,X_n)$ definidas de la forma
+\begin{align*}
+    M(\omega) &= \max(X_1(\omega),...,X_n(\omega))\\
+    N(\omega) &= \min(X_1(\omega),...,X_n(\omega))
+\end{align*}
+Tanto $M$ como $N$ son variables aleatorias y
+\begin{align*}
+    F_M(x) &= P[M \leq x] = P[X_1 \leq x,..., X_n \leq x] = F_X(x,...,x)\\
+    F_N(x) &= P[N \leq x] = 1 - P[N > x] = 1 - P[X_1 > x,...,X_n > x].
+\end{align*}

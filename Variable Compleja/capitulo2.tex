@@ -1,0 +1,586 @@
+\chapter{Teoría elemental de funciones holoformas}
+
+\section{Diferenciabilidad}
+
+\begin{defi}
+Sean $\Omega$ abierto de $\com$, $z_0 \in \Omega$ y $f: \Omega \longrightarrow \com$ una función. Decimos que $f$ es diferenciable en el sentido real en $z_0$, si existe una aplicación $\mathbb{R}$-lineal $T : \com \longrightarrow \com$ (denotada por $T \equiv d_{\mathbb{R}}fz_0$ y llamada diferencial real de f en $z_0$) tal que
+\begin{align*}
+    \lim_{z \to z_0}{\frac{f(z) - f(z_0) - T(z-z_0)}{|z-z_0|} = 0},
+\end{align*}
+o sea, tal que
+\begin{align*}
+    f(z) = f(z_0) + T(z-z_0) + R_{z_0}(z),
+\end{align*}
+siendo
+\begin{align*}
+    \lim_{z \to z_0}{\frac{R_{z_0}(z)}{|z-z_0|} = 0}.
+\end{align*}
+\end{defi}
+
+\begin{obs}
+Recordemos que si $f$ es diferenciable en $z_0$ en el sentido real y $u = \re(f)$ y $v = \im(f)$, entonces tenemos que $u$ y $v$ son derivables respecto $x$ e $y$ en $z_0$ y que
+\begin{align*}
+    D_{\mathbb{R}}f(z_0) = d_{\mathbb{R}}fz_0 = \begin{pmatrix}
+            \frac{\partial u}{\partial x}(z_0) & \frac{\partial u}{\partial y}(z_0) \\
+            \frac{\partial v}{\partial x}(z_0) & \frac{\partial v}{\partial y}(z_0)
+        \end{pmatrix} \equiv \begin{pmatrix}
+            u_x(z_0) & u_y(z_0) \\
+            v_x(z_0) & v_y(z_0)
+        \end{pmatrix}
+\end{align*}
+Recordemos además que el aspecto de las aplicaciones $\mathbb{R}$-lineales en forma compleja es de la forma: Dado $z = x + iy \in \com$, entonces
+\begin{align*}
+    D_{\mathbb{R}}f(z_0)(z) &= \begin{pmatrix}
+            u_x(z_0) & u_y(z_0) \\
+            v_x(z_0) & v_y(z_0)
+        \end{pmatrix} \begin{pmatrix}
+            x \\
+            y
+        \end{pmatrix} \\
+        &= (u_x(z_0)x + u_y(z_0)y) + i(v_x(z_0) + v_y(z_0)y) \\
+        &= \left( \frac{u_x(z_0) - iu_y(z_0) + iv_x(z_0) + iv_y(z_0)}{2} \right)z + \left( \frac{u_x(z_0) + iu_y(z_0) + iv_x(z_0) - iv_y(z_0)}{2} \right)\overline{z} \\
+        &= \alpha z + \beta \overline{z}
+\end{align*}
+Con todo esto, podemos decir que $f$ es diferenciable en el sentido real en $z_0$ si existen $\alpha, \beta \in \mathbb{R}$ tales que
+\begin{align*}
+    f(z) = f(z_0) + \alpha (z-z_0) + \beta \overline{(z - z_0)} + R_{z_0}(z),
+\end{align*}
+siendo
+\begin{align*}
+    \lim_{z \to z_0}{\frac{R_{z_0}(z)}{|z-z_0|} = 0}.
+\end{align*}
+\end{obs}
+
+\begin{defi}
+Sean $\Omega \in \com$, $z_0 \in \Omega$ y $f : \Omega \longrightarrow \com$ una función. Decimos que $f$ es diferenciable en $z_0$ en el sentido complejo si existe una aplicación $\com$-lineal $T : \com \longrightarrow \com$ tal que
+\begin{align*}
+    f(z) = f(z_0) + T(z - z_0) +\widetilde{R_{z_0}}(z)
+\end{align*}
+siendo $\lim_{z \to z_0}{\frac{\widetilde{R_{z_0}}(z)}{z - z_0} = 0}$.
+\end{defi}
+Equivalentemente, $f$ es diferenciable en $z_0$ en el sentido complejo si existe $\lambda \in \com$ tal que
+\begin{align*}
+    f(z) = f(z_0) + \lambda (z - z_0) + \widetilde{R_{z_0}}(z)
+\end{align*}
+siendo $\lim_{z \to z_0}{\frac{\widetilde{R_{z_0}}(z)}{z - z_0} = 0}$.
+
+\begin{prop}
+Sean $\Omega \in \com$, $z_0 \in \Omega$ y $f : \Omega \longrightarrow \com$ una función. Sea $u = \re(f)$ y $v = \im(f)$. Entonces $f$ es diferenciable en $z_0$ en el sentido complejo si y solo si $f$ es diferenciable en $z_0$ en el sentido real y se satisfacen las condiciones de Cauchy-Riemann
+\begin{align*}
+    (C-R) \left\{ \begin{array}{lcc}
+            u_x(z_0) = v_y(z_0) \\
+            u_y(z_0) = -v_x(z_0)\\
+             \end{array}
+        \right.
+\end{align*}
+\end{prop}
+
+\begin{defi}
+Sean $\Omega \in \com$, $z_0 \in \Omega$ y $f : \Omega \longrightarrow \com$ una función. Decimos que $f$ es derivable en $z_0$ (en sentido complejo) si existe
+\begin{align*}
+    \lim_{z \to z_0}{\frac{f(z) - f(z_0)}{z - z_0}}
+\end{align*}
+En tal caso, ha dicho límite le llamamos derivada (compleja) de $f$ en $z_0$, y lo denotamos $f'(z_0)$.
+\end{defi}
+
+\begin{prop}
+Sean $\Omega \in \com$, $z_0 \in \Omega$ y $f : \Omega \longrightarrow \com$ una función. Entonces $f$ es diferencialble en $z_0$ en sentido complejo si y solo si $f$ es derivable en $z_0$ (en sentido complejo). En ese caso caso, si $\lambda \in \com$ es el complejo que permite escribir
+\begin{align*}
+    f(z) = f(z_0) + \lambda (z - z_0) + \widetilde{R_{z_0}}(z)
+\end{align*}
+siendo $\lim_{z \to z_0}{\frac{\widetilde{R_{z_0}}(z)}{z - z_0} = 0}$, entonces $\lambda = f'(z_0)$.
+\end{prop}
+
+\begin{proof}
+$\Longrightarrow$ Supongamos que $f$ es diferenciable en sentido complejo en $z_0$, entonces existe $\lambda \in \com$ tal que
+\begin{align*}
+    f(z) = f(z_0) + \lambda (z - z_0) + \widetilde{R_{z_0}}(z)
+\end{align*}
+siendo $\lim_{z \to z_0}{\frac{\widetilde{R_{z_0}}(z)}{z - z_0} = 0}$ y se tiene que
+\begin{align*}
+    \lim_{z \to z_0}{\frac{f(z) - f(z_0)}{z -z_0}} = \lim_{z \to z_0}{\lambda + \frac{\widetilde{R_{z_0}}(z)}{z - z_0}} = \lambda
+\end{align*}
+$\Longleftarrow$ Supongamos que $f$ es derivable en $z_0$, o sea,
+\begin{align*}
+    f'(z_0) = \lim_{z \to z_0}{\frac{f(z) - f(z_0)}{z -z_0}}
+\end{align*}
+Entonces
+\begin{align*}
+    f(z) = f(z_0) + f'(z_0)(z - z_0) + \widetilde{R_{z_0}}(z)
+\end{align*}
+siendo $\widetilde{R_{z_0}}(z) =  f(z) - f(z_0) - f'(z_0)(z - z_0)$ y
+\begin{align*}
+    \lim_{z \to z_0}{\frac{\widetilde{R_{z_0}}(z)}{z -z_0}} = \lim_{z \to z_0}{\frac{f(z) - f(z_0)}{z - z_0}} - f'(z_0) = f'(z_0) - f'(z_0) = 0
+\end{align*}
+\end{proof}
+
+\subsubsection{Expresión de $f'(z_0)$}
+Supongamos que $f$ es derivable en $z_0 = x_0 + iy_0 \in \com$ y que $u = \re(f)$ y $v = \im(f)$. Entonces
+\begin{align*}
+    f'(z_0) = \lim_{z \to z_0}{\frac{f(z) - f(z_0)}{z -z_0}}
+\end{align*}
+Si nos acercamos a $z_0$ a lo largo de la recta horizontal $y = y_0$ y a lo largo de la recta vertical $x = x_0$, la derivada de $f$ en $z_0$ no cambia y sigue siendo $f'(z_0)$. Además
+\begin{align*}
+    f'(z_0) &= \lim_{x \to x_0}{\frac{f(x + iy_0) - f(x_0 + iy_0)}{(x + iy_0) - (x_0 + iy_0)}} = \lim_{x \to x_0}{\frac{f(x + iy_0) - f(x_0 + iy_0)}{x -x_0}} = \frac{\partial f}{\partial x}(z_0) \\
+    &= \lim_{x \to x_0}{\frac{(u(x+iy_0) - u(x_0 +iy_0)) + i(v(x + iy_0) - v(x_0 + iy_0))}{x-x_0}} = u_x(z_0) + iv_x(z_0) \\
+    & \underset{C-R}{=} u_x(z_0) - iu_y(z_0) \underset{C-R}{=} v_y(z_0) + iv_x(z_0)
+\end{align*}
+Y también
+\begin{align*}
+    f'(z_0) &= \lim_{y \to y_0}{\frac{f(x_0 + iy) - f(x_0 + iy_0)}{(x_0 + iy) - (x_0 + iy_0)}} = \lim_{x \to x_0}{\frac{f(x + iy_0) - f(x_0 + iy_0)}{i(y -y_0)}} = -i\frac{\partial f}{\partial y}(z_0) \\
+    &= \lim_{y \to y_0}{\frac{(u(x_0+iy) - u(x_0 +iy_0)) + i(v(x_0 + iy) - v(x_0 + iy_0))}{i(y-y_0)}} = v_y(z_0) - iu_y(z_0) \\
+    & \underset{C-R}{=} u_x(z_0) - iu_y(z_0) \underset{C-R}{=} v_y(z_0) + iv_x(z_0)
+\end{align*}
+En resumen
+\begin{align*}
+\boxed{
+    f'(z_0) = u_x(z_0) - iu_y(z_0) = v_y(z_0) + iv_x(z_0)
+}
+\end{align*}
+
+\begin{ejemplo}
+\begin{enumerate}
+    \item $f(z) = z$ es derivable en $\com$.
+    \item $f(z) = \overline{z} = x -iy$ ($z = x+iy$) no es derivable en ningún punto de $\com$.
+    \begin{proof}
+    \begin{align*}
+        \left. \begin{array}{lcc}
+            u(z) = \re f(z) = x \\
+            v(z) = \im f(z) = y\\
+             \end{array}
+        \right\} \Longrightarrow (u,v) \in \mathscr{C}^{\infty}
+    \end{align*}
+    ¿Se satisfacen las condiciones de Cauchy-Riemann?
+    \begin{align*}
+        u_x = 1 \not = -1 = v_y 
+    \end{align*}
+    Por tanto, $f$ no es derivable en ningún punto de $\com$.
+    \end{proof}
+    \item $f(z) = |z|^2 = z \overline{z} = x^2 + y^2$ ($z = x + iy$) solo es derivable en $0$.
+    \begin{proof}
+    \begin{align*}
+        \left. \begin{array}{lcc}
+            u(z) = \re f(z) = x^2 \\
+            v(z) = \im f(z) = y^2\\
+             \end{array}
+        \right\} \Longrightarrow (u,v) \in \mathscr{C}^{\infty}
+    \end{align*}
+    ¿Se satisfacen las condiciones de Cauchy-Riemann?
+    \begin{align*}
+        u_x = 2x = 0 = v_y \Longleftrightarrow x = 0\\
+        u_y = 0 = -2y = -v_x \Longleftrightarrow y = 0
+    \end{align*}
+    Por tanto, $f$ solo es derivable en $0$ y $f'(0) = 0$.
+    \end{proof}
+    \item $f(z) = z^2$ es derivable en todo $\com$ y $f'(z) = 2z$.
+    \begin{proof}
+    Dado $z_0 \in \com$
+    \begin{align*}
+        \lim_{z \to z_0}{\frac{f(z) - f(z_0)}{z - z_0}} = \lim_{z \to z_0}{\frac{z^2 - z_0^2}{z - z_0}} = \lim_{z \to z_0}{z + z_0} = 2z_0
+    \end{align*}
+    \end{proof}
+    \item $f(z) = e^z = e^x(\cos y + i\sen y)$ ($z = x + iy$) es derivable en $\com$ y $f'(z) = e^z$.
+    \begin{proof}
+    \begin{align*}
+        \left. \begin{array}{lcc}
+            u(z) = \re f(z) = e^x \cos y \\
+            v(z) = \im f(z) = e^x \sen y\\
+             \end{array}
+        \right\} \Longrightarrow (u,v) \in \mathscr{C}^{\infty}
+    \end{align*}
+    ¿Se satisfacen las condiciones de Cauchy-Riemann?
+    \begin{align*}
+        u_x = e^x \cos y = 0 = v_y\\
+        u_y = -e^x \sen y = -v_x
+    \end{align*}
+    Por tanto, $f$ es derivable en $\com$ y
+    \begin{align*}
+        f'(z) = u_x(z) + iv(z) = e^x \cos y + i e^x \sen y = e^x(\cos y + i\sen y) = e^z = f(z)
+    \end{align*}
+    \end{proof}
+    \item $f(z) = \logp(z)$, $\z \in \Omega = \com \backslash (-\infty,0]$ es derivable en $\Omega$ y $f'(z) = \frac{1}{z}$.
+    \begin{proof}
+    Tenemos que $f(\Omega) = \{ w \in \com : -\pi < \im(w) < \pi \}$ y $f$ es una biyección entre ambos conjuntos. Si $z_0 \in \Omega$ y $z \not = z_0$ y llamamos $w = \logp(z)$ y $w_0 = \logp(z_0)$ tenemos
+    \begin{align*}
+        \lim_{z \to z_0}{\frac{f(z) - f(z_0)}{z - z_0}} = \lim_{z \to z_0}{\frac{w - w_0}{e^{w} - e^{w_0}}} = \underset{w \not = w_0}{=} \lim_{z \to z_0}{\frac{1}{\frac{e^{w} - e^{w_0}}{w - w_0}}} = \lim_{z \to z_0}{\frac{1}{e^{w_0}}} = \frac{1}{z_0}
+    \end{align*}
+    \end{proof}
+\end{enumerate}
+\end{ejemplo}
+
+\begin{obs}
+Sean $\Omega \in \com$ abierto y $z_0 \in \Omega$.
+\begin{enumerate}
+    \item Si $f : \Omega \longrightarrow \com$ es derivable en $z_0$, entonces $f$ es continua en $z_0$.
+    \item Si $f: \Omega \longrightarrow \com$ es constante, $f$ es derivable y $f'(z) = 0$.
+    \item \textit{Aritmética de las funciones derivables}: Si $f,g: \Omega \longrightarrow \com$ son derivables en $z_0$
+    \begin{enumerate}
+        \item $f + g$ es derivable en $z_0$ y 
+        \begin{align*}
+            (f + g)'(z_0) = f'(z_0) + g'(z_0)
+        \end{align*}
+        \item $f \cdot g$ es derivable en $z_0$ y 
+        \begin{align*}
+            (f \cdot g)'(z_0) = f'(z_0)\cdot g(z_0) + f(z_0) \cdot g'(z_0)
+        \end{align*}
+        \item Si $g(z_0) \not = 0$, entonces $\frac{f}{g}$ es derivable en $z_0$ y 
+        \begin{align*}
+            \left(\frac{f}{g}\right)'(z_0) = \frac{f'(z_0)\cdot g(z_0) - f(z_0) \cdot g'(z_0)}{g(z_0)^2}
+        \end{align*}
+    \end{enumerate}
+    \item \textbf{Regla de la cadena}: Si $f : \Omega \longrightarrow \com$ con $f(\Omega) \subset \Omega'$ abierto de $\com$ y $g : \Omega' \longrightarrow \com$. Si $f$ es derivable en $z_0$ y $g$ es derivable en $g(z_0)$ entonces $g \circ f$ es derivable en $z_0$ y 
+    \begin{align*}
+        (g \circ f)'(z_0) = g'(f(z_0)) \cdot f'(z_0)
+    \end{align*}
+    \item Las funciones polinómicas son derivables en $\com$ y las funciones racionales son derivables donde el denominador no se anule.
+\end{enumerate}
+\end{obs}
+
+\section{Versiones del Teorema de la Función Inversa}
+
+\begin{teo}[Teorema de la función inversa en $\mathbb{R}^n$]
+Sean $\Omega \subset \mathbb{R}^n$ abierto, $x^0 \in \Omega$ y $f : \Omega \longrightarrow \mathbb{R}^n$ una función difrenciable en el sentido real en $\Omega$. Supongamos que $d_{\mathbb{R}^n}f$ es continua en $\Omega$ y que $|d_{\mathbb{R}^n}f_{x^0}| \not = 0$. Entonces $f$ es localmente invertible en $x^0$ y su inversa local es diferenciable en $f(x^0)$.
+\\
+\newline
+Más concretamente, existen $U_{x^0}$ entorno de $x^0$, $V_{f(x^0)}$ entorno de $f(x^0)$ y una aplicación $g : V_{f(x^0)} \longrightarrow U_{x^0}$ diferenciable en $V_{f(x^0)}$ con diferencial continua tal que
+\begin{enumerate}
+    \item $f|_{U_{x^0}}$ es inyectiva y $|d_{\mathbb{R}^n}f_{x^0}| \not = 0$.
+    \item $f(U_{x^0}) = V_{f(x^0)}$.
+    \item $g \circ f (x) = x$ para todo $x \in U_{x^0}$ y $f \circ g (y) = y$ para todo $y \in V_{f(x^0)}$.
+    \item $d_{\mathbb{R}^n}g_{f(x)} = d_{\mathbb{R}^n}f_{x}^{-1}$ para todo $x \in U_{x^0}$.
+\end{enumerate}
+\end{teo}
+
+\begin{obs}
+Si $f$ es una función compleja de variable compleja, con $u = \re(f)$ y $v = \im(f)$, derivable en $z_0 \in \com$, entonces la matriz jacobiana d $f$ en $z_0$ es
+\begin{align*}
+    D_{\mathbb{R}}f(z_0) = d_{\mathbb{R}}f_{z_0} = \begin{pmatrix}
+            u_x(z_0) & u_y(z_0) \\
+            v_x(z_0) & v_y(z_0)
+        \end{pmatrix} \underset{C-R}{=} \begin{pmatrix}
+            u_x(z_0) & u_y(z_0) \\
+            -u_y(z_0) & u_x(z_0)
+        \end{pmatrix}
+\end{align*}
+cuyo determinante es $|d_{\mathbb{R}}f_{z_0}| = u_x(z_0)^2 + u_y(z_0)^2$. Recordemos que $f'(z_0) = u_x(z_0) + iv_x(z_0) = u_x(z_0) - iu_y(z_0)$, por tanto, $|d_{\mathbb{R}}f_{z_0}| = |f'(z_0)|^2$.
+\\
+\newline
+Así, $d_{\mathbb{R}}f_{z_0}$ es invertible si y solo si $f'(z_0) \not = 0$, y en ese caso
+\begin{align*}
+    (d_{\mathbb{R}}f_{z_0})^{-1} = \frac{1}{|f'(z_0)|^2}\begin{pmatrix}
+            u_x(z_0) & -u_y(z_0) \\
+            u_y(z_0) & u_x(z_0)
+        \end{pmatrix}
+\end{align*}
+que sería la matriz jacobiana asociada a $d_{\mathbb{R}}f^{-1}_{f(z_0)}$ y podemos ver que cumple las condiciones de Cauchy-Riemann, o sea, 
+\begin{align*}
+    \left(f^{-1}\right)'(f(z_0)) &= \frac{1}{|f'(z_0)|^2}(u_x(z_0) + iv_y(z_0))  = \frac{1}{|f'(z_0)|^2}(u_x(z_0) - iu_x(z_0)) \\
+    &= \frac{1}{|f'(z_0)|^2}\overline{f'(z_0)} = \frac{\overline{f'(z_0)}}{f'(z_0)\overline{f'(z_0)}} = \frac{1}{f'(z_0)}
+\end{align*}
+\end{obs}
+
+\begin{teo}[Teorema de la función inversa. Versión 1]
+Sean $\Omega \subset \com$ abierto, $z_0 \in \Omega$ y $f: \Omega \longrightarrow \com$ derivable en $\Omega$. Supongamos que $f'$ es continua en $\Omega$ y que $f'(z_0) \not = 0$. Entonces $f$ es localmente invertible en $z_0$ y su inversa local es derivable en un entorno de $f(z_0)$.
+\\
+\newline
+Más concretamente, existen $U_{z_0}$ entorno de $z_0$, $V_{f(z_0)}$ entorno de $f(z_0)$ y una aplicación $g : V_{f(z_0)} \longrightarrow U_{z_0}$ derivable en $V_{f(z_0)}$ con derivada continua tal que
+\begin{enumerate}
+    \item $f|_{U_{z_0}}$ es inyectiva y $f'(z_0) = 0$.
+    \item $f(U_{z_0}) = V_{f(z_0)}$.
+    \item $g = f^{-1}$ en $V_{f(z_0)}$.
+    \item Para cada $w \in V_{f(z_0)}$ se tiene que
+    \begin{align*}
+        g'(w) = \frac{1}{f'(g(w))}
+    \end{align*}
+\end{enumerate}
+\end{teo}
+\begin{teo}[Teorema de la función inversa global]
+Sean $\Omega \subset \com$ abierto, $z_0 \in \Omega$ y $f: \Omega \longrightarrow \com$ inyectiva y derivable en $\Omega$. Supongamos que $f'$ es continua en $\Omega$ y que $f'(z) \not = 0$ para cada $z \in \Omega$. Entonces $f(\Omega)$ es abierto de $\com$ y $f^{-1} : f(\Omega) \longrightarrow \Omega$ es derivable en $f(\Omega)$ y para cada $w \in f(\Omega)$ se tiene que
+\begin{align*}
+    \left(f^{-1}\right)'(w) = \frac{1}{f'\left(f^{-1}(w)\right)}
+\end{align*}
+\end{teo}
+
+\begin{teo}[Teorema de la función inversa. Versión 3]
+Sean $U,V$ dos abiertos de $\com$ y sean $f: U \longrightarrow \com$ y $g: V \longrightarrow \com$ dos funciones continuas tales que $f \circ g (w) = w$ para todo $w \in V$ (g es rama de $f^{-1}$ en $V$). Supongamos que $f$ es derivable en $U$ con $f'(z) \not = 0$ para todo $z \in U$. Entonces $g$ es derivable en $V$ y para $w \in V$ se tiene que
+\begin{align*}
+    g'(w) = \frac{1}{f'(g(w))}
+\end{align*}
+\end{teo}
+
+\begin{proof}
+Sea $w_0 \in V$, para cada $w \not = w_0$ tenemos que $g(w) \not = g(w_0)$, y así
+\begin{align*}
+    \lim_{w \to w_0}{\frac{g(w) - g(w_0)}{w - w_0}} = \lim_{w \to w_0}{\frac{1}{\frac{w - w_0}{g(w) - g(w_0)}}} = \lim_{w \to w_0}{\frac{1}{\frac{f(g(w)) - f(g(w_0))}{g(w) - g(w_0)}}} = \frac{1}{f'(g(w))}
+\end{align*}
+\end{proof}
+
+\begin{ejemplo}
+Veamos algunos ejemplos de funciones derivables.
+\begin{enumerate}
+    \item Sean 
+    \begin{align*}
+        f : U = \{ z \in \com : -\pi < \im(z) < \pi\} \longrightarrow \com, \ f(z) = e^z \\
+        g : V = \com \backslash (-\infty,0] \longrightarrow U, \ g(w) = \logp(w)
+    \end{align*}
+    Tenemos que $f$ y $g$ son continuas y $f \circ g (w) = w$ para cada $w \in V$. Además, $f$ es derivable en $U$ y $f'(z) = e^z \not = 0$ para cada $z \in U$. Por el Teorema de la función inversa, se tiene que $g$ es derivable en $V$ y 
+    \begin{align*}
+        g'(w) = \frac{1}{f'(g(w))} = \frac{1}{f(g(w))} = \frac{1}{w}
+    \end{align*}
+    \item Fijado $\theta_0 \in \mathbb{R}$, la rama del $\arg(z)$ con valores en $[\theta_0,\theta_0 +2\pi)$ es $\varphi_{\theta_0}(z) = \arg(z) \cap [\theta_0,\theta_0 +2\pi)$. Entonces
+    \begin{align*}
+        g_{\theta_0} : V_{\theta_0} = \com \backslash \{ re^{i\theta_0} : r \ge 0 \} \longrightarrow U_{\theta_0} = \{ z \in \com : \theta_0 < \im(z) \theta_0 + 2\pi \}, \ g_{\theta_0}(w) = \log|w| + i\varphi_{\theta_0}(w)
+    \end{align*}
+    es rama continua del $\log(w)$ en $V_{\theta_0}$ y
+    \begin{align*}
+        f_{\theta_0} : U_{\theta_0} \longrightarrow \com, \ f_{\theta_0}(z) = e^z
+    \end{align*}
+    es continua en $U_{\theta_0}$, derivable en $U_{\theta_0}$, $f_{\theta_0}'(z) = e^z \not = 0$ para cada $z \in U_{\theta_0}$ y $f_{\theta_0} \circ g_{\theta_0}(w) = w$ para cada $w \in U_{\theta_0}$. Por el Teorema de la función inversa, $g_{\theta_0}$ es derivable en $V_{\theta_0}$ y
+    \begin{align*}
+        g_{\theta_0}'(w) = \frac{1}{f_{\theta_0}'(g_{\theta_0}(w))} = \frac{1}{w}
+    \end{align*}
+    \item Fijado $\theta_0 \in \mathbb{R}$. Consideramos
+    \begin{align*}
+        h_{\theta_0} : V_{\theta_0}  = \com \backslash \{re^{i\theta_0} : r\ge 0 \} \longrightarrow \widetilde{U_{\theta_0}} = \left\{re^{i\theta_0} : r > 0, \frac{\theta_0}{n} < \theta < \frac{\theta_0 + 2\pi}{n} \right\}
+    \end{align*}
+    dada por
+    \begin{align*}
+        h_{\theta_0}(w) = e^{\frac{1}{n}g_{\theta_0}(w)} = |w|^{\frac{1}{n}}e^{i\frac{\varphi_{\theta_0}(w)}{n}}
+    \end{align*}
+    define una rama continua de $\sqrt[n]{w}$ en $V_{\theta_0}$ con imagen en $\widetilde{U_{\theta_0}}$, ambos abiertos de $\com$.
+    \\
+    \newline
+    Además, $p(z) = z^n$ es continua, derivable en $\widetilde{U_{\theta_0}}$,  $p \circ h_{\theta_0}(w) = w$ para cada $2 \in V_{\theta_0}$ y $p(z) = nz^{n-1} \not = 0$ para cada $z \in \widetilde{U_{\theta_0}}$. Por el Teorema de la función inversa, $h_{\theta_0}$ es derivable en $V_{\theta_0}$ y 
+    \begin{align*}
+        h_{\theta_0}'(w) = \frac{1}{p'(h_{\theta_0}(w))} = \frac{1}{nh_{\theta_0}(w)^{n-1}}
+    \end{align*}
+\end{enumerate}
+\end{ejemplo}
+
+\begin{teo}
+Sea $\Omega \subset \comz$ abierto. Si $g$ es una rama del $\log(z)$ en $\Omega$ entonces $g$ es derivable en $\Omega$ y $g'(z) = \frac{1}{z}$ para cada $z \in \Omega$.
+\end{teo}
+
+\begin{teo}
+Sean $\Omega \subset \comz$ abierto y $n \in \mathbb{N}$, $n \ge 2$. Si $h$ es una rama de $\sqrt[n]{z}$ en $\Omega$ entonces $h$ es derivable en $\Omega$ y
+\begin{align*}
+    h'(z) = \frac{1}{nh(z)^{n-1}}
+\end{align*}
+para cada $z \in \Omega$
+\end{teo}
+
+\begin{teo}[Teorema Fundamental del Álgebra]
+Si $P$ es un polinomio no constante con coeficientes complejos, entonces $P(\com) = \com$.
+\end{teo}
+
+\begin{proof}
+\begin{enumerate}
+    \item Si $|z| \to \infty$ entonces $|P(z)| \to \infty$.
+    \item \underline{$P(\com)$ es abierto de $\com$}
+    \newline
+    Sea $w_0 \in \overline{P(\com)} \cap \com$. Tomamos una sucesión $\{w_n\} \subset P(\com)$ tal que $\{w_n\} \to w_0$. Sea para cada $n \in \mathbb{N}$, $z_n \in \com$ tal que $P(z_n) = w_n$. Como $\{P(z_n)\} \to w_0$, que es finito, entonces $\{z_n\}$ no tiene límite $\infty$, luego existe una subsucesión $\{z_{n_k}\}$ de $\{z_n\}$ que converge en $\com$, digamos a $z_0 \in \com$. Como $P$ es continua,
+    \begin{align*}
+        P(z_0) = P\left( \lim_{k}{z_{n_k}}\right) = \lim_{k}{P(Z_{n_k})} = \lim_{k}{w_{n_k}} = w_0
+    \end{align*}
+    lo que prueba que $w_0 = P(z_0) \in P(\com)$.
+    \item \underline{Si $z_0 \in \com$ y $P'(z_0) \not = 0$, entonces $P(z_0) \in Int(P(\com))$}
+    \newline
+    $P$ es derivable en $\com$ y $P'$ es continua en $\com$ (puesto que $P'$ es otro polinomio). El hecho de que $P'(z_0) \not = 0$, nos dice que $P$ es localmente invertible en $z_0$. O sea, existen entornos abiertos $U$ de $z_0$ y $V$ de $P(z_0)$ tales que $P(U) = V$ y de esta menra
+    \begin{align*}
+        P(z_0) \in V = P(U) \subset P(\com)
+    \end{align*}
+    \item \underline{$Int(P(\com)) \not = \emptyset$ y $\partial P(\com)$ contiene a lo sumo un número finito de puntos}
+    \newline
+    Si $z_0 \in \com$, entonces $P'(z_0) = 0$ o $P(z_0) \not = 0$. Obersvamos que solo un número (a lo sumo) finito verifica qque $P'(z_0) = 0$ (por ser $P'$ un polinomio). Así para todo $z \in \com$ tal que $P'(z_0) \not = 0$, se tiene que $P(z_0) \in Int(P(\com))$ (por lo probado en 3). Para el resto, una cantidad finita de puntos, allí donde $P'(z) = 0$ tenemos qque
+    \begin{align*}
+        P(z) = P(\com) \backslash Int(P(\com)) = \overline{P(\com)} \backslash Int(P(\com)) = \partial P(\com)
+    \end{align*}
+    \item \underline{$P(\com) = \com$}
+    \begin{align*}
+        \com &= P(\com) \dot\cup Ext(P(\com)) = \overline{P(\com)} \dot\cup Ext(P(\com)) \\
+        &= Int(P(\com)) \dot\cup \partial P(\com) \dot\cup Ext(P(\com))
+    \end{align*}
+    Luego
+    \begin{align*}
+        \com \backslash \partial P(\com) = Int(P(\com)) \dot\cup Ext(P(\com))
+    \end{align*}
+    Pero $\com \backslash \partial P(\com)$ es conexo y $Int(P(\com))$ y $Ext(P(\com))$ son abiertos disjuntos, por tanto, uno de ellos tiene que ser vacío. Sin embargo, sabemos que $Int(P(\com)) \not = \emptyset$, por tanto, $Ext(P(\com)) = \emptyset$, lo que prueba que $\com = P(\com)$.
+\end{enumerate}
+\end{proof}
+
+\section{Funciones holomorfas}
+
+\begin{defi}
+Sean $\Omega \subset \com$ abierto y $f: \Omega \longrightarrow \com$ una función.
+\begin{itemize}
+    \item Para $z_0 \in \Omega$, decimos que $f$ es holomorfa en $z_0$ si $f$ es derivable en un entorno de $z_0$ en $\Omega$.
+    \item Decimos que $f$ es holomorfa en $\Omega$ si lo es en todos los puntos de $\Omega$.
+    \item Para $K \subset \Omega$, decimos que $f$ es holomorfa en $K$ si $f$ es holomorfa en todos los puntos de $K$.
+\end{itemize}
+\end{defi}
+
+\begin{defi}
+Decimos que una función es entera si es holomorfa en $\com$.
+\end{defi}
+
+\begin{ejemplo}
+\begin{enumerate}
+    \item $f(z) = z^2$ es entera. De hecho, cualquier polinomio es una función entera y una función racional es holomorfa allí donde el denominador no se anule.
+    \item $f(z)= e^z$ es entera.
+    \item $f(z) = \logp(z)$ es holomorfa en $\com \backslash (-\infty,0]$.
+    \item $f(z) = e^{\frac{1}{n}\logp(z)}$ es  holomorfa en $\com \backslash (-\infty,0]$ (raíz $n$-ésima).
+    \item $f(z) = |z|^2$ solo es derivable en $0$, por tanto, no es holomorfa en ningún punto.
+\end{enumerate}
+\end{ejemplo}
+
+\begin{defi}
+Un dominio de $\com$ es un conjunto abierto y conexo de $\com$.
+\end{defi} 
+\begin{prop}
+Sea $D$ un dominio de $\com$ y sean $z_1,z_2 \in D$. Entonces existe una poligonal en $D$, de origen $z_1$, extremo $z_2$ y lados paralelos a los ejes. En particular, $D$ es arcoconexo.
+\end{prop}
+
+\begin{teo}
+Sean $D$ un dominio de $\com$ y $f: D \longrightarrow \com$ holomorfa.
+\begin{enumerate}
+    \item Si $f'(z) = 0$ para todo $z \in D$, entonces $f$ es constante en $D$.
+    \item Si $f(z) \in \mathbb{R}$ para todo $z \in D$, entonces $f$ es constante en $D$.
+    \item Si $\re f(z) = 0$ para todo $z \in D$, entonces $f$ es constante en $D$.
+    \item Si $|f(z)|$ es constante en $D$, entonces $f$ es constante en $D$.
+\end{enumerate}
+\end{teo}
+
+\begin{proof}
+Sean $u = \re f$ y $v = \im f$. Como $f$ es holomorfa en $D$, entonces $f$ es derivable en $D$ y se satisface
+\begin{align*}
+    (C-R) \left\{ \begin{array}{lcc}
+            u_x = v_y \\
+            u_y = -v_x\\
+             \end{array}
+        \right.
+\end{align*}
+\begin{enumerate}
+    \item $f'(z) = u_x + iv_x = 0$, entonces $v_y = u_y = 0$ en $D$, por tanto, $u$ y $v$ son constantes en cada segmento de $D$ (por el Teorema del Valor Medio). Entonces fijado $z_0 \in D$, todo $z \in D$ puede ser unido por una poligonal a $z_0$ en $D$ de lados paralelos a los ejes, lo que nos dice que el valor de $f$ en $z_0$ se propaga para cualquier $z \in D$, lo que significa que $f$ es constante en $D$.
+    \item Análogo.
+    \item Análogo.
+    \item Supongamos que $|f(z)| = c$ para todo $z \in D$.
+    \begin{itemize}
+        \item Si $c = 0$, entonces $f(z) = 0$ en $D$.
+        \item Si $c \not = 0$, entonces $|f|^2 = u^2 + v^2 = c^2$ en $D$. Obtenemos que
+        \begin{align*}
+            \left\{ \begin{array}{lcc}
+            2u \cdot u_x + 2v \cdot v_x = 0\\
+            2u \cdot u_y + 2v \cdot v_y = 0\\
+             \end{array}
+        \right. & \Longleftrightarrow \left\{ \begin{array}{lcc}
+            u \cdot u_x + v \cdot v_x = 0\\
+            u \cdot u_y + v \cdot v_y = 0\\
+             \end{array}
+        \right. \Longleftrightarrow \left\{ \begin{array}{lcc}
+            u \cdot u_x - v \cdot u_y = 0\\
+            v \cdot v_x + u \cdot u_y  = 0\\
+             \end{array}
+        \right. \\ & \Longleftrightarrow \begin{pmatrix}
+            u & -v \\
+            v & u
+        \end{pmatrix} \begin{pmatrix}
+            u_x \\
+            v_y
+        \end{pmatrix} = \begin{pmatrix}
+            0 \\
+            0
+        \end{pmatrix}
+        \end{align*}
+        Como
+        \begin{align*}
+            \begin{vmatrix}
+            u & -v \\
+            v & u
+        \end{vmatrix} = u^2 + v^2 = c^2 \not = 0 
+        \end{align*}
+        Se tiene que dicho sistema de ecuaciones tiene solución única y su única solución es $u_x = u_y = 0$, por tanto (Cauchy-Riemann), $v_x = v_y = 0$, lo que nos dice que $f$ es constante en $D$.
+    \end{itemize}
+\end{enumerate}
+\end{proof}
+
+\section{Funciones armónicas}
+
+Supongamos que $f$ es holomorfa en un abierto $\Omega \subseteq \com$ y que $u = \re f$ y $v = \im f$. Entonces se satisface
+\begin{align*}
+    (C-R) \left\{ \begin{array}{lcc}
+            u_x = v_y \\
+            u_y = -v_x\\
+             \end{array}
+        \right.
+\end{align*}
+Supongamos que $u,v \in \mathscr{C}^2(\Omega)$ (sentido real). Entonces
+\begin{align*}
+    &\Delta u = u_{xx} + u_{yy} = v_{yx} - v_{xy} = 0 \\
+    &\Delta v = v_{xx} + v_{yy} = -u_{yx} + u_{xy} = 0 
+\end{align*}
+Por tanto, $u$ y $v$ son funciones armónicas en $\Omega$.
+
+\begin{defi}
+Sea $\Omega$ un abierto de $\com$. Decimos que $u : \Omega \longrightarrow \mathbb{R}$ es armónica en $\Omega$ si
+\begin{itemize}
+    \item $u \in \mathscr{C}^2(\Omega)$.
+    \item $\Delta u = u_{xx} + u_{yy} = 0$ en $\Omega$. 
+\end{itemize}
+\end{defi}
+
+\begin{ejemplo}
+\begin{enumerate}
+    \item Si $f$ es holomorfa en $\Omega$ abierto de $\com$, entonces $\re(f)$ e $\im(f)$ son armónicas.
+    \item $\log|z|$ es armónica en $\comz$.
+    \item $\log|z|$ no es la parte real de ninguna función holomorfa en $\comz$.
+    \begin{proof}
+    Por reducción al absurdo, supongamos que existe $f : \comz \longrightarrow \com$ holomorfa tal que $\re(f) = \log|z|$ en $\Omega$.
+    \newline
+    Recordemos que $g(z) = \logp(z)$ es holomorfa en $\com \backslash (-\infty,0]$ y no admite extensión continua a ningún conjunto mayor.
+    \newline
+    Observamos que $f$ es holomorfa en $\com \backslash (-\infty,0]$ y que $g - f$ es holomorfa en $\com \backslash (-\infty,0]$ y $\re(g-f) = \log|z| - \log|z| = 0$ para todo $z \in \com \backslash (-\infty,0]$. Por tanto, existe $c \in \com$ tal que $g = f + c$ en $\com \backslash (-\infty,0]$. Esto nos dice que $g$ admite una extensión holomorfa en $\comz$ porque $f+c$ la admite, llegando a contradicción.
+    \end{proof}
+    \item $\argp(z)$ es armónica en $\com \backslash (-\infty,0]$, puesto que $\argp(z) = \im (\log(z))$ en $\com \backslash (-\infty,0]$.
+    \item Si $u$ es armónica en $\Omega$ abierto, en general, $u$ no es la parte real de una función holomorfa en $\Omega$ (punto 3).
+\end{enumerate}
+\end{ejemplo}
+
+\begin{defi}
+Sea $D$ un dominio de $\com$, decimos que $D$ es simplemente conexo si $\com^* \backslash D$ es conexo.
+\end{defi}
+
+\begin{defi}
+Sea $\Omega \subset \com$ abierto y $u : \Omega \longrightarrow \mathbb{R}$ una función armónica. Decimos que $v : \Omega \longrightarrow \mathbb{R}$ es conjugada armónica de $u$ en $\Omega$ si $f = u + iv$ es holomorfa en $\Omega$.
+\end{defi}
+
+\begin{ejemplo}
+\begin{enumerate}
+    \item Si $v$ es conjugada armónica de $u$ en $\Omega$, entonces $v$ es armónica en $\Omega$ (por ser la parte imaginaria de una función holomorfa).
+    \item Si $v$ es conjugada armónica de $u$ en $\Omega$, entonces $v + c$, $c \in \mathbb{R}$, es también conjugada armónica de $u$ en $\Omega$.
+    \item Si $v_1$ y $v_2$ son conjugadas armónicas de $u$ en un dominio $D$, entonces existe $c \in \mathbb{R}$ tal que $v_2 = v_1 + c$ en $D$.
+    \begin{proof}
+    Tenemos que $f_1 = u +iv_1$ y $f_2 = u + iv_2$ son holomorfas en $D$, por tanto, $f_2 - f_1$ es holomorfa en $D$ y $\re(f_2 - f_1) = 0$, por tanto, $f_2 - f_1$ es constante en $D$.
+    \end{proof}
+    \item Si $v$ es conjugada armónica de $u$ en $\Omega$ abierto de $\com$ y si $\widetilde{\Omega} \subset \Omega$ es abierto, entonces $v$ es conjugada armónica de $u$ en $\widetilde{\Omega}$.
+    \item Si $D$ es un dominio de $\comz$, entonces $\log|z|$ es armónica en $D$. Además, existe conjugada armónica de $\log|z|$ en $D$ si y solo si existe rama del $\log(z)$ en $D$.
+    \begin{proof}
+    $\boxed{\Longleftarrow}$ Observamos que $\log(z) = \log|z| + i\varphi(z)$, $z \in D$, siendo $\varphi(z)$ una rama del $\arg(z)$ en $D$, luego $\varphi(z)$ es conjugada armónica del $\log|z|$ en $D$.
+    \\
+    \newline
+    $\boxed{\Longrightarrow}$ Supongamos que $\log|z|$ tiene conjugada armónica en $D$. Fijamos $z_0 \in D$ y escogemos una conjugada armónica de $v(z) = \log|z|$ en $D$ tal que $v(z_0) \in \arg(z_0)$. Veamos entonces que $f(z) = \log|z| + iv(z)$, $z \in D$, es una rama del $\log(z)$ en $D$.
+    \begin{itemize}
+        \item Es claro que $f$ es continua en $D$, de hecho, es holomorfa en $D$.
+        \item ¿$e^{f(z)} = z$ en $D$? Definimos $F(z) = ze^{-f(z)}$, $z \in D$. Es claro que $F$ es holomorfa en $D$ y para cada $z \in D$
+        \begin{align*}
+            |F(z)| = |z|\left| e^{-f(z)}\right| = |z|e^{\re(-f(z))} = |z|e^{-\log|z|} = |z|\frac{1}{|z|} = 1
+        \end{align*}
+        Luego, $F$ es constante en $D$, ¿qúe constante es?
+        \begin{align*}
+            F(Z_0) = z_0e^{-f(z_0)} = z_0e^{-(\log|z_0| + iv(z_0))} = z_0 \frac{1}{z_0} = 1
+        \end{align*}
+        Por tanto $F(z) = 1 \Longleftrightarrow e^{f(z)} = z$ en $D$.
+        \end{itemize}
+    \end{proof}
+    \item Si $u$ es armónica en un abierto $\Omega$, entonces $f = u_x - iv_y$ es holomorfa en $\Omega$.
+\end{enumerate}
+\end{ejemplo}

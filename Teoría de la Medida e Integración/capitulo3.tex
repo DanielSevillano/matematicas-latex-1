@@ -1,0 +1,1683 @@
+\chapter{Integración de funciones medibles}
+
+El objetivo de este tema es construir la integral asociada a una medida. Recordamos las ideas intuitivas introducidas en el primer tema. Éstas nos llevan a la conclusión de que, dado un espacio de medida $(X, \mathcal{M}, \mu)$, las funciones $f: X \longrightarrow \mathbb{R}$ susceptibles de ser integradas son aquellas que verifican que $f^{-1}([a, b))$ es un conjunto medible, es decir $f^{-1}([a, b)) \in \mathcal{M}$, cualquiera que sea el intervalo acotado $[a, b)$. Dicho de otro modo, las funciones con las que vamos a trabajar son las funciones medibles que han sido estudiadas en el capítulo anterior.
+\\
+\newline
+Para construir la integral, procederemos de acuerdo con los pasos siguientes: en primer lugar, definimos la integral de una función simple, medible, no negativa, luego la de una función medible no negativa arbitraria y después la de las funciones medibles reales y complejas. 
+
+\section{Integración de funciones simples, medibles y no negativas}
+
+\subsection{La integral sobre el conjunto completo $X$}
+
+\begin{defi}
+Sean $(X, \mathcal{M}, \mu)$ un espacio de medida y $\varphi: X \longrightarrow [0, +\infty)$ una función simple y medible de expresión canónica
+\begin{align*}
+    \varphi = \sum_{i=1}^{n}{a_i \mathcal{X}_{A_i}}.
+\end{align*}
+Definimos la integral de $\varphi$ en $X$ (o sobre $X$) respecto de la medida $\mu$, y la denotamos por $\int_{X}{\varphi} \ d\mu$, mediante
+\begin{align*}
+    \int_{X}{\varphi \ d\mu} := \sum_{i=1}^{n}{a_i\mu(A_i)}.
+\end{align*}
+Observemos que, como $\varphi \ge 0$, se tiene que $\int_{X}{\varphi} \ d\mu \ge 0$ y que $\int_{X}{\varphi} \ d\mu$ puede ser igual a $+\infty$. 
+\\
+\newline
+Para esta integral, usaremos también otras notaciones como las siguientes:
+\begin{align*}
+    \int_{X}{\varphi}, \ \ \ \int_{X}{\varphi(x) \ d\mu(x)}, \ \ \ \int{\varphi}.
+\end{align*}
+\end{defi}
+Como la definición de la integral depende de la expresión canónica, en estos primeros momentos tenemos que trabajar exclusivamente con la expresión canónica de $\varphi$. Para que el desarrollo sea más sencillo, vamos a establecer una proposición.
+
+\begin{prop}
+Sea $\varphi: X \longrightarrow [0,+\infty)$ una función simple y medible de expresión
+\begin{align*}
+    \varphi = \sum_{j=1}^{l}{d_j \mathcal{X}_{D_j}},
+\end{align*}
+donde $d_j \ge 0$, $d_j \in \mathbb{R}$, $D_j \in \mathcal{M}$, $D_i \cap D_j = \emptyset$ si $i \not = j$ y $\bigcup_{j=1}^{l}{D_j} = X$. Entonces
+\begin{align*}
+    \int_{X}{\varphi \ d\mu} = \sum_{j=1}^{l}{d_j \mu(D_j)}.
+\end{align*}
+\end{prop}
+
+\begin{proof}
+Sea
+\begin{align*}
+    \varphi = \sum_{i=1}^{n}{a_i \mathcal{X}_A}
+\end{align*}
+la expresión canónica de la función simple. Entonces
+\begin{align*}
+    \int_{X}{\varphi \ d\mu} = \sum_{i=1}^{n}{a_i\mu(A_i)}.
+\end{align*}
+Como $X = \bigcup_{j=1}^{l}{D_j}$, entonces $A_i = \bigcup_{j=1}^{l}{(A_i \cap D_j)}$ y, por ser la unión disjunta
+\begin{align*}
+    \int_{X}{\varphi \ d\mu} &= \sum_{i=1}^{n}{a_i\mu(A_i)} = \sum_{i=1}^{n}{a_i\mu \left(\bigcup_{j=1}^{l}{A_i \cap D_j}\right)} = \sum_{i=1}^{n}{ \left( a_i \sum_{j=1}^{l}{\mu(A_i \cap D_j)}\right)}\\ 
+    &= \sum_{i=1}^{n}{\sum_{j=1}^{l}{a_i\mu(A_i \cap D_j)}}
+\end{align*}
+Es claro que $a_i \mu(A_i \cap D_j) = d_j \mu(A_i \cap D_j)$. Entonces,
+\begin{align*}
+    \int_{X}{\varphi \ d\mu} &= \sum_{i=1}^{n}{\sum_{j=1}^{l}{a_i\mu(A_i \cap D_j)}} = \sum_{i=1}^{n}{\sum_{j=1}^{l}{d_j\mu(A_i \cap D_j)}} = \sum_{j=1}^{n}{ \left( d_j\sum_{i=1}^{n}{\mu(A_i \cap D_j)} \right)}\\
+    &= \sum_{j=1}^{l}{d_j \mu(D_j)}.
+\end{align*}
+donde en la penútlima igualdad hemos usado que los conjuntos $A_i$ forman un partición de $X$.
+\end{proof}
+
+\begin{obs}
+\begin{enumerate}
+    \item[(1)] Si $\varphi = c \mathcal{X}_E$, $c \ge 0$, $E \in \mathcal{M}$,
+    \begin{align*}
+        \int_{X}{\varphi \ d\mu} = c\mu(E).
+    \end{align*}
+    En efecto, $\varphi = c \mathcal{X}_E + 0 \mathcal{X}_{X \backslash E}$ y, en consecuencia, por la proposición anterior
+    \begin{align*}
+        \int_{X}{\varphi \ d\mu} = c\mu(E) + 0\mu(X \backslash E) = c\mu(E).
+    \end{align*}
+    \item[(2)] Si $\varphi = 0 \ (= 0 \mathcal{X}_X)$
+    \begin{align*}
+        \int_{X}{\varphi \ d\mu} = 0.
+    \end{align*}
+    \item[(3)] Si $\varphi = 1 \ (= \mathcal{X}_X)$
+    \begin{align*}
+        \int_{X}{\varphi \ d\mu} = \mu(X).
+    \end{align*}
+\end{enumerate}
+\end{obs}
+\begin{prop}
+Sean $\varphi, \psi : X \longrightarrow [0,+\infty)$ simples y medibles. Entonces $\varphi + \psi$ es una función simple, medible y
+\begin{align*}
+    \int_{X}{(\varphi + \psi) \ d\mu} = \int_{X}{\varphi \ d\mu} + \int_{X}{\psi \ d\mu}.
+\end{align*}
+\end{prop}
+
+\begin{proof}
+Consideremos las expresiones canónicas de $\varphi$ y $\psi$,
+\begin{align*}
+    \varphi = \sum_{i=1}^{n}{a_i \mathcal{X}_{A_i}}, \ \ \ \psi = \sum_{j=1}^{s}{b_i \mathcal{X}_{B_j}}.
+\end{align*}
+Por lo tanto, si $i \not = j$ tenemos que $a_i \not = a_j$, $b_i \not = b_j$, $A_i \cap A_j = \emptyset$, $B_i \cap B_j = \emptyset$. Además $\bigcup_{i=1}^{n}{A_i} = X$ y $\bigcup_{j=1}^{s}{B_j} = X$. Así,
+\begin{align*}
+    X = \bigcup_{i=1}^{n}{A_i \cap X} = \bigcup_{i=1}^{n}{A_i \cap \left( \bigcup_{j=1}^{s}{B_j} \right)} = \bigcup_{i=1}^{n}{ \left( \bigcup_{j=1}^{s}{A_i \cap B_j} \right)} = \bigcup_{i,j=1}^{n,s}{A_i \cap B_j},
+\end{align*}
+y esta unión es disjunta (es decir, los conjuntos $\{ A_i \cap B_j\}_{i,j=1}^{n,s}$ son disjuntos dos a dos). Claramente,
+\begin{align*}
+    \varphi + \psi = \sum_{i,j=1}^{n,s}{(a_i + b_j)\mathcal{X}_{A_i \cap B_j}}.
+\end{align*}
+Por lo tanto, por la proposición anterior
+\begin{align*}
+    \int_{X}{\varphi + \psi \ d\mu} &= \sum_{i,j = 1}^{n,s}{(a_i + b_j)\mu(A_i \cap B_j)}\\
+    &= \sum_{i=1}^{n}{\sum_{j=1}^{s}{(a_i\mu(A_i \cap B_j) + b_j\mu(A_i \cap B_j))}}\\
+    &=\sum_{i=1}^{n}{ \left( a_i \sum_{j=1}^{s}{\mu(A_i \cap B_j)} \right)} + \sum_{j=1}^{s}{ \left( b_j\sum_{i=1}^{n}{\mu(A_i \cap B_j)} \right)}\\
+    &= \sum_{i=1}^{n}{a_i\mu(A_i)} + \sum_{j=1}^{s}{b_j\mu(B_j)} = \int_{X}{\varphi \ d\mu} + \int_{X}{\psi \ d\mu}.
+\end{align*}
+donde, en las útlimas igualdades, hemos usado que $\mu$ es una medida.
+\end{proof}
+
+\begin{obs}
+\begin{enumerate}
+    \item[(1)] Es obvio que, por inducción, la anterior igualdad se extiende a cualquier número finito de funciones simples medibles.
+    \item[(2)] Supongamos que $E_1, ..., E_n \in \mathcal{M}$ y $c_1, ...,c_n \ge 0$, $c_i \in \mathbb{R}$, entonces la función $\varphi = \sum_{i=1}^{n}{c_i \mathcal{X}_{E_i}}$ es simple aunque, probablemente, la expresión anterior no sea la canónica ni los conjuntos $E_i$ sean una partición de $X$. Sin embargo, se tiene que
+    \begin{align*}
+        \int_{X}{\varphi \ d\mu} = \int_{X}{\left(  \sum_{i=1}^{n}{c_i \mathcal{X}_{E_i} \ d\mu}\right)} = \sum_{i=1}^{n}{c_i\mu(E_i)}.
+    \end{align*}
+    En efecto, utilizando la aditividad que acabamos de demostrar y que sabemos que $\int_{c}{\mathcal{X}_E}} = c\mu(E)$, obtenemos
+    \begin{align*}
+        \int_{X}{\left(  \sum_{i=1}^{n}{c_i \mathcal{X}_{E_i}}\right) d\mu} = \sum_{i=1}^{n}{\left( \int_{X}{c_i \mathcal{X}_{E_i} \ d\mu} \right)} = \sum_{i=1}^{n}{c_i\mu(E_i)}.
+    \end{align*}
+\end{enumerate}
+\end{obs}
+\begin{prop}
+Si $\varphi: X \longrightarrow [0,+\infty)$ es medible y simple y $c \ge 0$ $(c \in \mathbb{R})$, entonces $c\varphi$ es simple, medible y
+\begin{align*}
+    \int_{X}{c\varphi \ d\mu} = c\int_{X}{\varphi \ d\mu}.
+\end{align*}
+\end{prop}
+
+\begin{proof}
+Sea $\varphi = \sum_{i=1}^{n}{c_i \mathcal{X}_{E_i}}$. Entonces
+\begin{align*}
+    \int_{X}{c\varphi \ d\mu} &= \int_{X}{\left( \sum_{i=1}^{n}{cc_i \mathcal{X}_{E_i}} \right) d\mu} = \sum_{i=1}^{n}{\left( \int_{X}{cc_i \mathcal{X}_{E_I} \ d\mu} \right)} =  \sum_{i=1}^{n}{cc_i\mu(E_i)} = \\
+    &= c \left( \sum_{i=1}^{n}{c_i\mu(E_i)}\right) = c \int_{X}{\varphi \ d\mu}.
+\end{align*}
+\end{proof}
+
+\begin{prop}
+Sean $\varphi$ y $\psi$ dos funciones simples medibles no negativas tales que $\varphi(x) \leq \psi(x)$ para todo $x \in X$ (lo escribiremos $\varphi \leq \psi$). Entonces,
+\begin{align*}
+    \int_{X}{\varphi \ d\mu} \leq \int_{X}{\psi \ d\mu}.
+\end{align*}
+\end{prop}
+
+\begin{proof}
+Es claro que $\psi = \varphi + (\psi - \varphi)$. Las tres funciones son simples medibles y no negativas. Entonces $\in_{X}{(\psi - \varphi) \ d\mu} \ge 0$ y, por lo tanto,
+\begin{align*}
+    \int_{X}{\psi \ d\mu} = \int_{X}{\varphi \ d\mu} + \int_{X}{(\psi - \varphi) \ d\mu} \ge \int_{X}{\varphi \ d\mu}.
+\end{align*}
+\end{proof}
+
+\subsection{Integral sobre un conjunto}
+
+\begin{defi}
+Sean $(X, \mathcal{M}, \mu)$ un espacio de medida, $A \in \mathcal{M}$ y $\varphi: X \longrightarrow [0, +\infty)$ una función simple y medible. Definimos la integral de $\varphi$ en $A$ (o sobre $A$) respecto de la medida $\mu$, y la denotamos por $\int_{A}{\varphi \ d\mu}$, mediante
+\begin{align*}
+    \int_{A}{\varphi \ d\mu} := \int_{X}{\varphi \mathcal{X}_A \ d\mu}.
+\end{align*}
+Para esta integral, usaremos también otras notaciones como las siguientes:
+\begin{align*}
+    \int_{A}{\varphi}, \ \ \ \int_{A}{\varphi(x) \ d\mu(x)}.
+\end{align*}
+Cuando $A = X$, la integral que se acaba de definir coincide con la que ya teníamos.
+\end{defi}
+\\
+\newline
+Claramente, si $\varphi = \sum_{i=1}^{n}{a_i \mathcal{X}_{A_i}}$, entonces
+\begin{align*}
+    \varphi \mathcal{X}_A = \sum_{i=1}^{n}{a_i \mathcal{X}_{A_i} \mathcal{X}_A} = \sum_{i=1}^{n}{a_i \mathcal{X}_{A_i \cap A}}.
+\end{align*}
+Por lo tanto
+\begin{align*}
+    \int_{A}{\varphi \ d\mu} = \int_{X}{\left( \sum_{i=1}^{n}{a_i \mathcal{X}_{A_i \cap A}} \right) d\mu} =  \sum_{i=1}^{n}{\left( \int_{X}{a_i \mathcal{X}_{A_i \cap A} d\mu}\right)} =  \sum_{i=1}^{n}{a_i\mu(A_i\cap A)}.
+\end{align*}
+
+\begin{obs}
+\label{obs:vacio}
+Si $\mu(A) = 0$ entonces $\int_{A}{\varphi \ d\mu} = 0$. En particular $\int_{\emptyset}{\varphi \ d\mu}  =0$.
+\end{obs}
+
+\begin{prop}
+Sean $\varphi, \psi: X \longrightarrow [0,+\infty)$ funciones medibles y simples, $c \ge 0$ y $A \in \mathcal{M}$.
+\begin{enumerate}
+    \item[(a)] $\int_{A}{(\varphi + \psi) \ d\mu} = \int_{A}{\varphi \ d\mu} + \int_{A}{\psi \ d\mu}$.
+    \item[(b)] $\int_{A}{c\varphi \ d\mu} = c\int_{A}{\varphi \ d\mu}$.
+    \item[(c)] Si $\varphi(x) \leq \psi(x)$ para todo $x \in A$ entonces $º\int_{A}{\varphi \ d\mu} \leq \int_{A}{\psi \ d\mu}$.
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+\begin{enumerate}
+    \item[(a)]
+    \begin{align*}
+        \int_{A}{(\varphi + \psi) \ d\mu} &= \int_{X}{(\varphi + \psi)\mathcal{X}_{A} \ d\mu} = \int_{X}{(\varphi \mathcal{X}_{A} + \psi \mathcal{X}_{A})\ \ d\mu} =  \int_{X}{\varphi \mathcal{X}_{A} \ d\mu} + \int_{X}{\psi \mathcal{X}_{A} \ d\mu}\\
+        &= \int_{A}{\varphi \ d\mu} + \int_{A}{\psi \ d\mu}.
+    \end{align*}
+    \item[(b)]
+    \begin{align*}
+        \int_{A}{c\varphi \ d\mu} = \int_{X}{c\varphi \mathcal{X}_{A} \ d\mu} = c\int_{X}{\varphi \mathcal{X}_{A} \ d\mu} = c\int_{A}{c\varphi \ d\mu}.
+    \end{align*}
+    \item[(c)] Si $\varhi(x) \leq \psi(x)$ para todo $x \in A$, entonces $\varphi(x) \mathcal{X}_{A} \leq \psi(x) \mathcal{X}_{A}$ para todo $x \in X$. Por tanto:
+    \begin{align*}
+        \int_{A}{\varphi \ d\mu} = \int_{X}{\varphi \mathcal{X}_A \ d\mu} \leq \int_{X}{\psi \mathcal{X}_A \ d\mu} = \int_{A}{\psi \ d\mu}.
+    \end{align*}
+\end{enumerate}
+\end{proof}
+
+\begin{prop}
+Sea $\varphi: X \longrightarrow [0, +\infty)$ una función simple, medible y no negativa. Definamos
+\begin{align*}
+    \nu: \mathcal{M} \longrightarrow [0,+\infty) \ como \ \nu(A) = \int_{A}{\varphi \ d\mu}.
+\end{align*}
+Entonces, $\nu$ es una medida sobre $\mathcal{M}$.
+\end{prop}
+
+\begin{proof}
+En primer lugar observemos que $\nu$ está bien definida (téngase en cuenta que $\int_{A}{\varphi \ d\mu}$ puede tomar el valor $+\infty$). Para demostrar que $\nu$ es una medida, vemos que la primera propiedad
+\begin{align*}
+    \nu(\emptyset) = 0
+\end{align*}
+ya está demostrada (observación \ref{obs:vacio}). Para la aditividad numerable, consideramos la expresión canónica de $\varphi$, $\varphi = \sum_{i=1}^{n}{a_i \mathcal{X}_A}$. Sea $\{ E_j \}_{j=1}^{\infty}$ una sucesión disjunta de elementos de $\mathcal{M}$. Entonces, aplicando la definición
+\begin{align*}
+    \nu\left( \bigcup_{j=1}^{\infty}{E_j}\right) &= \int_{\bigcup_{j=1}^{\infty}{E_j}}{\varphi \ d\mu} = \sum_{i=1}^{n}{a_i\mu\left( A_i \cap \left( \bigcup_{j=1}^{\infty}{E_j} \right) \right)} \\
+    &= \sum_{i=1}^{n}{a_i\mu\left( \bigcup_{j=1}^{\infty}{(A_i \cap E_j)}\right)} \underset{\{ A_i \cap E_j\}_{j=1}^{\infty} \text{ es disjunta } \forall i \in \mathbb{N}.}{=} \sum_{i=1}^{n}{a_i\left( \sum_{j=1}^{\infty}{\mu(A_i \cap E_j)}\right)}\\
+    &= \sum_{j=1}^{\infty}{\left( \sum_{i=1}^{n}{a_i\mu(A_i \cap E_j)} \right)} = \sum_{j=1}^{\infty}{\int_{E_j}{\varphi \ d\mu}} = \sum_{j=1}^{\infty}{\nu(E_j)}.
+\end{align*}
+\end{proof}
+\\
+\newline
+Las siguientes propiedades de la integral de una función simple son consecuencias inmediatas de que $\nu$ es una medida. Sean $(X, \mathcal{M}, \mu)$ un espacio de medida y $\varphi: X \longrightarrow [0,+\infty)$ una función simple y medible.
+\begin{enumerate}
+    \item[1.] Si $A,B \in \mathcal{M}$ son tales que $A \subset B$, entonces $\int_{A}{\varphi \ d\mu} \leq \int_{B}{\varphi \ d\mu}$.
+    \item[2.] Si $\{ A_i \}_{i=1}^{\infty}$ es una sucesión expansiva (o creciente) de elementos de $\mathcal{M}$, es decir, $A_n \subset A_{n+1}$ para todo $n$, entonces
+    \begin{align*}
+        \int_{\cup_{n=1}^{\infty}{A_n}}{\varphi \ d\mu} = \lim_{n \to \infty}{\int_{A_n}{\varphi \ d\mu}}.
+    \end{align*}
+    \item[3.] Si $\{ A_i \}_{i=1}^{\infty}$ es una sucesión contractiva (o decreciente) de elementos de $\mathcal{M}$, es decir $A_n \supset A_{n+1}$ para todo $n$, y $\int_{A_1}{\varphi \ d\mu} < +\infty$ entonces
+    \begin{align*}
+        \int_{\cap_{n=1}^{\infty}{A_n}}{\varphi \ d\mu} = \lim_{n \to \infty}{\int_{A_n}{\varphi \ d\mu}}.
+    \end{align*}
+\end{enumerate}
+
+\section{Integración de funciones medibles no negativas}
+
+\begin{defi}
+Sean $(X, \mathcal{M}, \mu)$ un espacio de medida y $f: X \longrightarrow [0,+\infty]$ una función medible, definimos la integral (de Lebesgue) de $f$ en $X$ respecto de $\mu$ como
+\begin{align*}
+    \int_{X}{f \ d\mu} = \sup{H_f}
+\end{align*}
+donde
+\begin{align*}
+    H_f = \left\{ \int_{X}{\varphi \ d\mu} : 0 \leq \varphi(x) \leq f(x) \ para \ todo \ x \in X, \ \varphi \ simple \ y \ medible \right\}
+\end{align*}
+y $\int_{X}{\varphi \ d\mu}$ es la integral de $\varphi$ introducida en la sección anterior.
+\end{defi}
+
+\begin{obs}
+\begin{enumerate}
+    \item[(1)] Para funciones simples $\psi$ medibles y no negativas tenemos dos definiciones de $\int_{X}{\psi \ d\mu}$. Por las propiedades de monotonía de la integral de funciones simple, es claro que ambas definiciones coinciden.
+    \item[(2)] Como en el caso de funciones simples, usaremos otras notaciones para la integral:
+    \begin{align*}
+        \int_{X}{f \ d\mu}, \ \int_{X}{f(x) \ d\mu(x)}, \ \int{f}
+    \end{align*}
+\end{enumerate}
+\end{obs}
+
+De la definición se siguen de manera inmediata las propiedades siguientes (las funciones están definidas en $X$, son medibles y no negativas y los conjuntos son medibles):
+\begin{enumerate}
+    \item[1.] Si $f \leq g$ en $X$ (es decir, $f(x) \leq g(x)$ para todo $x \in X$), entonces
+    \begin{align*}
+        \int_{X}{f \ d\mu} \leq \int_{X}{g \ d\mu}.
+    \end{align*}
+    \item[2.] Si $c \ge 0$, $c \in \mathbb{R}$, entonces:
+    \begin{align*}
+        \int_{X}{cf \ d\mu} = c\int_{X}{f \ d\mu}.
+    \end{align*}
+\end{enumerate}
+
+\begin{teo}[Teorema de la convergencia desde abajo]
+Sea  $\{ f_n \}_{n=1}^{\infty}$ una sucesión de funciones medibles, $f_n: X \longrightarrow [0,+\infty]$. Supongamos que para todo $x \in X$ existe $\lim_{n \to \infty}{f_n(x)}$ y sea $f(x) = \lim_{n \to \infty}{f_n(x)}$. Si $f_n(x) \leq f(x)$ para todo $n \in \mathbb{N}$ y para todo $x \in X$, entonces se tiene que $f$ es medible y que
+\begin{align*}
+    \int_{X}{f \ d\mu} = \lim_{n \to \infty}{\int_{X}{f_n \ d\mu}},
+\end{align*}
+o, en otras palabras,
+\begin{align*}
+    \int_{X}{\left( \lim_{n \to \infty}{f_n}\right) \ d\mu} = \lim_{n \to \infty}{\int_{X}{f_n \ d\mu}}.
+\end{align*}
+\end{teo}
+
+\begin{proof}
+Observamos, en primer lugar, que $f$ es medible por ser el límite puntual de fuciones medibles. Obviamente, $f$ es no negativa. Por la propiedad inmediata de la integral, obtenemos 
+\begin{align*}
+    \int_{X}{f_n} \leq \int_{X}{f} \ \ \ \ para \ todo \ n.
+\end{align*}
+Si $\int_{X}{f} = 0$ la tesis del teorema es obvia. En consecuencia, supongamos que $\int_{X}{f} > 0$. Para ver que
+\begin{align*}
+    \int_{X}{f \ d\mu} = \lim_{n \to \infty}{\int_{X}{f_n}},
+\end{align*}
+es suficiente demostrar que para todo número positivo $\alpha < \int_{X}{f}$ existe un natural $N$ tal que $\alpha < \int_{X}{f_n}$ para todo $n \ge N$.
+\\
+\newline
+Para probar esta útlima afirmación, observemos que, por la definición de integral de $f$, existe una función $\varphi$ simple medible, no negativaa tal que
+\begin{align*}
+    \alpha < \int_{X}{\varphi} \ \ y \ \ \varphi(x) \leq  f(x) \ cualquiera \ que \ seaa \ x \in X.
+\end{align*}
+Sea $s \in (0,1)$ tal que $\alpha < s\int_{X}{\varphi}$. Definamos para cada $n \in \mathbb{N}$,
+\begin{align*}
+    E_n = \{ x \in X : s\varphi(x) \leq f_k(x) \ para \ todo \ k \ge n \} = \bigcap_{k=n}^{\infty}{\{ x \in X : s\varphi(x) \leq f_k(x)\}}.
+\end{align*}
+Los conjuntos $E_n$ son medibles, pues son intersección numerable de conjuntos medibles y además forman una sucesión expansiva, es decir, $E_n \subset E_{n+1}$. Veamos que $X = \cup_{n=1}^{\infty}{E_n}$. Sea $x \in X$.
+\begin{enumerate}
+    \item[1.] Si $f(x) = 0$ entonces $\varphi(x) = 0$ y $f_n(x) = 0$ puesto que $\varphi \leq f$ y $f_n \leq f$ en $X$. Luego $x \in E_n$ para todo $n$.
+    \item[2.] Si $f(x) = +\infty$, como $s\varphi(x) \in \mathbb{R}$ y $f(x) = \lim_{n \to \infty}{f_n(x)}$, existe $n_0$ tal que $f_n(x) > s\varphi(x)$ para todo $n \ge n_0$. Luego $x \in E_n$ para todo $n \ge n_0$.
+    \item[3.] Si $0 < f(x) < +\infty$ se tiene que
+    \begin{align*}
+        s\varphi(x) \leq sf(x) < f(x) = \lim_{n \to \infty}{f_n(x)}.
+    \end{align*}
+    Luego, existe $n_0$ tal que $f_n(x) > s\varphi(x)$ para todo $n \ge n_0$. Por lo tanto, $x \in E_n$ para todo $n \ge n_0$.
+\end{enumerate}
+Una vez sabemos que $E_n \subset E_{n+1}$ y que $X = \cup_{n=1}^{\infty}{E_n}$, podemos aplicar las propiedades de la integral de funciones simples y obtenemos
+\begin{align*}
+    \alpha < s\int_{X}{\varphi} = s\int_{\cup_{n=1}^{\infty}{E_n}}{\varphi} = s\lim_{n \to \infty}{\int_{E_n}{\varphi}} = \lim_{n \to \infty}{\int_{E_n}{s\varphi}}.
+\end{align*}
+Por lo tanto, existe un natural $N$ tal que para todo $n \ge N$ se tiene que
+\begin{align*}
+    \alpha < \int_{E_n}{s\varphi} = \int_{X}{s\varphi\mathcal{X}_{E_n}}.
+\end{align*}
+Por la definición de los conjuntos $E_n$, vemos que $s\varphi(x) \leq f_n(x)$ para todo $x \in E_n$, de donde,
+\begin{align*}
+    s\varphi\mathcal{X}_{E_n} \leq f_n\mathcal{X}_{E_n} \leq f_n.
+\end{align*}
+Luego
+\begin{align*}
+    \int_{E_n}{s\varphi} \leq \int_{X}{f_n}.
+\end{align*}
+Uinendo las desigualdades anteriores, llegamos a que existe $N$ tal que para todo $n \ge N$
+\begin{align*}
+    \alpha \leq \int_{X}{f_n},
+\end{align*}
+como queríamos demostrar.
+\end{proof}
+
+\begin{cor}[Teorema de la convergencia monótona]
+Sea  $\{ f_n \}_{n=1}^{\infty}$ una sucesión de funciones medibles, $f_n: X \longrightarrow [0,+\infty]$. Supongamos que $\{ f_n \}_{n=1}^{\infty}$  es creciente en $X$, es decir, para todo $n \in \mathbb{N}$, $f_n(x) \leq f_{n+1}(x)$ para todo $x \in $. Entonces, si $f = \lim_{n \to \infty}$ se tiene que
+\begin{align*}
+    \int_{X}{f \ d\mu} = \lim_{n \to \infty}{\int_{X}{f_n \ d\mu}},
+\end{align*}
+o, en otras palabras,
+\begin{align*}
+    \int_{X}{\left( \lim_{n \to \infty}{f_n}\right) \ d\mu} = \lim_{n \to \infty}{\int_{X}{f_n \ d\mu}}.
+\end{align*}
+\end{cor}
+
+\begin{proof}
+La demostración es inmediata porque, al ser la sucesión monótona creciente, se tiene que $f_n(x) \leq f(x)$ para todo $n$ y todo $x \in X$.
+\end{proof}
+
+\begin{obs}
+El corolario no es válido si la sucesión es monótona decreciente. Por ejemplo, consideremos $\mathbb{R}$ con la medida de Lebesgue y la sucesión $f_n = \frac{1}{n}\mathcal{X}_{(0,+\infty)}$. Es claro que $f_n \ge f_{n+1} \ge 0$, sin embargo:
+\begin{align*}
+    \lim_{n \to \infty}{\int_{\mathbb{R}}{f_n} = +\infty} \ \ \ y \ \     \int_{\mathbb{R}}{\lim_{n \to \infty}{f_n}} = \int_{\mathbb{R}}{0} = 0. 
+\end{align*}
+\end{obs}
+
+\begin{obs}
+ Dada $f$ medible y no negativa, se sabe que existe una sucesión creciente de funciones simples, medibles y no negativas tal que $\lim_{n \to \infty}{\varphi_n(x) = f(x)}$ para todo $x \in X$. En consecuencia, por el teorema de la convergencia monótona, podemos permutrar el límite con la integral, de manera que:
+ \begin{align*}
+     \int_{X}{f \ d\mu} = \int_{X}{\lim_{n \to \infty}{\varphi_n} \ d\mu} = \lim_{n \to \infty}{\int_{X}{\varphi_n}}.
+ \end{align*}
+ \end{obs}
+ \begin{prop}[Aditividad de la integral]
+ Sean $f,g: X \longrightarrow [0,+\infty]$ dos funciones medibles. Entonces
+ \begin{align*}
+     \int_{X}{(f+g) \ d\mu} = \int_{X}{f \ d\mu} + \int_{X}{g \ d\mu}.
+ \end{align*}
+ \end{prop}
+ 
+ \begin{proof}
+ Como $f$ y $g$ son medibles, existen dos sucesiones $\varphi_n$ y $\psi_n$ de funciones simples y medibles tales que $\varphi_n \uparrow f$ y $\psiN \uparrow g$ (es decir, $\varphi_n$ y $\psi_n$ son sucesiones monótonas crecientes con límites $f$ y $g$, respectivamente). Entonces, la sucesión suma $(\varphi_n + \psi_n) \uparrow (f+g)$ en $X$. Por lo tanto, por el teorema de convergencia monótona y la aditividad de la integral para funciones simples,
+ \begin{align*}
+     \int_{X}{(f+g) \ d\mu} = \lim_{n \to \infty}{\int_{X}{(\varphi_n + \psi_n)} \ d\mu} = \lim_{n \to \infty}{\int_{X}{\varphi_n} \ d\mu} + \lim_{n \to \infty}{\int_{X}{\psi_n} \ d\mu}.
+\end{align*}
+ De nuevo, por el teorema de la convergencia monótona,
+\begin{align*}
+     \lim_{n \to \infty}{\int_{X}{\varphi_n} \ d\mu} + \lim_{n \to \infty}{\int_{X}{\psi_n} \ d\mu} = \int_{X}{f \ d\mu} + \int_{X}{g \ d\mu}.
+\end{align*}
+\end{proof}
+
+\begin{obs}
+La propiedad de aditividad anterior se extiende por inducción a un número finito de sumandos.
+\end{obs}
+
+\begin{prop}
+\label{prop:limin}
+Sea $f_n: X \to [0,+\infty]$ una sucesión de funciones medibles. Entonces $\sum_{n=1}^{\infty}{f_n}$ es medible, no negativa y
+\begin{align*}
+    \int_{X} \left( {\sum_{n=1}^{\infty}{f_n}} \right) d\mu = \sum_{n=1}^{\infty}{\left( \int_{X}{f_n \ d\mu} \right)}.
+\end{align*}
+donde $\sum_{n=1}^{\infty}{f_n}$ denota la función $\left(\sum_{n=1}^{\infty}{f_n}\right)(x) = \sum_{n=1}^{\infty}{(f_n(x))} = \lim_{N \to \infty}{\sum_{n=1}^{N}{f_n(x)}}$.
+\end{prop}
+
+\begin{proof}
+Por definición, $\sum_{n=1}^{\infty}{f_n} = \lim_{N \to \infty}{F_N}$, donde $F_N = \sum_{n=1}^{N} = f_n$. Es obvio que $\sum_{n=1}^{\infty}{f_n}$ es medible, no negativa y $0 \leq F_N \uparrow \sum_{n=1}^{\infty}{f_n}$ (es decir, $F_n$ es creciente y converge a $\sum_{n=1}^{\infty}{f_n}$). Por el teorema de la convergencia monótona y la aditividad de la integral,
+\begin{align*}
+    \int_{X}{\left( \sum_{n=1}^{\infty}{f_n }\right) d\mu} &= \int_{X}{\lim_{N \to \infty}{F_n} \ d \mu} = \lim_{N \to \infty}{\int_{X}{F_n \ d\mu}} = \lim_{N \to \infty}{\int_{X}{\left( \sum_{n=1}^{N}{f_n} \right) d\mu}}\\
+    &= \lim_{N \to \infty}{\sum_{n=1}^{N}{\left( \int_{X}{f_n \ d\mu}\right)}} = \sum_{n=1}^{\infty}{f_n \ d\mu}.
+\end{align*}
+\end{proof}
+\\
+\newline
+Debemos destacar aquí que la última propiedad permite intercambiar sumas infinitas con integrales sin preocuparnos de nada, sólo teniendo en cuenta que las funciones han de ser medibles y no negativas.
+
+\subsection{La integral sobre subconjuntos medibles}
+
+\begin{defi}
+Sean $(X, \mathcal{M}, \mu)$ un espacio de medida y $f: X \longrightarrow [0,+\infty]$ una función medible. Sea $E \in \mathcal{M}$. Definimos la integral (de Lebesgue) de $f$ en $E$ respecto de $\mu$ como
+\begin{align*}
+    \int_{E}{f \ d\mu} := \int_{X}{f \mathcal{X}_E \ d\mu}.
+\end{align*}
+\end{defi}
+
+\begin{obs}
+\begin{enumerate}
+    \item[1.] La integral de $f$ sobre subconjuntos medibles $E$ tiene las mismas propiedades que la integral sobre el conjunto completo $X$.
+    \item[2.] Si $A \subset B$, $A,B \in \mathcal{M}$, entonces $\int_{A}{f \ d\mu} \leq \int_{B}{f \ d\mu}$ (ya que $f\mathcal{X}_A \leq f\mathcal{X}_B$).
+    \item[3.] Si $A \subset B$, $A,B \in \mathcal{M}$, entonces $\int_{A}{f \ d\mu} = \int_{B}{f \mathcal{X}_A \ d\mu}$ (ya que $f\mathcal{X}_A = f\mathcal{X}_{A \cap B} = f\mathcal{X}_A\mathcal{X}_B$).
+\end{enumerate}
+\end{obs}
+\begin{prop}
+Sea $f: X \longrightarrow [0,+\infty]$ una función medible. Si $\mu(E) = 0$ entonces $\int_{E}{f \ d\mu} = 0$.
+\end{prop}
+
+\begin{proof}
+Sea $\varphi$ una función simple, medible, no negativa y tal que $\varphi \leq f\mathcal{X}_E$. Es claro que $\varphi = \varphi\mathcal{X}_E$ u, como $\mu(E) = 0$,
+\begin{align*}
+    \int_{X}{\varphi \ d\mu} = \int_{X}{\varphi\mathcal{X}_E \ d\mu} = \int_{E}{\varphi \ d\mu} = 0.
+\end{align*}
+Luego, por la definición de $\int_{X}{f \mathcal{X}_E \ d\mu}$, tenemos que $\int_{X}{f\mathcal{X}_E \ d\mu} = 0$ y concluimos que
+\begin{align*}
+    \int_{E}{f \ d\mu} = \int_{X}{f\mathcal{X}_E \ d\mu} = 0.
+\end{align*}
+\end{proof}
+
+\begin{prop}
+Sea $f: X \longrightarrow [0,+\infty]$ una función medible. Sea $\{ E_j\}_{j=1}^{\infty}$ una colección numerable de conjuntos disjuntos medibles contenidos en $X$. Sea $A = \cup_{j=1}^{\infty}{E_j}$. Entonces
+\begin{align*}
+    \int_{A}{f \ d\mu} = \sum_{j=1}^{\infty}{\left( \int_{E_j}{f \ d\mu}\right)}.
+\end{align*}
+\end{prop}
+
+\begin{proof}
+Por las propiedades de la colección numerable, tenemos que $f\mathcal{X}_A = \sum_{j=1}^{\infty}{f\mathcal{X}_{E_j}}$. Aplicando la proposición anterior,
+\begin{align*}
+    \int_{A}{f \ d\mu} &= \int_{X}{f\mathcal{X}_A \ d\mu} = \int_{X}{f\mathcal{X}_{\cup_{j=1}^{\infty}{E_j}} \ d\mu} = \int_{x}{\left(f\sum_{j=1}^{\infty}{\mathcal{X}_{E_j}}\right) \ d\mu} = \int_{x}{\left(\sum_{j=1}^{\infty}{f\mathcal{X}_{E_j}}\right) \ d\mu}\\
+    &= \sum_{j=1}^{\infty}{\left( \int_{X}{f\mathcal{X}_{E_j} \ d\mu}\right)} = \sum_{j=1}^{\infty}{\left( \int_{E_j}{f \ d\mu}\right)}.
+\end{align*}
+\end{proof}
+
+\begin{cor}
+Sea $f:X \longrightarrow [0,+\infty]$ una función medible. Definimos $\nu: \mathcal{M} \longrightarrow [0,+\infty]$ mediante
+\begin{align*}
+    \nu(A) = \int_{A}{f \ d\mu}.
+\end{align*}
+Entonces $\nu$ es una medida sobre la misma $\sigma$-álgebra $\mathcal{M}$.
+\end{cor}
+
+\begin{proof}
+En primer lugar, es claro que $\nu(A)$ está bien definida. Es claro que $\nu(\emptyset) = 0$ ya que $\mu(\emptyset) = 0$. Por último, la aditividad numerable de $\nu$ está contenida en el corolario anteior.
+\end{proof}
+
+\begin{obs}
+La medida del corolario anterior tiene una propiedades importante, si $\mu(A) = 0$ entonces $\nu(A) = 0$. En general, la propiedad recíproca no es cierta.
+\end{obs}
+\begin{defi}
+Sean $\mu, \nu: \mathcal{M} \longrightarrow [0,+\infty]$ dos medidas. Diremos que $\nu$ es absolutamente continua respecto de $\mu$ si se tiene que $\mu(A) = 0 \Rightarrow \nu(A) = 0$. En tal caso, escribiremos $\nu << \mu$.
+\end{defi}
+
+\begin{teo}[Teorema de Radon-Nikodym]
+Si $\mu, \nu: \mathcal{M} \longrightarrow [0,+\infty]$, donde $\mathcal{M}$ es una $\sigma$-álgebra finita y $\nu << \mu$ entonces existe f medible no negativa tal que $\nu(A) = \int_{A}{f \ d\mu}$ para todo $A \in \mathcal{M}$. Si existe otra g medible no negativa tal que $\nu(A) = \int_{A}{f \ d\mu}$  para todo $A \in \mathcal{M}$, entonces $f = g$ en casi todo punto.
+ \end{teo}
+ 
+ \begin{obs}
+ Sea $f: X \longrightarrow [0,+\infty]$ una función medible.
+ \begin{enumerate}
+     \item[1.] Si $\{A_n\}_{n=1}^{\infty}$ es una sucesión expansiva de elementos de $\mathcal{M}$, es decir, $A_n \subset A_{n+1}$ para todo $n$, entonces
+     \begin{align*}
+         \int_{\cup_{n=1}^{\infty}{A_n}}{f \ d\mu} = \lim_{n \to \infty}{\int_{A_n}{f \ d\mu}}.
+     \end{align*}
+     \item[2.] Si $\{A_n\}_{n=1}^{\infty}$ es una sucesión contractiva de elementos de $\mathcal{M}$, es decir, $A_n \supset A_{n+1}$ para todo $n$, y $\int_{A_1}{f \ d\mu} < +\infty$ entonces
+     \begin{align*}
+         \int_{\cap_{n=1}^{\infty}{A_n}}{f \ d\mu} = \lim_{n \to \infty}{\int_{A_n}{f \ d\mu}}.
+     \end{align*}
+ \end{enumerate}
+ \end{obs}
+Una propiedad interesante de la integral es que $\int_{X}{f}$ puede ser nula aunque $f$ no sea nula en $X$. Por ejemplo, basta tomar $f = \mathcal{X}_F$, con $F \not = \emptyset$ y $\mu(F) = 0$. De esa forma, $f = \mathcal{X}_F$ no es identicamente nula pero su integral es cero.
+\begin{prop}
+Sea $f: X \longrightarrow [0,+\infty]$ una función medible. Entonces, $\int_{X}{f \ d\mu} = 0$ si y solo si $f = 0$ en casi todo punto de X.
+\end{prop}
+
+\begin{proof}
+$\Longrightarrow$ Supongamos que $\int_{X}{f \ d\mu} = 0$. Sea $A = \{x \in X : f(x) \not = 0\}$. Como $f$ es medible, $A$ es un conjunto medible. Nos queda probar que $\mu(A) = 0$. Observemos que, por ser $f$ no negativa, $A = \{x \in X : f(x) > 0\}$. Si consideramos los conjuntos $A_n = \left\{x \in X : f(x) > \frac{1}{n}\right\}$ vemos que son medibles y que
+\begin{align*}
+    A = \bigcup_{n=1}^{\infty}{A_n} \ \ \ y \ \ \ A_n \subset A_{n+1}.
+\end{align*}
+Nótese que si $x \in X$ entonces  $\mathcal{X}_{A_n}(x) \leq nf(x)$. Luego
+\begin{align*}
+    \mu(A_n) = \int_{X}{\mathcal{X}_{A_n} \ d\mu} \leq \int_{X}{nf \ d\mu} = n\int_{X}{f \ d\mu} = 0.
+\end{align*}
+Por lo tanto, $\mu(A_n) = 0$ para todo $n$, y consecuentemente, $\mu(A) = \lim_{n \to \infty}{\mu(A_n)} = 0$.
+\\
+\newline
+$\Longleftarrow$ Supongamos ahora que $f = 0$ en casi todo punto de $X$, esto es, $\mu(A) = 0$, donde $A = \{ x \in X : f(x) \not = 0\}$. Entonces,
+\begin{align*}
+    \int_{X}{f \ d\mu} = \int_{A}{f \ d\mu} + \int_{X \backslash A}{f \ d\mu} \underset{\mu(A) = 0}{=} \int_{X \backslash A}{f \ d\mu} = \int_{X}{f\mathcal{X}_{X \backslash A} \ d\mu} = 0,
+\end{align*}
+donde la útlima igualdad se sigue porque $f \mathcal{X}_{X \backslash A}$ es idénticamente nula puesto que $f(x) = 0$ para todo $x \in X \backslash A$.
+\end{proof}
+
+\begin{prop}
+Sean $f,g: X \longrightarrow [0,+\infty]$ dos funciones medibles tales que $f = g$ en casi todo punto de X. Entonces, $\int_{X}{f \ d\mu} = \int_{X}{g \ d\mu}$.
+\end{prop}
+
+\begin{proof}
+Sea $A = \{ x \in X : f(x) \not = g(x)\}$. Por la hipótesis, $\mu(A) = 0$. Por otra parte $f\mathcal{X}_{X \backslash A} = g\mathcal{X}_{X \backslash A}$. Luego, por la aditividad de la integral,
+\begin{align*}
+    \int_{X}{f \ d\mu}  = \int_{A}{f \ d\mu} + \int_{X \backslash A}{f \ d\mu} &\underset{\mu(A) = 0}{=} \int_{X \backslash A}{f \ d\mu}\\
+    &= \int_{X \backslash A}{g \ d\mu} \underset{\mu(A) = 0}{=} \int_{A}{g \ d\mu} + \int_{X \backslash A}{g \ d\mu} = \int_{X}{g \ d\mu}.
+\end{align*}
+\end{proof}
+\\
+\newline
+El hecho de que los conjuntos de medida cero no jueguen ningún papel cuando estamos integrando, permite debilitar las hipótesis de los teoremas. Vamos a mostrar en el siguiente teorema cómo se pueden debilitar las hipótesis del teorema de la convergencia monótona. Ésto mismo se podrá hacer con otros teoremas que iremos estableciendo y demostrando, aunque, en general, no presentaremos las versiones de dichos resultados con las hipótesis debilitadas.
+
+\begin{teo}[Segunda versión del teorema de la convergencia monótona]
+Sea $\{f_n\}_{n=1}^{\infty}$ una sucesión de funciones medibles, $f_n: X \longrightarrow [0,+\infty]$. Supongamos que
+\begin{enumerate}
+    \item[1.] Para todo $n \in \mathbb{N}$, $f_n(x) \leq f_{n+1}(x)$ para casi todo $x \in X$.
+    \item[2.] $f: X \longrightarrow [0,+\infty]$ es una función medible y $f(x) = \lim_{n \to \infty}{f_n(x)}$ para casi todo $x \in X$.
+\end{enumerate}
+Entonces,
+\begin{align*}
+    \int_{X}{f \ d\mu} = \lim_{n \to \infty}{\int_{X}{f \ d\mu}},
+\end{align*}
+o, en otras palabras,
+\begin{align*}
+    \int_{X}{\left( \lim_{n \to \infty}{f_n}\right) \ d\mu} = \lim_{n \to \infty}{\int_{X}{f_n \ d\mu}}.
+\end{align*}
+\end{teo}
+
+\begin{proof}
+Sean, para cada $n \in \mathbb{N}$, $F_n = \{ x \in X : f_n(x) > f_{n+1}(x) \}$. Sea $F = \{ x \in X : f_n(x) \ no \ converge \ hacia \ f(x)\}$. Por la hipótesis, $\mu(F_n) = 0 = \mu(F)$. Luego, si $A = F \cup (\cup_{n=1}^{\infty}{F_n})$, tenemos que $\mu(A) = 0$. Observemos que la función $f \mathcal{X}_{X \backslash A}$ y la sucesión $f_n \mathcal{X}_{X \backslash A}$ cumplen las hipótesis del teorema de la convergencia monótona. Aplicando este teorema y que $\mu(A) = 0$ obtenemos
+\begin{align*}
+    \int_{X}{f \ d\mu} &= \int_{A}{f \ d\mu} + \int_{X \backslash A}{f \ d\mu} \underset{\mu(A) = 0}{=} \int_{X \backslash A}{f \ d\mu} = \int_{X}{f \mathcal{X}_{X \backslash A} \ d\mu} = \int_{X}{\lim_{n \to \infty}{f_n}\mathcal{X}_{X \backslash A} \ d\mu}\\
+    &= \lim_{n \to \infty}{\int_{X}{f_n \mathcal{X}_{X \backslash A} \ d\mu}} = \lim_{n \to \infty}{\int_{X \backslash A}{f_n \ d\mu}} \underset{\mu(A) = 0}{=} \lim_{n \to \infty}{\int_{A}{f_n \ d\mu}} + \lim_{n \to \infty}{\int_{X \backslash A}{f_n \ d\mu}}\\
+    &= \lim_{n \to \infty}{\left(\int_{A}{f_n \ d\mu} + \int_{X \backslash A}{f_n \ d\mu}\right)} = \lim_{n \to \infty}{\int_{X}{f_n \ d\mu}},
+\end{align*}
+como queríamos demostrar.
+\end{proof}
+
+\begin{teo}[Lema de Fatou]
+Sea $\{f_n\}_{n=1}^{\infty}$ una sucesión de funciones medibles, $f_n: X \longrightarrow [0,+\infty]$. Entonces
+\begin{align*}
+    \int_{X}{\liminf_{n \to \infty}{f_n} \ d\mu} \leq \liminf_{n \to \infty}{\int_{X}{f_n \ d\mu}}.
+\end{align*}
+\end{teo}
+
+\begin{proof}
+Sea, para cada $n \in \mathbb{N}$, $g_n = \inf_{k \ge n}{f_k}$. Por definición, $\liminf_{n \to \infty}{f_n} = \lim_{n \to \infty}{g_n}$. Se tiene además que $g_n \leq g_{n+1}$. Aplicando el teorema de la convergencia monótona,
+\begin{align*}
+    \int_{X}{\liminf_{n \to \infty}{f_n \ d\mu}} = \int_{X}{\lim_{n \to \infty}{g_n \ d\mu}} = \lim_{n \to \infty}{\int_{X}{g_n \ d\mu}}. 
+\end{align*}
+Como $g_n = \inf_{k \ge n}{f_n} \leq f_k$, $k \ge n$, se sigue que $\int_{X}{f_n \ d\mu} \leq \int_{X}{f_k \ d\mu}$ para todo $k \ge n$. Luego
+\begin{align*}
+    \int_{X}{g_n \ d\mu} \leq \inf_{k \ge n}{\int_{X}{f_k \ d\mu}}.
+\end{align*}
+Tomando límites cuando $n \to \infty$
+\begin{align*}
+    \lim_{n \to \infty}{\int_{X}{g_n \ d\mu}} \leq \lim_{n \to \infty}{\left( \inf_{k \ge n}{\int_{X}{f_k \ d\mu}} \right)} = \liminf_{n \to \infty}{\int_{X}{f_n \ d\mu}}.
+\end{align*}
+Esta útlima desigualdad junto a la primera cadena de igualdades nos da la conclusión del teorema.
+\end{proof}
+
+\begin{prop}
+Sea $f: X \longrightarrow [0,+\infty]$ una función medible tal que $\int_{X}{f \ d\mu} < +\infty$. Entonces $f(x) < +\infty$ para casi todo $x \in X$, es decir, $\mu(\{ x \in X : f(x) = +\infty\}) = 0$.
+\end{prop}
+
+\begin{proof}
+Vamos a probar el contrarecíproco. Sea $A = \{ x \in X : f(x) = +\infty\}$. Supongamos que $\mu(A) > 0$. Dado $n \in \mathbb{N}$, entonces $n \mathcal{X}_A \leq f$. La sucesión $\varphi_n = n \mathcal{X}_A$ es una sucesión de funciones simples, medibles, no negativas y tales que $\varphi_n(x) \leq f(x)$ para todo $x \in X$. Entonces
+\begin{align*}
+    \int_{X}{f \ d\mu} \ge \int_{X}{\varphi_n \ d\mu} = \int_{X}{n \mathcal{X}_A \ d\mu} = n\mu(A) \ \ \ para \ cada \ n \in \mathbb{N}.
+\end{align*}
+De aquí concluimos que $\int_{X}{f \ d\mu} = +\infty$, como queríamos probar.
+\end{proof}
+
+\begin{obs}
+Se sigue del resultado anterior que si $f: X \longrightarrow [0,+\infty]$ es una función medible tal que $\mu(\{ x \in X : f(x) = +\infty\}) > 0$ entonces $\int_{X}{f \ d\mu} = +\infty$.
+\end{obs}
+
+\begin{prop}
+Sea $f: X \longrightarrow [0,+\infty]$ una función medible tal que $\int_{X}{f \ d\mu} < +\infty$. Entonces el conjunto $\{x \in X : f(x) > 0\}$ es $\sigma$-finito, es decir, es una sucesión numerable de conjuntos de medida finita.
+\end{prop}
+
+\begin{proof}
+Sean $A = \{x \in X : f(x) >0\}$ y $A_n = \left\{ x \in X : f(x) > \frac{1}{n}\right\}$, $n \in \mathbb{N}$. Son conjuntos medibles y $A = \cup_{n=1}^{\infty}{A_n}$. Procediendo como en la proposición anterior,
+\begin{align*}
+    \mu(A_n) = \int_{X}{\mathcal{X}_{A_n} \ d\mu} \leq \int_{X}{nf\mathcal{X}_{A_n} \ d\mu} = n\int_{X}{f\mathcal{X}_{A_n} \ d\mu} \leq n\int_{X}{f \ d\mu} < +\infty,
+\end{align*}
+lo que prueba la proposición.
+\end{proof}
+
+\begin{ejemplo}
+Consideremos el espacio de medida $(X,\mathcal{P}(X),\delta_a)$, donde $\delta_a$ es la delta de Dirac en un punto $a \in X$. Como sabemos, todas las funciones $f: X \longrightarrow \mathbb{R}$ son medibles. Sea $f: X \longrightarrow [0,+\infty]$,
+\begin{align*}
+    \int_{X}{f \ d\delta_a} &= \int_{\{a\}\cup(X \backslash \{a\})}{f \ d\delta_a} = \int_{\{a\}}{f \ d\delta_a} + \int_{X \backslash \{a\}}{f \ d\delta_a} \underset{\delta_a{(X \backslash \{a\}) = 0}}{=} \int_{\{a\}}{f \ d\delta_a} = \int_{X}{f\mathcal{X}_{\{a\}} \ d\delta_a},
+\end{align*}
+Nótese que,
+\begin{align*}
+    (f\mathcal{X}_{\{a\}})(x) = \left\{ \begin{array}{lcc}
+             f(a) &  si  &x = a\\
+             0 &  si  &x \not \ = a \\
+             \end{array}
+        \right.
+        = f(a)\mathcal{X}_{\{a\}}(x).
+\end{align*}
+Entonces,
+\begin{align*}
+    \int_{X}{f\mathcal{X}_{\{a\}} \ d\delta_a} = \int_{X}{f(a)\mathcal{X}_{\{a\}} \ d\delta_a} = f(a)\delta_a(\{a\}) = f(a).
+\end{align*}
+Por tanto,
+\begin{align*}
+    \int_{X}{f \ d\delta_a} = f(a).
+\end{align*}
+\end{ejemplo}
+
+\begin{ejemplo}
+Consideremos el espacio de medida $(\mathbb{N},\mathcal{P}(\mathbb{N}),\mu)$, donde $\mu$ es la medida contadora. Como sabemos, las funciones $f: \mathbb{N} \longrightarrow \mathbb{R}$ son las sucesiones de números reales ($a_n = f(n)$). Toda sucesión es una función medible. Sea $f : \mathbb{N} \longrightarrow [0,+\infty]$,
+\begin{align*}
+    \int_{\mathbb{N}}{f \ d\mu} &= \int_{\cup_{n=1}^{\infty}{\{n\}}}{f \ d\mu} = \sum_{n=1}^{\infty}{\int_{\{n\}}{f \ d\mu}} = \sum_{n=1}^{\infty}{\int_{\mathbb{N}}{f\mathcal{X}_{\{n\}}} \ d\mu} = \sum_{n=1}^{\infty}{\int_{\mathbb{N}}{f(n)\mathcal{X}_{\{n\}} \ d\mu}}\\
+    &= \sum_{n=1}^{\infty}{f(n)\mu(\{n\}) \ d\mu} = \sum_{n=1}^{\infty}{f(n)} = \sum_{n=1}^{\infty}{a_n}.
+\end{align*}
+Así, la integral en este espacio coincide con la suma de la sucesión. Tomemos  ahora $\sigma: \mathbb{N} \longrightarrow \mathbb{N}$ una biyección. Razonando de forma análoga,
+\begin{align*}
+   \int_{\mathbb{N}}{f \ d\mu} = \int_{\cup_{n=1}^{\infty}{\{\sigma(n)\}}}{f \ d\mu} = \sum_{n=1}^{\infty}{f(\sigma(n))\mu(\{\sigma(n)\})} = \sum_{n=1}^{\infty}{f(\sigma(n))} = \sum_{n=1}^{\infty}{a_{\sigma(n)}}.
+\end{align*}
+Por tanto,
+\begin{align*}
+    \sum_{n=1}^{\infty}{a_n} = \sum_{n=1}^{\infty}{a_{\sigma(n)}},
+\end{align*}
+sea cual sea la biyección $\sigma$. 
+\end{ejemplo}
+
+\begin{ejemplo}
+Consideremos el espacio de medida $(X,\mathcal{P}(X),\mu)$, donde $\mu$ es la medida contadora. Sea $f: X \longrightarrow [0,+\infty]$ (que siempre es medible en este espacio). Entonces:
+\begin{align*}
+    \int_{X}{f \ d\mu} = \sup{\left\{ \sum_{x \in F}{f(x)} : F \subset X, F \ finito \right\}} = \alpha
+\end{align*}
+Si $F = \emptyset$ entonces $\sum_{x \in F}{f(x)} = 0$.
+\begin{enumerate}
+    \item[1)] Veamos que $\alpha \leq \int_{X}{f \ d\mu}$. Si $F = \emptyset$ entonces $\sum_{x \in F}{f(x)} = 0 \leq \int_{X}{f \ d\mu}$. Supongamos que $F \subset X$ y que $F = \{ x_1,...,x_n\}$,
+    \begin{align*}
+        \sum_{x \in F}{f(x)} &= \sum_{i = 1}^{n}{f(x_i)} \underset{\mu(\{x_i\}) = 1}{=} \sum_{i=1}^{n}{\int_{X}{f(x_i)\mathcal{X}_{\{x_i\}} \ d\mu}}\\
+        &=\int_{X}{\sum_{i=1}^{n}{f(x_i)\mathcal{X}_{\{x_i\}}} \ d\mu} \underset{\sum_{i=1}^{n}{f(x_i)\mathcal{X}_{\{x_i\}}} \leq f}{ \leq} \int_{X}{f \ d\mu}.
+    \end{align*}
+    Por tanto, $\alpha \leq \int_{X}{f \ d\mu}$.
+    \item[2)] Veamos que $\int_{X}{f \ d\mu} \leq \alpha$. Si $\alpha = +\infty$, entonces $\int_{X}{f \ d\mu} = +\infty$. Supongamos que $\alpha < +\infty$. Sean $A = \{x \in X : f(x) >0\}$ y $A_n = \left\{ x \in X : f(x) > \frac{1}{n}\right\}$, $n \in \mathbb{N}$. Son conjuntos medibles y $A = \cup_{n=1}^{\infty}{A_n}$. Veamos que $A_n$ es finito. Sea $F \subset A_n$ con $F$ finito, entonces,
+    \begin{align*}
+        \frac{1}{n}\#F < \sum_{x \in F}{f(x)} \leq \alpha < +\infty.
+    \end{align*}
+    Por tanto $\#F \leq \alpha n$ para todo conjunto finito $F \subset A_n$. Luego $A_n$ es finito con a lo sumo $\alpha n$ elementos
+    \\
+    \newline
+    Supongamos que $A$ es finito, es decir, $A = \{a_1,...,a_l\}$, entonces,
+    \begin{align*}
+        \int_{X}{f \ d\mu} &= \int_{A}{f \ d\mu} + \int_{X \backslash A}{f \ d\mu} \underset{f(x) = 0 \ \forall x \in X \backslash A}{=} \int_{A}{f \ d\mu} = \int_{\cup_{i=1}^{l}{\{a_i\}}}{{f \ d\mu}}\\
+        &= \sum_{i=1}^{l}{\int_{\{a_i\}}{f \ d\mu}} = \sum_{i=1}^{l}{f(a_i)} \leq \alpha.
+    \end{align*}
+    Supongamos que $A$ es infinito numerable, es decir, $A = \{a_i : i \in \mathbb{N}\}$, entonces,
+    \begin{align*}
+        \int_{X}{f \ d\mu} &= \int_{A}{f \ d\mu} + \int_{X \backslash A}{f \ d\mu} \underset{f(x) = 0 \ \forall x \in X \backslash A}{=} \int_{A}{f \ d\mu} = \int_{\cup_{i=1}^{\infty}{\{a_i\}}}{{f \ d\mu}}\\
+        &= \sum_{i=1}^{\infty}{\int_{\{a_i\}}{f \ d\mu}} = \sum_{i=1}^{\infty}{f(a_i)} = \lim_{N \to \infty}{\sum_{i=1}^{N}{f(a_i)}} \leq \lim_{N \to \infty}{\alpha} \leq \alpha.
+    \end{align*}
+\end{enumerate}
+Por tanto $\int_{X}{f \ d\mu} \leq \alpha$. Uniendo 1) y 2) tenemos que $\int_{X}{f \ d\mu} = \alpha$.
+\end{ejemplo}
+
+\begin{ejemplo}
+Consideremos el espacio de medida $(\mathbb{N} \times \mathbb{N}, \mathcal{P}(\mathbb{N} \times \mathbb{N}), \mu)$, donde $\mu$ es la medida contadora. Sea $f: \mathbb{N} \times \mathbb{N} \longrightarrow [0,+\infty]$ (que siempre es medible en este espacio), nótese que $f$ es una sucesión, luego $f(n,m) = a_{n,m}$. Aplicando el ejercicio anterior:
+\begin{align*}
+    \sum_{(n,.m) \in \mathbb{N} \times \mathbb{N}}{a_{n,m}} = \sum_{(n,m) \in \mathbb{N} \times \mathbb{N}}{f(n,m)} = \int_{\mathbb{N} \times \mathbb{N}}{f \ d\mu} = \sup{\left\{\sum_{(n,.m) \in F}{a_{n,m}} : F \subset \mathbb{N} \times \mathbb{N}, F \ finito \right\}}
+\end{align*}
+Entonces,
+\begin{itemize}
+    \item Calculemos $\int_{\mathbb{N} \times \mathbb{N}}{f \ d\mu}$,
+    \begin{align*}
+        \int_{\mathbb{N} \times \mathbb{N}}{f \ d\mu} &= \int_{\cup_{n=1}^{\infty}{(\{n\}\times\mathbb{N})}}{f \ d\mu} = \sum_{n=1}^{\infty}{\int_{\{n\}\times\mathbb{N}}}{f \ d\mu} = \sum_{n=1}^{\infty}{\int_{\cup_{m=1}^{\infty}{(\{n\}\times\{m\})}}}{f \ d\mu}\\
+        &= \sum_{n=1}^{\infty}{\left( \sum_{m=1}^{\infty}{\int_{\{n\}\times\{m\}}}{f \ d\mu}\right)} = \sum_{n=1}^{\infty}{\left( \sum_{m=1}^{\infty}{f(n,m)\mu(\{n\}\times\{m\})}\right)}\\
+        &= \sum_{n=1}^{\infty}{\left( \sum_{m=1}^{\infty}{f(n,m)}\right)} = \sum_{n=1}^{\infty}{\left( \sum_{m=1}^{\infty}{a_{n,m}}\right)}.
+    \end{align*}
+    \item De forma completamente análoga,
+    \begin{align*}
+        \int_{\mathbb{N} \times \mathbb{N}}{f \ d\mu} = \sum_{m=1}^{\infty}{\left( \sum_{n=1}^{\infty}{a_{n,m}}\right)}.
+    \end{align*}
+    \item Dada $\sigma: \mathbb{N} \longrightarrow \mathbb{N} \times \mathbb{N}$ biyección,
+    \begin{align*}
+        \int_{\mathbb{N} \times \mathbb{N}}{f \ d\mu} = \int_{\cup_{n=1}^{\infty}{\{\sigma(n)\}}}{f \ d\mu} = \sum_{n=1}^{\infty}{\int_{\{\sigma(n)\}}}{f \ d\mu} = \sum_{n=1}^{\infty}{f(\sigma(n))} = \sum_{n=1}^{\infty}{a_{\sigma(n)}}.
+    \end{align*}
+\end{itemize}
+\end{ejemplo}
+
+\begin{ejemplo}
+Consideremos el espacio de medida $(\mathbb{N} \times \mathbb{N}, \mathcal{P}(\mathbb{N} \times \mathbb{N}), \mu)$, donde $\mu$ es la medida contadora. Para cada $n\in \mathbb{N}$ y para cada $m\in \mathbb{N}$  consideramos $f_n(m) = a_{n.m} \ge 0$. Supongamos además que $f_n(m) \leq f_{n+1}(m)$ para todo $m \in \mathbb{N}$, es decir, $a_{n,m} \leq a_{n+1,m}$ para todo $m \in \mathbb{N}$. Entonces,
+\begin{align*}
+    \lim_{n \to \infty}{\sum_{m=1}^{\infty}{a_{n,m}}} = \lim_{n \to \infty}{\sum_{m=1}^{\infty}{f_n(m)}} = \lim_{n \to \infty}{\int_{\mathbb{N}}{{f_n \ d\mu}}},
+\end{align*}
+Aplicando el teorema de la convergencia monótona,
+\begin{align*}
+    \lim_{n \to \infty}{\int_{\mathbb{N}}{{f_n \ d\mu}}} = \int_{\mathbb{N}}{{\lim_{n \to \infty}{f_n \ d\mu}}} = \sum_{m=1}^{\infty}{\lim_{n \to \infty}{f_n(m)}} = \sum_{m=1}^{\infty}{\lim_{n \to \infty}{a_{n,m}}}.
+\end{align*}
+Por tanto, dada $\{a_{n,m}\}_{(n,m) \in \mathbb{N} \times \mathbb{N}}$, $a_{n,m} \ge 0$ y $a_{n,m} \leq a_{n+1,m}$ entonces:
+\begin{align*}
+    \lim_{n \to \infty}{\sum_{m=1}^{\infty}{a_{n,m}}} = \sum_{m=1}^{\infty}{\lim_{n \to \infty}{a_{n,m}}}.
+\end{align*}
+\end{ejemplo}
+
+\subsection{Integral de una función medible no negativa definida sobre un subconjunto}
+Sea $(X, \mathcak{M}, \mu)$ un espacio de medida. En ocasiones tendremos una f unción $f: E \longrightarrow [0,+\infty]$ definida sobre un subconjunto medible $E$ pero, en principio, no definida en todo $X$. Podemos, es este caso, definir la integral de $F$ en $E$ de la forma siguiente: sea $F$ una función medible definida en $X$ y tal que la restricción de $F$ a $E$ coincide con $f$; por ejemplo,
+\begin{align*}
+    F(X) = \left\{ \begin{array}{lcc}
+             f(x) &  si  &x \in E\\
+             0 &  si  &x \not \in E \\
+             \end{array}
+        \right.
+\end{align*}
+Definimos la integral de $f$ sobre $E$ como la integral de $F$ restringida a $E$
+\begin{align*}
+    \int_{E}{f \ d\mu} := \int_{E}{F \ d\mu} = \int_{X}{F \mathcal{X}_E \ d\mu}.
+\end{align*}
+Esta definición es independiente de la extensión de $F$ que consideremos.
+
+\subsection{Transformaciones que conservan la medida}
+\begin{defi}
+Sean $(X, \mathcak{M}, \mu)$ e $(Y, \mathcal{N},\nu)$ dos espacios de medida y sea $T: X \longrightarrow Y$ una aplicación $(\mathcal{M},\mathcal{N})$-medible (esto es, si $E \in \mathcal{N}$, entonces $T^{-1}(E) \in \mathcal{M}$). Decimos que T conserva las medidas si
+\begin{align*}
+    \nu(E) = \mu(T^{-1}(E)) \ \ \ para \ todo \ E \in \mathcal{N}.
+\end{align*}
+\end{defi}
+
+\begin{prop}
+Sean $(X, \mathcak{M}, \mu)$ e $(Y, \mathcal{N},\nu)$ dos espacios de medida y sea $T: X \longrightarrow Y$ una aplicación $(\mathcal{M},\mathcal{N})$-medible que conserva las medidas. Si $g: Y \longrightarrow [0,+\infty]$ es medible entonces
+\begin{align*}
+    \int_{Y}{g \ d\nu} = \int_{X}{g \circ T \ d\mu}.
+\end{align*}
+\end{prop}
+
+\begin{proof}
+Supongamos en primer lugar que $g$ es una función característica, es decir, $g = \mathcal{X}_E$, $E \in \mathcal{N}$. Entonces
+\begin{align*}
+    \int_{Y}{g \ d\nu} = \int_{Y}{\mathcal{X}_E \ d\nu} = \nu(E).
+\end{align*}
+Para el término de la derecha observamos que
+\begin{align*}
+    g \circ T(x) = 1 &\Leftrightarrow \mathcal{X}_E \circ T(x) = 1 \Leftrightarrow \mathcal{X}_E(T(x)) = 1 \Leftrightarrow T(x) \in E \Leftrightarrow x \in T^{-1}(E)\\
+    &\Leftrightarrow \mathcal{X}_{T^{-1}(E)}(x) = 1.
+\end{align*}
+Luego,
+\begin{align*}
+    \int_{X}{g \circ T \ d\mu} = \int_{X}{\mathcal{X}_{T^{-1}(E)} \ d\mu} = \mu(T^{-1}(E)),
+\end{align*}
+como $T$ conserva las medidas, entonces
+\begin{align*}
+    \int_{Y}{g \ d\nu}  = \nu(E) = \mu(T^{-1}(E)) = \int_{X}{g \circ T \ d\mu}.
+\end{align*}
+Sea ahora $g = \sum_{i=1}^{n}{a_i\mathcal{X}_{E_i}}$, $a_i \ge 0$, $E_i \in \mathcal{N}$ una función simple medible y no negativa. Entonces por la linealidad de la integral (la aplicamos dos veces) y por lo que acabamos de demostrar para funciones características,
+\begin{align*}
+    \int_{X}{g \circ T \ d\mu} &= \int_{X}{\sum_{i=1}^{n}{a_i\mathcal{X}_{E_i}} \circ T \ d\mu} = \sum_{i=1}^{n}{a_i \int_{X}{\mathcal{X}_{E_i} \circ T \ d\mu}}\\
+    &= \sum_{i=1}^{n}{a_i \int_{Y}{\mathcal{X}_{E_i}} \ d\nu} = \int_{Y}{\sum_{i=1}^{n}{a_i\mathcal{X}_{E_i}} \ d\nu} = \int_{Y}{g \ d\nu}.
+\end{align*}
+Finalmente, sea $g$ una función medible no negativa. Sabemos que existe una sucesión $\varphi_n$ de funciones simples y medibles tal que $0 \leq \varphi_n \uparrow g$. Entonces $0 \leq \varphi \circ T \uparrow g \circ T$. Por el teorema de la convergencia monótona (lo aplicamos dos veces) y por lo ya demsotrado para funciones simples,
+\begin{align*}
+    \int_{X}{g \circ T \ d\mu} &= \int_{X}{\varphi_n \circ T \ d\mu} = \lim_{n \to \infty}{\int_{X}{\varphi_n \circ T} \ d\mu}\\
+    &= \lim_{n \to \infty}{\int_{Y}{\varphi_n} \ d\nu} = \int_{Y}{\lim_{n \to \infty}{\varphi_n} \ d\nu} = \int_{Y}{g \ d\nu}.
+\end{align*}
+\end{proof}
+
+\begin{ejemplo}[Variables aleatorias: Ley de probabilidad]
+Supongamos que $(\Omega, \mathcal{A}, P)$ es un espacio de probabilidad y que $X: \Omega \longrightarrow \mathbb{R}$ es una variable aleatoria. Su ley de probabilidad es la medida definida sobre la $\sigma$-álgeba de borel $\mathcal{B}_{\mathbb{R}}$ dada por
+\begin{align*}
+    P_X: \mathcal{B}_{\mathbb{R}} \longrightarrow [0,+\infty], \ \ \ P_X(B) = P(X^{-1}(B)).
+\end{align*}
+Es claro, por al definición de $P_X$, que $X: \Omega \longrightarrow \mathbb{R}R$ conserva las medidas, considerando en $\Omega$ la medida $P$ y en $\mathbb{R}$ la medida $P_X$. Si $g: \mathbb{R} \longrightarrow [0,+\infty]$ es medible-Borel, aplicando la proposición anterior,
+\begin{align*}
+    \int_{\Omega}{g \circ X(\omega) \ dP(\omega)} = \int_{\mathbb{R}}{g(t) \ dP_X(t)}.
+\end{align*}
+Si tomamos, por ejemplo, $g: \mathbb{R} \longrightarrow [0,+\infty]$ dada por $g(t) = |t|$, entonces,
+\begin{align*}
+    \int_{\Omega}{|X(\omega)| \ dP(\omega)} = \int_{\mathbb{R}}{|t| \ dP_X(t)}.
+\end{align*}
+\end{ejemplo}
+
+\subsection{La intergal en espacios de medida con densidad}
+
+\begin{defi}
+Sea $(X, \mathcal{M},\mu)$ un espacio de medida y sea $f: X \longrightarrow [0,+\infty]$ una función medible. Sabemos que la aplicación $\nu: \mathcal{M} \longrightarrow [0,+\infty]$, 
+\begin{align*}
+    \nu(E) = \int_{E}{f \ d\mu},
+\end{align*}
+es una nueva medida sobre $\mathcal{M}$. En esta situación decimos que f es la densidad de $\mu$ respecto de $\nu$.
+\end{defi}
+
+\begin{teo}
+Sea $(X, \mathcal{M},\mu)$ un espacio de medida y sea la medida $\nu$ con función de densidad $f: X \longrightarrow [0,+\infty]$. Si $g: X \longrightarrow [0,+\infty]$ es medible, entonces
+\begin{align*}
+    \int_{X}{g \ d\nu} = \int_{X}{gf \ d\mu}.
+\end{align*}
+\end{teo}
+
+\begin{proof}
+Supongamos primero que $g = \mathcal{X}_E$, donde $E$ es un conjunto medible. Aplicando la definición de $\nu$, tenemos que
+\begin{align*}
+    \int_{X}{g \ d\nu} = \int_{X}{\mathcal{X}_E \ d\nu} = \nu(E)  = \int_{E}{f \ d\mu} = \int_{X}{\mathcal{X}_Ef \ d\mu} = \int_{X}{gf \ d\mu}.
+\end{align*}
+Ahora, supongamos que $g$ es una función simple medible y no negativa. Sea $g = \sum_{i=1}^{n}{a_i \mathcal{X}_{E_i}}$. Aplicando lo ya demostrado para funciones características,
+\begin{align*}
+    \int_{X}{g \ d\nu} &= \int_{X}{\sum_{i=1}^{n}{a_i \mathcal{X}_{E_i}} \ d\nu} = \sum_{i=1}^{n}{a_i \int_{X}{\mathcal{X}_{E_i}} \ d\nu} = \sum_{i=1}^{n}{a_i \int_{X}{\mathcal{X}_{E_i}f} \ d\mu}\\
+    &= \int_{X}{\sum_{i=1}^{n}{a_i\mathcal{X}_{E_i}f} \ d\mu} = \int_{X}{gf \ d\mu}.
+\end{align*}
+Finalmente, sea $g$ una función medible no negativa. Sabemos que existe una sucesión $\varphi_n$ de funciones simples y medibles tal que $0 \leq \varphi_n \uparrow g$. Entonces $0 \leq \varphi f \uparrow g f$. Por el teorema de la convergencia monótona (lo aplicamos dos veces) y por lo ya demsotrado para funciones simples,
+\begin{align*}
+    \int_{X}{g \ d\nu} &= \int_{X}{\lim_{n \to \infty}{\varphi_n} \ d\nu} = \lim_{n \to \infty}{\int_{X}{\varphi_n} \ d\nu} = \lim_{n \to \infty}{\int_{X}{\varphi_n f \ d\mu}}\\
+    &= \int_{X}{\lim_{n \to \infty}{\varphi_nf} \ d\mu} = \int_{X}{gf \ d\mu}.
+\end{align*}
+\end{proof}
+
+\begin{obs}
+La medida $\nu$ con función de densidad $f$ posee la propiedad siguiente: si $\mu(E) = 0$ entonces $\nu(E) = 0$. Si dos medidas cualesquieras están relaciones de esa forma, se dice que $\nu$ es absolutamente continua respecto de $\mu$ y se escibe $\nu << \mu$.
+\end{obs}
+
+\begin{teo}[Teorema de Radon-Nikodym]
+Sean $\mu$ y $\nu$ dos medidas $\sigma$-finitas sobre el espacio medible $(X, \mathcal{M})$. Si $\nu$ es absolutamente continua respecto de $\mu$ entonces existe una función medible f no negativa tal que
+\begin{align*}
+    \nu(E) = \int_{E}{f \ d\mu},
+\end{align*}
+para todo $E \in \mathcal{M}$. Si $g$ es otra función medible no negativa que satisface la propiedad anterior, entonces $f = g$ en casi todo punto (respecto de $\mu$).
+\end{teo}
+
+\begin{ejemplo}[Variable aleatoria absolutamente continua]
+Supongamos que $(\Omega, \mathcal{A}, P)$ es un espacio de probabilidad y que $X: \Omega \longrightarrow \mathbb{R}$ es una variable aleatoria. Decimos que $X$ es absolutamente continua si existe una función $f$ definida sobre $\mathbb{R}$, medible-Borel y no negativa, tal que la ley de probabilidad $P_X$ satisface que
+\begin{align*}
+    P_X(B) = \int_{B}{f(t) \ dm(t)}
+\end{align*}
+donde $m$ es la medida de Lebesgue en $\mathbb{R}$ (normalmente escribiremos $dt$ en lugar de $dm(t)$) y por lo tanto $f$ es la dessidad de $P_X$ respecto de la medida de Lebesgue. Es claro, por la definición de $P_X$, que $X: \Omega \longrightarrow \mathbb{R}$ conserva las medidas, considerando en $\Omega$ la medida $P$ y en $\mathbb{R}$ la medida de Lebesgue. Si $g: \mathbb{R} \longrightarrow [0,+\infty]$ es medible-Borel, los resultados anteriores nos dicen que
+\begin{align*}
+    \int_{\Omega}{g \circ X(\omega) \ dP(\omega)} = \int_{\mathbb{R}}{g(t) \ dP_X(t)}.
+\end{align*}
+Si $X$ es absolutamente continua, como $f$ es la densidad de $P_X$ respecto de la medida de Lebesgue m, resulta que
+\begin{align*}
+    \int_{\Omega}{g(X(\omega)) \ dP(\omega)} = \int_{\mathbb{R}}{g(t) \ dP_X(t)} = \int_{\mathbb{R}}{g(t)f(t) \ dt}.
+\end{align*}
+\end{ejemplo}
+
+\begin{ejemplo}[Variable aleatoria discreta]
+Supongamos que $(\Omega, \mathcal{A}, P)$ es un espacio de probabilidad y que $X: \Omega \longrightarrow \mathbb{R}$ es una variable aleatoria. Decimos que $X$ es una variable aleatoria discreta si existe $A \in \mathcal{B}_{\mathbb{R}}$ finito o infinito numerable tal que $P_X(A) = 1$. En este caso, el conjunto
+\begin{align*}
+    R_X = \{ t \in \mathbb{R} : P_X(t) > 0 \}
+\end{align*}
+es finito o infinito numerable (pongamos que $R_X = \{ t_i : i \in \mathbb{N}\}$). Obsérvese que $R_X \subset A$ y $P_X(A \backslash R_X) = 0$. Es claro que
+\begin{align*}
+    P_X(B) = P_X(A \cap R_x) = P_X(B \cap R_X).
+\end{align*}
+Sea $p_X: \mathbb{R} \longrightarrow [0,+\infty]$ definida por $p_X(t) = P_X(\{t\})$. Si $B \in \mathbb{B}_{\mathbb{R}}$ entonces
+\begin{align*}
+    P_X(B) = P_X(B \cap R_X) = \sum_{t \in B \cap R_x}{p_x(t)} = \sum_{i:t_i \in B}{p_X(t_i)}.
+\end{align*}
+Si en $\mathbb{R}$ consideramos la medida contadora $\nu$, la suma anterior coincide con la integral de $p_X$ respecto de la medida contadora, es decir,
+\begin{align*}
+    \int_{B}{p_X(t) \ d\nu} = \int_{\cup_{i \in \mathbb{N}}{\{t_i\}}}{p_X(t) \ d\nu} = \sum_{i \in \mathbb{N}}{p_X(t_i)} = \sum_{i:t_i \in B}{p_X(t_i)} = P_X(B).
+\end{align*}
+Dicho en otras palabras, $p_X$ es la densidad de $P_X$ respecto de la medida contadora. Si $g: \mathbb{R} \longrightarrow [',+\infty]$ es medible-Borel, los resultados anteriores nos dicen que
+\begin{align*}
+    \int_{\Omega}{g \circ X(\omega) \ dP(\omega)} = \int_{\mathbb{R}}{g(t) \ dP_X(t)} = \int_{\mathbb{R}}{g(t)p_X(t) \ d\nu} = \sum_{i}{g(t_i)p_X(t_i)}.
+\end{align*}
+\end{ejemplo}
+
+\section{Integración de funciones medibles reales}
+
+\subsection{La integral de una función medible con valores en $\rcom$}
+
+\begin{defi}
+Sea $(X, \mathcal{M}, \mu)$ un espacio de medida y sea $E$ un subcojunto medible. Sea $f: E \longrightarrow \rcom$ una función medible y sea $f^+$ y $f^-$ su parte positiva y su parte negativa, respectivamente
+\begin{enumerate}
+    \item[(i)] Si $\int_{E}{f^+ \ d\mu} < +\infty$ o $\int_{E}{f^- \ d\mu} < +\infty$ decimos que f es integrable en sentido amplio en E y definimos la integral de f en E, como
+    \begin{align*}
+        \int_{E}{f \ d\mu} := \int_{E}{f^+ \ d\mu} - \int_{E}{f^- \ d\mu}.
+    \end{align*}
+    \item[(ii)] Si $\int_{E}{f^+ \ d\mu} < +\infty$ y $\int_{E}{f^- \ d\mu} < +\infty$ decimos que f es integrable en E. La integral de f en E, ya definida en el apartado anterior, es igual a $\int_{E}{f^+ \ d\mu} - \int_{E}{f^- \ d\mu}$ y es un número real.
+\end{enumerate}
+\end{defi}
+
+\begin{obs}
+Las funciones medibles no negativas son integrables en el sentido amplio y como $f^+ = f$ y $f^- = 0$, la integral que acabamos de definir coincide con la que ya teníamos para funciones medibles no negativas.
+\end{obs}
+
+\begin{obs}
+\begin{enumerate}
+    \item[(a)] Si $\mu(E) = 0$ entonces $\int_{E}{f \ d\mu} = 0$.
+    \item[(b)] Si $f = g$ en casi toodo punto de $E$, es claro que $f$ es integral (en sentido amplio) si y solo si $g$ lo es y, en este caso, las integrales sobre $E$ coinciden. Basta ver que si $f = g$ en casi todo punto de $E$ entonces $f^+ = g^+$ y $f^- = g^-$ en casi todo punto de $E$.
+\end{enumerate}
+\end{obs}
+
+\begin{prop}
+f es integrable sobre E si y solo si $\int_{E}{|f| \ d\mu} < +\infty$.
+\end{prop}
+
+\begin{proof}
+$\Longrightarrow$ Supongamos que $f$ es integrable sobre $E$. Nótese que $|f| = f^+ + f^-$. Por consiguiente,
+\begin{align*}
+    \int_{E}{|f| \ d\mu} = \int_{E}{f^+  \ d\mu} + \int_{E}{f^-  \ d\mu}.
+\end{align*}
+Como $f$ es integrable sobre $E$, se tiene que $\int_{E}{f^+  \ d\mu} < +\infty$ y $\int_{E}{f^-  \ d\mu} < +\infty$, por lo que su suma es finita. Así $\int_{E}{|f|  \ d\mu} < +\infty$.
+\\
+\newline
+$\Longleftarrow$ Supongamos que $\int_{E}{|f| \ d\mu} < +\infty$. Como $f^+ \leq |f|$ y $f^- \leq |f|$ se tiene que
+\begin{align*}
+    \int_{E}{f^+ \ d\mu} \leq \int_{E}{|f| \ d\mu} < +\infty \ \ \ y \ \ \ \int_{E}{f^- \ d\mu} \leq \int_{E}{|f| \ d\mu} < +\infty 
+\end{align*}
+Luego, $f$ es integrable sobre $E$.
+\end{proof}
+
+\begin{prop}
+Sea $f: E \longrightarrow \rcom$ integrable en E. Entonces
+\begin{align*}
+    \left| \int_{E}{f \ d\mu} \right| \leq \int_{E}{|f| \ d\mu}.
+\end{align*}
+\end{prop}
+
+\begin{proof}
+Teniendo en cuenta  que $f = f^+ - f^-$ y que $|f| = f^+ + f^-$,
+\begin{align*}
+    \left| \int_{E}{f \ d\mu}\right| &= \left| \int_{E}{f^+ \ d\mu} - \int_{E}{f^- \ d\mu}\right|\\
+    &\leq \int_{E}{f^+ \ d\mu} + \int_{E}{f^- \ d\mu} = \int_{E}{|f| \ d\mu}.
+\end{align*}
+\end{proof}
+
+\begin{obs}
+\begin{enumerate}
+    \item[1.] Si $f$ es integrable en $E$ entonces $|f(x)| < +\infty$ para casi toodo $x \in E$.
+    \item[2.] Si $f$ es integrable en $E$ y $A \subset E$ es un conjunto medible, entonces $f$ es integrable en $A$. Veamoslo,
+    \begin{align*}
+        \int_{A}{|f| \ d\mu} \leq \int_{E}{|f| \ d\mu} < +\infty,
+    \end{align*}
+    por tanto, $f$ es integrable en $A$.
+    \item[3.] Sean $f,g: E \longrightarrow \rcom$ integrable en $E$ y tales que $f \leq g$ en $E$. Entonces, $\int_{E}{f \ d\mu} \leq \int_{E}{g \ d\mu}$. Veamoslo,
+    \begin{align*}
+        f^+ = \max\{f,0\} \leq \max\{g,0\} = g^+ &\Longrightarrow \int_{E}{f^+ \ d\mu} \leq \int_{E}{g^+ \ d\mu}\\
+        f^- = \max\{-f,0\} \leq \max\{-g,0\} = g^- &\Longrightarrow \int_{E}{g^- \ d\mu} \leq \int_{E}{f^- \ d\mu}\\
+        &\Longleftrightarrow -\int_{E}{f^- \ d\mu} \leq -\int_{E}{g^- \ d\mu},
+    \end{align*}
+y suumando ambas desigualdades
+    \begin{align*}
+        \int_{E}{f^+ \ d\mu} - \int_{E}{f^- \ d\mu} \leq \int_{E}{g^+ \ d\mu} - \int_{E}{g^- \ d\mu} \Longleftrightarrow \int_{E}{f \ d\mu} \leq \int_{E}{g \ d\mu}.
+    \end{align*}
+    \item[4.] Sean $f,g: E \longrightarrow \rcom$ tales que $f \leq g$ en $E$. Si $g$ es integrable en $E$ entonces $f$ es integrable en senntido amplio en $E$ y $\int_{E}{f \ d\mu} \leq \int_{E}{g \ d\mu}$. Veamoslo,
+    \begin{align*}
+        f^+ = \max\{f,0\} \leq \max\{g,0\} = g^+ < \infty,
+    \end{align*}
+    lo que nos dice que $f$ es integrable en sentido amplio.
+    \item[5.] Sean $f,g: E \longrightarrow \rcom$ tales que $f \leq g$ en $E$. Si $f$ es integrable en $E$ entonces $g$ es integrable en senntido amplio en $E$ y $\int_{E}{f \ d\mu} \leq \int_{E}{g \ d\mu}$. Veamoslo,
+    \begin{align*}
+        g^- = \max\{-g,0\} \leq \max\{-f,0\} = f^- < +\infty,
+    \end{align*}
+    lo que nos dice que $g$ es integrable en sentido amplio.
+    \item[6.] Sea $f: E \longrightarrow \rcom$ integrable en $E$.
+    \begin{enumerate}
+        \item[(a)] Si $\{E_n\}_{n=1}^{\infty}$ es una sucesión de conjuntos medibles tal que $E_n \subset E_{n+1}$ y $E = \cup_{n=1}^{\infty}{E_n}$, entonces
+        \begin{align*}
+            \int_{E}{f \ d\mu} = \int_{\cup_{n=1}^{\infty}{E_n}}{f \ d\mu} =\lim_{n \to \infty}{\int_{E_n}{f \ d\mu}}.
+        \end{align*}
+        Veamoslo. Como $f = f^+ - f^-$, entonces
+        \begin{align*}
+            \int_{E}{f \ d\mu} &= \int_{E}{f^+ \ d\mu} - \int_{E}{f^- \ d\mu} = \int_{\cup_{n=1}^{\infty}{E_n}}{f^+ \ d\mu} - \int_{\cup_{n=1}^{\infty}{E_n}}{f^- \ d\mu}\\
+            &= \lim_{n \to \infty}{\int_{E_n}{f^+ \ d\mu}} - \lim_{n \to \infty}{\int_{E_n}{f^- \ d\mu}}.
+        \end{align*}
+        Como $f$ es integrable, estas últimas integrales son finitas, tenemos que la diferencia de límites es el límite de la diferencia, es decir,
+        \begin{align*}
+            \int_{E}{f \ d\mu} &= \lim_{n \to \infty}{\left( \int_{E_n}{f^+ \ d\mu} - \int_{E_n}{f^- \ d\mu}\right)} = \lim_{n \to \infty}{\int_{E_n}{f \ d\mu}}.
+        \end{align*}
+        \item[(b)] Si $\{E_n\}_{n=1}^{\infty}$ es una sucesión de conjuntos medibles disjuntos tal que $E = \cup_{n=1}^{\infty}{E_n}$ entonces
+        \begin{align*}
+            \int_{E}{f \ d\mu} = \sum_{n=1}^{\infty}{\int_{E_n}{f \ d\mu}}.
+        \end{align*}
+        Veamoslo. Como $f = f^+ - f^-$, entonces
+        \begin{align*}
+            \int_{E}{f \ d\mu} &= \int_{E}{f^+ \ d\mu} - \int_{E}{f^- \ d\mu} = \int_{\cup_{n=1}^{\infty}{E_n}}{f^+ \ d\mu} - \int_{\cup_{n=1}^{\infty}{E_n}}{f^- \ d\mu}\\
+            &= \sum_{n=1}^{\infty}{\int_{E_n}{f^+ \ d\mu}} - \sum_{n=1}^{\infty}{\int_{E_n}{f^- \ d\mu}}.
+        \end{align*}
+        Como $f$ es integrable, cada integral que consideramos en ambos sumatorios es finita, podemos unir los dos sumatorios en uno solo, es decir,
+        \begin{align*}
+            \int_{E}{f \ d\mu} = \sum_{n=1}^{\infty}{\left(\int_{E_n}{f^+\ d\mu } - \int_{E_n}{f^- \ d\mu}\right)} = \sum_{n=1}^{\infty}{\int_{E_n}{f \ d\mu}}.
+        \end{align*}
+    \end{enumerate}
+    \item[7.] Sea $\{E_n\}_{n=1}^{\infty}$ es una sucesión de conjuntos medibles tal que $E_n \supset E_{n+1}$ y sea $f$ una función integrable en $E_1$. Entonces $f$ es integrable en cada $E_n$ y
+    \begin{align*}
+        \int_{E}{f \ d\mu} = \int_{\cap_{n=1}^{\infty}{E_n}}{f \ d\mu} = \lim_{n \to \infty}{\int_{E_n}{f \ d\mu}}.
+    \end{align*}
+     Veamoslo. Como $f = f^+ - f^-$, entonces
+     \begin{align*}
+          \int_{E}{f \ d\mu} &= \int_{E}{f^+ \ d\mu} - \int_{E}{f^- \ d\mu} = \int_{\cap_{n=1}^{\infty}{E_n}}{f^+ \ d\mu} - \int_{\cap_{n=1}^{\infty}{E_n}}{f^- \ d\mu}\\
+           &= \lim_{n \to \infty}{\int_{E_n}{f^+ \ d\mu}} - \lim_{n \to \infty}{\int_{E_n}{f^- \ d\mu}}.
+     \end{align*}
+     Como $f$ es integrable en cada $E_n$ por ser integrable en $E_1$, tenemos que la diferencia de límites es el límite de la diferencia, es decir,
+     \begin{align*}
+         \int_{E}{f \ d\mu} &= \lim_{n \to \infty}{\left( \int_{E_n}{f^+ \ d\mu} - \int_{E_n}{f^- \ d\mu}\right)} = \lim_{n \to \infty}{\int_{E_n}{f \ d\mu}}.
+     \end{align*}
+\end{enumerate}
+\end{obs}
+
+\subsection{El espacio vectorial de las funciones integrables}
+
+\begin{prop}
+Sean $f,g: E \longrightarrow \mathbb{R}$ integrables en $E$ y sean $\alpha,\beta \in \mathbb{R}$. Entonces $\alpha f + \beta g$ es integrable en $E$ y
+\begin{align*}
+    \int_{E}{(\alpha f + \beta g) \ d\mu} = \alpha\int_{E}{f \ d\mu} + \beta\int_{E}{g \ d\mu}.
+\end{align*}
+\end{prop}
+
+\begin{proof}
+Sabemos que $\alpha f + \beta g$ es medible y
+\begin{align*}
+    0 \leq |\alpha f + \beta g| \leq |\alpha||f| + |\beta||g|.
+\end{align*}
+Por las propiedades de la integral de funciones medibles no negativas
+\begin{align*}
+    0 \leq \int_{E}{|\alpha f + \beta g| \ d\mu} \leq |\alpha|\int_{E}{|f| \ d\mu} + |\beta|\int_{E}{|g| \ d\mu} < +\infty.
+\end{align*}
+Luego $\alpha f + \beta g$ es integrable en $E$. Para demostrar la linealidad de la integral, es suficiente probar que $\int_{E}{f + g \ d\mu} = \int_{E}{f \ d\mu} + \int_{E}{g \ d\mu}$ y que $\int_{E}{\alpha f \ d\mu} = \alpha\int_{E}{f \ d\mu}$.
+\\
+\newline
+Sea $h = f + g$. Entonces
+\begin{align*}
+    h^+ - h^- = f^+ - f^+ + g^+ - g^-.
+\end{align*}
+Luego
+\begin{align*}
+    h^+ + f^- + g^- = h^- + f^+ + g^+.
+\end{align*}
+Integrando en $E$ y usando la linealidad de la integral de funciones no negativas,
+\begin{align*}
+    \int_{E}{h^+ \ d\mu} + \int_{E}{f^- \ d\mu} + \int_{E}{g^- \ d\mu} = \int_{E}{h^- \ d\mu} + \int_{E}{f^+ \ d\mu} + \int_{E}{g^+ \ d\mu}.
+\end{align*}
+Como todos los términos son números reales (porque las funciones son integrables),
+\begin{align*}
+    \int_{E}{h^+ \ d\mu} - \int_{E}{h^- \ d\mu} = \int_{E}{f^+ \ d\mu} - \int_{E}{f^- \ d\mu} + \int_{E}{g^+ \ d\mu} - \int_{E}{g^- \ d\mu},
+\end{align*}
+o, por definición,
+\begin{align*}
+    \int_{E}{h \ d\mu} = \int_{E}{f + g \ d\mu} = \int_{E}{f \ d\mu} + \int_{E}{g \ d\mu}.
+\end{align*}
+Demostremos ahora que $\int_{E}{\alpha f \ d\mu} = \alpha\int_{E}{f \ d\mu}$. Para $\alpha = 0$ es obvio. Supongamos que $\alpha > 0$. Entonces
+\begin{align*}
+    (\alpha f)^+ = \alpha(f^+), \ \ \ (\alpha f)^- = \alpha(f^-).
+\end{align*}
+Luego, usando la linealidad de la integral de funciones no negativas,
+\begin{align*}
+    \int_{E}{\alpha f \ d\mu} &= \int_{E}{(\alpha f)^+ \ d\mu} - \int_{E}{(\alpha f)^- \ d\mu} = \int_{E}{\alpha (f^+) \ d\mu} - \int_{E}{\alpha (f^-) \ d\mu}\\
+    &= \alpha\int_{E}{f^+ \ d\mu} - \alpha\int_{E}{f^- \ d\mu} = \alpha\left( \int_{E}{f^+ \ d\mu} - \int_{E}{f^- \ d\mu}\right) = \alpha\int_{E}{f \ d\mu}.
+\end{align*}
+Si $\alpha < 0$, solo hay que tener en cuenta que
+\begin{align*}
+    (\alpha f)^+ = -\alpha(f^+), \ \ \ (\alpha f)^- = -\alpha(f^-),
+\end{align*}
+y procedemos de la misma forma.
+\end{proof}
+
+\begin{obs}
+Denotemos por $\mathcal{L}^1(E)$ al conjunto de las funciones integrables en $E$ con valores en $\mathbb{R}$. Como hemos probado, $\mathcal{L}^1(E)$ es un espacio vectorial y la integral sobre $E$ es una aplicación lineal sobre dicho espacio.
+\\
+\newline
+Por otra parte, si consideramos en $\mathcal{L}^1(E)$ la ''norma''
+\begin{align*}
+    \|f\|_1 = \int_{E}{|f| \ d\mu}
+\end{align*}
+resulta que cumple las propiedades de norma salvo que $\|f\|_1 = 0$ no implica que $f = 0$ (implica que $f = 0$ en casi todo punto de $E$). Ahora bien, si consideramos en $\mathcal{L}^1(E)$ la relación de equivalencia
+\begin{align*}
+    f \sim g \ si \ f = g \ en \ casi \ todo \ punto \ de \ E,
+\end{align*}
+el espacio cociente $L^1(E) = (\mathcal{L}^1(E)/\sim)$ es un espacio vectorial con la suma y el producto por un escalar naturales. Si $[f]$ es una clase de equivalencia de representante $f$ entonces
+\begin{align*}
+    \|f\|_1 = \int_{E}{|f| \ d\mu}
+\end{align*}
+es independiente del representante y resulta ser una norma. Así $L^1(E)$ es un espacio normado. Más aún es de Banach. En el lenguaje habitual no se habla de clases $[f]$ sino de los representantes. Por ejemplo, decir que la sucesión $f_n$ converge a $f$ en la norma de $L^1(E)$ significa que
+\begin{align*}
+    \lim_{n \to \infty}{\int_{E}{|f_n - f|} \ d\mu} = 0.
+\end{align*}
+Se demuestra que si $f_n$ converge hacia $f$ en $L^1(E)$, entonces existe una subsucesión $f_{n_k}$ que converge hacia $f$ en casi todo punto de $E$.
+\end{obs}
+
+\subsection{El teorema de la convergencia dominada}
+
+\begin{teo}[El Teorema de la Convergencia Dominada]
+Sea $\{f_n\}$ una sucesión de funciones medibles de $E$ en $\rcom$. Sea $g$ una función medible no negativa definida sobre E. Supongamos que
+\begin{enumerate}
+    \item[(i)] Existe $f(x) = \lim_{n \to \infty}{f_n(x)}$ para todo $x \in E$.
+    \item[(ii)] $|f_n(x)| \leq g(x)$ para todo $x \in E$ y todo $n \in \mathbb{N}$.
+    \item[(iii)] g es integrable en E.
+\end{enumerate}
+Entonces
+\begin{enumerate}
+    \item[(a)] $f_n$ es integrable en $E$ cualquiera que sea $n$, $f$ es integrable en $E$ y
+    \begin{align*}
+        \lim_{n \to \infty}{\int_{E}{|f_n - f| \ d\mu}} = 0
+    \end{align*}
+    (es decir, $f_n$ converge hacia $f$ en $L^1(E)$).
+    \item[(b)] 
+    \begin{align*}
+        \lim_{n \to \infty}{\int_{E}{f_n \ d\mu}} = \int_{E}{f \ d\mu}.
+    \end{align*}
+\end{enumerate}
+\end{teo}
+
+\begin{proof}
+En primer lugar, haremos la demostración suponiendo que todas las funciones toman valores en $\mathbb{R}$.
+\\
+\newline
+La función $f$ es medible por ser el límite puntual de funciones medibles. Como $|f_(x)| \leq g(x)$ para todo $x \in E$ y todo $n \in \mathbb{N}$, se sigue que $|f(x)| \leq g(x)$ para todo $x \in E$ y, consecuentemente, $f$ es integrable en $E$ ya que
+\begin{align*}
+\int_{E}{|f| \ d\mu} \leq \int_{E}{g \ d\mu} < +\infty.    
+\end{align*}
+Por la misma razón, $f_n$ es integrable en $E$ cualquiera que sea $n$. Por otra parte,
+\begin{align*}
+    |f_n(x) - f(x)| \leq |f_n(x)| + |f(x)| \leq g(x) + g(x) = 2g(x)
+\end{align*}
+para todo $x \in E$. En consecuencia,
+\begin{align*}
+    0 \leq h_n(x) = 2g(x) - |f_n(x) - f(x)| 
+\end{align*}
+para todo $x \in E$. Además
+\begin{align*}
+    \lim_{n \to \infty}{h_n(x)} = 2g(x).
+\end{align*}
+Por el teorema de la convergencia desde abajo,
+\begin{align*}
+    \int_{E}{2g(x) \ d\mu} =& \int_{E}{\lim_{n \to \infty}{h_n(x)} \ d\mu} = \int_{E}{\lim_{n \to \infty}{(2g(x) - |f_n(x) - f(x)| ) \ d\mu}\\
+    &= \lim_{n \to \infty}{\int_{E}{(2g(x) - |f_n(x) - f(x)| ) \ d\mu}}}
+\end{align*}
+Como $\int_{E}{2g(x) \ d\mu} < +\infty$, se deduce que
+\begin{align*}
+    \int_{E}{2g(x) \ d\mu} = \int_{E}{2g(x) \ d\mu} - \lim_{n \to \infty}{\int_{E}{|f_n(x) - f(x)| \ d\mu}},
+\end{align*}
+de lo que concluimos que 
+\begin{align*}
+    \lim_{n \to \infty}{\int_{E}{|f_n(x) - f(x)| \ d\mu}} = 0,
+\end{align*}
+por lo que $(a)$ queda probado.
+\\
+\newline
+Para probar $(b)$, observamos
+\begin{align*}
+    \left| \int_{E}{f_n \ d\mu} - \int_{E}{f \ d\mu}\right| = \left| \int_{E}{(f_n - f) \ d\mu}\right| \leq \int_{E}{|f_n - f| \ d\mu}.
+\end{align*}
+Por $(a)$, el límite del término de la derecha es 0. Luego,
+\begin{align*}
+    \lim_{n \to \infty}{ \left| \int_{E}{f_n \ d\mu} - \int_{E}{f \ d\mu}\right|} = 0
+\end{align*}
+o, equivalentemente,
+\begin{align*}
+    \lim_{n \to \infty}{\int_{E}{f_n \ d\mu}} = {\int_{E}{f \ d\mu}}.
+\end{align*}
+Supongamos ahora que las funciones pueden tomar los valores $-\infty$ y $+\infty$. Puesto que $g$ es integrable, sabemos que $0 \leq g(x) < +\infty$ para casi todo $x$. Sea
+\begin{align*}
+    A = \{ x \in E : g(x) = +\infty \}.
+\end{align*}
+Entonces $\mu(A) = 0$. Además, las funciones $f_n$, $f$ y $g$ toman valores reales en $B = E \backslash A$ puesto que
+\begin{align*}
+    |f_n(x)| \leq g(x), \ \ |f(x)| \leq g(x) \ \ y \ 0 \leq g(x) < +\infty
+\end{align*}
+para todo $x \in B$. Por lo tanto, en el conjunto $B$ estamos en las condiciones del caso ya probado. Por lo tanto,
+\begin{enumerate}
+    \item[1.] $f_n$ es integrable en $B$ cualquiera que sea $n$, $f$ es intregrable en $B$ y
+    \begin{align*}
+        \lim_{n \to \infty}{\int_{B}{|f_n - f| \ d\mu}} = 0
+    \end{align*}
+    (es decir, $f_n$ converge hacia $f$ en $L^1(B)$).
+    \item[2.] 
+    \begin{align*}
+         \lim_{n \to \infty}{\int_{B}{f_n \ d\mu}} = {\int_{B}{f \ d\mu}}.
+    \end{align*}
+\end{enumerate}
+Como $\mu(A) = 0$, las afirmaciones anteriores son ciertas también si integramos en $E$.
+\end{proof}
+
+\begin{obs}
+Las conclusiones del teorema siguen siendo ciertas si las hipótesis $(i)$ y $(ii)$ se cambian por
+\begin{enumerate}
+     \item[(i)] Existe $f: E \longrightarrow \rcom$ medible tal que $f(x) = \lim_{n \to \infty}{f_n(x)}$ para casi todo $x \in E$.
+    \item[(ii)] $|f_n(x)| \leq g(x)$ para casi todo $x \in E$ y todo $n \in \mathbb{N}$.
+\end{enumerate}
+\end{obs}
+
+\begin{cor}
+Supongamos que $\mu(E) < +\infty$. Sea $f_n: E \longrightarrow \mathbb{R}$ una sucesión de funciones integrables en $E$ que converge uniformemente hacia $f$. Entonces $f$ es integrable en $E$ y
+\begin{align*}
+    \int_{E}{f \ d\mu} = \int_{E}{\lim_{n \to \infty}{f_n \ d\mu}} = \lim_{n \to \infty}{\int_{E}{f_n \ d\mu}}.
+\end{align*}
+\end{cor}
+
+\begin{proof}
+Como $f_n$ converge uniformemente hacia $f$ tenemos que la sucesión
+\begin{align*}
+    \alpha_n = \sup_{x \in E}{|f_n(x) - f(x)|} \xrightarrow[n \to \infty]{} 0
+\end{align*}
+Por tanto, existe un $n_0 \in \mathbb{N}$ tal que $\alpha_n < 1$ para todo $n \ge n_0$, es decir, $\sup_{x \in E}{|f_n(x) - f(x)|} < 1$ para todo $n \ge n_0$, luego,
+\begin{align*}
+    |f_n(x) - f(x)| < 1
+\end{align*}
+para todo $x \in E$ y para todo $n \ge n_0$. Entonces
+\begin{align*}
+    |f(x)| = |f(x) - f_{n_0}(x) + f_{n_0}(x)| \leq |f(x) - f_{n_0}(x)| + |f_{n_0}(x)| \leq 1 + |f_{n_0}(x)|
+\end{align*}
+para todo $x \in E$. Sea $g(x) = 1 + |f_{n_0}(x)|$ para todo $x \in E$. Como $\mu(E) < +\infty$ y $g$ es constante en $E$ se tiene que $g$ es integrable en $E$, aplicando el teorema de la convergencia dominada se tiene que
+\begin{enumerate}
+    \item[(a)] $f_n$ es integrable en $E$ cualquiera que sea $n$, $f$ es integrable en $E$ y
+    \begin{align*}
+        \lim_{n \to \infty}{\int_{E}{|f_n - f| \ d\mu}} = 0
+    \end{align*}
+    (es decir, $f_n$ converge hacia $f$ en $L^1(E)$).
+    \item[(b)] 
+    \begin{align*}
+        \lim_{n \to \infty}{\int_{E}{f_n \ d\mu}} = \int_{E}{f \ d\mu}.
+    \end{align*}
+\end{enumerate}
+\end{proof}
+
+\begin{cor}
+Supongamos que $\mu(E) < +\infty$. Sea $f_n: E \longrightarrow \mathbb{R}$ una sucesión de funciones medibles en E que converge en casi todo punto hacia f. Supongamos también que existe un número real positivo M tal que $|f_n(x)| \leq M$ para todo $n \in \mathbb{N}$ y casi todo $x \in E$. Entonces las funciones $f_n$ y $f$ son integrables en E y 
+\begin{align*}
+    \int_{E}{f \ d\mu} = \int_{E}{\lim_{n \to \infty}{f_n \ d\mu}} = \lim_{n \to \infty}{\int_{E}{f_n \ d\mu}}.
+\end{align*}
+\end{cor}
+
+\begin{defi}
+Supongamos que $A, E \in \mathcal{M}$, $A \subset E$ y que $\mu(E \backslash A) = 0$. 
+\begin{enumerate}
+    \item[(i)] Decimos que $f: A \longrightarrow \rcom$ está definida para casi todo punto de $E$ (o en casi todo punto de $E$).
+    \item[(ii)]  Diremos que f es integrable en E si f es integrable en A y definiremos
+    \begin{align*}
+        \int_{E}{f} := \int_{A}{f}
+    \end{align*}
+\end{enumerate}
+Obsérvese que f es integrable en E si y solo si existe una función $F: E \longrightarrow \rcom$ integrable en E tal que $F|_A = f$.
+\end{defi}
+
+\begin{cor}
+Sea $f_n$ una sucesión de funciones medibles de $E$ en $\rcom$ tal que
+\begin{align*}
+    \sum_{n=1}^{\infty}{\int_{E}{|f_n| \ d\mu}} = \int_{E}{\sum_{n=1}^{\infty}{|f_n|} \ d\mu} < +\infty.
+\end{align*}
+Entonces
+\begin{enumerate}
+    \item[(a)] La serie $\sum_{n=1}^{\infty}{f_n(x)}$ converge absolutamente para casi todo $x \in E$.
+    \item[(b)] La serie $\sum_{n=1}^{\infty}{f_n(x)}$ converge para casi todo $x \in E$.
+    \item[(c)] La función $f(x) = \sum_{n=1}^{\infty}{f_n(x)}$ está definida para casi todo $x \in E$, es medible, integrable en E y
+    \begin{align*}
+        \int_{E}{f \ d\mu} = \int_{E}{\sum_{n=1}^{\infty}{f_n(x)}} = \sum_{n=1}^{\infty}{\int_{E}{f_n \ d\mu}}.
+    \end{align*}
+\end{enumerate}
+\end{cor}
+
+\begin{proof}
+Sea $g: E \longrightarrow \rcom$ definida por $g(x) = \sum_{n=1}^{\infty}{|f_n(x)|}$. La función $g$ es medible por ser límite de una sucesión (la sucesión de sumas parciales) de funciones medibles, $g$ es no negativa y
+\begin{align*}
+    \int_{E}{|g| \ d\mu} = \int_{E}{g \ d\mu} = \int_{E}{\sum_{n=1}^{\infty}{|f_n|} \ d\mu} =  \sum_{n=1}^{\infty}{\int_{E}{|f_n| \ d\mu}} < +\infty.
+\end{align*}
+Así, $g$ es integrable en $E$ y, por lo tanto, $g$ es finita en casi todo punto de $E$, esto es, la serie $\sum_{n=1}^{\infty}{f_n(x)}$ converge absolutamente para casi todo $x \in E$, lo que prueba $(a)$.
+\\
+\newline
+Sea
+\begin{align*}
+    A = \{ x \in E : la \ serie \ \sum_{n=1}^{\infty}{f_n(x)} \ converge\}.
+\end{align*}
+El conjunto $A$ es medible, pues es el conjunto donde una sucesión (la sucesión de sumas parciales) converge. Si
+\begin{align*}
+    B = \{ x \in E : la \ serie \ \sum_{n=1}^{\infty}{f_n(x)} \ converge \ absolutamente\},
+\end{align*}
+entoncecs $B \subset A$, luego $E \backslash A \subset E \backslash B$ y como $\mu(E \backslash B) = 0$ obtenemos que $\mu(E \backslash A)$, lo que prueba $(b)$.
+\\
+\newline
+Sea $F_N = \sum_{n=1}^{N}{f_n(x)}$, definida en $A$. Obviamente, $F_N$ es medible en $A$. La función $f$, definida en $A$, es medible por ser límite en $A$ de $F_N$. Además
+\begin{align*}
+    |F_N| = |\sum_{n=1}^{N}{f_n}| \leq \sum_{n=1}^{N}{|f_n|} \leq g.
+\end{align*}
+Como $g$ es integrable en $A$, por el teorema de la convergencia dominada, obtenemos que $f$ es integrable en $A$ (y, por lo tanto, en $E$) y 
+\begin{align*}
+    \int_{E}{f \ d\mu} &\underset{\mu(E \backslash A) = 0}{=} \int_{A}{f \ d\mu} = \int_{A}{\lim_{N \to \infty}{F_n} \ d\mu} = \lim_{N \to \infty}{\int_{A}{F_N \ d\mu}} = \lim_{N \to \infty}{\int_{A}}{\sum_{n=1}^{N}{f_n} \ d\mu}\\
+    &= \lim_{N \to \infty}{\sum_{n = 1}^{N}{\int_{A}{f_n} \ d\mu}} = {\sum_{n = 1}^{\infty}{\int_{A}{f_n} \ d\mu}} \underset{\mu(E \backslash A) = 0}{=} {\sum_{n = 1}^{\infty}{\int_{E}{f_n} \ d\mu}}.
+\end{align*}
+\end{proof}
+
+\section{La integral de Riemann y su relación con la integral de Lebesgue}
+
+\begin{teo}
+Sea $f: [a,b] \longrightarrow \mathbb{R}$ acotada en $[a,b]$.
+\begin{enumerate}
+    \item[(a)] Si f es integrable Riemann en $[a,b]$ entonces f es integrable-Lebesgue en $[a,b]$ y las integrales en el sentido de Riemann y en el sentido de Lebesgue coinciden.
+    \item[(b)] f es integrable Riemann en $[a,b]$ si y solo si el conjunto de las discontinuidades de f tiene medida cero.
+\end{enumerate}
+\end{teo}
+
+\begin{ejemplo}
+\begin{enumerate}
+    \item[1.] Cálculo en el sentido de Lebesgue de la función $f(x) = \cos(x)$ en el intervalo $\left[0,\frac{\pi}{2}\right)$.
+    \\
+    \newline
+    Lo primero que observamos es que, como un punto tiene medida cero, es lo mismo integrar en $\left[0,\frac{\pi}{2}\right)$ que el intervalo $\left[0,\frac{\pi}{2}\right]$. Como $f$ es intgrable Riemann en $\left[0,\frac{\pi}{2}\right]$, entonces es integrable Lebesgue y ambas integrales coinciden. Por lo tanto,
+    \begin{align*}
+        \int_{\left[0,\frac{\pi}{2}\right)}{\cos(x) \ dx} = \int_{\left[0,\frac{\pi}{2}\right]}{\cos(x) \ dx} = \int_{0}^{\frac{\pi}{2}}{\cos(x) \ dx} = \sen\left(\frac{\pi}{2}\right) - \sen(0) = 1.
+    \end{align*}
+    \item[2.] Cálculo de la integral en el sentido de Lebesgue de la función $f(x) = e^{-x}$ en el intervalo $[0,+\infty)$. 
+    \\
+    \newline
+    Observemos que $f$ es continua y, por consiguiente, medible en $[0,+\infty)$. Por otra parte $[0,+\infty) = \cup_{n=1}^{\infty}{[0,n]}$. Como $[0,n] \subset [0,n+1]$ y $f$ es no negativa, apalicando que la integral es una medida, tenemos que
+    \begin{align*}
+        \int_{[0,+\infty)}{e^{x} \ dx} = \int_{\cup_{n=1}^{\infty}{[0,n]}}{e^{x} \ dx} = \lim_{n \to \infty}{\int_{[0,n]}{e^{-x} \ dx}}.
+    \end{align*}
+    Puesto que $f$ es integrable Riemann en el intervalo $[0,n]$ tenemos
+    \begin{align*}
+        {\int_{[0,n]}{e^{-x} \ dx}} = \int_{0}^{n}{e^{-x} \ dx} = -e^{-x}]_0^n = 1 - e^{-n}.
+    \end{align*}
+    Por consiguiente
+    \begin{align*}
+         \int_{[0,+\infty)}{e^{x} \ dx} = \lim_{n \to \infty}{\int_{[0,n]}{e^{-x} \ dx}} = \lim_{n \to \infty}{(1 - e^{-n})} = 1.
+    \end{align*}
+    \item[3.] Cálculo de la integral en el sentido de Lebesgue de la función $f(x) = \frac{1}{x^{\alpha}}$ en los intervalos $[a,+\infty)$ y $(0,a)$, donde $a > 0$.
+    \\
+    \newline
+    Como antes $f$ es medible por ser continua y no negativa. Como $[a,+\infty) = \cup_{n \in \mathbb{N},n > a}{[a,n]}$ y $[a,n] \subset [a,n+1]$, tenemos que
+    \begin{align*}
+        \int_{[a,+\infty)}{\frac{1}{x^{\alpha}} \ dx} &= \int_{a}^{+\infty}{\frac{1}{x^{\alpha}} \ dx} = \lim_{n \to \infty}{\int_{a}^{n}{\frac{1}{x^{\alpha}} \ dx}}\\
+        &= \left\{ \begin{array}{lcc}
+             \lim_{n \to \infty}{\frac{1}{1-\alpha}\left( \frac{1}{n^{\alpha - 1}} - \frac{1}{a^{\alpha - 1}}\right)} &  si  &\alpha \not = 1\\
+              \lim_{n \to \infty}{(\log(n) - \log(a))} &  si  &\alpha = 1 \\
+             \end{array}
+        \right\\
+        &= \left\{ \begin{array}{lcc}
+             \frac{a^{1 - \alpha}}{\alpha - 1} &  si  &\alpha > 1\\
+              +\infty &  si  &\alpha \leq 1.\\
+             \end{array}
+        \right.
+    \end{align*}
+    Por consiguiente,
+    \begin{align*}
+        \int_{a}^{+\infty}{\frac{1}{x^{\alpha}} \ dx} < +\infty \Longleftrightarrow \alpha > 1.
+    \end{align*}
+    De la misma forma puede verse que
+    \begin{align*}
+        \int_{0}^{a}{\frac{1}{x^{\alpha}} \ dx} < +\infty \Longleftrightarrow \alpha \leq 1.
+    \end{align*}
+    Para ellos escribimos $(0,a) = \cup_{n \in \mathbb{N}, n > 1/a}{\left[ \frac{1}{n}, a\right)}$ y procedemos de manera similar.
+    \item[4.] Del resultado anterior se sigue que
+    \begin{align*}
+        \int_{0}^{+\infty}{\frac{1}{x^{\alpha}} \ dx} = +\infty 
+    \end{align*}
+    para todo $\alpha$.
+    \item[5.] Se obtienen resultados análogos cuando se integra
+    \begin{align*}
+        \frac{1}{(x-c)^{\alpha}}, \ \ \ c \in \mathbn{R},
+    \end{align*}
+    en los intervalos $(c,a)$ y $(a,+\infty)$ con $a > c$.
+    \item[6.] Se obtienen resultados análogos cuando se integra
+    \begin{align*}
+        \frac{1}{(c-x)^{\alpha}}, \ \ \ c \in \mathbn{R},
+    \end{align*}
+    en los intervalos $(a,c)$ y $(-\infty,a)$ con $a < c$.
+    \item[7.] Calculemos
+    \begin{align*}
+        \int_{\mathbb{R}}{\frac{1}{1 + x^2} \ dx} = \int_{-\infty}^{+\infty}{\frac{1}{1 + x^2} \ dx}.
+    \end{align*}
+    Para ello, vemos que la la función es medible en $\mathbb{R}$ por ser continua y no negativa. Además $\mathbb{R} = \cup_{n \in \mathbb{N}}{[-n,n]}$ y $[-n,n] \subset [-n-1,n+1]$. Luego
+    \begin{align*}
+        \int_{-\infty}^{+\infty}{\frac{1}{1 + x^2} \ dx} = \lim_{n \to \infty}{\int_{-n}^{n}{\frac{1}{1 + x^2} \ dx}} = \lim_{n \to \infty}{(\arctan(n) - \arctan(-n))} = \pi.
+    \end{align*}
+    \item[8.] Cálculo de la integral
+    \begin{align*}
+        \int_{0}^{+\infty}{xe^{-x} \ dx}.
+    \end{align*}
+    La función es medible y no negativa. Luego
+    \begin{align*}
+        \int_{0}^{+\infty}{xe^{-x} \ dx} &= \lim_{n \to \infty}{\int_{0}^{n}{xe^{-x} \ dx}} = \lim_{n \to \infty} {\left( \left. -xe^{-x}\right]_0^n + \int_{o}^{n}{e^{-x} \ dx} \right)}\\
+        &= \lim_{n \to \infty}{(-ne^{-n} + (-e^{-n}+1))} = 1.
+    \end{align*}
+    \item[9.] Estudiemos la intergabilidad de
+    \begin{align*}
+        f(x) = e^{-x}\log(x)
+    \end{align*}
+    en $(0,+\infty)$. Claramente $f$ es medible pues es continua. Tenemos que examinar si la integral $\int_{(0,+\infty)}{|f(x)| \ dx}$ es finita o no. Como $log(x) > 0$ si y solo si $x > 1$, tenemos
+    \begin{align*}
+        \int_{0}^{+\infty}{|e^{-x}\log(x)| \dx} = \int_{0}^{1}{e^{-x}(-\log(x)) \ dx} + \int_{1}^{+\infty}{e^{-x}\log(x) \ dx}.
+    \end{align*}
+    Nótese que, dado $\alpha \in \mathbb{R}$, se tiene que
+    \begin{align*}
+        \log(t^{\alpha}) \leq t^{\alpha} \Longleftrightarrow \log(t) \leq \frac{1}{\alpha}t^{\alpha}
+    \end{align*}
+    Por tanto, 
+    \begin{align*}
+       \int_{0}^{1}{e^{-x}(-\log(x)) \ dx} \leq \int_{0}^{1}{e^{-x}\frac{1}{\alpha}t^{\alpha}\ dx} \underset{x \in (0,1)}{\leq} \int_{0}^{1}{\frac{1}{\alpha}t^{\alpha}\ dx},
+    \end{align*}
+    basta tomar $\alpha \in (0,1)$ para que
+    \begin{align*}
+        \int_{0}^{1}{e^{-x}(-\log(x)) \ dx} \leq \int_{0}^{1}{\frac{1}{\alpha}t^{\alpha}\ dx} < +\infty.
+    \end{align*}
+    Por otra parte, $\log(t) \leq t$, luego
+    \begin{align*}
+        \int_{1}^{+\infty}{e^{-x}\log(x) \ dx} \leq \int_{1}^{+\infty}{e^{-x}x \ dx}.
+    \end{align*}
+    Esta última integral ya ha sido estudiada y sabemos que es finita. Por lo tanto
+    \begin{align*}
+        \int_{1}^{+\infty}{e^{-x}\log(x) \ dx} < +\infty.
+    \end{align*}
+    Concluyendo así que $f$ es integrable en $(0,+\infty)$.
+    \item[10.] Estudiemos la integrabilidad de
+    \begin{align*}
+        f(x) = \frac{\sen(x)}{x}
+    \end{align*}
+    en $(0,+\infty)$. La función $f$ es medible por ser continua. Observamos que $\cup_{k=1}^{\infty}{\left[2k\pi, 2k\pi + \frac{\pi}{2}\right]}$ es una unión numerable de conjuntos medibles disjuntos dos a dos contenidos en $(0,+\infty)$. Luego
+    \begin{align*}
+        \int_{(0,+\infty)}{\left| \frac{\sen(x)}{x}\right| \ dx} &\ge \int_{\cup_{k=1}^{\infty}{\left[2k\pi, 2k\pi + \frac{\pi}{2}\right]}}{\left| \frac{\sen(x)}{x}\right| \ dx} = \sum_{k=1}^{\infty}{\int_{2k\pi}^{2k\pi + \frac{\pi}{2}}}{\frac{\sen(x)}{x} \ dx}\\
+        &\ge \sum_{k=1}^{\infty}{\frac{1}{2k\pi + \frac{\pi}{2}}\int_{2k\pi}^{2k\pi + \frac{\pi}{2}}{\sen(x) \ dx}} = \sum_{k=1}^{\infty}{\frac{1}{2k\pi + \frac{\pi}{2}}} = +\infty.
+    \end{align*}
+    Luego la función $f$ no es integrable en $(0,+\infty)$. Sin embargo, puede demostrarse que el límite
+    \begin{align*}
+        \lim_{b \to +\infty}{\int_{0}^{b}{\frac{\sen(x)}{x}} \ dx}
+    \end{align*}
+    existe, y definimos el valor propio de $\int_{0}^{+\infty}{\frac{\sen(x)}{x} \ dx}$ como
+    \begin{align*}
+        V.P\int_{0}^{+\infty}{\frac{\sen(x)}{x} \ dx} := \lim_{b \to +\infty}{\int_{0}^{b}{\frac{\sen(x)}{x}} \ dx}, 
+    \end{align*}
+    pero, recalcamos, no es un integral en el sentido de Lebesgue.
+\end{enumerate}
+\end{ejemplo}
+
+\section{Transformaciones que conservan la medida (segunda parte)}
+
+\begin{teo}
+Sean $(X, \mathcak{M}, \mu)$ e $(Y, \mathcal{N},\nu)$ dos espacios de medida y sea $T: X \longrightarrow Y$ una aplicación $(\mathcal{M},\mathcal{N})$-medible que conserva las medidas. Sea $g: Y \longrightarrow \rcom$ medible. La función g es integrable respecto de $\nu$ si y solo si $g \circ T$ es integrable respecto de $\mu$ y, en este caso, 
+\begin{align*}
+    \int_{Y}{g \ d\nu} = \int_{X}{g \circ T \ d\mu}.
+\end{align*}
+\end{teo}
+
+\begin{proof}
+La igualdad de las integrales se probó para funciones $g$ medibles no negativas. Si se la aplicamos a $|g|$ obtenemos
+\begin{align*}
+    \int_{Y}{|g| \ d\nu} = \int_{X}{|g|\circ T \ d\mu} = \int_{X}{|g \circ T| d\mu},
+\end{align*}
+de donde se sigue que $g$ es integrable respecto de $\nu$ si y solo si $g \circ T$ es integrable respecto de $\mu$. Como $g = g^+ - g^-$ y, como $g^+$ y $g^-$ son funciones medibles no negativas
+\begin{align*}
+    \int_{Y}{g \ d\nu} &= \int_{Y}{g^+ \ d\nu} - \int_{Y}{g^- \ d\nu} = \int_{X}{g^+ \circ T \ d\nu} - \int_{X}{g^- \circ T \ d\nu}\\
+    &= \int_{X}{(g^+ - g^-) \circ T \ d\mu} = \int_{X}{g \circ T \ d\mu}.
+\end{align*}
+\end{proof}
+
+\begin{ejemplo}[Variables aleatorias: Ley de probabilidad]
+Supongamos que $(\Omega, \mathcal{A}, P)$ es un espacio de probabilidad y que $X: \Omega \longrightarrow \mathbb{R}$ es una variable aleatoria. Su ley de probabilidad es la medida definida sobre la $\sigma$-álgeba de borel $\mathcal{B}_{\mathbb{R}}$ dada por
+\begin{align*}
+    P_X: \mathcal{B}_{\mathbb{R}} \longrightarrow [0,+\infty], \ \ \ P_X(B) = P(X^{-1}(B)).
+\end{align*}
+Es claro, por al definición de $P_X$, que $X: \Omega \longrightarrow \mathbb{R}R$ conserva las medidas, considerando en $\Omega$ la medida $P$ y en $\mathbb{R}$ la medida $P_X$. Si $g: \mathbb{R} \longrightarrow \mathbb{R}$ es medible-Borel, aplicando la proposición anterior,
+\begin{align*}
+    \int_{\Omega}{g \circ X(\omega) \ dP(\omega)} = \int_{\mathbb{R}}{g(t) \ dP_X(t)}.
+\end{align*}
+\end{ejemplo}
+
+\section{La integral en espacios de medida con densidad (segunda parte)}
+Sea $(X, \mathcal{M},\mu)$ un espacio de medida y sea $f: X \longrightarrow [0,+\infty]$ una función medible. Sabemos que la aplicación $\nu: \mathcal{M} \longrightarrow [0,+\infty]$, 
+\begin{align*}
+    \nu(E) = \int_{E}{f \ d\mu},
+\end{align*}
+es una nueva medida sobre $\mathcal{M}$. En esta situación decimos que f es la densidad de $\mu$ respecto de $\nu$.
+
+\begin{teo}
+Supongamos que estamos en las condiciones anteriores.
+\begin{enumerate}
+    \item[(a)] Si $g: X \longrightarrow [0,+\infty]$ es medible,
+    \begin{align*}
+        \int_{X}{g \ d\nu} = \int_{X}{gf \ d\mu}.
+    \end{align*}
+    \item[(b)] Sea $g: X \longrightarrow \rcom$ medible. La función $g$ es integrable respecto de $\nu$ si y solo si $gf$ es integrable respecto de $\mu$ y, en este caso,
+    \begin{align*}
+        \int_{X}{g \ d\nu} = \int_{X}{gf \ d\mu}.
+    \end{align*}
+\end{enumerate}
+\end{teo}
+
+\begin{proof}
+El apartado $(a)$ ya fue demostrado. Demostremos el apartado $(b)$. Por el apartado $(a)$
+\begin{align*}
+    \int_{X}{|g| \ d\nu} = \int_{X}{|g|f \ d\mu} = \int_{X}{|gf| \ d\mu},
+\end{align*}
+de donde se sigue que $g$ es integrable respecto de $\nu$ si y solo si $gf$ es integrable respecto de $\mu$. Usando de nuevo $(a)$ y que $g = g^+ - g^-$,
+\begin{align*}
+    \int_{X}{g \ d\nu} &= \int_{X}{g^+ \ d\nu} - \int_{X}{g^- \ d\nu} = \int_{X}{g^+f \ d\mu} - \int_{X}{g^-f \ d\mu}\\
+    &= \int_{X}{(g^+ - g^-)f \ d\mu} = \int_{X}{gf \ d\mu}.
+\end{align*}
+\end{proof}
+
+\section{Derivación bajo el signo integral}
+Muchas funciones vienen dadas por integrales paramétricas, es decir, expresiones del tipo
+\begin{align*}
+    F: G \longrightarrow \mathbb{R}, \ \ \ F(t) = \int_{E}{f(x,t) \ d\mu(x)}.
+\end{align*}
+Un ejemplo de esta situación es la función gamma,
+\begin{align*}
+    \Gamma: (0,+\infty) \longrightarrow \mathbb{R}, \ \ \ \Gamma(t) = \int_{0}^{+\infty}{x^{t-1}e^{-x} \ dx}.
+\end{align*}
+
+\begin{teo}
+Sea $(X, \mathcal{M}, \mu)$ un espacio de medida y sea $E \in \mathcal{M}$. Sean G un abierto de $\mathbb{R}^n$ y $t_0 \in G$. Sea $f: E \times G \longrightarrow \mathbb{R}$ tal que
+\begin{enumerate}
+    \item[1.] Para todo $t \in G$ la aplicación
+    \begin{align*}
+        f^t: E \longrightarrow \mathbb{R}, \ \ \ f^t(x) = f(x,t)
+    \end{align*}
+    es medible.
+    \item[2.] Existe $g: E \longrightarrow \mathbb{R}$, no negativa, integrable en $E$ tal que
+    \begin{align*}
+        |f(x,t)| \leq g(x)
+    \end{align*}
+    cualquiera que sea $(x,t) \in E \times G$.
+    \item[3.] Para todo $x \in E$, $\lim_{t \to t_0}{f(x,t)} = f(x,t_0)$, es decir,
+    \begin{align*}
+        f_x : G \longrightarrow \mathbb{R}, \ \ \ f_x(t) = f(x,t)
+    \end{align*}
+    es continua en $t_0$.
+\end{enumerate}
+Entonces, la función
+\begin{align*}
+    F: G \longrightarrow \mathbb{R}, \ \ \ F(t) = \int_{E}{f(x,t) \ d\mu(x)}
+\end{align*}
+está bien definida en $G$ ($f^t$ es integrable en $E$ para todo $t \in G$) y $\lim_{t \to t_0}{F(t)} = F(t_0)$ (F es continua en $t_0$).
+\end{teo}
+
+\begin{proof}
+Divimos la prueba en dos pasos.
+\begin{enumerate}
+    \item[1.] La función $F$ está bien definida porque las propiedades $1$ y $2$ nos dicen que $f^t(x) = f(x,t)$ es integrable al estar acotada por la función $g$ que es integrable por hipótesis.
+    \item[2.] Para ver que  $\lim_{t \to t_0}{F(t)} = F(t_0)$, elegimos una sucesión arbitraria $t_k \in G$, $k \in \mathbb{N}$, con $\lim_{k \to \infty}{t_k} = t_0$, $t_k \not = t_0$. Observamos que
+    \begin{align*}
+        F(t_k) = \int_{E}{f(x,t_k) \ d\mu(x)} = \int_{E}{f^{t_k}(x) \ d\mu}.
+    \end{align*}
+    Como $|f^{t_k}(x)| \leq g(x)$ para todo $k$ y $g$ es integrable, podemos aplicar el teorema de la convergencia dominada, tomar límites y permutar el límite y la integral:
+    \begin{align*}
+        \lim_{k \to \infty}{F(t_k)} &= \lim_{k \to \infty}{\int_{E}{f^{t_k}(x) \ d\mu}} = \int_{E}{\lim_{k \to \infty}{}f^{t_k}(x) \ d\mu}\\
+        &= \int_{E}{f^{t_0}(x) \ d\mu(x)} = F(t_0).
+    \end{align*}
+\end{enumerate}
+\end{proof}
+
+\begin{teo}[Teorema de derivación bajo el signo integral]
+Sea $(X, \mathcal{M}, \mu)$ un espacio de medida y sea $E \in \mathcal{M}$. Sea G un abierto de $\mathbb{R}^n$ y $t_0 \in G$. Sea $f: E \times G \longrightarrow \mathbb{R}$ tal que
+\begin{enumerate}
+    \item[1.] Para todo $t \in G$ la aplicación
+    \begin{align*}
+        f^t: E \longrightarrow \mathbb{R}, \ \ \ f^t(x) = f(x,t)
+    \end{align*}
+    es integrable respecto de $\mu$.
+    \item[2.] Existe $\frac{\partial  f}{\partial t_j}(x,t) = \frac{\partial f_x}{\partial t_j}(x)$ para todo $(x,t) \in E \times G$.
+    \item[3.] Existe $g: E \longrightarrow \mathbb{R}$, no negativa, integrable en E tal que
+    \begin{align*}
+        \left| \frac{\partial f}{\partial t_j}(x,t) \right| \leq g(x)
+    \end{align*}
+    cualquiera que sea $(x,t) \in E \times G$.
+\end{enumerate}
+Entonces, la función
+\begin{align*}
+    F: G \longrightarrow \mathbb{R}, \ \ \ F(t) = \int_{E}{f(x,t) \ d\mu(x)}
+\end{align*}
+está bien definida en G, existe la derivada parcial $\frac{\partial F}{\partial t_j}(t)$ y
+\begin{align*}
+    \frac{\partial F}{\partial t_j}(t) = \int_{E}{\frac{\partial f}{\partial t_j}(x,t) \ d\mu(x)}.
+\end{align*}
+\end{teo}
+
+\begin{proof}
+La función $F$ está bien definida por la hipótesis $1$. Calculemos y mostremos la existencia de la derivada $\frac{\partial F}{\partial t_j}(t)$, donde $t \in G$.
+\\
+\newline
+Sea $e_j$ el vector $j$-ésimo dela base canónica de $\mathbb{R}^n$. Tenemos que estudiar el límite
+\begin{align*}
+    \lim_{h \to 0}{\frac{F(t + he_j) - F(t)}{h}}.
+\end{align*}
+Lo haremos usando sucesiones. Sea $\{h_k\}_{k \ge 1}$ una sucesión tal que $\lim_{k \to \infty}{h_k} = 0$, $h_k \not = 0$ y $t + h_ke_j \in G$. Entonces
+\begin{align*}
+    {\frac{F(t + h_ke_j) - F(t)}{h_k}} &= \frac{\int_{E}{f(x,t+h_ke_j) \ d\mu(x)} - {\int_{E}{f(x,t)}} \ d\mu(x)}{h_k}\\
+    &= \int_{E}{\frac{f(x,t+h_ke_j) - f(x,t)}{h_k} \ d\mu(x)}. 
+\end{align*}
+Aplicando el teorema del valor medio, tenemos que para todo $k$ suficientemente grande, existe $\widetilde{h}_k$ (que depende también de $x$) tal que $t + \widetilde{h}_ke_j \in G$ y
+\begin{align*}
+    \left| \frac{f(x,t+h_ke_j) - f(x,t)}{h_k} \right| = \left| \frac{\partial f}{\partial t_j}(x,t+\widetilde{h}_ke_j) \right|.
+\end{align*}
+Aplicando la hipótesis $3$, tenemos
+\begin{align*}
+    \left| \frac{f(x,t+h_ke_j) - f(x,t)}{h_k} \right| \leq g(x).
+\end{align*}
+Por el teorema de la convergencia dominada y la definición de derivada parcial,
+\begin{align*}
+    \lim_{k \to \infty}{\frac{F(t+h_ke_j) - F(t)}{h_k}} = \lim_{k \to \infty}{\int_{E}{\frac{f(x,t+h_ke_j) - f(x,t)}{h_k} \ d\mu(x)}}\\
+    = \int_{E}{\lim_{k \to \infty}{\frac{f(x,t+h_ke_j) - f(x,t)}{h_k}} \ d\mu(x)} = \int_{E}{\frac{\partial f}{\partial t_j}(x,t) \ d\mu(x)},
+\end{align*}
+como queríamos demostrar.
+\end{proof}
+
+\begin{ejemplo}
+Sea $F(t) = \int_{0}^{\infty}{e^{-x^2}\cos(xt) \dx}$. Demostrar que $F$ está bien definida, que es derivable y que $F'(t) = -\frac{1}{2}F(t)$. Hallar $F(t)$ (sabiendo que $\int_{0}^{\infty}{e^{-x^2}} = \frac{\sqrt{\pi}}{2}$).
+\begin{enumerate}
+    \item[1.] Si $t \in \mathbb{R}$, $|e^{-x^2}\cos(xt)| = e^{-x^2}|\cos(xt)| \leq e^{-x^2}$ para todo $x \in (0, +\infty)$. Como $e^{-x^2}$ es integrable en $(0,+\infty)$, también $g(x) = e^{-x^2}\cos(xt)$ es integrable en $(0,+\infty)$. Esto prueba que $F$ está bien definida (es decir, que la integral $\int_{0}^{\infty}{e^{-x^2}\cos(xt) \dx}$ tiene sentido).
+    \item[2.] Para probar que $F$ es derivable, veremos que se verifican las condiciones del teorema de derivación bajo el signo integral.
+\begin{enumerate}
+    \item[2.1] Si $f(x,t) = e^{-x^2}\cos(xt)$, existe $\frac{\partial f}{\partial t}(x,t) = D_2f(x,t)$ en todo punto $(x,t) \in \mathbb{R} \times (0,+\infty)$. Además, $D_2f(x,t) = -xe^{-x^2}\sen(xt)$.
+    \item[2.2] La función $D_2f(x,t)$ es continua como función de $t$. De hecho, $f \in \mathscr{C}^1$.
+    \item[2.3] $|D_2f(x,t)| = xe^{-x^2}|\sen(x,t)| \leq xe^{-x^2}$ para todo $x$ y todo $t$, siendo la función $xe^{-x^2}$ integrable en $(0,+\infty)$. 
+\end{enumerate}
+Por tanto, $F$ es derivable en todo $t \in \mathbb{R}$ y
+\begin{align*}
+    F'(t) = \int_{0}^{\infty}{D_2f(x,t) \ dx} = -\int_{0}^{\infty}{xe^{-x^2}\sen(xt) \ dx}
+\end{align*}
+\item[3.] Aplicando integración por partes en esta última integral, obtenemos otra expresión para $F'(t)$:
+\begin{align*}
+    F'(t) &=  -\int_{0}^{\infty}{xe^{-x^2}\sen(xt) \ dx} = - \lim_{n \to \infty}{\int_{0}^{n}{xe^{-x^2}\sen(xt) \ dx}}\\
+    &= \lim_{n \to \infty}{\left( \left. \frac{1}{2}e^{-x^2}\sen(xt)\right]_{x=0}^{x=n} - \frac{t}{2}\int_{0}^{n}{e^{-x^2}\cos(xt) \ dx} \right)} = -\frac{t}{2}F(t).
+\end{align*}
+Por tanto, $F$ es solución de la ecuación diferencial $y'(t) = -\frac{t}{2}y(t)$, cuya solución general es $y(t) = Ce^{-\frac{t^2}{4}}$. Si imponemos la condición inicial $y(0) = \frac{\sqrt{\pi}}{2}$, que es $F(0)$, obtenemos
+\begin{align*}
+     F(t) = \frac{\sqrt{\pi}}{2}e^{-\frac{t}{4}}.
+\end{align*}
+\end{enumerate}
+\end{ejemplo}
+
+\section{Integración de funciones medibles complejas}
+
+Se puede definir también la integral de una función que toma valores en el conjunto $\mathbb{C}$ de los números complejos. Lo primero que debemos hacer es establecer lo que se entiende por función medible. Para ello introducimos algunas notaciones.
+\\
+\newline
+Si $z \in \mathbb{C}$, $Re(z)$ e $Im(z)$ denotan a la parte real y a la parte compleja de $z$ respectivamente, de forma que $z = Re(z) + iIm(z)$. El módulo de $z$ es el número no negativo $\sqrt{(Re(z))^2 + (Im(z))^2}$ y se denota por $|z|$.
+\\
+\newline
+Sea $E$ un conjunto y $f: E \longrightarrow \mathbb{C}$. Las funciones ''Parte Real'', $Re(f): E \longrightarrow \mathbb{R}$ y ''Parte Imaginaria'', $Im(f): E \longrightarrow \mathbb{R}$, de $f$ se definen como
+\begin{align*}
+    Re(f)(x) = Re(f(x)) \ \ , \ \ Im(f)(x) = Im(f(x)),
+\end{align*}
+y , por consiguiente,
+\begin{align*}
+    f = Re(f) + iIm(f)
+\end{align*}
+La función módulo de $f$ de $E$ en $\mathbb{R}$ se denota por $|f|$ y se define como
+\begin{align*}
+    |f|(x) = |f(x)|.
+\end{align*}
+Observemos que $Re(f)$, $Im(f)$ y $|f|$ son funciones que toman valores en $\mathbb{R}$.
+
+\begin{defi}
+Sea $(X, \mathcal{M})$ un espacio medible y sea E un subconjunto medible de X. Decimos que la función $f: E \longrightarrow \mathbb{C}$ es integrable en E si las funciones reales Re(f) e Im(f) son integrables en E y la integral de f sobre E, denotada por $\int_{E}{f \ d\mu}$, se define como
+\begin{align*}
+    \int_{E}{f \ d\mu} := \int_{E}{Re(f) \ d\mu} + i\int_{E}{Im(f) \ d\mu}.
+\end{align*}
+\end{defi}
+
+\begin{obs}
+Es fácil ver que, $f: E \longrightarrow \mathbb{C}$ es integrable en $E$ si y solo si la función módulo de $f$, $|f|$, es integrable en $E$.
+\end{obs}
+\begin{obs}
+La integral de funciones con valores en $\mathbb{C}$ tiene las mismas propiedades de linealidad y aditividad numerable que la integral de funciones reales. En particular, el teorema de convergencia dominada y sus consecuencias se cumplen en este contexto y las demostraciones se deducen de las correspondientes para funciones con valores en $\mathbb{R}$. También es cierta la desigualdad
+\begin{align*}
+    \left| \int_{E}{f \ d\mu} \right| \leq \int_{E}{|f| \ d\mu}
+\end{align*}
+para funciones integrables con valores en $\mathbb{C}$, donde las barras de la izquierda denotan el módulo de un número complejo, mientras que $|f|$ es la función módulo de $f$.
+\end{obs}
+
+\begin{teo}[Teorema Fundamental del Álgebra]
+Todo polinomio $p(z) = a_nz^n + a_{n-1}z^{n-1} + ... + a_1z + a_0$, $a_n \not = 0$, de grado $n \ge 1$ y coeficientes complejos tiene un cero en $\mathbb{C}$.
+\end{teo}

@@ -1,0 +1,151 @@
+\chapter{Constrastes de hipótesis}
+
+\section{Hipótesis estadística}
+
+\begin{defi}
+Decimos que una afirmación o hipótesis sobre la población es:
+\begin{itemize}
+    \item Simple, si determina la distribución.
+    \item Compuesta, si no determina la distribución.
+\end{itemize}
+\end{defi}
+
+\begin{defi}
+Un test de una hipótesis estadística es una regla para aceptar o rechazar una hipótesis.
+\end{defi}
+
+\begin{defi}
+Sea $\mathcal{T}$ un test para la hipótesis $H$. Decimos que $C_{\mathcal{T}} \subset \mathfrak{X}$ es una región crítica si rechazamos la hipótesis $H$ si y solo si la realización de la muestra $(x_1,...,x_n)$ está en $C_{\mathcal{T}}$.
+\end{defi}
+
+\begin{obs}
+Sean $H_0$ una hipótesis nula y $H_1$ una hipótesis alternativa. Entonces:
+\begin{itemize}
+    \item Si $H_0$ es cierta y acepto $H_0$, entonces hemos acertado.
+    \item Si $H_0$ es cierta y rechazo $H_0$, entonces hemos cometido un error de tipo I.
+    \item Si $H_0$ es falta y acepto $H_0$, entonces hemos cometido un error de tipo II.
+    \item Si $H_0$ es falta y rechazo $H_0$, entonces hemos acertado.
+\end{itemize}
+Denotaremos:
+\begin{itemize}
+    \item $P$(Rechazar $H_0 \ | \ H_0$ cierta) = $\alpha$ (significación).
+    \item $P$(No rechazar $H_0 \ | \ H_0$ falsa) = $\beta$ (riesgo).
+    \item $P$(Rechazar $H_0 \ | \ H_0$ falsa) = $1 -\beta$ (potencia).
+    \item $P$(No rechazar $H_0 \ | \ H_0$ cierta) = $1 -\alpha$ (confianza).
+\end{itemize}
+\end{obs}
+
+\begin{defi}
+Función de potencia de un test $\mathcal{T}$:
+\begin{align*}
+    \Pi_{\mathcal{T}}(\theta) = P_{\theta}((X_1,...,X_n) \in C_{\mathcal{T}}).
+\end{align*}
+\end{defi}
+
+\section{Criterio de elección del test más potente}
+
+\begin{defi}
+Sea $\mathcal{T}$ un test de $
+    \left\{ \begin{array}{lcc}
+             H_0 \ : \ \theta = \theta_0\\
+             H_1 \ : \ \theta = \theta_1 \\
+             \end{array}
+   \right.
+$. Fijamos $\alpha \in (0,1)$. Decimos que $\mathcal{T}$ es de máxima potencia para $\alpha$ cuando:
+\begin{itemize}
+    \item $\Pi_{\mathcal{T}}(\theta_0) = \alpha$.
+    \item $\Pi_{\mathcal{T}}(\theta_1) \ge \Pi_{\mathcal{T}^*}(\theta_1)$ para todo test $\mathcal{T}^*$ con $\Pi_{\mathcal{T}^*}(\theta_0) = \alpha$.
+\end{itemize}
+\end{defi}
+
+\begin{defi}
+Sea $X_1,...,X_n$ una muestra aleatoria simple ded una variable $X$ con densidad $f(x;\theta)$. Consideramos $
+    \left\{ \begin{array}{lcc}
+             H_0 \ : \ \theta \in \Theta_0\\
+             H_1 \ : \ \theta \in \Theta_1 \\
+             \end{array}
+   \right.
+$. con $\Theta = \Theta_0 \dot\cup \Theta_1$. Definimos la razón de verosimilitudes como
+\begin{align*}
+    \lambda(x_1,...,x_n) = \frac{\sup_{\theta \in \Theta_0} L(x_1,...,x_n;\theta)}{\sup_{\theta \in \Theta} L(x_1,...,x_n;\theta)}
+\end{align*}
+Un test de razón de  verosimilitudes es aquel con región crítica $C_{\mathcal{T}} = \{ x \in \mathfrak{X} : \lambda(x) \leq c \}$ para cierto $c \in [0,1)$.
+\end{defi}
+
+\begin{obs}
+Si $\hat{\theta}$ es el estimador de máxima verosimilitud para $\theta$ en $\Theta$ y $\hat{\theta_0}$ es el estimador de máxima verosimilitud para $\theta$ en $\Theta_0$, entonces:
+\begin{align*}
+    \lambda(x_1,...,x_n) = \frac{L(x_1,...,x_n;\hat{\theta_0})}{L(x_1,...,x_n;\hat{\theta})}
+\end{align*}
+\end{obs}
+
+\begin{ejemplo}
+Sea $X_1,...,X_n$ una muestra aleatoria simple de una variable aleatoria $X \sim N(\theta,1)$. Calulemos un test de razón de verosimilitudes para el contraste $
+    \left\{ \begin{array}{lcc}
+             H_0 \ : \ \theta = \theta_0\\
+             H_1 \ : \ \theta \not = \theta_0 \\
+             \end{array}
+   \right.
+$. 
+Sea $x = (x_1,...,x_n)$ una realización de la muestra. El estimador de máxima verosimiltiud para $\theta$ en $\Theta = \mathbb{R}$ es $\overline{X}$. El único posible valor que maximize $L(x;\theta)$ en $\Theta_0 = \{\theta_0\}$ es el propio $\theta_0$. Entonces
+\begin{align*}
+    \lambda(x) &= \frac{L(x;\theta_0)}{L(x;\overline{x})} = \frac{(2\pi)^{-n/2}e^{-\frac{1}{2} \sum_{i=1}^{n} (x_i -\theta)^2} }{(2\pi)^{-n/2}e^{-\frac{1}{2} \sum_{i=1}^{n} (x_i -\overline{x})^2}} 
+    = \exp\left[ \frac{1}{2}\left(\sum_{i=1}^{n} (x_i -\overline{x})^2 - \sum_{i=1}^{n} (x_i -\theta)^2\right) \right] \\
+    & = ... = \exp\left[ -\frac{1}{2}\left(\sum_{i=1}^{n} (\overline{x} -\theta_0)^2 \right) \right]
+\end{align*}
+\end{ejemplo}
+Definimos el test $\mathcal{T}$ de razón de verosimilitudes como: Rechazo $H_0$ si algún valor de realización de la muestra se encuentra en:
+\begin{align*}
+    C_{\mathcal{T}} = \{ x \in \mathfrak{X} : \lambda(x) \leq c\} = \left\{ x \in \mathfrack{X} : |\overline{x} - \theta_0| \ge \sqrt{-\frac{2}{n}\log c}\right\}
+\end{align*}
+
+\begin{teo}
+Sea $X_1,...,X_n$ una muestra aleatoria simple de una variable aleatoria $X$ con densidad $f(x;\theta)$. Sea $T(X_1,...,X_n)$ un estadístico suficiente para $\theta$ y sean $\lambda(t)$ y $\lambda^*(t)$ radios de verosimilitudes para $T(X_1,...,X_n)$ y $X$ respectivamente. Entonces
+\begin{align*}
+    \lambda^*(T(x)) = \lambda(x), \ \ \text{para cada } x \in \mathfrak{X}
+\end{align*}
+\end{teo}
+
+\begin{proof}
+Usando el Teorema de Factrización sabemos que $f(x;\theta) = g(T(x);\theta) \cdot h(x)$, donde $h$ no depende de $\theta$. Entonces
+\begin{align*}
+    \lambda(x) &= \frac{\sup_{\Theta_0}L(x;\theta)}{\sup_{\Theta}L(x;\theta)} = \frac{\sup_{\Theta_0} \prod_{i=1}^{n}f(x_i;\theta)}{\sup_{\Theta} \prod_{i=1}^{n}f(x_i;\theta)} = \frac{\sup_{\Theta_0} \prod_{i=1}^{n}g(T(x_i);\theta) \cdot h(x)}{\sup_{\Theta} \prod_{i=1}^{n}g(T(x_i);\theta) \cdot h(x)} \\
+    &= \frac{\sup_{\Theta_0} \prod_{i=1}^{n}g(T(x_i);\theta)}{\sup_{\Theta} \prod_{i=1}^{n}g(T(x_i);\theta)} = \frac{\sup_{\Theta_0}L^*(T(x);\theta)}{\sup_{\Theta}L^*(T(x);\theta)} = \lambda^*(T(x))
+\end{align*}
+\end{proof}
+
+\begin{defi}
+Sea $\alpha \in (0,1)$ y sea $\mathcal{T}$ un test con $\Pi_{\mathcal{T}}(\theta)$ su función de potencia. Decimos que $\mathcal{T}$ es de tamaño $\alpha$ si $\sup_{\Theta_0} \Pi_{\mathcal{T}}(\theta) = \alpha$.
+\end{defi}
+
+\begin{defi}
+Consideremos el contraste $
+    \left\{ \begin{array}{lcc}
+             H_0 \ : \ \theta \in \Theta_0\\
+             H_1 \ : \ \theta \in \Theta_1 \\
+             \end{array}
+   \right.
+$. Un test $\mathcal{T}$ para dicho contraste se dirá que es uniformemente más potente si $\Pi_{\mathcal{T}}(\theta) \ge \Pi_{\mathcal{T^*}}(\theta)$ para todo $\theta \in \Theta_1$ y cualquier test $T^*$.
+\end{defi}
+
+\begin{lema}[de Neymann-Pearson]
+Sea $X_1,...,X_n$ una muestra aleatoria simple de una variable aleatoria $X$ con desidad $f(x;\theta)$, $\theta \in \{\theta_1,\theta_2\}$. Sean $\alpha \in (0,1)$, $k >0$ constante y $C \subset \mathfrak{X}$ una región tales que
+\begin{itemize}
+    \item $P_{\theta}((X_1,...,X_n) \in C) = \alpha$.
+    \item
+    \begin{align*}
+        \left\{ \begin{array}{lcc}
+             \frac{L(x_1,...,x_n;\theta_0)}{L(x_1,...,x_n;\theta_1)} \leq k & si & (x_1,...,x_n) \in C \\
+            \\  \frac{L(x_1,...,x_n;\theta_0)}{L(x_1,...,x_n;\theta_1)} \ge k & si & (x_1,...,x_n) \not \in C
+             \end{array}
+        \right.
+    \end{align*}
+    Entonces un test $\mathcal{T}$ con región crítica $C$ es un test uniformemente de tamaño $\alpha$ para $
+    \left\{ \begin{array}{lcc}
+             H_0 \ : \ \theta = \theta_0\\
+             H_1 \ : \ \theta = \theta_1 \\
+             \end{array}
+   \right.
+$.
+\end{itemize}
+\end{lema}
