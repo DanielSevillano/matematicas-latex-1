@@ -11,3 +11,4 @@ Una recopilación de apuntes del Grado en Matemáticas escritos en $\LaTeX$. Tod
 - [Probabilidad](https://github.com/jorgeroddom/matematicas-latex/tree/main/Probabilidad)
 - [Teoría de la Medida e Integración](https://github.com/jorgeroddom/matematicas-latex/tree/main/Teor%C3%ADa%20de%20la%20Medida%20e%20Integraci%C3%B3n)
 - [Variable Compleja](https://github.com/jorgeroddom/matematicas-latex/tree/main/Variable%20Compleja)
+- [Modelos Estadísticos Multivariantes](https://github.com/jorgeroddom/matematicas-latex/tree/main/Modelos%20Estadisticos%20Multivariantes)
