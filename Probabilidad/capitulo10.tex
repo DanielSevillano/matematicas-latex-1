@@ -13,28 +13,28 @@ donde $\textbf{\textit{X}}(\omega) = (X_1(\omega), X_2(\omega),..., X_n(\omega))
 con $\textbf{\textit{x}} = (x_1,x_2,...,x_n) \in \mathbb{R}^n$.
 
 \begin{defi}
-Sea $\textbf{\textit{X}} = (X_1, X_2,..., X_n)$ un vectores de funciones definido en $(\Omega, \mathcal{A}, P)$ a $\mathbb{R}^n$, donde para cada $\omega \in \Omega$
-\begin{align*}
-    \textbf{\textit{X}}(\omega) = (X_1(\omega), X_2(\omega),..., X_n(\omega))
-\end{align*}
-Diremos que \textbf{\textit{X}} es un vector aleatorio o una variable aleatoria n-dimensional si, para cada vector de números reales, $\textbf{a} = (a_1,a_2,...,a_n)$, la imagen inversa del intervalo n-dimensional $I = \{ (x_1,...,x_n) : x_i \leq a_i, i = 1,2,...,n \}$ pertenece a la $\sigma$-álgebra $\mathcal{A}$, es decir,
-\begin{align*}
-    \textbf{\textit{X}}^{-1}(I) = \{ \omega \in \Omega : X_1(\omega) \leq a_1, ..., X_n(\omega) \leq a_n \} \in \mathcal{A}.
-\end{align*}
+    Sea $\textbf{\textit{X}} = (X_1, X_2,..., X_n)$ un vectores de funciones definido en $(\Omega, \mathcal{A}, P)$ a $\mathbb{R}^n$, donde para cada $\omega \in \Omega$
+    \begin{align*}
+        \textbf{\textit{X}}(\omega) = (X_1(\omega), X_2(\omega),..., X_n(\omega))
+    \end{align*}
+    Diremos que \textbf{\textit{X}} es un vector aleatorio o una variable aleatoria n-dimensional si, para cada vector de números reales, $\textbf{a} = (a_1,a_2,...,a_n)$, la imagen inversa del intervalo n-dimensional $I = \{ (x_1,...,x_n) : x_i \leq a_i, i = 1,2,...,n \}$ pertenece a la $\sigma$-álgebra $\mathcal{A}$, es decir,
+    \begin{align*}
+        \textbf{\textit{X}}^{-1}(I) = \{ \omega \in \Omega : X_1(\omega) \leq a_1, ..., X_n(\omega) \leq a_n \} \in \mathcal{A}.
+    \end{align*}
 \end{defi}
 
 \begin{teo}
-Sean $X_1,X_2,...,X_n$, n variables  aleatorias definidas sobre $(\Omega, \mathcal{A}, P)$. Entonces  $\textbf{\textit{X}} = (X_1, X_2,..., X_n)$ es una variable aleatoria n-dimensional sobre $(\Omega, \mathcal{A}, P)$.
+    Sean $X_1,X_2,...,X_n$, n variables  aleatorias definidas sobre $(\Omega, \mathcal{A}, P)$. Entonces  $\textbf{\textit{X}} = (X_1, X_2,..., X_n)$ es una variable aleatoria n-dimensional sobre $(\Omega, \mathcal{A}, P)$.
 \end{teo}
 
 \begin{proof}
-Sea $I = \{ (x_1,...,x_n) : x_i \leq a_i, a_i \in \mathbb{R}, i = 1,2,...,n \}$. Entonces
-\begin{align*}
-    (X_1,X_2,...,X_n)^{-1}(I) &= \{ \omega \in \Omega : X_1(\omega) \leq a_1, ..., X_n(\omega) \leq a_n \} \\
-    &= \bigcap_{i=1}^{n}{\{ \omega \in \Omega : X_i(\omega) \leq a_i \}}\\
-    &= \bigcap_{i=1}^{n}{X_i^{-1}(-\infty,a_i]}
-\end{align*}
-Por ser $X_i$ variable aleatoria, se tiene que $X_i^{-1}(-\infty,a_i] \in \mathcal{A}$, por lo que $(X_1,X_2,...,X_n)^{-1}(I) \in \mathcal{A}$.
+    Sea $I = \{ (x_1,...,x_n) : x_i \leq a_i, a_i \in \mathbb{R}, i = 1,2,...,n \}$. Entonces
+    \begin{align*}
+        (X_1,X_2,...,X_n)^{-1}(I) & = \{ \omega \in \Omega : X_1(\omega) \leq a_1, ..., X_n(\omega) \leq a_n \} \\
+                                  & = \bigcap_{i=1}^{n}{\{ \omega \in \Omega : X_i(\omega) \leq a_i \}}         \\
+                                  & = \bigcap_{i=1}^{n}{X_i^{-1}(-\infty,a_i]}
+    \end{align*}
+    Por ser $X_i$ variable aleatoria, se tiene que $X_i^{-1}(-\infty,a_i] \in \mathcal{A}$, por lo que $(X_1,X_2,...,X_n)^{-1}(I) \in \mathcal{A}$.
 \end{proof}
 
 \section{Distribución de probabilidad de un vector aleatorio}
@@ -57,59 +57,58 @@ Dado un vector aleatorio \textbf{\textit{X}}, se define la función de distribuc
 \end{align*}
 
 \begin{teo}
-La función de distribución de probabilidad de un vector aleatorio satisface las siguientes propiedades:
-\begin{enumerate}
-    \item[(P1)] $F(+\infty,+\infty,...,+\infty) = 1$.
-    \item[(P2)] $F(x_1,...,x_{i-1},-\infty,x_{i+1},...,x_n) = 0$.
-    \item[(P3)] La función de distribución conjunta es creciente para cada componente.
-    \item[(P4)] La función de distribución conjunta es continua por la derecha para cada componente.
-\end{enumerate}
+    La función de distribución de probabilidad de un vector aleatorio satisface las siguientes propiedades:
+    \begin{enumerate}
+        \item[(P1)] $F(+\infty,+\infty,...,+\infty) = 1$.
+        \item[(P2)] $F(x_1,...,x_{i-1},-\infty,x_{i+1},...,x_n) = 0$.
+        \item[(P3)] La función de distribución conjunta es creciente para cada componente.
+        \item[(P4)] La función de distribución conjunta es continua por la derecha para cada componente.
+    \end{enumerate}
 \end{teo}
 
 \subsection{Vectores bidimensionales}
 
 Estudiaremos con más detenimiento el caso de que $n = 2$. Por lo tanto consideramos un vector aleatorio bidiensional $\textbf{\textit{X}} = (X,Y)$, con función de distribución $F_{(X,Y)}(x,y) := F(x,y)$. Las propiedades quedan ahora de la forma
 \begin{teo}
-\begin{enumerate}
-    \item[(P1)] $F(+\infty,+\infty) = 1$.
-    \item[(P2)] $F(x,-\infty) = 0$ y $F(-\infty,y) = 0$.
-    \item[(P3)] La función de distribución conjunta es creciente para cada componente.
-    \item[(P4)] La función de distribución conjunta es continua por la derecha para cada componente.
-\end{enumerate}
+    \begin{enumerate}
+        \item[(P1)] $F(+\infty,+\infty) = 1$.
+        \item[(P2)] $F(x,-\infty) = 0$ y $F(-\infty,y) = 0$.
+        \item[(P3)] La función de distribución conjunta es creciente para cada componente.
+        \item[(P4)] La función de distribución conjunta es continua por la derecha para cada componente.
+    \end{enumerate}
 \end{teo}
 
 \begin{proof}
-\begin{enumerate}
-    \item[(P1)] $F(n,n) = P(X \leq n, Y \leq n) = P_{(X,Y)}(C_{(n,n)})$ donde
-    \begin{align*}
-        C_{(n,n)} = \{ (x,y) \in \mathbb{R}^2 : x \leq n, y \leq n\}.
-    \end{align*}
-    Nótese que $\{C_{(n,n)} \} \uparrow \mathbb{R}^2$, por tanto, la probabilidad y el límite pueden conmutar y tenemos
-    \begin{align*}
-        \lim_{n \to \infty}{F(n,n)} = \lim_{n \to \infty}{ P_{(X,Y)}(C_{(n,n)})} = P_{(X,Y)}(\lim_{n \to \infty}{C_{(n,n)}}) = P_{(X,Y)}(\mathbb{R}^2) = 1.
-    \end{align*}
-    \item[(P2)] $F(0,-n) = P_{(X,Y)(C_{(x,-n)})}$. Nótese que $\{C_{(x,-n)}\} \downarrow \emptyset$, por tanto, la probabilidad y el límite pueden conmutar y tenemos
-    \begin{align*}
-        \lim_{n \to \infty}{F(x,-n)} = \lim_{n \to \infty}{P_{(X,Y)(C_{(x,-n)})}} = P_{(X,Y)}{(\lim_{n \to \infty}{C_{(x,-n)}})} = P_{(X,Y)}{(\emptyset)} = 0.
-    \end{align*}
-    El argumento es análolgo para $F(-\infty,y)$.
-    \item[(P3)] Veamos que $F$ es creciente en la primera componente. Sean $x_1, x_2 \in \mathbb{R}$ con $x_1 < x_2$. Nótese que $C_{(x_1,y)} \subset C_{(x_2,y)}$. Entonces
-    \begin{align*}
-        F(x_1,y) = P_{(X,Y)}(C_{(x_1,y)}) \leq P_{(X,Y)}(C_{(x_2,y)}) = F(x_2,y)
-    \end{align*}
-    El argumento es análogo para la segunda componente.
-\end{enumerate}
+    \begin{enumerate}
+        \item[(P1)] $F(n,n) = P(X \leq n, Y \leq n) = P_{(X,Y)}(C_{(n,n)})$ donde
+              \begin{align*}
+                  C_{(n,n)} = \{ (x,y) \in \mathbb{R}^2 : x \leq n, y \leq n\}.
+              \end{align*}
+              Nótese que $\{C_{(n,n)} \} \uparrow \mathbb{R}^2$, por tanto, la probabilidad y el límite pueden conmutar y tenemos
+              \begin{align*}
+                  \lim_{n \to \infty}{F(n,n)} = \lim_{n \to \infty}{ P_{(X,Y)}(C_{(n,n)})} = P_{(X,Y)}(\lim_{n \to \infty}{C_{(n,n)}}) = P_{(X,Y)}(\mathbb{R}^2) = 1.
+              \end{align*}
+        \item[(P2)] $F(0,-n) = P_{(X,Y)(C_{(x,-n)})}$. Nótese que $\{C_{(x,-n)}\} \downarrow \emptyset$, por tanto, la probabilidad y el límite pueden conmutar y tenemos
+              \begin{align*}
+                  \lim_{n \to \infty}{F(x,-n)} = \lim_{n \to \infty}{P_{(X,Y)(C_{(x,-n)})}} = P_{(X,Y)}{(\lim_{n \to \infty}{C_{(x,-n)}})} = P_{(X,Y)}{(\emptyset)} = 0.
+              \end{align*}
+              El argumento es análolgo para $F(-\infty,y)$.
+        \item[(P3)] Veamos que $F$ es creciente en la primera componente. Sean $x_1, x_2 \in \mathbb{R}$ con $x_1 < x_2$. Nótese que $C_{(x_1,y)} \subset C_{(x_2,y)}$. Entonces
+              \begin{align*}
+                  F(x_1,y) = P_{(X,Y)}(C_{(x_1,y)}) \leq P_{(X,Y)}(C_{(x_2,y)}) = F(x_2,y)
+              \end{align*}
+              El argumento es análogo para la segunda componente.
+    \end{enumerate}
 
 \end{proof}
 
 \begin{obs}
-Estas cuatro propiedades no caracterizan a la función de distribución de un vector aleatorio, en el sentido de que dada una funcón $F: \mathbb{R}^2 \longrightarrow [0,1]$ que satisfaga estas cuatro propiedades no asegura que $F$ sea la función de distribución de un vector aleatorio. Para poder asegurarlo, tenemos que añadir una propiedad adicional.
-\\
-\newline
-Si $F: \mathbb{R} \longrightarrow [0,1]$ verifica $P1$, $P2$, $P3$ y $P4$, $F$ será función de distribución si además verifica
-\begin{align*}
-    P_{(X,Y)}((a,b] \times (c,d]) \in [0,1] \Longleftrightarrow F(b,d) - F(b,c) - F(a,d) + F(a,c) \in [0,1].
-\end{align*}
+    Estas cuatro propiedades no caracterizan a la función de distribución de un vector aleatorio, en el sentido de que dada una funcón $F: \mathbb{R}^2 \longrightarrow [0,1]$ que satisfaga estas cuatro propiedades no asegura que $F$ sea la función de distribución de un vector aleatorio. Para poder asegurarlo, tenemos que añadir una propiedad adicional.
+
+    Si $F: \mathbb{R} \longrightarrow [0,1]$ verifica $P1$, $P2$, $P3$ y $P4$, $F$ será función de distribución si además verifica
+    \begin{align*}
+        P_{(X,Y)}((a,b] \times (c,d]) \in [0,1] \Longleftrightarrow F(b,d) - F(b,c) - F(a,d) + F(a,c) \in [0,1].
+    \end{align*}
 \end{obs}
 
 \subsection{Cálculo de probabilidad de conjuntos de $\mathbb{R}^2$ a partir de la función de distribución conjunta}
@@ -134,48 +133,46 @@ Son vectores de la forma $\textbf{\textit{X}} = (X,Y)$ donde $X$ e $Y$ son varia
 \section{Vectores aleatorios absolutamente continuos}
 
 \begin{defi}
-La distribución de probabilidad de P en $(\mathbb{R}^2, \mathbb{B}_2)$ y su función de distribución $F(x,y)$ se denominan absolutamente continuas si existe una función no negativa $f: \mathbb{R}^2 \longrightarrow \mathbb{R}$ tal que para todo rectángulo $I \subset \mathbb{R}^2$
-\begin{align*}
-    P(I) = \int_{I}{f(x,y) \ dxdy}.
-\end{align*}
+    La distribución de probabilidad de P en $(\mathbb{R}^2, \mathbb{B}_2)$ y su función de distribución $F(x,y)$ se denominan absolutamente continuas si existe una función no negativa $f: \mathbb{R}^2 \longrightarrow \mathbb{R}$ tal que para todo rectángulo $I \subset \mathbb{R}^2$
+    \begin{align*}
+        P(I) = \int_{I}{f(x,y) \ dxdy}.
+    \end{align*}
 \end{defi}
 No hay problema en extender esta integral a rectángulos no acotados mediante el paso al límite, ya que $F \ge 0$ por lo que $\int_{I}{f}$ crece al crecer $I$ y además está acotada por 1. En consecuencia
 \begin{align*}
     F(x,y) = \int_{-\infty}^{x}{\int_{-\infty}^{y}{f(s,t) \ dsdt}}.
 \end{align*}
 donde $F$ es la función de distribución conjunta de la variable aleatoria bidimensional $P_{\textbf{\textit{X}}} = (X,Y)$. A esta función $f$ se le llama \textit{función de densidad} de la variable aleatoria bidimensional $P_{\textbf{\textit{X}}} = (X,Y)$.
-\\
-\newline
 Además la función de distribución conjunta de la variable aleatoria bidimensional debe verificar que
 \begin{align*}
     F(+\infty, +\infty) = \lim_{x,y \to +\infty}\int_{-\infty}^{x}{\int_{-\infty}^{y}{f(s,t) \ dsdt}} = {\int_{-\infty}^{+\infty}{\int_{-\infty}^{+\infty}{f(s,t) \ dsdt}}} = 1.
 \end{align*}
 
 \begin{prop}
-Una función $f: \mathbb{R} \longrightarrow \mathbb{R}$ no negativa e integrable-Riemann en cualquier rectángulo de $\mathbb{R}^2$, es función de densidad de alguna distribución bidimensional si y solo si
-\begin{align*}
-    {\int_{-\infty}^{+\infty}{\int_{-\infty}^{+\infty}{f(s,t) \ dsdt}}} = 1.
-\end{align*}
-En tal caso, f es la función de densidad de la función de distribución absolutamente continua F definida como
-\begin{align*}
-    F(x,y) = \int_{-\infty}^{x}{\int_{-\infty}^{y}{f(s,t) \ dsdt}}.
-\end{align*}
+    Una función $f: \mathbb{R} \longrightarrow \mathbb{R}$ no negativa e integrable-Riemann en cualquier rectángulo de $\mathbb{R}^2$, es función de densidad de alguna distribución bidimensional si y solo si
+    \begin{align*}
+        {\int_{-\infty}^{+\infty}{\int_{-\infty}^{+\infty}{f(s,t) \ dsdt}}} = 1.
+    \end{align*}
+    En tal caso, f es la función de densidad de la función de distribución absolutamente continua F definida como
+    \begin{align*}
+        F(x,y) = \int_{-\infty}^{x}{\int_{-\infty}^{y}{f(s,t) \ dsdt}}.
+    \end{align*}
 \end{prop}
 
 \begin{teo}
-Sea $\textbf{\textit{X}} = (X,Y)$ una variable aleatoria bidimmensional continua con función de densidad f y función de distribución F. Entonces:
-\begin{enumerate}
-    \item[(a)] F es continua para todo $(x,y) \in \mathbb{R}^2$.
-    \item[(b)] Si f es continua en un entorno del punto $(x_0,y_0)$, entonces F admite en dicho entorno derivada segunda respecto a $(x,y)$ siendo para todo $(x_1,y_1)$ de este entorno
-    \begin{align*}
-        \frac{\partial F(x_1,y_1)}{\partial x \partial y} = \frac{\partial F(x_1, y_1)}{\partial y \partial x} = f(x_1,y_1).
-    \end{align*}
-    \item[(c)] El conjunto de valores de la variable aleatoria bidimensional con probabilidad positiva es el conjunto vacío.
-    \item[(d)] Para todo $B \in \mathbb{B}_2$
-    \begin{align*}
-        P(B) = \int_{B}{f(x,y) \ dxdy}.
-    \end{align*}
-\end{enumerate}
+    Sea $\textbf{\textit{X}} = (X,Y)$ una variable aleatoria bidimmensional continua con función de densidad f y función de distribución F. Entonces:
+    \begin{enumerate}
+        \item[(a)] F es continua para todo $(x,y) \in \mathbb{R}^2$.
+        \item[(b)] Si f es continua en un entorno del punto $(x_0,y_0)$, entonces F admite en dicho entorno derivada segunda respecto a $(x,y)$ siendo para todo $(x_1,y_1)$ de este entorno
+              \begin{align*}
+                  \frac{\partial F(x_1,y_1)}{\partial x \partial y} = \frac{\partial F(x_1, y_1)}{\partial y \partial x} = f(x_1,y_1).
+              \end{align*}
+        \item[(c)] El conjunto de valores de la variable aleatoria bidimensional con probabilidad positiva es el conjunto vacío.
+        \item[(d)] Para todo $B \in \mathbb{B}_2$
+              \begin{align*}
+                  P(B) = \int_{B}{f(x,y) \ dxdy}.
+              \end{align*}
+    \end{enumerate}
 \end{teo}
 
 \section{Distribuciones marginales}
@@ -185,29 +182,29 @@ Sea $\textbf{\textit{X}} = (X,Y)$ una variable aleatoria bidimmensional continua
     \item $(X,Y)$ variable aleatoria bidimensional discreta.
     \item $(X,Y) = \cup_{i \in I, j \in J}{\{(x_i,y_j)\}}$.
     \item \textit{Distribución marginal de X}. Sea $X$ variable aleatoria discreta, $X = \cup_{i \in I}{\{x_i\}}$, entonces
-    \begin{align*}
-        P(X = x_i) = \sum_{j \in J}{P(X = x_i, Y = y_j)}.
-    \end{align*}
+          \begin{align*}
+              P(X = x_i) = \sum_{j \in J}{P(X = x_i, Y = y_j)}.
+          \end{align*}
     \item \textit{Distribución marginal de Y}. Sea $Y$ variable aleatoria discreta, $Y = \cup_{j \in J}{\{x_j\}}$, entonces
-    \begin{align*}
-        P(Y = y_j) = \sum_{i \in I}{P(X = x_i, Y = y_j)}.
-    \end{align*}
+          \begin{align*}
+              P(Y = y_j) = \sum_{i \in I}{P(X = x_i, Y = y_j)}.
+          \end{align*}
 \end{itemize}
 
 \subsection{Caso continuo}
 \begin{defi}
-Llamaremos función de distribución marginal de X a una función real de variable real $F_X : \mathbb{R} \longrightarrow [0,1]$ definida por
-\begin{align*}
-    F_X(x) = F(x,+\infty) = \lim_{y \to +\infty}{F(x,y)} = \int_{-\infty}^{x}{\left(\int_{-\infty}^{+\infty}{f(s,t) \ dt }\right) ds}.
-\end{align*}
+    Llamaremos función de distribución marginal de X a una función real de variable real $F_X : \mathbb{R} \longrightarrow [0,1]$ definida por
+    \begin{align*}
+        F_X(x) = F(x,+\infty) = \lim_{y \to +\infty}{F(x,y)} = \int_{-\infty}^{x}{\left(\int_{-\infty}^{+\infty}{f(s,t) \ dt }\right) ds}.
+    \end{align*}
 \end{defi}
 A la función $f_X(x) = \int_{-\infty}^{+\infty}{f(x,y) \ dy}$ se le llama \textit{densidad marginal de X} y en los puntos en los que $F_X$ sea derivable la densidad marginal coincide con esta derivada.
 
 \begin{defi}
-Llamaremos función de distribución marginal de Y a una función real de variable real $F_X : \mathbb{R} \longrightarrow [0,1]$ definida por
-\begin{align*}
-    F_X(y) = F(-\infty,,y) = \lim_{x \to -\infty}{F(x,y)} = \int_{-\infty}^{y}{\left(\int_{-\infty}^{+\infty}{f(s,t) \ ds }\right) dt}.
-\end{align*}
+    Llamaremos función de distribución marginal de Y a una función real de variable real $F_X : \mathbb{R} \longrightarrow [0,1]$ definida por
+    \begin{align*}
+        F_X(y) = F(-\infty,,y) = \lim_{x \to -\infty}{F(x,y)} = \int_{-\infty}^{y}{\left(\int_{-\infty}^{+\infty}{f(s,t) \ ds }\right) dt}.
+    \end{align*}
 \end{defi}
 A la función $f_Y(x) = \int_{-\infty}^{+\infty}{f(x,y) \ dx}$ se le llama \textit{densidad marginal de Y}.
 
@@ -219,45 +216,45 @@ A la función $f_Y(x) = \int_{-\infty}^{+\infty}{f(x,y) \ dx}$ se le llama \text
     \item $(X,Y) = \cup_{i \in I, j \in J}{\{(x_i,y_j)\}}$.
     \item $\sum_{i \in I}{\sum_{j \in J}{P_{ij}}} = 1$.
     \item $X | Y = y_j$.
-    \begin{align*}
-    P(X = x_i | y = y_j) = \frac{P(X = x_i, Y = y_j)}{P(Y = y_j)} = \frac{P_{ij}}{P(Y = y_j)}.
-    \end{align*}
+          \begin{align*}
+              P(X = x_i | y = y_j) = \frac{P(X = x_i, Y = y_j)}{P(Y = y_j)} = \frac{P_{ij}}{P(Y = y_j)}.
+          \end{align*}
     \item $Y | X = x_i$.
-    \begin{align*}
-        P(Y = y_j, X = x_i) = \frac{P(X = x_i, Y = y_j)}{P(X = x_i)} = \frac{P_{ij}}{P(X = x_i)}
-    \end{align*}
+          \begin{align*}
+              P(Y = y_j, X = x_i) = \frac{P(X = x_i, Y = y_j)}{P(X = x_i)} = \frac{P_{ij}}{P(X = x_i)}
+          \end{align*}
 \end{itemize}
 \subsection{Caso continuo}
 Supongamos $A = (-\infty,x]$ y $B = (-\infty,y_0]$, en tal caso
 \begin{align*}
-    P[X \leq x | Y \leq y_0] &= \frac{P[X \leq x , Y \leq y_0] }{P[Y \leq y_0]} = \frac{\int_{-\infty}^{x}{\int_{-\infty}^{y_0}{f(u,v) \ dudv}}}{\int_{-\infty}^{y_0}\int_{-\infty}^{+\infty}{f(u,v) \ dudv}} \\
-    &= \frac{\int_{-\infty}^{x}{\int_{-\infty}^{y_0}{f(u,v) \ dudv}}}{\int_{-\infty}^{y_0}{f_Y(y) \ dy}} = \frac{F(x,y_0)}{F_Y(y_0)}.
+    P[X \leq x | Y \leq y_0] & = \frac{P[X \leq x , Y \leq y_0] }{P[Y \leq y_0]} = \frac{\int_{-\infty}^{x}{\int_{-\infty}^{y_0}{f(u,v) \ dudv}}}{\int_{-\infty}^{y_0}\int_{-\infty}^{+\infty}{f(u,v) \ dudv}} \\
+                             & = \frac{\int_{-\infty}^{x}{\int_{-\infty}^{y_0}{f(u,v) \ dudv}}}{\int_{-\infty}^{y_0}{f_Y(y) \ dy}} = \frac{F(x,y_0)}{F_Y(y_0)}.
 \end{align*}
 
 \begin{defi}
-Llamaremos función de distribución de la variable aleatoria X condicionada a que $Y = y_0$ al límite
-\begin{align*}
-    \lim_{h \to 0^+}{P[X \leq x | y_0 - h < Y \leq y_0 + h]}
-\end{align*}
-en caso de que exista y sea un función de distribución en $\mathbb{R}$ se se notará $F_{X | y_0}(x)$ o bien, $F(x | Y = y_0)$.
+    Llamaremos función de distribución de la variable aleatoria X condicionada a que $Y = y_0$ al límite
+    \begin{align*}
+        \lim_{h \to 0^+}{P[X \leq x | y_0 - h < Y \leq y_0 + h]}
+    \end{align*}
+    en caso de que exista y sea un función de distribución en $\mathbb{R}$ se se notará $F_{X | y_0}(x)$ o bien, $F(x | Y = y_0)$.
 \end{defi}
 
 \begin{defi}
-Llamaremos función de densidad de la variable aleatoria X condicionada a que $Y = y_0$ y se representará por $f_{X | y_0}(x)$ a una función de $\mathbb{R}$ en $\mathbb{R}$ no negativa, de manera que para cada $y_0 \in \mathbb{R}$ fijo
-\begin{align*}
-    \int_{\mathbb{R}}{f_{X | y_0}(x) \ dx} = 1
-\end{align*}
-y tal que
-\begin{align*}
-    F_{X | y_0}(x) = \int_{-\infty}^{x}{f_{X | y_0}(u) \ du}, \text{para todo } x \in \mathbb{R}.
-\end{align*}
+    Llamaremos función de densidad de la variable aleatoria X condicionada a que $Y = y_0$ y se representará por $f_{X | y_0}(x)$ a una función de $\mathbb{R}$ en $\mathbb{R}$ no negativa, de manera que para cada $y_0 \in \mathbb{R}$ fijo
+    \begin{align*}
+        \int_{\mathbb{R}}{f_{X | y_0}(x) \ dx} = 1
+    \end{align*}
+    y tal que
+    \begin{align*}
+        F_{X | y_0}(x) = \int_{-\infty}^{x}{f_{X | y_0}(u) \ du}, \text{para todo } x \in \mathbb{R}.
+    \end{align*}
 \end{defi}
 
 \begin{prop}
-En los puntos donde f sea continua y $f_Y$ sea positiva y continua,, la función de densidad de la variable aleatoria X condicionada a que $Y = y$, existe y puede ser expresada como
-\begin{align*}
-    f_{X | y}(x) = \frac{f(x,y)}{f_Y(y)}.
-\end{align*}
+    En los puntos donde f sea continua y $f_Y$ sea positiva y continua,, la función de densidad de la variable aleatoria X condicionada a que $Y = y$, existe y puede ser expresada como
+    \begin{align*}
+        f_{X | y}(x) = \frac{f(x,y)}{f_Y(y)}.
+    \end{align*}
 \end{prop}
 
 \section{Independencia de variables aleatorias continuas}
@@ -272,10 +269,10 @@ o de manera equivalente, si
 \end{align*}
 
 \begin{defi}
-X es independiente de Y si y solo si para cualesquiera borelianos $B_1$ y $B_2$ los sucesos $X^{-1}(B_1)$ e $Y^{-1}(B_2)$ de $\mathcal{A}$ son independientes en la probabilidad $P$. Es decir:
-\begin{align*}
-    P[\{ \omega : X(\omega) \in B_1\} \cap \{ \omega : Y(\omega) \in B_2\}] = P[\{\omega : X(\omega) \in B_1\}] \cdot P[\{\omega : Y(\omega) \in B_2\}].
-\end{align*}
+    X es independiente de Y si y solo si para cualesquiera borelianos $B_1$ y $B_2$ los sucesos $X^{-1}(B_1)$ e $Y^{-1}(B_2)$ de $\mathcal{A}$ son independientes en la probabilidad $P$. Es decir:
+    \begin{align*}
+        P[\{ \omega : X(\omega) \in B_1\} \cap \{ \omega : Y(\omega) \in B_2\}] = P[\{\omega : X(\omega) \in B_1\}] \cdot P[\{\omega : Y(\omega) \in B_2\}].
+    \end{align*}
 \end{defi}
 
 Si consideramos $x,y \in \mathbb{R}$, $B_1 = \{ \omega : X(\omega) \leq x\}$ y $B_2 = \{ \omega : Y(\omega) \leq y\}$, entonces $X$ e $Y$ son independientes se tiene que
@@ -288,11 +285,11 @@ Si $F$ es la función de distribución conjunta y $F_X$ y $F_Y$ las funciones de
 \end{align*}
 
 \begin{defi}
-Diremos que dos variables aleatorias X e Y son independientes si para todo $x,y \in \mathbb{R}$
-\begin{align*}
-    F(x,y) = F_X(x)F_Y(y),
-\end{align*}
-siendo $F$ la función de distribución conjunta y $F_X$ y $F_Y$ las funciones de distribución marginales de $X$ e $Y$ respectivamente.
+    Diremos que dos variables aleatorias X e Y son independientes si para todo $x,y \in \mathbb{R}$
+    \begin{align*}
+        F(x,y) = F_X(x)F_Y(y),
+    \end{align*}
+    siendo $F$ la función de distribución conjunta y $F_X$ y $F_Y$ las funciones de distribución marginales de $X$ e $Y$ respectivamente.
 \end{defi}
 
 Si $F$ es derivable respecto de $x$ y respecto de $y$ y $F_X$ y $F_Y$ son derivables, tenemos que
@@ -308,10 +305,10 @@ donde $f$, $f_X$ y $f_Y$ son, respectivamente, la función de densidad conjunta 
 \section{Cambio de variable}
 
 \begin{prop}
-Sea \textbf{\textit{X}} un vector aleatorio bidimensional absolutamente continuo con densidad conjunta $f(x,y)$ definida sobre $R \subset \mathbb{R}^2$, abierto o cerrado no degenerado donde $f > 0$. Si $g : \mathbb{R}^2 \longrightarrow \mathbb{R}^2$ es una función inyectiva y diferenciable en $R$, cuyo Jacobiano $J_g$ no se anula en ningún punto de R, entonces $(U,V) = g(X,Y)$ tiene una distribución absolutamente continua en $g(R)$ con densidad
-\begin{align*}
-    f^*(u,v) = f(g^{-1}(u,v))|J_g(g^{-1}(u,v))|^{-1}.
-\end{align*}
+    Sea \textbf{\textit{X}} un vector aleatorio bidimensional absolutamente continuo con densidad conjunta $f(x,y)$ definida sobre $R \subset \mathbb{R}^2$, abierto o cerrado no degenerado donde $f > 0$. Si $g : \mathbb{R}^2 \longrightarrow \mathbb{R}^2$ es una función inyectiva y diferenciable en $R$, cuyo Jacobiano $J_g$ no se anula en ningún punto de R, entonces $(U,V) = g(X,Y)$ tiene una distribución absolutamente continua en $g(R)$ con densidad
+    \begin{align*}
+        f^*(u,v) = f(g^{-1}(u,v))|J_g(g^{-1}(u,v))|^{-1}.
+    \end{align*}
 \end{prop}
 Si $h = g^{-1}$, entonces
 \begin{align*}
@@ -320,11 +317,11 @@ Si $h = g^{-1}$, entonces
 
 \section{Momentos conjuntos de un vector (X,Y)}
 \begin{defi}[Momento ordinario de orden $r,s \in \mathbb{Z}^+$]
-\begin{align*}
-    m_{r,s} &= E[X^r \cdot Y^s] \\
-    &= \sum_{i\in I}{\sum_{j \in J}{x_i^ry_j^sP(X = x_i, Y = y_j)}} \\
-    &= \int_{-\infty}^{+\infty}{\int_{-\infty}^{+\infty}{x^ry^sf(x,y) \ dxdy}}
-\end{align*}
+    \begin{align*}
+        m_{r,s} & = E[X^r \cdot Y^s]                                                        \\
+                & = \sum_{i\in I}{\sum_{j \in J}{x_i^ry_j^sP(X = x_i, Y = y_j)}}            \\
+                & = \int_{-\infty}^{+\infty}{\int_{-\infty}^{+\infty}{x^ry^sf(x,y) \ dxdy}}
+    \end{align*}
 \end{defi}
 Algunos momentos ordinarios destacados son
 \begin{itemize}
@@ -335,11 +332,11 @@ Algunos momentos ordinarios destacados son
 \end{itemize}
 
 \begin{defi}[Momento central de orden $r,s \in \mathbb{Z}^+$]
-\begin{align*}
-    M_{r,s} &= E[(X - E(X))^r \cdot (Y - E(Y))^s] \\
-    &= \sum_{i\in I}{\sum_{j \in J}{(x_i - E(X))^r \cdot (y_j - E(Y))^sP(X = x_i, Y = y_j)}} \\
-    &= \int_{-\infty}^{+\infty}{\int_{-\infty}^{+\infty}{(x - E(X))^r \cdot (y - E(Y))^sf(x,y) \ dxdy}}
-\end{align*}
+    \begin{align*}
+        M_{r,s} & = E[(X - E(X))^r \cdot (Y - E(Y))^s]                                                               \\
+                & = \sum_{i\in I}{\sum_{j \in J}{(x_i - E(X))^r \cdot (y_j - E(Y))^sP(X = x_i, Y = y_j)}}            \\
+                & = \int_{-\infty}^{+\infty}{\int_{-\infty}^{+\infty}{(x - E(X))^r \cdot (y - E(Y))^sf(x,y) \ dxdy}}
+    \end{align*}
 \end{defi}
 
 Algunos momentos centrales destacados son
@@ -350,10 +347,10 @@ Algunos momentos centrales destacados son
 \end{itemize}
 
 \begin{obs}
-\begin{itemize}
-    \item $V(X+Y) = V(X) + V(Y) + 2Cov(X,Y)$.
-    \item $V(X-Y) = V(X) + V(Y) - 2Cov(X,Y)$.
-\end{itemize}
+    \begin{itemize}
+        \item $V(X+Y) = V(X) + V(Y) + 2Cov(X,Y)$.
+        \item $V(X-Y) = V(X) + V(Y) - 2Cov(X,Y)$.
+    \end{itemize}
 \end{obs}
 Si $X$ e $Y$ son independientes
 \begin{itemize}
@@ -367,19 +364,19 @@ Si $X$ e $Y$ son independientes
 
 Sea \textit{\textbf{X}} = $(X_1,...,X_n)$ un vector aleatorio con función de distribución $F_{\textit{\textbf{X}}}$ y sean las variables aleatorias $M = \max(X_1,...,X_n)$ y $N = \min(X_1,...,X_n)$ definidas de la forma
 \begin{align*}
-    M(\omega) &= \max(X_1(\omega),...,X_n(\omega))\\
-    N(\omega) &= \min(X_1(\omega),...,X_n(\omega))
+    M(\omega) & = \max(X_1(\omega),...,X_n(\omega)) \\
+    N(\omega) & = \min(X_1(\omega),...,X_n(\omega))
 \end{align*}
 Tanto $M$ como $N$ son variables aleatorias y
 \begin{align*}
-    F_M(x) &= P[M \leq x] = P[X_1 \leq x,..., X_n \leq x] = F_X(x,...,x)\\
-    F_N(x) &= P[N \leq x] = 1 - P[N > x] = 1 - P[X_1 > x,...,X_n > x].
+    F_M(x) & = P[M \leq x] = P[X_1 \leq x,..., X_n \leq x] = F_X(x,...,x) \\
+    F_N(x) & = P[N \leq x] = 1 - P[N > x] = 1 - P[X_1 > x,...,X_n > x].
 \end{align*}
 
 \begin{defi}
-Sea $(X,Y)$ un vector aleatorio, se definen las curvas generales de regresión como las curvas
-\begin{itemize}
-    \item $C_{x;y} = \{ (E(X | y = y_0), y) : y_0 \in \mathbb{R} \}$.
-    \item $C_{y;x} = \{ (x_0, E(Y | x = x_0)) : x_0 \in \mathbb{R} \}$.
-\end{itemize}
+    Sea $(X,Y)$ un vector aleatorio, se definen las curvas generales de regresión como las curvas
+    \begin{itemize}
+        \item $C_{x;y} = \{ (E(X | y = y_0), y) : y_0 \in \mathbb{R} \}$.
+        \item $C_{y;x} = \{ (x_0, E(Y | x = x_0)) : x_0 \in \mathbb{R} \}$.
+    \end{itemize}
 \end{defi}

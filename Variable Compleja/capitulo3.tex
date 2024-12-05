@@ -8,568 +8,562 @@ Establezcamos cierta notación.
 \end{itemize}
 
 \begin{defi}
-Sea $\{z_n\}_{n \ge 0} \subset \com$ una sucesión.
-\begin{itemize}
-    \item La sucesión de sumas parciales asociada a $\{z_n\}$ es $\{S_n\}$ dada por $S_n = \sum_{k=0}^{n}{z_k}$.
-    \item La serie asociada $\{z_n\}$ es la sucesión de sumas parciales asociada a $\{z_n\}$ denotada por $\sum_{n=0}^{\infty}{z_n}$.
-    \item Decimos que la serie $\sum_{n=0}^{\infty}{z_n}$ converge, si la sucesón de sumas parciales converge. En tal caso, diremos que la sucesión es sumable y que su suma es
-    \begin{align*}
-        \sum_{n=0}^{\infty}{z_n} = \lim_{n \to \infty}{S_n} = \lim_{n \to \infty}\sum_{k=0}^{n}{z_k}
-    \end{align*}
-\end{itemize}
+    Sea $\{z_n\}_{n \ge 0} \subset \com$ una sucesión.
+    \begin{itemize}
+        \item La sucesión de sumas parciales asociada a $\{z_n\}$ es $\{S_n\}$ dada por $S_n = \sum_{k=0}^{n}{z_k}$.
+        \item La serie asociada $\{z_n\}$ es la sucesión de sumas parciales asociada a $\{z_n\}$ denotada por $\sum_{n=0}^{\infty}{z_n}$.
+        \item Decimos que la serie $\sum_{n=0}^{\infty}{z_n}$ converge, si la sucesón de sumas parciales converge. En tal caso, diremos que la sucesión es sumable y que su suma es
+              \begin{align*}
+                  \sum_{n=0}^{\infty}{z_n} = \lim_{n \to \infty}{S_n} = \lim_{n \to \infty}\sum_{k=0}^{n}{z_k}
+              \end{align*}
+    \end{itemize}
 \end{defi}
 
 \begin{obs}
-\begin{enumerate}
-    \item El hecho de que la sucesión $\{z_n\}$ tenga primer término en 0, 1 ó $n_0$ es irrelevante, es decir, no afecta al carácter de la serie (pero sí a su suma).
-    \item Si $\sum_{n=0}^{\infty}{z_k}$ converge a $Z \in \com$, entonces para cada $n \in \mathbb{N}_0$, la serie $\sum_{k = n+1}^{\infty}{z_k}$ también converge y la sucesión de sumas parciales es
-    \begin{align*}
-        S_{n,N} = \sum_{k = n+1}^{N}{z_k} = S_N - S_n, \ \ N > n
-    \end{align*}
-    Observamos que
-    \begin{align*}
-        \sum_{k = n+1}^{\infty}{z_k} = \lim_{N \to \infty}{S_{n,N}} = \lim_{N \to \infty}{S_N - S_n} = Z - S_n \equiv Z_n
-    \end{align*}
-    Si $n \to \infty$
-    \begin{align*}
-        \lim_{n \to \infty}{Z_n} = \lim_{n \to \infty}{Z - S_n} = 0 
-    \end{align*}
-    \item $\sum_{k=0}^{n}{z_k} = \sum_{k=0}^{n}{\re(z_k)} + i\sum_{k=0}^{n}{\im(z_k)}$.
-    \item \underline{Criterio necesario}: Si $\sum_{k=0}^{\infty}{z_k}$ converge, entonces $\{z_n\} \to 0$.
-    \item \underline{Criterio de Cauchy} $\sum_{k=0}^{\infty}{z_k}$ converge si y solo si $S_n$ converge si y solo si $S_n$ es de Cauchy.
-    \item \underline{Linealidad}:
-    \begin{align*}
-        \mathscr{S} = \{ \{z_n\}_{n \ge 0} : z_n \in \com \ \forall \ n \}
-    \end{align*}
-    es un espacio vectorial complejo. Es más
-    \begin{align*}
-        S : \mathscr{S} &\longrightarrow \com \\
-        \{z_n\} &\longmapsto S(\{z_n\}) = \sum_{n=0}^{\infty}{z_n}
-    \end{align*}
-    es una función lineal, es decir,
-    \begin{itemize}
-        \item $\sum_{n=0}^{\infty}{(z_n + w_n)} = \sum_{n=0}^{\infty}{z_n} + \sum_{n=0}^{\infty}{w_n}$.
-        \item $\sum_{n=0}^{\infty}{\lambda z_n} = \lambda \sum_{n=0}^{\infty}{z_n}$.
-    \end{itemize}
-\end{enumerate}
+    \begin{enumerate}
+        \item El hecho de que la sucesión $\{z_n\}$ tenga primer término en 0, 1 ó $n_0$ es irrelevante, es decir, no afecta al carácter de la serie (pero sí a su suma).
+        \item Si $\sum_{n=0}^{\infty}{z_k}$ converge a $Z \in \com$, entonces para cada $n \in \mathbb{N}_0$, la serie $\sum_{k = n+1}^{\infty}{z_k}$ también converge y la sucesión de sumas parciales es
+              \begin{align*}
+                  S_{n,N} = \sum_{k = n+1}^{N}{z_k} = S_N - S_n, \ \ N > n
+              \end{align*}
+              Observamos que
+              \begin{align*}
+                  \sum_{k = n+1}^{\infty}{z_k} = \lim_{N \to \infty}{S_{n,N}} = \lim_{N \to \infty}{S_N - S_n} = Z - S_n \equiv Z_n
+              \end{align*}
+              Si $n \to \infty$
+              \begin{align*}
+                  \lim_{n \to \infty}{Z_n} = \lim_{n \to \infty}{Z - S_n} = 0
+              \end{align*}
+        \item $\sum_{k=0}^{n}{z_k} = \sum_{k=0}^{n}{\re(z_k)} + i\sum_{k=0}^{n}{\im(z_k)}$.
+        \item \underline{Criterio necesario}: Si $\sum_{k=0}^{\infty}{z_k}$ converge, entonces $\{z_n\} \to 0$.
+        \item \underline{Criterio de Cauchy} $\sum_{k=0}^{\infty}{z_k}$ converge si y solo si $S_n$ converge si y solo si $S_n$ es de Cauchy.
+        \item \underline{Linealidad}:
+              \begin{align*}
+                  \mathcal{S} = \{ \{z_n\}_{n \ge 0} : z_n \in \com \ \forall \ n \}
+              \end{align*}
+              es un espacio vectorial complejo. Es más
+              \begin{align*}
+                  S : \mathcal{S} & \longrightarrow \com                              \\
+                  \{z_n\}         & \longmapsto S(\{z_n\}) = \sum_{n=0}^{\infty}{z_n}
+              \end{align*}
+              es una función lineal, es decir,
+              \begin{itemize}
+                  \item $\sum_{n=0}^{\infty}{(z_n + w_n)} = \sum_{n=0}^{\infty}{z_n} + \sum_{n=0}^{\infty}{w_n}$.
+                  \item $\sum_{n=0}^{\infty}{\lambda z_n} = \lambda \sum_{n=0}^{\infty}{z_n}$.
+              \end{itemize}
+    \end{enumerate}
 \end{obs}
 
 \begin{defi}
-Sea $\{z_n\}_{n \ge 0}$ una sucesión en $\com$. Decimos que la serie $\sum_{n=0}^{\infty}{z_n}$ converge absolutamente si $\sum_{n=0}^{\infty}{|z_n|}$ es convergente.
+    Sea $\{z_n\}_{n \ge 0}$ una sucesión en $\com$. Decimos que la serie $\sum_{n=0}^{\infty}{z_n}$ converge absolutamente si $\sum_{n=0}^{\infty}{|z_n|}$ es convergente.
 \end{defi}
 
 \begin{obs}
-\begin{enumerate}
-    \item Si $\sum_{n=0}^{\infty}{z_n}$ converge absolutamente, entonces también converge y
-    \begin{align*}
-        \left| \sum_{n=0}^{\infty}{z_n} \right| \leq \sum_{n=0}^{\infty}{|z_n|}
-    \end{align*}
-\end{enumerate}
+    \begin{enumerate}
+        \item Si $\sum_{n=0}^{\infty}{z_n}$ converge absolutamente, entonces también converge y
+              \begin{align*}
+                  \left| \sum_{n=0}^{\infty}{z_n} \right| \leq \sum_{n=0}^{\infty}{|z_n|}
+              \end{align*}
+    \end{enumerate}
 \end{obs}
 
 \section{Convergencia puntual y uniforme de sucesiones de funciones}
 
 \begin{defi}
-Sea $S$ un conjunto y sean $\{f_n\}$ una sucesión de funciones de $S$ en $\com$.
-\begin{itemize}
-    \item Decimos que $f: S \longrightarrow \com$ es el límite puntual de $\{f_n\}$ en $S$, o que $\{f_n\}$ converge puntualemente a $f$ en $S$, si $\lim_{n \to \infty}{f_n} = f(x)$ para todo $x \in S$.
-    \item Decimos que $f: S \longrightarrow \com$ es el límite uniforme de $\{f_n\}$ en $S$, o que $\{f_n\}$ converge uniformemente a $f$ en $S$ si, para cada $\varepsilon > 0$, existe $n_0 \in \mathbb{N}$ tal que si $n \ge n_0$ entonces $|f_n(x) - f(x)| < \varepsilon$ para todo $x \in S$.
-\end{itemize}
+    Sea $S$ un conjunto y sean $\{f_n\}$ una sucesión de funciones de $S$ en $\com$.
+    \begin{itemize}
+        \item Decimos que $f: S \longrightarrow \com$ es el límite puntual de $\{f_n\}$ en $S$, o que $\{f_n\}$ converge puntualemente a $f$ en $S$, si $\lim_{n \to \infty}{f_n} = f(x)$ para todo $x \in S$.
+        \item Decimos que $f: S \longrightarrow \com$ es el límite uniforme de $\{f_n\}$ en $S$, o que $\{f_n\}$ converge uniformemente a $f$ en $S$ si, para cada $\varepsilon > 0$, existe $n_0 \in \mathbb{N}$ tal que si $n \ge n_0$ entonces $|f_n(x) - f(x)| < \varepsilon$ para todo $x \in S$.
+    \end{itemize}
 \end{defi}
 
 \begin{obs}
-\begin{enumerate}
-    \item Si $\{f_n\}$ converge uniformemente en $S$, entonces $\{f_n\}$ converge puntualmente en $S$.
-    \item La convergencia puntual no implica (en general) la convergencia uniforme.
-    \begin{ejemplo}
-Sea $f_n : [0,1] \longrightarrow \com$, dadas por $f_n(x) = x^n$. Es claro que, fijado $x \in [0,1]$ se tiene que
-\begin{align*}
-    \lim_{n \to \infty}{f_n(x)} = \lim_{n \to \infty}{x^n} = \left\{ \begin{array}{lcc}
-            0 & si & x \in [0,1) \\
-            1 & si & x = 1\\
-             \end{array}
-        \right. = f(x)
-\end{align*}
-    Por tanto, $\{f_n\}$ converge puntualmente a  $f$ en $[0,1]$, pero la convergencia no es uniforme (porque $f_n$ son todas continuas en $[0,1]$ y $f$ no es continua en $[0,1]$).
-\end{ejemplo}
-\item Como $\com$ es completo
-    \begin{itemize}
-        \item $\{f_n\}$ converge puntualmente en $S$ si y solo si $\{f_n\}$ es puntualmente de Cauchy en $S$.
-        \item $\{f_n\}$ converge uniformemente a $f$ en $S$ si y solo si $\{f_n\}$ es uniformemente de Cauchy en $S$ si y solo para cada $\varepsilon > 0$ existe $n_0 \in \mathbb{N}$ tal que si $n,m \in \mathbb{N}$ con $n > m  \ge n_0$, entonces $|f_n(x) - f_m(x)| < \varepsilon$ para todo $x \in S$.
-    \end{itemize}
-\end{enumerate}
+    \begin{enumerate}
+        \item Si $\{f_n\}$ converge uniformemente en $S$, entonces $\{f_n\}$ converge puntualmente en $S$.
+        \item La convergencia puntual no implica (en general) la convergencia uniforme.
+              \begin{ejemplo}
+                  Sea $f_n : [0,1] \longrightarrow \com$, dadas por $f_n(x) = x^n$. Es claro que, fijado $x \in [0,1]$ se tiene que
+                  \begin{align*}
+                      \lim_{n \to \infty}{f_n(x)} = \lim_{n \to \infty}{x^n} = \left\{ \begin{array}{lcc}
+                                                                                           0 & si & x \in [0,1) \\
+                                                                                           1 & si & x = 1       \\
+                                                                                       \end{array}
+                      \right. = f(x)
+                  \end{align*}
+                  Por tanto, $\{f_n\}$ converge puntualmente a  $f$ en $[0,1]$, pero la convergencia no es uniforme (porque $f_n$ son todas continuas en $[0,1]$ y $f$ no es continua en $[0,1]$).
+              \end{ejemplo}
+        \item Como $\com$ es completo
+              \begin{itemize}
+                  \item $\{f_n\}$ converge puntualmente en $S$ si y solo si $\{f_n\}$ es puntualmente de Cauchy en $S$.
+                  \item $\{f_n\}$ converge uniformemente a $f$ en $S$ si y solo si $\{f_n\}$ es uniformemente de Cauchy en $S$ si y solo para cada $\varepsilon > 0$ existe $n_0 \in \mathbb{N}$ tal que si $n,m \in \mathbb{N}$ con $n > m  \ge n_0$, entonces $|f_n(x) - f_m(x)| < \varepsilon$ para todo $x \in S$.
+              \end{itemize}
+    \end{enumerate}
 \end{obs}
 
 \begin{defi}
-Si $\sum_{n=0}^{\infty}{z_n}$ converge absolutamente, decimos que converge incondicionalmente si se satisfacen las siguientes propiedades
-\begin{enumerate}
-    \item Si $\sigma : \mathbb{N}_0 \longrightarrow \mathbb{N}_0$ es una biyección, entonces $\sum_{n=0}^{\infty}{z_{\sigma(n)}}$ converge absolutamente y $\sum_{n=0}^{\infty}{z_n} = \sum_{n=0}^{\infty}{z_{\sigma(n)}}$.
-    \item Para toda partición $\{A_n\}_{n \ge 1}$ de $\mathbb{N}_0$ se tiene que para cada $n$ tal que $A_n$ es infinito, $\sum_{k\in A_n}{z_n}$ converge absolutamente y además
-    \begin{align*}
-        \sum_{n=0}^{\infty}{z_n} = \sum_{n \ge 1}\sum_{k\in A_n}{z_n}
-    \end{align*}
-\end{enumerate}
+    Si $\sum_{n=0}^{\infty}{z_n}$ converge absolutamente, decimos que converge incondicionalmente si se satisfacen las siguientes propiedades
+    \begin{enumerate}
+        \item Si $\sigma : \mathbb{N}_0 \longrightarrow \mathbb{N}_0$ es una biyección, entonces $\sum_{n=0}^{\infty}{z_{\sigma(n)}}$ converge absolutamente y $\sum_{n=0}^{\infty}{z_n} = \sum_{n=0}^{\infty}{z_{\sigma(n)}}$.
+        \item Para toda partición $\{A_n\}_{n \ge 1}$ de $\mathbb{N}_0$ se tiene que para cada $n$ tal que $A_n$ es infinito, $\sum_{k\in A_n}{z_n}$ converge absolutamente y además
+              \begin{align*}
+                  \sum_{n=0}^{\infty}{z_n} = \sum_{n \ge 1}\sum_{k\in A_n}{z_n}
+              \end{align*}
+    \end{enumerate}
 \end{defi}
 
 \begin{prop}
-Si $\sum_{n=0}^{\infty}{a_n}$ y $\sum_{n=0}^{\infty}{b_n}$ son absolutamente convergentes, entonces la serie "producto de Cauchy" 
-\begin{align*}
-    \sum_{n=0}^{\infty}{c_n}, \text{ siendo } c_n = \sum_{k=0}^{n}{a_kb_{n-k}}
-\end{align*}
-es también absolutamente convergente y
-\begin{align*}
-    \sum_{n=0}^{\infty}{c_n} = \left( \sum_{n=0}^{\infty}{a_n}\right) \cdot \left( \sum_{n=0}^{\infty}{b_n}\right)
-\end{align*}
+    Si $\sum_{n=0}^{\infty}{a_n}$ y $\sum_{n=0}^{\infty}{b_n}$ son absolutamente convergentes, entonces la serie "producto de Cauchy"
+    \begin{align*}
+        \sum_{n=0}^{\infty}{c_n}, \text{ siendo } c_n = \sum_{k=0}^{n}{a_kb_{n-k}}
+    \end{align*}
+    es también absolutamente convergente y
+    \begin{align*}
+        \sum_{n=0}^{\infty}{c_n} = \left( \sum_{n=0}^{\infty}{a_n}\right) \cdot \left( \sum_{n=0}^{\infty}{b_n}\right)
+    \end{align*}
 \end{prop}
 
 \begin{prop}
-Sea $X$ un espacio topológico y sea $\{f_n\}$ una sucesión de funciones continuas de $X$ en $\com$. Supongamos que $f: X \longrightarrow \com$ es el límite uniforme de $\{f_n\}$ en $X$. Entonces $f$ es continua en $X$. 
+    Sea $X$ un espacio topológico y sea $\{f_n\}$ una sucesión de funciones continuas de $X$ en $\com$. Supongamos que $f: X \longrightarrow \com$ es el límite uniforme de $\{f_n\}$ en $X$. Entonces $f$ es continua en $X$.
 \end{prop}
 
 \section{Series funcionales. Series de potencias}
 
 \begin{defi}
-Sea $\{f_n\}_{n \ge 0}$ una sucesión de funciones complejas definidas sobre un conjunto $S$.
-\begin{itemize}
-    \item La serie funcional asociada a $\{f_n\}$, y denotada $\sum_{n}^{\infty}{f_n}$, se define como la sucesión de las sumas parciales asociadas a $\{f_n\}$
-    \begin{align*}
-        S_n = \sum_{k=0}^{n}{f_k(x)}, \ \ x \in S
-    \end{align*}
-    \item Decimos que $\sum_{n}^{\infty}{f_n}$ converge uniformemente (respectivamente puntualmente convergente) en $S$ si así lo hace la correspondiente sucesión de sumas parciales.
-    \item Decimos que $\sum_{n}^{\infty}{f_n}$ converge absolutamente y uniformemente (respectivamente puntualmente) en $S$ si la serie asociada a $\{|f_n|\}$ es uniformemente (respectivamente puntualmente) convergente en $S$.
-\end{itemize}
+    Sea $\{f_n\}_{n \ge 0}$ una sucesión de funciones complejas definidas sobre un conjunto $S$.
+    \begin{itemize}
+        \item La serie funcional asociada a $\{f_n\}$, y denotada $\sum_{n}^{\infty}{f_n}$, se define como la sucesión de las sumas parciales asociadas a $\{f_n\}$
+              \begin{align*}
+                  S_n = \sum_{k=0}^{n}{f_k(x)}, \ \ x \in S
+              \end{align*}
+        \item Decimos que $\sum_{n}^{\infty}{f_n}$ converge uniformemente (respectivamente puntualmente convergente) en $S$ si así lo hace la correspondiente sucesión de sumas parciales.
+        \item Decimos que $\sum_{n}^{\infty}{f_n}$ converge absolutamente y uniformemente (respectivamente puntualmente) en $S$ si la serie asociada a $\{|f_n|\}$ es uniformemente (respectivamente puntualmente) convergente en $S$.
+    \end{itemize}
 \end{defi}
 
 \begin{teo}[Criterio de Cauchy]
-$\sum_{n=0}^{\infty}{f_n}$ es uniformemente convergente en $S$ si y solo $\sum_{n=0}^{\infty}{f_n}$ es uniformemente de Cauchy en $S$ si y solo si para cada $\varepsilon > 0$, existe $n_0 \in \mathbb{N}$ tal que si $n,m \in \mathbb{N}$ con $n > m \ge n_0$, entonces
-\begin{align*}
-    \sup_{x \in S}{\left| \sum_{k=m+1}^{n}{f_k(x)}\right|} < \varepsilon
-\end{align*}
+    $\sum_{n=0}^{\infty}{f_n}$ es uniformemente convergente en $S$ si y solo $\sum_{n=0}^{\infty}{f_n}$ es uniformemente de Cauchy en $S$ si y solo si para cada $\varepsilon > 0$, existe $n_0 \in \mathbb{N}$ tal que si $n,m \in \mathbb{N}$ con $n > m \ge n_0$, entonces
+    \begin{align*}
+        \sup_{x \in S}{\left| \sum_{k=m+1}^{n}{f_k(x)}\right|} < \varepsilon
+    \end{align*}
 \end{teo}
 
 \begin{prop}[Criterio Mayorante de Weierstrass]
-Sea $S$ un conjunto y sea $\{f_n\}_{n \ge 0}$ una sucesión defunciones complejas definidas en $S$. Supongamos que 
-\begin{enumerate}
-    \item Existe una sucesión $\{M_n\}_{n \ge 0} \subset \mathbb{R}^+$ con $\sum_{n = 0}^{\infty}{M_n}$ convergente.
-    \item Existe $N \in \mathbb{N}$ tal que $|f_n(x)| \leq M_n$ para todo $x \in S$ y todo $n \ge N$.
-\end{enumerate}
-Entonces $\sum_{n=0}^{\infty}{f_n}$ converge absoluta y uniformemente en $S$.
+    Sea $S$ un conjunto y sea $\{f_n\}_{n \ge 0}$ una sucesión defunciones complejas definidas en $S$. Supongamos que
+    \begin{enumerate}
+        \item Existe una sucesión $\{M_n\}_{n \ge 0} \subset \mathbb{R}^+$ con $\sum_{n = 0}^{\infty}{M_n}$ convergente.
+        \item Existe $N \in \mathbb{N}$ tal que $|f_n(x)| \leq M_n$ para todo $x \in S$ y todo $n \ge N$.
+    \end{enumerate}
+    Entonces $\sum_{n=0}^{\infty}{f_n}$ converge absoluta y uniformemente en $S$.
 \end{prop}
 
 \begin{defi}[Series de potencias]
-Una serie de potencias centrada en $a \in \com$ es una serie funcional del tipo
-\begin{align*}
-    \sum_{n=0}^{\infty}{a_n(z-a)^n} = a_0 + a_1(z-a) + a_2(z-a)^2 + ...
-\end{align*}
+    Una serie de potencias centrada en $a \in \com$ es una serie funcional del tipo
+    \begin{align*}
+        \sum_{n=0}^{\infty}{a_n(z-a)^n} = a_0 + a_1(z-a) + a_2(z-a)^2 + ...
+    \end{align*}
 \end{defi}
 
 \begin{obs}
-En la definición anterior, en el caso de que $z = a$, consideramos que $0^0 = 1$ (por convenio). Además, si $z = a$, entonces $\sum_{n=0}^{\infty}{a_n(z-a)^n}$ converge y su valor es $a_0$.
+    En la definición anterior, en el caso de que $z = a$, consideramos que $0^0 = 1$ (por convenio). Además, si $z = a$, entonces $\sum_{n=0}^{\infty}{a_n(z-a)^n}$ converge y su valor es $a_0$.
 \end{obs}
 
 \begin{ejemplo}
-\underline{La serie geométrica}: $\sum_{k=0}^{\infty}{z^n}$.
+    \underline{La serie geométrica}: $\sum_{k=0}^{\infty}{z^n}$.
     \begin{align*}
         \text{Sumas parciales}: S_n(z) = \sum_{k=0}^{n}{z^k} = \left\{ \begin{array}{lcc}
-            \frac{1-z^{n+1}}{1-z} & si & z \not = 1 \\
-            n+1 & si & z = 1\\
-             \end{array}
+                                                                           \frac{1-z^{n+1}}{1-z} & si & z \not = 1 \\
+                                                                           n+1                   & si & z = 1      \\
+                                                                       \end{array}
         \right.
     \end{align*}
     Observamos que si $|z| < 1$, $S_n(z) \xrightarrow[n \to \infty]{} \frac{1}{1-z}$ y si $|z| > 1$, entonces $S_n(z)$ no converge. Por tanto, $\{S_n\}$ es puntualmente convergente a $\frac{1}{1-z}$ en $\mathbb{D} = \{|z| < 1\}$.
-    \\
-    \newline
+
     Veamos que $\sum_{k=0}^{\infty}{z^n}$ converge absolutamente y uniformemente en cualquier compacto $K$ de $\mathbb{D}$.
     \begin{proof}
-    Sea $K \subset \mathbb{D}$ compacto. Entonces exite $r \in (0,1)$ tal que $K \subset \Delta(0,r)$. Ahora, si $z \in K$ y $n \in \mathbb{N}$, observamos que $|z^n| = |z|^n \leq r^n$ y que $\sum_{k=0}^{\infty}{r^n} = \frac{1}{1-r}$ converge. Por tanto, por el Criterio Mayorante de Weierstrass, $\sum_{k=0}^{\infty}{z^n}$ converge absoluta y uniformemente en $K$. 
+        Sea $K \subset \mathbb{D}$ compacto. Entonces exite $r \in (0,1)$ tal que $K \subset \Delta(0,r)$. Ahora, si $z \in K$ y $n \in \mathbb{N}$, observamos que $|z^n| = |z|^n \leq r^n$ y que $\sum_{k=0}^{\infty}{r^n} = \frac{1}{1-r}$ converge. Por tanto, por el Criterio Mayorante de Weierstrass, $\sum_{k=0}^{\infty}{z^n}$ converge absoluta y uniformemente en $K$.
     \end{proof}
 \end{ejemplo}
 
 \begin{defi}
-Sea $\{x_n\} \subset \mathbb{R}$.
-\begin{itemize}
-    \item $\limsup_{n \to \infty}{\{x_n\}} = \lim_{n \to \infty}{\sup_{k}{\{x_k : k \ge n \}}}$
-    \item $\liminf_{n \to \infty}{\{x_n\}} = \lim_{n \to \infty}{\inf_{k}{\{x_k : k \ge n \}}}$
-\end{itemize}
+    Sea $\{x_n\} \subset \mathbb{R}$.
+    \begin{itemize}
+        \item $\limsup_{n \to \infty}{\{x_n\}} = \lim_{n \to \infty}{\sup_{k}{\{x_k : k \ge n \}}}$
+        \item $\liminf_{n \to \infty}{\{x_n\}} = \lim_{n \to \infty}{\inf_{k}{\{x_k : k \ge n \}}}$
+    \end{itemize}
 \end{defi}
 
 \begin{teo}
-Sea $\sum_{n=0}^{\infty}{a_n(z-a)^n}$ una serie de potencias centrada en $a \in \com$. Definimos
-\begin{align*}
-    R = \frac{1}{\limsup_{n \to \infty}{\sqrt[n]{|a_n|}}}
-\end{align*}
-Entonces
-\begin{enumerate}
-    \item[a)] Si $z \in \Delta(a,R)$ entonces $\sum_{n=0}^{\infty}{a_n(z-a)^n}$ converge absolutamente.
-    \item[b)] Si $|z-a| > R$, la serie de potencias no converge
-    \item[c)] $\sum_{n=0}^{\infty}{a_n(z-a)^n}$ converge absoluta y uniformemente en cada subconjunto compacto de $\Delta(a,R)$.
-\end{enumerate}
+    Sea $\sum_{n=0}^{\infty}{a_n(z-a)^n}$ una serie de potencias centrada en $a \in \com$. Definimos
+    \begin{align*}
+        R = \frac{1}{\limsup_{n \to \infty}{\sqrt[n]{|a_n|}}}
+    \end{align*}
+    Entonces
+    \begin{enumerate}
+        \item[a)] Si $z \in \Delta(a,R)$ entonces $\sum_{n=0}^{\infty}{a_n(z-a)^n}$ converge absolutamente.
+        \item[b)] Si $|z-a| > R$, la serie de potencias no converge
+        \item[c)] $\sum_{n=0}^{\infty}{a_n(z-a)^n}$ converge absoluta y uniformemente en cada subconjunto compacto de $\Delta(a,R)$.
+    \end{enumerate}
 \end{teo}
 
 \begin{proof}
-$b)$ Tiene que ser $R < \infty$. Ahora, si $|z-a| > R$, entonces existe $r > 0$ tal que
-\begin{align*}
-    R < r < |z-a| \Longleftrightarrow \frac{1}{|z-a|} < \frac{1}{r} < \frac{1}{R} = \limsup_{n \to \infty}{\sqrt[n]{|a_n|}}
-\end{align*}
-Entonces existe $\varphi : \mathbb{N} \longrightarrow \mathbb{N}$ creciente tal que 
-\begin{align*}
-    \sqrt[\varphi(n)]{\left|a_{\varphi(n)}\right|} > \frac{1}{r} \Longleftrightarrow \left|a_{\varphi(n)}\right| > \frac{1}{r^{\varphi(n)}}, \ \ \ \forall n \in \mathbb{N}
-\end{align*}
-Por tanto
-\begin{align*}
-    \left| a_{\varphi(n)}(z-a)^{\varphi(n)} \right| = \left| a_{\varphi(n)}\right|\left| z-a \right|^{\varphi(n)} > \frac{r^{\varphi(n)}}{r^{\varphi(n)}} = 1
-\end{align*}
-Luego, $\sum_{n=0}^{\infty}{a_n(z-a)^n}$ no converge.
-\\
-\newline
-$a)$ \text{ y } $c)$ Tiene que ser $R > 0$. Sea $K$ un compacto en $\Delta(a,R)$. Entonces existe $r \in (0,R)$ tal que $K \subset \Delta(a,r)$. Sea $\rho \in (r,R)$. Observamos que
-\begin{align*}
-    r < \rho < R \Longleftrightarrow \frac{1}{R} < \frac{1}{\rho} < \frac{1}{r}
-\end{align*}
-y que
-\begin{align*}
-    \frac{1}{R} = \limsup_{n \to \infty}{\sqrt[n]{|a_n|}}
-\end{align*}
-Entonces existe $n_0 \in \mathbb{N}$ tal que si $n \ge n_0$
-\begin{align*}
-    \sqrt[n]{|a_n|} < \frac{1}{\rho} \Longleftrightarrow |a_n| < \frac{1}{\rho^n}
-\end{align*}
-Ahora, si $n \ge n_0$
-\begin{align*}
-    \left| a_n(z-a)^n \right| = \left| a_n \right| \left| z-a \right|^n \leq \frac{r^n}{\rho^n} = \left( \frac{r}{\rho} \right)^n
-\end{align*}
-y $\sum_{n=0}^{\infty}{\left( \frac{r}{\rho} \right)^n}$ converge, pues $0 <  \frac{r}{\rho} < 1$. Así, por el Criterio Mayorante de Weierstrass,  $\sum_{n=0}^{\infty}{a_n(z-a)^n}$ converge absoluta y uniformemente en $K$.
+    $b)$ Tiene que ser $R < \infty$. Ahora, si $|z-a| > R$, entonces existe $r > 0$ tal que
+    \begin{align*}
+        R < r < |z-a| \Longleftrightarrow \frac{1}{|z-a|} < \frac{1}{r} < \frac{1}{R} = \limsup_{n \to \infty}{\sqrt[n]{|a_n|}}
+    \end{align*}
+    Entonces existe $\varphi : \mathbb{N} \longrightarrow \mathbb{N}$ creciente tal que
+    \begin{align*}
+        \sqrt[\varphi(n)]{\left|a_{\varphi(n)}\right|} > \frac{1}{r} \Longleftrightarrow \left|a_{\varphi(n)}\right| > \frac{1}{r^{\varphi(n)}}, \ \ \ \forall n \in \mathbb{N}
+    \end{align*}
+    Por tanto
+    \begin{align*}
+        \left| a_{\varphi(n)}(z-a)^{\varphi(n)} \right| = \left| a_{\varphi(n)}\right|\left| z-a \right|^{\varphi(n)} > \frac{r^{\varphi(n)}}{r^{\varphi(n)}} = 1
+    \end{align*}
+    Luego, $\sum_{n=0}^{\infty}{a_n(z-a)^n}$ no converge.
+
+    $a)$ \text{ y } $c)$ Tiene que ser $R > 0$. Sea $K$ un compacto en $\Delta(a,R)$. Entonces existe $r \in (0,R)$ tal que $K \subset \Delta(a,r)$. Sea $\rho \in (r,R)$. Observamos que
+    \begin{align*}
+        r < \rho < R \Longleftrightarrow \frac{1}{R} < \frac{1}{\rho} < \frac{1}{r}
+    \end{align*}
+    y que
+    \begin{align*}
+        \frac{1}{R} = \limsup_{n \to \infty}{\sqrt[n]{|a_n|}}
+    \end{align*}
+    Entonces existe $n_0 \in \mathbb{N}$ tal que si $n \ge n_0$
+    \begin{align*}
+        \sqrt[n]{|a_n|} < \frac{1}{\rho} \Longleftrightarrow |a_n| < \frac{1}{\rho^n}
+    \end{align*}
+    Ahora, si $n \ge n_0$
+    \begin{align*}
+        \left| a_n(z-a)^n \right| = \left| a_n \right| \left| z-a \right|^n \leq \frac{r^n}{\rho^n} = \left( \frac{r}{\rho} \right)^n
+    \end{align*}
+    y $\sum_{n=0}^{\infty}{\left( \frac{r}{\rho} \right)^n}$ converge, pues $0 <  \frac{r}{\rho} < 1$. Así que, por el Criterio Mayorante de Weierstrass, la serie  $\sum_{n=0}^{\infty}{a_n(z-a)^n}$ converge absoluta y uniformemente en $K$.
 \end{proof}
 
 \begin{obs}
-\begin{enumerate}
-    \item Sea $\sum_{n=0}^{\infty}{a_n(z-a)^n}$ una serie de potencias. Si $R > 0$ entonces dicha serie define una función continua en $\Delta(a,R)$.
-    \item \underline{Otra fórmula para $R$}: Sea
-    \begin{align*}
-        A = \{ r \ge 0 : \{|a_n|r^n\} \text{ es acotada}\} 
-    \end{align*}
-    Entonces $R = \sup(A)$.
-    \begin{proof}
-    Sea $R_0 = \sup(A)$. Veamos que $R \ge R_0$. Supongamos que $R_0 > 0$ (si $R_0 = 0$ no hay que probar nada). Sea $\rho \in (0,R_0)$. Entonces $\{|a_n|\rho^n\}$ es acotada, digamos por $M$, por tanto
-    \begin{align*}
-        |a_n|^{\frac{1}{n}} \leq \frac{M^{\frac{1}{n}}}{\rho}, \ \ n \in \mathbb{N}
-    \end{align*}
-    Luego
-    \begin{align*}
-        \limsup{\sqrt[n]{|a_n|}} \leq \frac{1}{\rho} \Longrightarrow \rho \leq \frac{1}{\limsup{\sqrt[n]{|a_n|}}} = R
-    \end{align*}
-    Como $\rho < R_0$ es aribitrario, entonces $R_0 \leq R$.
-    \\
-    \newline
-    Veamos que $R \leq R_0$. Supongamos que $R > 0$ (Si $R = 0$ no hay que probar nada). Sea $\rho \in (0,R)$ Entonces
-    \begin{align*}
-        \frac{1}{R} = \limsup{\sqrt[n]{|a_n|}} < \frac{1}{\rho}
-    \end{align*}
-    Entonces, existe $n_0 \in \mathbb{N}$ tal que $\sqrt[n]{|a_n|} < \frac{1}{\rho}$ para todo $n \ge n_0$, lo que nos dice que si $n \ge n_0$ entonces
-    \begin{align*}
-        |a_n| < \frac{1}{\rho^n} \Longrightarrow |a_n|\rho^n < 1 \Longrightarrow \{|a_n|\rho^n \} \text{ es acotada}
-    \end{align*}
-    Por tanto, $\rho \in A$ y $\rho \leq \sup(A) = R_0$. Como $\rho < R$ es arbitrario, concluimos que $R \leq R_0$.
-    \end{proof}
-    \item \underline{Otra fórmula para $R$}: 
-    \begin{align*}
-       \text{Si} \ \ \lim_{n \to \infty}{\frac{|a_{n+1}|}{|a_n|}} = \rho, \ \ \text{entonces } \ \ R = \frac{1}{\rho}
-    \end{align*}
-    \begin{proof}
-    Observamos que
-    \begin{itemize}
-        \item Podemos escribir
-        \begin{align*}
-            |a_n|^{\frac{1}{n}} = e^{\frac{\log|a_n|}{n}}  
-        \end{align*}
-        \item $\{n\}$ es una sucesión creciente hacia $\infty$.
-        \item 
-        \begin{align*}
-            \frac{\log|a_{n+1}| - \log|a_n|}{(n+1) -n} = \log\left| \frac{a_{n+1}}{a_n} \right| \xrightarrow[n \to \infty]{} \log(\rho)
-        \end{align*}
-    \end{itemize}
-    Luego
-    \begin{align*}
-        \lim_{n \to \infty}{e^{\frac{\log|a_n|}{n}}} = \lim_{n \to \infty}{e^{\rho}} = \rho
-    \end{align*}
-    Por tanto, $R = \frac{1}{\rho}$.
-    \end{proof}
-\end{enumerate}
+    \begin{enumerate}
+        \item Sea $\sum_{n=0}^{\infty}{a_n(z-a)^n}$ una serie de potencias. Si $R > 0$ entonces dicha serie define una función continua en $\Delta(a,R)$.
+        \item \underline{Otra fórmula para $R$}: Sea
+              \begin{align*}
+                  A = \{ r \ge 0 : \{|a_n|r^n\} \text{ es acotada}\}
+              \end{align*}
+              Entonces $R = \sup(A)$.
+              \begin{proof}
+                  Sea $R_0 = \sup(A)$. Veamos que $R \ge R_0$. Supongamos que $R_0 > 0$ (si $R_0 = 0$ no hay que probar nada). Sea $\rho \in (0,R_0)$. Entonces $\{|a_n|\rho^n\}$ es acotada, digamos por $M$, por tanto
+                  \begin{align*}
+                      |a_n|^{\frac{1}{n}} \leq \frac{M^{\frac{1}{n}}}{\rho}, \ \ n \in \mathbb{N}
+                  \end{align*}
+                  Luego
+                  \begin{align*}
+                      \limsup{\sqrt[n]{|a_n|}} \leq \frac{1}{\rho} \Longrightarrow \rho \leq \frac{1}{\limsup{\sqrt[n]{|a_n|}}} = R
+                  \end{align*}
+                  Como $\rho < R_0$ es aribitrario, entonces $R_0 \leq R$.
+
+                  Veamos que $R \leq R_0$. Supongamos que $R > 0$ (Si $R = 0$ no hay que probar nada). Sea $\rho \in (0,R)$ Entonces
+                  \begin{align*}
+                      \frac{1}{R} = \limsup{\sqrt[n]{|a_n|}} < \frac{1}{\rho}
+                  \end{align*}
+                  Entonces, existe $n_0 \in \mathbb{N}$ tal que $\sqrt[n]{|a_n|} < \frac{1}{\rho}$ para todo $n \ge n_0$, lo que nos dice que si $n \ge n_0$ entonces
+                  \begin{align*}
+                      |a_n| < \frac{1}{\rho^n} \Longrightarrow |a_n|\rho^n < 1 \Longrightarrow \{|a_n|\rho^n \} \text{ es acotada}
+                  \end{align*}
+                  Por tanto, $\rho \in A$ y $\rho \leq \sup(A) = R_0$. Como $\rho < R$ es arbitrario, concluimos que $R \leq R_0$.
+              \end{proof}
+        \item \underline{Otra fórmula para $R$}:
+              \begin{align*}
+                  \text{Si} \ \ \lim_{n \to \infty}{\frac{|a_{n+1}|}{|a_n|}} = \rho, \ \ \text{entonces } \ \ R = \frac{1}{\rho}
+              \end{align*}
+              \begin{proof}
+                  Observamos que
+                  \begin{itemize}
+                      \item Podemos escribir
+                            \begin{align*}
+                                |a_n|^{\frac{1}{n}} = e^{\frac{\log|a_n|}{n}}
+                            \end{align*}
+                      \item $\{n\}$ es una sucesión creciente hacia $\infty$.
+                      \item
+                            \begin{align*}
+                                \frac{\log|a_{n+1}| - \log|a_n|}{(n+1) -n} = \log\left| \frac{a_{n+1}}{a_n} \right| \xrightarrow[n \to \infty]{} \log(\rho)
+                            \end{align*}
+                  \end{itemize}
+                  Luego
+                  \begin{align*}
+                      \lim_{n \to \infty}{e^{\frac{\log|a_n|}{n}}} = \lim_{n \to \infty}{e^{\rho}} = \rho
+                  \end{align*}
+                  Por tanto, $R = \frac{1}{\rho}$.
+              \end{proof}
+    \end{enumerate}
 \end{obs}
 
 \begin{prop}
-Sean
-\begin{itemize}
-    \item $f(z) = \sum_{n=0}^{\infty}{a_n(z - a)^n}$ con $R_f \ge R$.
-    \item $g(z) = \sum_{n=0}^{\infty}{b_n(z - a)^n}$ con $R_g \ge R$.
-\end{itemize}
-Entonces
-\begin{itemize}
-    \item $(f + g)(z) = \sum_{n=0}^{\infty}{(a_n + b_n)(z - a)^n}$ es serie de pontencias con $R_{(f+g)} \ge R$.
-    \item $(f \cdot g)(z) = \sum_{n=0}^{\infty}\left( \sum_{k=0}^{n} \binom{n}{k}a_kb_{n-k} \right)(z-a)^n$ es una serie de potencias con $R_{(f \cdot g)} \ge R$.
-\end{itemize}
+    Sean
+    \begin{itemize}
+        \item $f(z) = \sum_{n=0}^{\infty}{a_n(z - a)^n}$ con $R_f \ge R$.
+        \item $g(z) = \sum_{n=0}^{\infty}{b_n(z - a)^n}$ con $R_g \ge R$.
+    \end{itemize}
+    Entonces
+    \begin{itemize}
+        \item $(f + g)(z) = \sum_{n=0}^{\infty}{(a_n + b_n)(z - a)^n}$ es serie de pontencias con $R_{(f+g)} \ge R$.
+        \item $(f \cdot g)(z) = \sum_{n=0}^{\infty}\left( \sum_{k=0}^{n} \binom{n}{k}a_kb_{n-k} \right)(z-a)^n$ es una serie de potencias con $R_{(f \cdot g)} \ge R$.
+    \end{itemize}
 \end{prop}
 
 \begin{prop}
-Sea $f(z) = \sum_{n=0}^{\infty}{a_n(z - a)^n}$ una serie de potencias con radio de convergencia $R_a > 0$. Sea $b \in \Delta(a,R_a)$ y sea $r_b = R_a - |b-a|$. Entonces existe una serie de potencias $g(z) = \sum_{n=0}^{\infty}{b_n(z - b)^n}$, centrada en $b$, con radio de convergencia $R_b \ge r_b$ tal que $f(z) = g(z)$ para cada $z \in \Delta(b,r_b)$.
+    Sea $f(z) = \sum_{n=0}^{\infty}{a_n(z - a)^n}$ una serie de potencias con radio de convergencia $R_a > 0$. Sea $b \in \Delta(a,R_a)$ y sea $r_b = R_a - |b-a|$. Entonces existe una serie de potencias $g(z) = \sum_{n=0}^{\infty}{b_n(z - b)^n}$, centrada en $b$, con radio de convergencia $R_b \ge r_b$ tal que $f(z) = g(z)$ para cada $z \in \Delta(b,r_b)$.
 \end{prop}
 
 \begin{proof}
-Sea $z \in \Delta(b,r_b)$. Entonces
-\begin{align*}
-    f(z) &= \sum_{n=0}^{\infty}{a_n(z - a)^n} = \sum_{n=0}^{\infty}{a_n[(z-b) + (b-a)]^n} = \sum_{n = 0}^{\infty}\left( a_n \sum_{k=0}^{n} \binom{n}{k}(z-b)^k(b-a)^{n-k}\right) \\
-    &= \sum_{n=0}^{\infty} \sum_{k=0}^{n} {a_n\binom{n}{k}(z-b)^k(b-a)^{n-k}} = \sum_{k=0}^{\infty} \left( \sum_{n=k}^{\infty} {a_n\binom{n}{k}(b-a)^{n-k}}\right)(z-b)^k
-\end{align*}
-Definiendo $b_k = \sum_{n=k}^{\infty} {b_k\binom{n}{k}(b-a)^{n-k}}$, tenemos que $g(z) = \sum_{k=0}^{\infty}{b_k(z-b)^k}$ es serie de potencias centrada en $b$ con radio de convergencia $R_b \ge r_b$.
+    Sea $z \in \Delta(b,r_b)$. Entonces
+    \begin{align*}
+        f(z) & = \sum_{n=0}^{\infty}{a_n(z - a)^n} = \sum_{n=0}^{\infty}{a_n[(z-b) + (b-a)]^n} = \sum_{n = 0}^{\infty}\left( a_n \sum_{k=0}^{n} \binom{n}{k}(z-b)^k(b-a)^{n-k}\right) \\
+             & = \sum_{n=0}^{\infty} \sum_{k=0}^{n} {a_n\binom{n}{k}(z-b)^k(b-a)^{n-k}} = \sum_{k=0}^{\infty} \left( \sum_{n=k}^{\infty} {a_n\binom{n}{k}(b-a)^{n-k}}\right)(z-b)^k
+    \end{align*}
+    Definiendo $b_k = \sum_{n=k}^{\infty} {b_k\binom{n}{k}(b-a)^{n-k}}$, tenemos que $g(z) = \sum_{k=0}^{\infty}{b_k(z-b)^k}$ es serie de potencias centrada en $b$ con radio de convergencia $R_b \ge r_b$.
 \end{proof}
 
 \begin{cor}
-De hecho, $f(z) = g(z)$ para cada $z \in \Delta(a,R_a) \cap \Delta(b,R_b)$.
+    De hecho, $f(z) = g(z)$ para cada $z \in \Delta(a,R_a) \cap \Delta(b,R_b)$.
 \end{cor}
 
 \begin{defi}
-Sea $\Omega \subseteq \com$ abierto. Decimos que $f: \Omega \longrightarrow \com$ es análitica en $\Omega$, si para cada $a \in \Omega$, $f$ se puede expresar en forma de serie de potencias alrededor de $a$.
+    Sea $\Omega \subseteq \com$ abierto. Decimos que $f: \Omega \longrightarrow \com$ es análitica en $\Omega$, si para cada $a \in \Omega$, $f$ se puede expresar en forma de serie de potencias alrededor de $a$.
 \end{defi}
 
 \begin{obs}
-Toda serie de potencias es análitica en su disco de convergencia.
+    Toda serie de potencias es análitica en su disco de convergencia.
 \end{obs}
 
 \begin{teo}[Diferenciabilidad de las series de potencias]
-Sea $f(z) = \sum_{n=0}^{\infty}{a_n(z-a)^n}$ una serie de potencias con radio de convergencia $R > 0$. Entonces
-\begin{enumerate}
-    \item[a)] Para cada $k \in \mathbb{N}$, la serie de potencias
-    \begin{align*}
-        \sum_{n=k}^{\infty}{n(n-1)...(n-k+1)a_n(z-a)^{n-k}}
-    \end{align*}
-    es una serie de potencias centrada en $a$ de radio de convergencia $R$.
-    \item[b)] $f$ es infinitamente derivable en $\Delta(a,R)$ y para cada $k \in \mathbb{N}_0$ y para cada $z \in \Delta(a,R)$
-    \begin{align*}
-        f^{(k)}(z) = \sum_{n=k}^{\infty}{n(n-1)...(n-k+1)a_n(z-a)^{n-k}}
-    \end{align*}
-    \item[c)] Para cada $k \in \mathbb{N}_0$, $f^{(k)}(a) = k! a_k$.
-\end{enumerate}
+    Sea $f(z) = \sum_{n=0}^{\infty}{a_n(z-a)^n}$ una serie de potencias con radio de convergencia $R > 0$. Entonces
+    \begin{enumerate}
+        \item[a)] Para cada $k \in \mathbb{N}$, la serie de potencias
+              \begin{align*}
+                  \sum_{n=k}^{\infty}{n(n-1)...(n-k+1)a_n(z-a)^{n-k}}
+              \end{align*}
+              es una serie de potencias centrada en $a$ de radio de convergencia $R$.
+        \item[b)] $f$ es infinitamente derivable en $\Delta(a,R)$ y para cada $k \in \mathbb{N}_0$ y para cada $z \in \Delta(a,R)$
+              \begin{align*}
+                  f^{(k)}(z) = \sum_{n=k}^{\infty}{n(n-1)...(n-k+1)a_n(z-a)^{n-k}}
+              \end{align*}
+        \item[c)] Para cada $k \in \mathbb{N}_0$, $f^{(k)}(a) = k! a_k$.
+    \end{enumerate}
 \end{teo}
 
 \begin{defi}
-Si $f$ es infinitamente derivable en $a$, entonces su serie de Taylor centrada en a es
-\begin{align*}
-    \sum_{n=0}^{\infty}{\frac{f^{(n)}(a)}{n!}(z-a)^n}
-\end{align*}
+    Si $f$ es infinitamente derivable en $a$, entonces su serie de Taylor centrada en a es
+    \begin{align*}
+        \sum_{n=0}^{\infty}{\frac{f^{(n)}(a)}{n!}(z-a)^n}
+    \end{align*}
 \end{defi}
 
 \begin{proof}
-$c)$ Se tiene de forma directa de $a)$ y $b)$.
-\\
-\newline
-$a)$ y $b)$ Basta probarlo para $k = 1$ (el resto se haría por inducción sobre $k$)
-\begin{align*}
-    (a_1) \ \sum_{n=1}^{\infty}{na_n(z-a)^{n-1}} = \sum_{n=0}^{\infty}{(n+1)a_{n+1}(z-a)^n}
-\end{align*}
-Observamos que
-\begin{align*}
-    \limsup_{n \to \infty}{\sqrt[n]{|(n+1)a_{n+1}|}} = \limsup_{n \to \infty}{(n+1)^{\frac{1}{n}} \cdot \left( |a_{n+1}|^{\frac{1}{n+1}}\right)^{\frac{n+1}{n}}} = 1 \cdot \frac{1}{R} = \frac{1}{R}
-\end{align*}
-$(b_1)$ $g(z) = \sum_{n=1}^{\infty}{na_n(z-a)^{n-1}}$ converge absoluta y uniformemente en cada compacto contenido en $\Dekta(a,R)$. Veamos que $f'(z) = g(z)$ para cada $z \in \Delta(a,R)$. Sea $z_0 \in \Delta(a,R)$, tenemos que probar que
-\begin{align*}
-    \lim_{n \to z_0}{\frac{f(z) - f(z_0)}{z-z_0} - g(z_0) = 0}
-\end{align*}
-Sea $\varepsilon > 0$. Como $z_0 \in \Delta(a,R)$, entonces existe $r > 0$ tal que $z_0 \in \overline{\Delta(a,r)} \subset \Delta(a,R)$. También existe $\rho > 0$ ($f = r - |z_0 -a|$) tal que
-\begin{align*}
-    z_0 \in \overline{\Delta(a_0,\rho)} \subset \Delta(a,r) \subset \Delta(a,R)
-\end{align*}
-Ahora, para $z \in \Delta(z_0,\rho)$, $z \not = z_0$
-\begin{align*}
-    \frac{f(z) - f(z_0)}{z-z_0} - g(z_0) &= \frac{1}{z-z_0}\left( \sum_{n=1}^{\infty}{a_n((z-a)^n - (z_0 - a)^n)}\right) - \sum_{n=1}^{\infty}{na_n(z_0 -a)^{n-1}} \\
-    &= \sum_{n=1}^{\infty}{a_n \sum_{k=0}^{n-1}{(z-a)^{n-1-k}(z_0 -a)^k}} - \sum_{n=1}^{\infty}{na_n(z_0-a)^{n-1}} \\
-    &= \left( \sum_{n=1}^{N} + \sum_{n=N+1}^{\infty}\right)a_n\left( \frac{(z-a)^{n} - (z_0-a)^n}{z-z_0} -n(z_0-a)^{n-1}\right) \equiv I_N(z) + II_N(z)
-\end{align*}
-donde lo de dentro del paréntesis es
-\begin{align*}
-      \sum_{n=1}^{N}{a_n\left( \frac{(z-a)^n - (z_0-a)^n}{z-z_0} - n(z_0-a)^{n-1}\right)} + \sum_{ n= N+1}^{\infty}{a_n\left( \frac{(z-a)^n - (z_0-a)^n}{z-z_0} -n(z_0-a)^{n-1}\right)} 
-\end{align*}
-(hemos usado que $x^n - y^n = (x-y)(x^{n-1} + +x^{n-2}y + ... + xy^{n-1}  y^{-1})$).
-\\
-\newline
-\underline{Empezamos con $II_N$}: Teemos convergencia absoluta
-\begin{align*}
-    \left| II_N(z) \right| &\leq \sum_{n = N +1}^{\infty}{|a_n| \cdot \left| \frac{(z-a)^n - (z_0-a)^n}{z-z_0} \right| + \left| n(z_0-a)^{n-1}\right|} \\\
-    & \leq \sum_{n = N +1}^{\infty}{|a_n|\left[ \sum_{k=0}^{n-1}{|z-a|^{n-1-k} \cdot |z_0-a|^{k} + n|z_0-a|^{n-1}}\right]}
-\end{align*}
-Observamos que 
-\begin{itemize}
-    \item $|z-a|^{n-1-k} \leq \rho{n-1-k} \leq r^{n-1-k}$.
-    \item $|z_0-a|^k \leq r^k$.
-\end{itemize}
-Luego
-\begin{align*}
-    \left| II_N(z) \right|  \leq \sum_{n=N+1}^{\infty}{n|a_n|\left( r^{n-1} + r^{n-1}\right)} \leq \sum_{n = N+1}^{\infty}{2n|a_n|r^{n-1}}
-\end{align*}
-Por el Criterio Mayorante de Weierstrass, $|II_N(z)|$ converge uniformemente en $\Delta(z_n,\rho)\backslash \{z_0\}$ porque $\sum_{n = N+1}^{\infty}{2n|a_n|r^{n-1}}$ converge. Así,existe $N_0 \in mathbb{N}$ tal que
-\begin{align*}
-    |II_{N_0}(z)| < \frac{\varepsilon}{2}
-\end{align*}
-\underline{Pasamos a estimar $I_{N_0}$}:
-\begin{align*}
-    I_{N_0}(z) = \sum_{n=1}^{N_0}{a_n\left( \frac{(z-a)^n - (z_0-a)^n}{z-z_0} - n(z_0-a)^{n-1}\right)} \xrightarrow[z \to z_0]{} 0
-\end{align*}
-Por tanto, existe $\delta > 0$, que podemos suponnenr $\delta < \rho$ tal que
-\begin{align*}
-    \left| I_{N_0}(z) \right| < \frac{\varepsilon}{2}, \ \ \forall z \in \Delta(z_0,\delta)\backslash \{z_0\}
-\end{align*}
-De esta manera, si $z \in \Delta(z_0,\delta)\backslash \{z_0\}$
-\begin{align*}
-    \left| \frac{f(z) - f(z_0)}{z-z_0} - g(z_0) \right| \leq \left| I_{N_0}(z) \right| + \left| II_{N_0}(z) \right| < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon
-\end{align*}
+    $c)$ Se tiene de forma directa de $a)$ y $b)$.
+
+    $a)$ y $b)$ Basta probarlo para $k = 1$ (el resto se haría por inducción sobre $k$)
+    \begin{align*}
+        (a_1) \ \sum_{n=1}^{\infty}{na_n(z-a)^{n-1}} = \sum_{n=0}^{\infty}{(n+1)a_{n+1}(z-a)^n}
+    \end{align*}
+    Observamos que
+    \begin{align*}
+        \limsup_{n \to \infty}{\sqrt[n]{|(n+1)a_{n+1}|}} = \limsup_{n \to \infty}{(n+1)^{\frac{1}{n}} \cdot \left( |a_{n+1}|^{\frac{1}{n+1}}\right)^{\frac{n+1}{n}}} = 1 \cdot \frac{1}{R} = \frac{1}{R}
+    \end{align*}
+    $(b_1)$ $g(z) = \sum_{n=1}^{\infty}{na_n(z-a)^{n-1}}$ converge absoluta y uniformemente en cada compacto contenido en $\Delta(a,R)$. Veamos que $f'(z) = g(z)$ para cada $z \in \Delta(a,R)$. Sea $z_0 \in \Delta(a,R)$, tenemos que probar que
+    \begin{align*}
+        \lim_{n \to z_0}{\frac{f(z) - f(z_0)}{z-z_0} - g(z_0) = 0}
+    \end{align*}
+    Sea $\varepsilon > 0$. Como $z_0 \in \Delta(a,R)$, entonces existe $r > 0$ tal que $z_0 \in \overline{\Delta(a,r)} \subset \Delta(a,R)$. También existe $\rho > 0$ ($f = r - |z_0 -a|$) tal que
+    \begin{align*}
+        z_0 \in \overline{\Delta(a_0,\rho)} \subset \Delta(a,r) \subset \Delta(a,R)
+    \end{align*}
+    Ahora, para $z \in \Delta(z_0,\rho)$, $z \not = z_0$
+    \begin{align*}
+        \frac{f(z) - f(z_0)}{z-z_0} - g(z_0) & = \frac{1}{z-z_0}\left( \sum_{n=1}^{\infty}{a_n((z-a)^n - (z_0 - a)^n)}\right) - \sum_{n=1}^{\infty}{na_n(z_0 -a)^{n-1}}                           \\
+                                             & = \sum_{n=1}^{\infty}{a_n \sum_{k=0}^{n-1}{(z-a)^{n-1-k}(z_0 -a)^k}} - \sum_{n=1}^{\infty}{na_n(z_0-a)^{n-1}}                                      \\
+                                             & = \left( \sum_{n=1}^{N} + \sum_{n=N+1}^{\infty}\right)a_n\left( \frac{(z-a)^{n} - (z_0-a)^n}{z-z_0} -n(z_0-a)^{n-1}\right) \equiv I_N(z) + II_N(z)
+    \end{align*}
+    donde lo de dentro del paréntesis es
+    \begin{align*}
+        \sum_{n=1}^{N}{a_n\left( \frac{(z-a)^n - (z_0-a)^n}{z-z_0} - n(z_0-a)^{n-1}\right)} + \sum_{ n= N+1}^{\infty}{a_n\left( \frac{(z-a)^n - (z_0-a)^n}{z-z_0} -n(z_0-a)^{n-1}\right)}
+    \end{align*}
+    (hemos usado que $x^n - y^n = (x-y)(x^{n-1} + +x^{n-2}y + ... + xy^{n-1}  y^{-1})$).
+
+    \underline{Empezamos con $II_N$}: Teemos convergencia absoluta
+    \begin{align*}
+        \left| II_N(z) \right| & \leq \sum_{n = N +1}^{\infty}{|a_n| \cdot \left| \frac{(z-a)^n - (z_0-a)^n}{z-z_0} \right| + \left| n(z_0-a)^{n-1}\right|} \\\
+                               & \leq \sum_{n = N +1}^{\infty}{|a_n|\left[ \sum_{k=0}^{n-1}{|z-a|^{n-1-k} \cdot |z_0-a|^{k} + n|z_0-a|^{n-1}}\right]}
+    \end{align*}
+    Observamos que
+    \begin{itemize}
+        \item $|z-a|^{n-1-k} \leq \rho{n-1-k} \leq r^{n-1-k}$.
+        \item $|z_0-a|^k \leq r^k$.
+    \end{itemize}
+    Luego
+    \begin{align*}
+        \left| II_N(z) \right|  \leq \sum_{n=N+1}^{\infty}{n|a_n|\left( r^{n-1} + r^{n-1}\right)} \leq \sum_{n = N+1}^{\infty}{2n|a_n|r^{n-1}}
+    \end{align*}
+    Por el Criterio Mayorante de Weierstrass, $|II_N(z)|$ converge uniformemente en $\Delta(z_n,\rho)\backslash \{z_0\}$ porque $\sum_{n = N+1}^{\infty}{2n|a_n|r^{n-1}}$ converge. Así,existe $N_0 \in mathbb{N}$ tal que
+    \begin{align*}
+        |II_{N_0}(z)| < \frac{\varepsilon}{2}
+    \end{align*}
+    \underline{Pasamos a estimar $I_{N_0}$}:
+    \begin{align*}
+        I_{N_0}(z) = \sum_{n=1}^{N_0}{a_n\left( \frac{(z-a)^n - (z_0-a)^n}{z-z_0} - n(z_0-a)^{n-1}\right)} \xrightarrow[z \to z_0]{} 0
+    \end{align*}
+    Por tanto, existe $\delta > 0$, que podemos suponnenr $\delta < \rho$ tal que
+    \begin{align*}
+        \left| I_{N_0}(z) \right| < \frac{\varepsilon}{2}, \ \ \forall z \in \Delta(z_0,\delta)\backslash \{z_0\}
+    \end{align*}
+    De esta manera, si $z \in \Delta(z_0,\delta)\backslash \{z_0\}$
+    \begin{align*}
+        \left| \frac{f(z) - f(z_0)}{z-z_0} - g(z_0) \right| \leq \left| I_{N_0}(z) \right| + \left| II_{N_0}(z) \right| < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon
+    \end{align*}
 \end{proof}
 
 \begin{obs}
-\begin{itemize}
-    \item Si $f$ es análitica, entonces $f \in \mathscr{C}^{\infty}$.
-    \item En $\mathbb{R}$. Si $f \in \mathscr{C}^{\infty}$, entonces $f$ no tiene por qué ser analítica. Por ejemplo
-    \begin{align*}
-        f(x) = \left\{ \begin{array}{lcc}
-            e^{-1/x^2} & si & x \not = 0 \\
-            0 & si & x = 0\\
-             \end{array}
-        \right.
-    \end{align*}
-    Resulta que $f \in \mathscr{C}^{\infty}$, $f^{(n)}(0) = 0$. Su serie de Taylor es 
-    \begin{align*}
-        \sum_{n=0}^{\infty}{\frac{f^{(n)}(0)}{n!}x^n = 0}
-    \end{align*}
-    que no es $f$ en un en entorno del 0. Sin embargo, en $\com$, ser $\mathscr{C}^{\infty}$ si implica ser analítica.
-\end{itemize}
+    \begin{itemize}
+        \item Si $f$ es análitica, entonces $f \in \mathcal{C}^{\infty}$.
+        \item En $\mathbb{R}$. Si $f \in \mathcal{C}^{\infty}$, entonces $f$ no tiene por qué ser analítica. Por ejemplo
+              \begin{align*}
+                  f(x) = \left\{ \begin{array}{lcc}
+                                     e^{-1/x^2} & si & x \not = 0 \\
+                                     0          & si & x = 0      \\
+                                 \end{array}
+                  \right.
+              \end{align*}
+              Resulta que $f \in \mathcal{C}^{\infty}$, $f^{(n)}(0) = 0$. Su serie de Taylor es
+              \begin{align*}
+                  \sum_{n=0}^{\infty}{\frac{f^{(n)}(0)}{n!}x^n = 0}
+              \end{align*}
+              que no es $f$ en un en entorno del 0. Sin embargo, en $\com$, ser $\mathcal{C}^{\infty}$ si implica ser analítica.
+    \end{itemize}
 \end{obs}
 
 \begin{obs}
-La función
-\begin{align*}
+    La función
+    \begin{align*}
         f(z) = \left\{ \begin{array}{lcc}
-            e^{-1/z^2} & si & z \not = 0 \\
-            0 & si & z = 0\\
-             \end{array}
+                           e^{-1/z^2} & si & z \not = 0 \\
+                           0          & si & z = 0      \\
+                       \end{array}
         \right.
     \end{align*}
     no es ni siquiera continua en 0.
 \end{obs}
 
 \begin{ejemplo}
-Sea $f(z) = \frac{1}{z}$, $z \in \comz$, que es holomorfa en $\comz$. ¿Serie de potencias de $f$ centrada en 1? Si existe, es la serie de Taylor de $f$ en 1, es decir,
-\begin{align*}
-    \sum_{n=0}^{\infty}{\frac{f^{(n)}(1)}{n!}(z-1)^n}
-\end{align*}
-¿Como calcular $f^{(n)}(1)$ rápido?
-\begin{align*}
-    \frac{1}{z} = \frac{1}{1+z-1} = \frac{1}{1+(z-1)} = \sum_{n=0}^{\infty}{(-(z-1))^n} = \sum_{n=0}^{\infty}{(-1)^n(z-1)^n}
-\end{align*}
-que converge si $z \in \Delta(1,1)$. Por tanto $f^{(n)}(1) = n!(-1)^n$.
+    Sea $f(z) = \frac{1}{z}$, $z \in \comz$, que es holomorfa en $\comz$. ¿Serie de potencias de $f$ centrada en 1? Si existe, es la serie de Taylor de $f$ en 1, es decir,
+    \begin{align*}
+        \sum_{n=0}^{\infty}{\frac{f^{(n)}(1)}{n!}(z-1)^n}
+    \end{align*}
+    ¿Como calcular $f^{(n)}(1)$ rápido?
+    \begin{align*}
+        \frac{1}{z} = \frac{1}{1+z-1} = \frac{1}{1+(z-1)} = \sum_{n=0}^{\infty}{(-(z-1))^n} = \sum_{n=0}^{\infty}{(-1)^n(z-1)^n}
+    \end{align*}
+    que converge si $z \in \Delta(1,1)$. Por tanto $f^{(n)}(1) = n!(-1)^n$.
 \end{ejemplo}
 
 \section{Las funciones trigonométricas}
 En analogía con el caso real
 \begin{align*}
-    &\sen(z) = \sum_{n=0}^{\infty}{(-1)^n\frac{z^{2n+1}}{(2n+1)!}}, \ \ z \in \com \\
-    &\cos(z) = \sum_{n=0}^{\infty}{(-1)^n\frac{z^{2n}}{(2n)!}}, \ \ z \in \com
+     & \sen(z) = \sum_{n=0}^{\infty}{(-1)^n\frac{z^{2n+1}}{(2n+1)!}}, \ \ z \in \com \\
+     & \cos(z) = \sum_{n=0}^{\infty}{(-1)^n\frac{z^{2n}}{(2n)!}}, \ \ z \in \com
 \end{align*}
 Con esto, es fácil ver que
 \begin{align*}
-    &\cos z = \frac{e^{iz}+e^{-iz}}{2} = \cosh z \\
-    &\sen z = \frac{e^{iz}-e^{-iz}}{2i} = \frac{\senh z}{i}
+     & \cos z = \frac{e^{iz}+e^{-iz}}{2} = \cosh z            \\
+     & \sen z = \frac{e^{iz}-e^{-iz}}{2i} = \frac{\senh z}{i}
 \end{align*}
 \underline{Propiedades}:
 \begin{enumerate}
     \item Es fácil comprobar que para cada $z \in \com$,
-    \begin{itemize}
-        \item $\sen'(z) = \cos(z)$.
-        \item $\cos'(z) = -\sen(z)$.
-    \end{itemize}
+          \begin{itemize}
+              \item $\sen'(z) = \cos(z)$.
+              \item $\cos'(z) = -\sen(z)$.
+          \end{itemize}
     \item
-    \begin{align*}
-        \cos(z) + i\sen(z) &= \sum_{n=0}^{\infty}{(-1)^n\frac{x^{2n}}{(2n)!}} + i\sum_{n=0}^{\infty}{(-1)^n\frac{x^{2n+1}}{(2n+1)!}} \\
-        &= \sum_{n=0}^{\infty}{i^{2n}\frac{x^{2n}}{(2n)!}} + \sum_{n=0}^{\infty}{i^{2n+1}\frac{x^{2n+1}}{(2n+1)!}} \\
-        &= \sum_{k=0}^{\infty}{\frac{(iz)^k}{k!}} = e^{iz}
-    \end{align*}
+          \begin{align*}
+              \cos(z) + i\sen(z) & = \sum_{n=0}^{\infty}{(-1)^n\frac{x^{2n}}{(2n)!}} + i\sum_{n=0}^{\infty}{(-1)^n\frac{x^{2n+1}}{(2n+1)!}}  \\
+                                 & = \sum_{n=0}^{\infty}{i^{2n}\frac{x^{2n}}{(2n)!}} + \sum_{n=0}^{\infty}{i^{2n+1}\frac{x^{2n+1}}{(2n+1)!}} \\
+                                 & = \sum_{k=0}^{\infty}{\frac{(iz)^k}{k!}} = e^{iz}
+          \end{align*}
     \item $\cos^2(z) + \sen^2(z) = 1$, para cada $z \in \com$.
     \item Es fácil comprobar que para cada $z \in \com$,
-    \begin{itemize}
-        \item $\cos(-z) = \cos(z)$ y $\sen(-z) = -\sen(z)$.
-        \item $\cos(z + 2\pi) = \cos(z)$ y $\sen(z +2\pi) = \sen(z)$.
-    \end{itemize}
+          \begin{itemize}
+              \item $\cos(-z) = \cos(z)$ y $\sen(-z) = -\sen(z)$.
+              \item $\cos(z + 2\pi) = \cos(z)$ y $\sen(z +2\pi) = \sen(z)$.
+          \end{itemize}
     \item Para cada $z,w \in \com$
-    \begin{align*}
-        \cos(z+w) &= \frac{e^{i(z+w)} + e^{-i(z+w)}}{2} = \frac{1}{2}\left( e^{iz}e^{iw} + e^{-iz}e^{-iw}\right)  \\
-        &= \frac{1}{2}\left( (\cos z + \sen z)(\cos w + i\sen w) + (\cos z -i\sen z)(\cos w - i\sen w)\right) \\
-        & = ... = \cos z \cos w - \sen z \sen w \\
-        \sen(z+w) &= ... = \sen z \cos w + \cos z \sen w
-    \end{align*}
+          \begin{align*}
+              \cos(z+w) & = \frac{e^{i(z+w)} + e^{-i(z+w)}}{2} = \frac{1}{2}\left( e^{iz}e^{iw} + e^{-iz}e^{-iw}\right)        \\
+                        & = \frac{1}{2}\left( (\cos z + \sen z)(\cos w + i\sen w) + (\cos z -i\sen z)(\cos w - i\sen w)\right) \\
+                        & = ... = \cos z \cos w - \sen z \sen w                                                                \\
+              \sen(z+w) & = ... = \sen z \cos w + \cos z \sen w
+          \end{align*}
     \item $\sen$ y $\cos$ no son acotadas en $\com$. Sea $x + iy \in \com$, entonces
-    \begin{align*}
-        \sen(x+iy) &= \sen x \cos(iy) + \cos x \sen(iy) = \sen x \frac{e^{iiy} + e^{-iiy}}{2} + \cos x\frac{e^{iiy}-e^{-iiy}}{2i} \\
-        &= \sen x \cosh y + i \cos x \senh y \\
-        \cos(x + iy) &= ... = \cos x \cosh y - i\sen x \senh y
-    \end{align*}
-    Con esto, tenemos que
-    \begin{align*}
-        |\sen(x+iy)|^2 &= \sen^2 x \cosh^2 y + \cos^2 x \senh^2 y = \sen^2 x (1 + \senh^2 y) + \cos^2 x \senh^2 y \\
-        &= \sen^2 x + \senh^2 y \\
-        |\cos(x+iy)|^2 &= \cos^2 x + \senh^2 y
-    \end{align*}
+          \begin{align*}
+              \sen(x+iy)   & = \sen x \cos(iy) + \cos x \sen(iy) = \sen x \frac{e^{iiy} + e^{-iiy}}{2} + \cos x\frac{e^{iiy}-e^{-iiy}}{2i} \\
+                           & = \sen x \cosh y + i \cos x \senh y                                                                           \\
+              \cos(x + iy) & = ... = \cos x \cosh y - i\sen x \senh y
+          \end{align*}
+          Con esto, tenemos que
+          \begin{align*}
+              |\sen(x+iy)|^2 & = \sen^2 x \cosh^2 y + \cos^2 x \senh^2 y = \sen^2 x (1 + \senh^2 y) + \cos^2 x \senh^2 y \\
+                             & = \sen^2 x + \senh^2 y                                                                    \\
+              |\cos(x+iy)|^2 & = \cos^2 x + \senh^2 y
+          \end{align*}
     \item ¿Ceros de $\sen$ y $\cos$? Sea $x +iy \in \com$, entonces
-    \begin{align*}
-        \sen(x+iy) = 0 & \Longleftrightarrow \sen^2 x + \senh^2 y = 0 \Longleftrightarrow \left\{ \begin{array}{lcc}
-            \sen x = 0 \\
-           \senh y = 0\\
-             \end{array}
-        \right. \Longleftrightarrow \left\{ \begin{array}{lcc}
-            x = k\pi, & k \in \mathbb{Z} \\
-           y = 0\\
-             \end{array}
-        \right. \\
-        & \Longleftrightarrow z = k\pi, \ k \in \mathbb{Z} \\
-        \cos(x + iy) = 0 &\Longleftrightarrow  z = \frac{\pi}{2} + k\pi, \ k \in \mathbb{Z}
-    \end{align*}
+          \begin{align*}
+              \sen(x+iy) = 0   & \Longleftrightarrow \sen^2 x + \senh^2 y = 0 \Longleftrightarrow \left\{ \begin{array}{lcc}
+                                                                                                              \sen x = 0  \\
+                                                                                                              \senh y = 0 \\
+                                                                                                          \end{array}
+              \right. \Longleftrightarrow \left\{ \begin{array}{lcc}
+                                                      x = k\pi, & k \in \mathbb{Z} \\
+                                                      y = 0                        \\
+                                                  \end{array}
+              \right.                                                                                                       \\
+                               & \Longleftrightarrow z = k\pi, \ k \in \mathbb{Z}                                           \\
+              \cos(x + iy) = 0 & \Longleftrightarrow  z = \frac{\pi}{2} + k\pi, \ k \in \mathbb{Z}
+          \end{align*}
     \item \underline{Visulización de la función $\sen$} : S
-    \begin{itemize}
-        \item Comportamiento de las líneas horizontales ($y = y_0$)
-        \begin{align*}
-            &\underline{y_0 = 0} \ \ \ \sen(z) = \sen(t), \text{ se reccore el segmento } [-1,1] \\
-            &\underline{y_0 \not = 0} \ \ \ \sen(z) = \sen(t + iy_0) = \sen t \cosh y_0 + i\cos t \senh y_0, \text{ que es una elipse}
-        \end{align*}
-        \item Comportamiento de las líneas verticales ($x = x_0$)
-        \begin{align*}
-            &\underline{x_0 = 0} \ \ \  \\
-            &\underline{x_0 \not = 0} \ \ \ \sen(z) = \sen(x_0 + ty_0) = \sen x_0 \cosh t + i\cos x_0 \senh t
-        \end{align*}
-        El caso de que $x_0 \not = 0$, tenemos que se describe una rama de la hipérbola de centro 0, vértices princales $\sen x_0 $ y $-\sen x_0$ y asíntocas de pendientes $\frac{\cos x_0}{\sen x_0}$ y $-\frac{\cos x_0}{\sen x_0}$
-    \end{itemize}
+          \begin{itemize}
+              \item Comportamiento de las líneas horizontales ($y = y_0$)
+                    \begin{align*}
+                         & \underline{y_0 = 0} \ \ \ \sen(z) = \sen(t), \text{ se reccore el segmento } [-1,1]                                       \\
+                         & \underline{y_0 \not = 0} \ \ \ \sen(z) = \sen(t + iy_0) = \sen t \cosh y_0 + i\cos t \senh y_0, \text{ que es una elipse}
+                    \end{align*}
+              \item Comportamiento de las líneas verticales ($x = x_0$)
+                    \begin{align*}
+                         & \underline{x_0 = 0} \ \ \                                                                        \\
+                         & \underline{x_0 \not = 0} \ \ \ \sen(z) = \sen(x_0 + ty_0) = \sen x_0 \cosh t + i\cos x_0 \senh t
+                    \end{align*}
+                    El caso de que $x_0 \not = 0$, tenemos que se describe una rama de la hipérbola de centro 0, vértices princales $\sen x_0 $ y $-\sen x_0$ y asíntocas de pendientes $\frac{\cos x_0}{\sen x_0}$ y $-\frac{\cos x_0}{\sen x_0}$
+          \end{itemize}
     \item \underline{Inyectividad de la función $\sen$}: Sean $z,w \in \com$,, entonces
-    \begin{align*}
-        \sen z = \sen w &\Longleftrightarrow \frac{e^{iz}-e^{-iz}}{2i} = \frac{e^{iw}-e^{-iw}}{2i} \Longleftrightarrow e^{iz}-e^{-iz} = e^{iw}-e^{-iw} \\
-        & \Longleftrightarrow e^{iz}(1 - e^{i(w-z)}) = -e^{iw}(-e^{i(w-z)} + 1) \\
-        & \Longleftrightarrow e^{i(z+w)}(1 - e^{i(w-z)}) = -(-e^{i(w-z)} + 1) \\
-        & \Longleftrightarrow (1 + e^{i(w+z)})(1 - e^{i(w-z)}) = 0 \\
-        & \Longleftrightarrow \left\{ \begin{array}{lcc}
-            e^{i(w+z)} = -1 \\
-            ó \\
-           e^{i(w-z)} = 1\\
-             \end{array}
-        \right. \Longleftrightarrow \left\{ \begin{array}{lcc}
-            w + z = \pi + 2k\pi, \ k \in \mathbb{Z} \textit{ (Simetría)}\\
-            ó \\
-           w - z = 2k\pi, \ k \in \mathbb{Z} \textit{ (Periodicidad)}\\
-             \end{array}
-        \right. \\
-        & \Longleftrightarrow w \text{ y } z \text{ son simétricos respecto  } \frac{2k +1}{2}\pi
-    \end{align*}
-    \\
-    \newline
-    \underline{Dominio de inyectividad de la función $\sen$}
-    \begin{itemize}
-        \item \textit{Periodicidad}: Nos restringimos a una  banda vertical de ancho máximo $2\pi$.
-        \item \textit{Simetría}: Nos restringimos a
-        \begin{align*}
-            S = \left\{ z \in \com : -\frac{\pi}{2} < z < \frac{\pi}{2} \right\}
-        \end{align*}
-    \end{itemize}
+          \begin{align*}
+              \sen z = \sen w & \Longleftrightarrow \frac{e^{iz}-e^{-iz}}{2i} = \frac{e^{iw}-e^{-iw}}{2i} \Longleftrightarrow e^{iz}-e^{-iz} = e^{iw}-e^{-iw} \\
+                              & \Longleftrightarrow e^{iz}(1 - e^{i(w-z)}) = -e^{iw}(-e^{i(w-z)} + 1)                                                         \\
+                              & \Longleftrightarrow e^{i(z+w)}(1 - e^{i(w-z)}) = -(-e^{i(w-z)} + 1)                                                           \\
+                              & \Longleftrightarrow (1 + e^{i(w+z)})(1 - e^{i(w-z)}) = 0                                                                      \\
+                              & \Longleftrightarrow \left\{ \begin{array}{lcc}
+                                                                e^{i(w+z)} = -1 \\
+                                                                \text{ó}        \\
+                                                                e^{i(w-z)} = 1  \\
+                                                            \end{array}
+              \right. \Longleftrightarrow \left\{ \begin{array}{lcc}
+                                                      w + z = \pi + 2k\pi, \ k \in \mathbb{Z} \textit{ (Simetría)} \\
+                                                      \text{ó}                                                     \\
+                                                      w - z = 2k\pi, \ k \in \mathbb{Z} \textit{ (Periodicidad)}   \\
+                                                  \end{array}
+              \right.                                                                                                                                         \\
+                              & \Longleftrightarrow w \text{ y } z \text{ son simétricos respecto  } \frac{2k +1}{2}\pi
+          \end{align*}
+
+          \underline{Dominio de inyectividad de la función $\sen$}
+          \begin{itemize}
+              \item \textit{Periodicidad}: Nos restringimos a una  banda vertical de ancho máximo $2\pi$.
+              \item \textit{Simetría}: Nos restringimos a
+                    \begin{align*}
+                        S = \left\{ z \in \com : -\frac{\pi}{2} < z < \frac{\pi}{2} \right\}
+                    \end{align*}
+          \end{itemize}
 \end{enumerate}

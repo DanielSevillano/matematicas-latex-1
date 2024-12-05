@@ -3,108 +3,106 @@
 \section{Cambio de variable (variable discreta)}
 
 \begin{prop}
-Sea X una variable aleatoria discreta y sea $D_X = \{x_n\}$ el conjunto de puntos de salto con $\{P_X(\{x_n\})$ función de masa. Sea $Y = g(X)$ con $g$ función medible concentrada en $g(D_X)$. Entonces Y es una variable aleatoria y
-\begin{align*}
-    P(Y = y) = \sum_{x_n \in D_x \cap g^{-1}(y)}{P_X(\{x_n\})}.
-\end{align*}
+    Sea X una variable aleatoria discreta y sea $D_X = \{x_n\}$ el conjunto de puntos de salto con $\{P_X(\{x_n\})$ función de masa. Sea $Y = g(X)$ con $g$ función medible concentrada en $g(D_X)$. Entonces Y es una variable aleatoria y
+    \begin{align*}
+        P(Y = y) = \sum_{x_n \in D_x \cap g^{-1}(y)}{P_X(\{x_n\})}.
+    \end{align*}
 \end{prop}
 
 \section{Cambio de variable (variable absolutamente continua)}
 \subsection{Variable aleatoria absolutamente continua a variable aleatoria discreta}
 
 \begin{prop}
-Sea X una variable aleatoria absolutamente continua con función de densidad $f_X$. Sea $g: I \longrightarrow \mathbb{R}$ una función medible que toma a lo sumo un número infinito numerable de valores en $\mathbb{R}$, es decir, $g(I) = \cup_{i \in I}{y_i}$. Entonces $Y = g(X)$ es una variable aleatoria discreta y
-\begin{align*}
-    P(Y = y_i) = P(g(X) = y_i) = P(X \in g^{-1}(y_i)).
-\end{align*}
+    Sea X una variable aleatoria absolutamente continua con función de densidad $f_X$. Sea $g: I \longrightarrow \mathbb{R}$ una función medible que toma a lo sumo un número infinito numerable de valores en $\mathbb{R}$, es decir, $g(I) = \cup_{i \in I}{y_i}$. Entonces $Y = g(X)$ es una variable aleatoria discreta y
+    \begin{align*}
+        P(Y = y_i) = P(g(X) = y_i) = P(X \in g^{-1}(y_i)).
+    \end{align*}
 \end{prop}
 
 \subsection{Variable aleatoria absolutamente continua a variable aleatoria absolutamente continua}
 
 \begin{teo}[Teorema de cambio de variable]
-Sea X una variable aleatoria absolutamente continua con función de densidad $f_X$ concentrada en un intervalo $I \subseteq \mathbb{R}$. Sea $g: I \longrightarrow \mathbb{R}$ una función medible, derivable, con derivada continua y estrictamente monótona. Entonces $Y = g(x)$ es variable aleatoria absolutamente continua con función de densidad
-\begin{align*}
-    f_Y(y) = f_X(g^{-1}(y)) \cdot |(g^{-1}(y))'|.
-\end{align*}
+    Sea X una variable aleatoria absolutamente continua con función de densidad $f_X$ concentrada en un intervalo $I \subseteq \mathbb{R}$. Sea $g: I \longrightarrow \mathbb{R}$ una función medible, derivable, con derivada continua y estrictamente monótona. Entonces $Y = g(x)$ es variable aleatoria absolutamente continua con función de densidad
+    \begin{align*}
+        f_Y(y) = f_X(g^{-1}(y)) \cdot |(g^{-1}(y))'|.
+    \end{align*}
 \end{teo}
 
 \begin{proof}
-Supongamos qque $g$ es estrictamente creciente. Consideremos $Y = g(X)$. $Y$ es una variable aleatoria absolutamente continua si existe $h: \mathbb{R} \longrightarrow \mathbb{R}$ no negativa, integrable-Riemann en [a,b], $a,b \in \mathbb{R}$ y $\int_{-\infty}^{+\infty}{h(y) \ dy} = 1$.
-\\
-\newline
-Si $h$ es la función de densidad de $Y$, entonces debe verificar
-\begin{align*}
-    P_Y((a,b]) = F_Y(b) - F_Y(a) = \int_{a}^{b}{h(x) \ dy}.
-\end{align*}
-Construyamos $h$.
-\begin{align*}
-    P_Y((a,b]) = P_Y(a < Y \leq b) = P(a < g(X) \leq b).
-\end{align*}
-Como $g$ es estrictamente creciente
-\begin{align*}
-    P(a < g(X) \leq b) &= P(g^{-1}(a) < X \leq g^{-1}(b)) = \int_{g^{-1}(a)}^{g^{-1}(b)}{f_X(x) \ dx}\\
-    & = \int_{g^{-1}(a)}^{g^{-1}(b)}{f_X(g^{-1}(y)) \cdot |(g^{-1}(y))'|\ dy} \\
-    & = \int_{g^{-1}(a)}^{g^{-1}(b)}{f_X(g^{-1}(y)) \cdot (g^{-1}(y))'\ dy}
-\end{align*}
-Definimos $h = f_X(g^{-1}(y)) \cdot (g^{-1}(y))'$. Es claro que $h \ge 0$ y que $\int_{-\infty}^{+\infty}{h(y) \ dy} = 1$. Por tanto $h$ es función de densidad de probabilidad.
-\\
-\newline
-El caso de $g$ estrictamente decreciente se hace de forma análoga.
+    Supongamos que $g$ es estrictamente creciente. Consideremos $Y = g(X)$. $Y$ es una variable aleatoria absolutamente continua si existe $h: \mathbb{R} \longrightarrow \mathbb{R}$ no negativa, integrable-Riemann en [a,b], $a,b \in \mathbb{R}$ y $\int_{-\infty}^{+\infty}{h(y) \ dy} = 1$.
+
+    Si $h$ es la función de densidad de $Y$, entonces debe verificar
+    \begin{align*}
+        P_Y((a,b]) = F_Y(b) - F_Y(a) = \int_{a}^{b}{h(x) \ dy}.
+    \end{align*}
+    Construyamos $h$.
+    \begin{align*}
+        P_Y((a,b]) = P_Y(a < Y \leq b) = P(a < g(X) \leq b).
+    \end{align*}
+    Como $g$ es estrictamente creciente
+    \begin{align*}
+        P(a < g(X) \leq b) & = P(g^{-1}(a) < X \leq g^{-1}(b)) = \int_{g^{-1}(a)}^{g^{-1}(b)}{f_X(x) \ dx} \\
+                           & = \int_{g^{-1}(a)}^{g^{-1}(b)}{f_X(g^{-1}(y)) \cdot |(g^{-1}(y))'|\ dy}       \\
+                           & = \int_{g^{-1}(a)}^{g^{-1}(b)}{f_X(g^{-1}(y)) \cdot (g^{-1}(y))'\ dy}
+    \end{align*}
+    Definimos $h = f_X(g^{-1}(y)) \cdot (g^{-1}(y))'$. Es claro que $h \ge 0$ y que $\int_{-\infty}^{+\infty}{h(y) \ dy} = 1$. Por tanto $h$ es función de densidad de probabilidad.
+
+    El caso de $g$ estrictamente decreciente se hace de forma análoga.
 \end{proof}
 
 \begin{teo}[Generalización del teorema de cambio de variable]
-Sea X una variable aleatoria absolutamente continua con función de densidad $f_X$ y sea $g$ una función medible con dominio $I = \cup_{i=1}^{n}{D_i}$, de forma que $g_i = g|_{D_i}$ es estrictamente monótona en cada $D_i$, diferenciable y con derivada no nula. Entonces $Y = g(X)$ es variable aleatoria absolutamente continua con función de densidad
-\begin{align*}
-    f_Y(y) = \sum_{y \in g_i(D_i)}{f_X(g_i^{-1}(y)) \cdot |(g_i^{-1}(y))'|}.
-\end{align*}
+    Sea X una variable aleatoria absolutamente continua con función de densidad $f_X$ y sea $g$ una función medible con dominio $I = \cup_{i=1}^{n}{D_i}$, de forma que $g_i = g|_{D_i}$ es estrictamente monótona en cada $D_i$, diferenciable y con derivada no nula. Entonces $Y = g(X)$ es variable aleatoria absolutamente continua con función de densidad
+    \begin{align*}
+        f_Y(y) = \sum_{y \in g_i(D_i)}{f_X(g_i^{-1}(y)) \cdot |(g_i^{-1}(y))'|}.
+    \end{align*}
 \end{teo}
 
 \subsection{Variable aleatoria absolutamente continua a variable aleatoria mixta}
 
 \begin{prop}
-Sea X una variable aleatoria absolutamente continua con función de densidad $f_X$ y sea $g$ una función medible constante a lo sumo en un número infinito numerable de intervalos de $\mathbb{R}$ y continua en al menos un intervalo de $\mathbb{R}$. Entonces $Y = g(X)$ es una variable aleatoria con distribución mixta.
+    Sea X una variable aleatoria absolutamente continua con función de densidad $f_X$ y sea $g$ una función medible constante a lo sumo en un número infinito numerable de intervalos de $\mathbb{R}$ y continua en al menos un intervalo de $\mathbb{R}$. Entonces $Y = g(X)$ es una variable aleatoria con distribución mixta.
 \end{prop}
 
 \section{Variables aleatorias truncadas}
 
 \begin{defi}
-Sea X una variable aleatoria y sea $P_X$ la distribución de pobabilidad inducida por $X$ en $\mathbb{R}$. Entonces $Y = X | X \in T$ donde $T \in \mathbb{B}_1$ es una variable aleatoria truncada.
+    Sea X una variable aleatoria y sea $P_X$ la distribución de pobabilidad inducida por $X$ en $\mathbb{R}$. Entonces $Y = X | X \in T$ donde $T \in \mathbb{B}_1$ es una variable aleatoria truncada.
 \end{defi}
 
 \begin{obs}
-Si $X$ es una variable aleatoria y $P_X$ la distribución de pobabilidad inducida por $X$ en $\mathbb{R}$. Consideramos $Y = X | X \in T$ donde $T \in \mathbb{B}_1$. Entonces
-\begin{align*}
-    P_Y(B) = P(Y \in B) = P(X \in B \ | \ X \in T) = \frac{P_X(B \cap T)}{P_X(T)}.
-\end{align*}
+    Si $X$ es una variable aleatoria y $P_X$ la distribución de pobabilidad inducida por $X$ en $\mathbb{R}$. Consideramos $Y = X | X \in T$ donde $T \in \mathbb{B}_1$. Entonces
+    \begin{align*}
+        P_Y(B) = P(Y \in B) = P(X \in B \ | \ X \in T) = \frac{P_X(B \cap T)}{P_X(T)}.
+    \end{align*}
 \end{obs}
 
 \begin{prop}
-Sea X una variable aleatoria con función de distribución $F_X$. Entonces
-\begin{enumerate}
-    \item[(i)] La variable aleatoria $Y = X | X \ge x_0$, $x_0 \in \mathbb{R}$, $T = [x_0,+\infty)$ tiene como función de distribución
-    \begin{align*}
-        F_1(y) = \left\{ \begin{array}{lcc}
-             0 &  si  & y < x_0\\
-             \frac{F_X(y) - F_x(x_0^-)}{1 - F_X(x_0^-)} &  si  & y \ge x_0\\
-             \end{array}
-        \right.
-    \end{align*}
-    \item[(ii)] La variable aleatoria $Y = X | X \leq x_0$, $x_0 \in \mathbb{R}$, $T = (-\infty,x_0]$ tiene como función de distribución
-    \begin{align*}
-        F_2(y) = \left\{ \begin{array}{lcc}
-            \frac{F_X(y)}{F_X(x_0)} &  si  & y < x_0\\
-            1 &  si  & y \ge x_0\\
-             \end{array}
-        \right.
-    \end{align*}
-    \item[(iii)] La variable aleatoria $Y = X | x_0 \leq X < x_1$, $x_0,x_1 \in \mathbb{R}$, $T = [x_0,x_1)$ tiene como función de distribución
-    \begin{align*}
-        F_3(y) = \left\{ \begin{array}{lcc}
-             0 &  si  & y < x_0\\
-             \frac{F_X(y) - F_x(x_0^-)}{F_X(x_0^-) - F_X(x_1^-)} &  si  & x_0 \leq y < x_1\\
-             1 &  si  & y \ge x_1\\
-             \end{array}
-        \right.
-    \end{align*}
-\end{enumerate}
+    Sea X una variable aleatoria con función de distribución $F_X$. Entonces
+    \begin{enumerate}
+        \item[(i)] La variable aleatoria $Y = X | X \ge x_0$, $x_0 \in \mathbb{R}$, $T = [x_0,+\infty)$ tiene como función de distribución
+              \begin{align*}
+                  F_1(y) = \left\{ \begin{array}{lcc}
+                                       0                                          & si & y < x_0   \\
+                                       \frac{F_X(y) - F_x(x_0^-)}{1 - F_X(x_0^-)} & si & y \ge x_0 \\
+                                   \end{array}
+                  \right.
+              \end{align*}
+        \item[(ii)] La variable aleatoria $Y = X | X \leq x_0$, $x_0 \in \mathbb{R}$, $T = (-\infty,x_0]$ tiene como función de distribución
+              \begin{align*}
+                  F_2(y) = \left\{ \begin{array}{lcc}
+                                       \frac{F_X(y)}{F_X(x_0)} & si & y < x_0   \\
+                                       1                       & si & y \ge x_0 \\
+                                   \end{array}
+                  \right.
+              \end{align*}
+        \item[(iii)] La variable aleatoria $Y = X | x_0 \leq X < x_1$, $x_0,x_1 \in \mathbb{R}$, $T = [x_0,x_1)$ tiene como función de distribución
+              \begin{align*}
+                  F_3(y) = \left\{ \begin{array}{lcc}
+                                       0                                                   & si & y < x_0          \\
+                                       \frac{F_X(y) - F_x(x_0^-)}{F_X(x_0^-) - F_X(x_1^-)} & si & x_0 \leq y < x_1 \\
+                                       1                                                   & si & y \ge x_1        \\
+                                   \end{array}
+                  \right.
+              \end{align*}
+    \end{enumerate}
 \end{prop}

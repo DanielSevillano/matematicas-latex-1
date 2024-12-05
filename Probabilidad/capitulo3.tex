@@ -3,116 +3,115 @@
 \section{Función de distribución asociada a una medida de probabilidad}
 
 \begin{defi}
-Una función $F: \mathbb{R} \longrightarrow [0,1]$ decimos que es una función de distribución si verifica
-\begin{enumerate}
-    \item[(i)] F es creciente.
-    \item[(iii)] F es continua por la derecha, es decir,
-    \begin{align*}
-        \lim_{x \to a^*}{F(x)} = F(a) \ para \ todo \ a \in \mathbb{R}
-    \end{align*}
-    \item[(iii)]
-    \begin{align*}
-        \lim_{x \to -\infty}{F(x) = 0} \ \ \ y \ \ \ \lim_{x \to +\infty}{F(x) = 1}.
-    \end{align*}
-\end{enumerate}
+    Una función $F: \mathbb{R} \longrightarrow [0,1]$ decimos que es una función de distribución si verifica
+    \begin{enumerate}
+        \item[(i)] F es creciente.
+        \item[(iii)] F es continua por la derecha, es decir,
+              \begin{align*}
+                  \lim_{x \to a^*}{F(x)} = F(a) \ para \ todo \ a \in \mathbb{R}
+              \end{align*}
+        \item[(iii)]
+              \begin{align*}
+                  \lim_{x \to -\infty}{F(x) = 0} \ \ \ y \ \ \ \lim_{x \to +\infty}{F(x) = 1}.
+              \end{align*}
+    \end{enumerate}
 \end{defi}
 
 \begin{prop}
-Sea P una medida de probabilidad definida en $(\mathbb{R}, \mathbb{B}_1)$. La función $F: \mathbb{R} \longrightarrow [0,1]$ dada por $F(x) = P((-\infty,x])$ para todo $x \in \mathbb{R}$, es una distribución de probabilidad.
+    Sea P una medida de probabilidad definida en $(\mathbb{R}, \mathbb{B}_1)$. La función $F: \mathbb{R} \longrightarrow [0,1]$ dada por $F(x) = P((-\infty,x])$ para todo $x \in \mathbb{R}$, es una distribución de probabilidad.
 \end{prop}
 
 \begin{proof}
-$(i)$ F es creciente. Sean $x_1, x_2 \in \mathbb{R}$ tales que $x_1 < x_2$. Entonces
-\begin{align*}
-    (-\infty, x_1] \subset (-\infty, x_2] \Longrightarrow P((-\infty, x_1]) \leq P((-\infty, x_2]) \Longrightarrow F(x1) \leq F(x2).
-\end{align*}
-$(ii)$ F es continua por la derecha.
-\begin{align*}
-    \lim_{n \to \infty}{F\left( a + \frac{1}{n}\right)} &= \lim_{n \to \infty}{P\left(\left( -\infty, a + \frac{1}{n}\right]\right)} = P\left( \lim_{n \to \infty}{\left\{ \left( -\infty, a + \frac{1}{n} \right]\right\}} \right)\\
-    &= P((-\infty, a)) = F(a)
-\end{align*}
-para todo $a \in \mathbb{R}$.
-\\
-\newline
-Probemos $(iii)$.
-\begin{align*}
-    \lim_{n \to \infty}{F(n)} &= \lim_{n \to \infty}{P((-\infty, n])} = P\left(\lim_{n \to \infty}{\{(-\infty, n) \}}\right) =P(\mathbb{R}) = 1\\
-    \lim_{n \to -\infty}{F(n)} &= \lim_{n \to -\infty}{P((-\infty, n])} = P\left(\lim_{n \to -\infty}{\{(-\infty, -n) \}}\right) =P(\mathbb{\emptyset}) = 0.
-\end{align*}
+    $(i)$ F es creciente. Sean $x_1, x_2 \in \mathbb{R}$ tales que $x_1 < x_2$. Entonces
+    \begin{align*}
+        (-\infty, x_1] \subset (-\infty, x_2] \Longrightarrow P((-\infty, x_1]) \leq P((-\infty, x_2]) \Longrightarrow F(x1) \leq F(x2).
+    \end{align*}
+    $(ii)$ F es continua por la derecha.
+    \begin{align*}
+        \lim_{n \to \infty}{F\left( a + \frac{1}{n}\right)} & = \lim_{n \to \infty}{P\left(\left( -\infty, a + \frac{1}{n}\right]\right)} = P\left( \lim_{n \to \infty}{\left\{ \left( -\infty, a + \frac{1}{n} \right]\right\}} \right) \\
+                                                            & = P((-\infty, a)) = F(a)
+    \end{align*}
+    para todo $a \in \mathbb{R}$.
+
+    Probemos $(iii)$.
+    \begin{align*}
+        \lim_{n \to \infty}{F(n)}  & = \lim_{n \to \infty}{P((-\infty, n])} = P\left(\lim_{n \to \infty}{\{(-\infty, n) \}}\right) =P(\mathbb{R}) = 1             \\
+        \lim_{n \to -\infty}{F(n)} & = \lim_{n \to -\infty}{P((-\infty, n])} = P\left(\lim_{n \to -\infty}{\{(-\infty, -n) \}}\right) =P(\mathbb{\emptyset}) = 0.
+    \end{align*}
 \end{proof}
 
 \begin{obs}
-Sean $P: \mathbb{B}_1 \Longrightarrow [0,1]$ una medida de probabilidad y $F(x) = P((-\infty,x])$ función de distribución asociada a $P$. Sean $a, b \in \mathbb{R}$, $a < b$. Entonces
-\begin{itemize}
-    \item $P((a,b]) = F(b) - F(a)$.
-    \begin{align*}
-        (-\infty,b] = (-\infty,a] \cup (a,b] &\Longrightarrow P((-\infty, b]) = P((-\infty,a]) + P((a,b]) \\
-        & \Longleftrightarrow P((a,b]) = F(b) - F(a).
-    \end{align*}
-    \item $P(\{a\}) = F(a) - F(a^-)$.
-    \item $P((a, +\infty)) = 1 = P((-\infty,]) = 1 - F(a)$.
-    \item $P((a,b)) = F(b) - F(a) - P(\{b\})$.
-    \item $P([a,b)) = F(b) - F(a) - P(\{b\}) + P(\{a\})$.
-    \item $P([a,b]) = F(b) - F(a) + P(\{a\})$.
-\end{itemize}
+    Sean $P: \mathbb{B}_1 \Longrightarrow [0,1]$ una medida de probabilidad y $F(x) = P((-\infty,x])$ función de distribución asociada a $P$. Sean $a, b \in \mathbb{R}$, $a < b$. Entonces
+    \begin{itemize}
+        \item $P((a,b]) = F(b) - F(a)$.
+              \begin{align*}
+                  (-\infty,b] = (-\infty,a] \cup (a,b] & \Longrightarrow P((-\infty, b]) = P((-\infty,a]) + P((a,b]) \\
+                                                       & \Longleftrightarrow P((a,b]) = F(b) - F(a).
+              \end{align*}
+        \item $P(\{a\}) = F(a) - F(a^-)$.
+        \item $P((a, +\infty)) = 1 = P((-\infty,]) = 1 - F(a)$.
+        \item $P((a,b)) = F(b) - F(a) - P(\{b\})$.
+        \item $P([a,b)) = F(b) - F(a) - P(\{b\}) + P(\{a\})$.
+        \item $P([a,b]) = F(b) - F(a) + P(\{a\})$.
+    \end{itemize}
 \end{obs}
 
 \section{Aleatorización de la recta real}
 Sea $X$ una variable aleatoria definida sobre $(\Omega, \mathcal{A}, P)$ y sea $P_X$ la probabilidad inducida por $X$ en $(\mathbb{R}, \mathbb{B}_1)$. Entonces $F: \mathbb{R} \longrightarrow [0,1]$ dada por $F(x) = P_X((-\infty,x])$ para todo $x \in \mathbb{R}$, es una función de distribución de probabilidad.
 
 \begin{defi}
-Sea X variable aleatoria definida sobre $(\Omega, \mathcal{A}, P)$, sea $P_X$ la probabilidad inducida por $X$ en $(\mathbb{R}, \mathbb{B}_1)$ y sea $F_X$ la función de distribución de probabilidad asociada a $P_X$. Definimos
-\begin{itemize}
-    \item Conjunto de puntos de salto de $F_X$ como
-    \begin{align*}
-        D_X = \{ X \in \mathbb{R} : P_X(\{x\}) > 0 \}.
-    \end{align*}
-    \item Soporte de X (o soporte de la distribución) como
-    \begin{align*}
-        S_X = \{x \in \mathbb{R} : F(x+\varepsilon) - F(x-\varepsilon) > 0 \}
-    \end{align*}
-    para todo $\varepsilon > 0$.
-\end{itemize}
+    Sea X variable aleatoria definida sobre $(\Omega, \mathcal{A}, P)$, sea $P_X$ la probabilidad inducida por $X$ en $(\mathbb{R}, \mathbb{B}_1)$ y sea $F_X$ la función de distribución de probabilidad asociada a $P_X$. Definimos
+    \begin{itemize}
+        \item Conjunto de puntos de salto de $F_X$ como
+              \begin{align*}
+                  D_X = \{ X \in \mathbb{R} : P_X(\{x\}) > 0 \}.
+              \end{align*}
+        \item Soporte de X (o soporte de la distribución) como
+              \begin{align*}
+                  S_X = \{x \in \mathbb{R} : F(x+\varepsilon) - F(x-\varepsilon) > 0 \}
+              \end{align*}
+              para todo $\varepsilon > 0$.
+    \end{itemize}
 \end{defi}
 
 \begin{teo}
-El conjunto $D_X$ es a lo sumo infinito numerable.
+    El conjunto $D_X$ es a lo sumo infinito numerable.
 \end{teo}
 
 \begin{proof}
-Nótese que
-\begin{align*}
-    D_X = \{ X \in \mathbb{R} : P_X(\{x\}) > 0 \} = \bigcup_{r \in \mathbb{N}}{\left\{ X \in \mathbb{R} : P_X(\{x\}) > \frac{1}{r} \right\}}
-\end{align*}
-Sea $D_r = \left\{ X \in \mathbb{R} : P_X(\{x\}) > \frac{1}{r} \right\}$. Veamos que $D_r$ es finito.
-\begin{align*}
-    D_1 &= \left\{ X \in \mathbb{R} : P_X(\{x\}) > 1 \right\} \text{ tiene a lo sumo 1 elemento}\\
-    D_2 &= \left\{ X \in \mathbb{R} : P_X(\{x\}) > \frac{1}{2} \right\} \text{ tiene a lo sumo 2 elementos}\\
-    \vdots &  \\
-    D_r &= \left\{ X \in \mathbb{R} : P_X(\{x\}) > \frac{1}{r} \right\} \text{ tiene a lo sumo r elementos}
-\end{align*}
-Por tanto, $D_X$ es a lo sumo infinito numerable.
+    Nótese que
+    \begin{align*}
+        D_X = \{ X \in \mathbb{R} : P_X(\{x\}) > 0 \} = \bigcup_{r \in \mathbb{N}}{\left\{ X \in \mathbb{R} : P_X(\{x\}) > \frac{1}{r} \right\}}
+    \end{align*}
+    Sea $D_r = \left\{ X \in \mathbb{R} : P_X(\{x\}) > \frac{1}{r} \right\}$. Veamos que $D_r$ es finito.
+    \begin{align*}
+        D_1    & = \left\{ X \in \mathbb{R} : P_X(\{x\}) > 1 \right\} \text{ tiene a lo sumo 1 elemento}            \\
+        D_2    & = \left\{ X \in \mathbb{R} : P_X(\{x\}) > \frac{1}{2} \right\} \text{ tiene a lo sumo 2 elementos} \\
+        \vdots &                                                                                                    \\
+        D_r    & = \left\{ X \in \mathbb{R} : P_X(\{x\}) > \frac{1}{r} \right\} \text{ tiene a lo sumo r elementos}
+    \end{align*}
+    Por tanto, $D_X$ es a lo sumo infinito numerable.
 \end{proof}
 
 \begin{teo}[Teorema de Descomposición]
-Dada cualquier función de distribución $F: \mathbb{R} \longrightarrow [0,1]$ siempre existe una única descomposición
-\begin{align*}
-    F = F_d + F_c
-\end{align*}
-en la que $F_d,F_c: \mathb{R} \longrightarrow [0,1]$ verifican
-\begin{enumerate}
-    \item[(1)] $F_d(-\infty) = F_c(-\infty) = 0$.
-    \item[(2)] $F_d$ es continua por la derecha para todo $x \in \mathb{R}$ y varía a saltos.
-    \item[(3)] $F_c$ es continua para todo $x \in \mathbb{R}$.
-    \item[(4)] $F_d$, $F_c$ son crecientes.
-    \item[(5)] Las normalizaciones
+    Dada cualquier función de distribución $F: \mathbb{R} \longrightarrow [0,1]$ siempre existe una única descomposición
     \begin{align*}
-        F_1 = \frac{F_d}{F_d(+\infty)} \ \ \ y \ \ \ F_2 = \frac{F_c}{F_c(+\infty)}
+        F = F_d + F_c
     \end{align*}
-    son funciones de distribución tales que
-    \begin{align*}
-        F(x) = \alpha F_1(x) + (1 - \alpha)F_2(x)
-    \end{align*}
-    donde $\alpha \in (0,1)$ y $\alpha = F_d(+\infty)$ (dicho $\alpha$ se conoce como mixtura de la distribución).
-\end{enumerate}
+    en la que $F_d,F_c: \mathbb{R} \longrightarrow [0,1]$ verifican
+    \begin{enumerate}
+        \item[(1)] $F_d(-\infty) = F_c(-\infty) = 0$.
+        \item[(2)] $F_d$ es continua por la derecha para todo $x \in \mathbb{R}$ y varía a saltos.
+        \item[(3)] $F_c$ es continua para todo $x \in \mathbb{R}$.
+        \item[(4)] $F_d$, $F_c$ son crecientes.
+        \item[(5)] Las normalizaciones
+              \begin{align*}
+                  F_1 = \frac{F_d}{F_d(+\infty)} \ \ \ y \ \ \ F_2 = \frac{F_c}{F_c(+\infty)}
+              \end{align*}
+              son funciones de distribución tales que
+              \begin{align*}
+                  F(x) = \alpha F_1(x) + (1 - \alpha)F_2(x)
+              \end{align*}
+              donde $\alpha \in (0,1)$ y $\alpha = F_d(+\infty)$ (dicho $\alpha$ se conoce como mixtura de la distribución).
+    \end{enumerate}
 \end{teo}

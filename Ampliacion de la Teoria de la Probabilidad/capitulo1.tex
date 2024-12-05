@@ -2,13 +2,13 @@
 
 \section{Propiedades}
 \begin{defi}
-Sea $X$ una variable aleatoria en $(\Omega, \mathcal{A}, P)$, $P_X$ medida de probabilidad inducida por $X$ en $(\mathbb{R}, \mathcal{B})$. La función de distribución asociada a $X$ es $F: \mathbb{R} \longrightarrow [0,1]$ dada por
-\begin{align*}
-    F(a) = P_X((-\infty,a]) \equiv P(X \leq a)
-\end{align*}
+    Sea $X$ una variable aleatoria en $(\Omega, \mathcal{A}, P)$, $P_X$ medida de probabilidad inducida por $X$ en $(\mathbb{R}, \mathcal{B})$. La función de distribución asociada a $X$ es $F: \mathbb{R} \longrightarrow [0,1]$ dada por
+    \begin{align*}
+        F(a) = P_X((-\infty,a]) \equiv P(X \leq a)
+    \end{align*}
 \end{defi}
 
-\noindent Las propiedades de $F$ son
+Las propiedades de $F$ son
 \begin{enumerate}
     \item $F$ es monótona no decreciente.
     \item $\lim_{x \to - \infty}F(x) = 0$ y $\lim_{x \to \infty}F(x) = 1$.
@@ -27,21 +27,21 @@ Sea $X$ una variable aleatoria en $(\Omega, \mathcal{A}, P)$, $P_X$ medida de pr
 \end{teo}
 
 \begin{defi}
-Sea $F$ una función de distribución. Definimos
-\begin{itemize}
-    \item El conjunto de continuidad de $F$ como
-    \begin{align*}
-        C(F) = \{ x \in \mathbb{R} : F(x) = F(x^-)\}
-    \end{align*}
-    \item El conjunto de discontinuidad de $F$ como
-    \begin{align*}
-        D(F) = \{ x \in \mathbb{R} : F(x) - F(x^-) > 0\}
-    \end{align*}
-\end{itemize}
+    Sea $F$ una función de distribución. Definimos
+    \begin{itemize}
+        \item El conjunto de continuidad de $F$ como
+              \begin{align*}
+                  C(F) = \{ x \in \mathbb{R} : F(x) = F(x^-)\}
+              \end{align*}
+        \item El conjunto de discontinuidad de $F$ como
+              \begin{align*}
+                  D(F) = \{ x \in \mathbb{R} : F(x) - F(x^-) > 0\}
+              \end{align*}
+    \end{itemize}
 \end{defi}
 
 \begin{obs}
-Es fácil ver que $D(F) = \overline{C(F)}$.
+    Es fácil ver que $D(F) = \overline{C(F)}$.
 \end{obs}
 
 \begin{prop}
@@ -77,12 +77,12 @@ Es fácil ver que $D(F) = \overline{C(F)}$.
 \end{prop}
 
 \begin{proof}
-Sea $x \in \mathbb{R}$. Como $E$ es denso en $\mathbb{R}$, existe una sucesión $\{x_n\} \subset E$ tal que $x_n \to x$ de forma decreciente ($x_n \downarrow x$) cuando $n \to \infty$. Entonces $F(x_n) = G(x_n)$ para todo $x_n \in E$ (por hipótesis). Como $F$ y $G$ son funciones de distribución, tenemos que 
-\begin{align*}
-    \lim_{n \to \infty} F(x_n) &= F(x) \\
-    \lim_{n \to \infty} G(x_n) &= G(x)
-\end{align*}
-Por la unicidad del límite, $F(x) = G(x)$.
+    Sea $x \in \mathbb{R}$. Como $E$ es denso en $\mathbb{R}$, existe una sucesión $\{x_n\} \subset E$ tal que $x_n \to x$ de forma decreciente ($x_n \downarrow x$) cuando $n \to \infty$. Entonces $F(x_n) = G(x_n)$ para todo $x_n \in E$ (por hipótesis). Como $F$ y $G$ son funciones de distribución, tenemos que
+    \begin{align*}
+        \lim_{n \to \infty} F(x_n) & = F(x) \\
+        \lim_{n \to \infty} G(x_n) & = G(x)
+    \end{align*}
+    Por la unicidad del límite, $F(x) = G(x)$.
 \end{proof}
 
 \begin{defi}
@@ -96,9 +96,9 @@ Por la unicidad del límite, $F(x) = G(x)$.
     Sea $X$ una variable aleatoria con función de distribución $F$ y función de masa $p$. Diremos que
     \begin{itemize}
         \item $X$ es una variable aleatoria discreta cuando
-        \begin{align*}
-            \sum_{x \in D(F)} p(x) = 1
-        \end{align*}
+              \begin{align*}
+                  \sum_{x \in D(F)} p(x) = 1
+              \end{align*}
         \item $X$ es una variable aleatoria continua cuando $p(x) = 0$ para todo $x \in \mathbb{R}$.
         \item $X$ es una variable aleatoria singular si existe $B \in \mathcal{B}$ tal que $m(B) = 0$ (medida de Lebesgue) y $P_X(B) = 1$.
         \item $X$ es una variable aleatoria absolutamente continua si para cualquier $B \in \mathcal{B}$ con $m(B) = 0$ se tiene que $P_X(B) = 0$.
@@ -106,16 +106,16 @@ Por la unicidad del límite, $F(x) = G(x)$.
 \end{defi}
 
 \begin{teo}[Radon-Nikodyn]
-Sea $F$ función de distribución. Entonces $F$ es absolutamente continua si y solo si existe una función medible $f$ no negativa y finita tal que para cualquier $a < b$, $a,b \in \mathbb{R}$ se tiene que
-\begin{align*}
-    F(b) - F(a) = \int_{a}^{b} f(x) \ dx.
-\end{align*}
+    Sea $F$ función de distribución. Entonces $F$ es absolutamente continua si y solo si existe una función medible $f$ no negativa y finita tal que para cualquier $a < b$, $a,b \in \mathbb{R}$ se tiene que
+    \begin{align*}
+        F(b) - F(a) = \int_{a}^{b} f(x) \ dx.
+    \end{align*}
 \end{teo}
 
 \begin{teo}[Primera descomposición]
-    Toda función de distribución $F$ se puede descomponer de la forma 
+    Toda función de distribución $F$ se puede descomponer de la forma
     \begin{align*}
-        F = \alpha F_d + (1-\alpha)F_c, 
+        F = \alpha F_d + (1-\alpha)F_c,
     \end{align*}
     donde $0 \leq \alpha \leq 1$, $F_d$ es la función de distribución de una variable aleatoria discreta y $F_c$ es la función de distribución de una variable aleatoria continua.
 \end{teo}
@@ -126,16 +126,16 @@ Sea $F$ función de distribución. Entonces $F$ es absolutamente continua si y s
         \item Si $\alpha = 0$, entonces $F = F_c$ y es continua.
         \item Si $\alpha = 1$, entonces $F = F_d$ y es discreta.
         \item Si $0 < \alpha < 1$, definimos
-        \begin{align*}
-            F_d(x) &= \frac{1}{\alpha} \sum_{ D(F) \ni y \leq x} p(y) \\
-            F_c(x) &= \frac{1}{1-\alpha}(F(x) - \alpha F_d(x))
-        \end{align*}
-        Por definición, $F_d$ es discreta. Veamos que $F_c$ es continua, para ello hay que ver que $F_c(x) - F_c(x^-) = 0$ para todo $x \in \mathbb{R}$. Sea $x \in \mathbb{R}$, entonces
-        \begin{align*}
-            F_c(x) - F_c(x^-) &= \frac{1}{1-\alpha}(F(x) - \alpha F_d(x) - F(x^-) + \alpha F_d(x^-)) \\
-            &= \frac{1}{1-\alpha}(F(x) - F(x^-) - \alpha (F_d(x) - F_d(x^-))) \\
-            &= \frac{1}{1-\alpha}\left(p(x) - \alpha \frac{1}{\alpha} p(x)\right) = 0
-        \end{align*}
+              \begin{align*}
+                  F_d(x) & = \frac{1}{\alpha} \sum_{ D(F) \ni y \leq x} p(y) \\
+                  F_c(x) & = \frac{1}{1-\alpha}(F(x) - \alpha F_d(x))
+              \end{align*}
+              Por definición, $F_d$ es discreta. Veamos que $F_c$ es continua, para ello hay que ver que $F_c(x) - F_c(x^-) = 0$ para todo $x \in \mathbb{R}$. Sea $x \in \mathbb{R}$, entonces
+              \begin{align*}
+                  F_c(x) - F_c(x^-) & = \frac{1}{1-\alpha}(F(x) - \alpha F_d(x) - F(x^-) + \alpha F_d(x^-))    \\
+                                    & = \frac{1}{1-\alpha}(F(x) - F(x^-) - \alpha (F_d(x) - F_d(x^-)))         \\
+                                    & = \frac{1}{1-\alpha}\left(p(x) - \alpha \frac{1}{\alpha} p(x)\right) = 0
+              \end{align*}
     \end{itemize}
 \end{proof}
 
@@ -149,41 +149,41 @@ Sea $F$ función de distribución. Entonces $F$ es absolutamente continua si y s
 \end{lema}
 
 \begin{teo}[Segunda descomposición]
-        Toda función de distribución $F$ se puede descomponer de la forma 
+    Toda función de distribución $F$ se puede descomponer de la forma
     \begin{align*}
-        F = \beta F_{ac} + (1-\beta)F_s, 
+        F = \beta F_{ac} + (1-\beta)F_s,
     \end{align*}
     donde $0 \leq \beta \leq 1$, $F_{ac}$ es la función de distribución de una variable aleatoria absolutamente continua y $F_s$ es la función de distribución de una variable aleatoria singular.
 \end{teo}
 
 \begin{proof}
-Sea $f \equiv F'$ donde exista. Definimos $\beta = \int_{-\infty}^{\infty} f(x) \ dx$.
-\begin{itemize}
-    \item Si $\beta = 1$, entonces $F = F_{ac}$ y es absolutamente continua.
-    \item Si $\beta = 0$, enntonces $F = F_s$ y es singular.
-    \item Si $0 < \beta < 1$, definimos
-    \begin{align*}
-        F_{ac}(x) &= \frac{1}{\beta} \int_{-\infty}^{x} f(t) \ dt \\
-        F_s(x) &= \frac{1}{1-\beta}(F(x) - \beta F_{ac}(x))
-    \end{align*}
-    Por definición, $F_{ac}$ es absolutamente continua. Veamos que $F_s$ es singular, para ello hemos de probar que $F'_s = 0$.
-    \begin{align*}
-        F's(x) = \frac{1}{1-\beta}\left(f(x) - \beta \frac{1}{\beta} f(x)\right) = 0
-    \end{align*}
-\end{itemize}
+    Sea $f \equiv F'$ donde exista. Definimos $\beta = \int_{-\infty}^{\infty} f(x) \ dx$.
+    \begin{itemize}
+        \item Si $\beta = 1$, entonces $F = F_{ac}$ y es absolutamente continua.
+        \item Si $\beta = 0$, enntonces $F = F_s$ y es singular.
+        \item Si $0 < \beta < 1$, definimos
+              \begin{align*}
+                  F_{ac}(x) & = \frac{1}{\beta} \int_{-\infty}^{x} f(t) \ dt \\
+                  F_s(x)    & = \frac{1}{1-\beta}(F(x) - \beta F_{ac}(x))
+              \end{align*}
+              Por definición, $F_{ac}$ es absolutamente continua. Veamos que $F_s$ es singular, para ello hemos de probar que $F'_s = 0$.
+              \begin{align*}
+                  F's(x) = \frac{1}{1-\beta}\left(f(x) - \beta \frac{1}{\beta} f(x)\right) = 0
+              \end{align*}
+    \end{itemize}
 \end{proof}
 
 \begin{obs}
-Aplicando la primera descomposición a $F_s$, tenemos que
-\begin{align*}
-    F &= \beta F_{ac} + (1-\beta)[\alpha F_d + (1-\alpha)F_{cs}] \\
-    &= \beta F_{ac} + (1-\beta)\alpha F_d + (1-\beta)(1-\alpha)F_{cs} \\
-    &= \beta F_{ac} + \gamma F_d + (1-\beta-\gamma)F_{cs}
-\end{align*}
-siendo $\gamma = (1-\beta)\alpha$ y $\beta + \gamma \leq 1$.
+    Aplicando la primera descomposición a $F_s$, tenemos que
+    \begin{align*}
+        F & = \beta F_{ac} + (1-\beta)[\alpha F_d + (1-\alpha)F_{cs}]        \\
+          & = \beta F_{ac} + (1-\beta)\alpha F_d + (1-\beta)(1-\alpha)F_{cs} \\
+          & = \beta F_{ac} + \gamma F_d + (1-\beta-\gamma)F_{cs}
+    \end{align*}
+    siendo $\gamma = (1-\beta)\alpha$ y $\beta + \gamma \leq 1$.
 \end{obs}
 
-\noindent Recordemos ahora el concepto de esperanza matemática.
+Recordemos ahora el concepto de esperanza matemática.
 
 \begin{defi}
     Sea $X$ una variable aleatoria en $(\Omega, \mathcal{A}, P)$. Definimos la esperanza de $X$ como $E(X) = \int_{\Omega} X \ dP$.
@@ -192,21 +192,21 @@ siendo $\gamma = (1-\beta)\alpha$ y $\beta + \gamma \leq 1$.
 Usando el siguiente Teorema de Teoria de la Medida e Integración
 
 \begin{teo}
-Sean $(X, \mathcak{M}, \mu)$ e $(Y, \mathcal{N},\nu)$ dos espacios de medida y sea $T: X \longrightarrow Y$ una aplicación $(\mathcal{M},\mathcal{N})$-medible que conserva las medidas. Si $g: Y \longrightarrow [0,+\infty]$ es medible entonces
-\begin{align*}
-    \int_{Y}{g \ d\nu} = \int_{X}{g \circ T \ d\mu}.
-\end{align*}
+    Sean $(X, \mathcal{M}, \mu)$ e $(Y, \mathcal{N},\nu)$ dos espacios de medida y sea $T: X \longrightarrow Y$ una aplicación $(\mathcal{M},\mathcal{N})$-medible que conserva las medidas. Si $g: Y \longrightarrow [0,+\infty]$ es medible entonces
+    \begin{align*}
+        \int_{Y}{g \ d\nu} = \int_{X}{g \circ T \ d\mu}.
+    \end{align*}
 \end{teo}
-es fácil ver que 
+es fácil ver que
 \begin{itemize}
     \item Si $F$ es la función de distribución de una variable aleatoria absolutamente continua, entonces
-    \begin{align*}
-        E(X) = \int_{\mathbb{R}} x \cdot f(x) \ dx.
-    \end{align*}
+          \begin{align*}
+              E(X) = \int_{\mathbb{R}} x \cdot f(x) \ dx.
+          \end{align*}
     \item Si $F$ es la función de distribución de una variable aleatoria discreta, entonces
-    \begin{align*}
-        E(X) = \sum_{x \in D(F)} x \cdot p(x).
-    \end{align*}
+          \begin{align*}
+              E(X) = \sum_{x \in D(F)} x \cdot p(x).
+          \end{align*}
 \end{itemize}
 
 \section{Convolución de funciones de distribución}
@@ -224,34 +224,34 @@ es fácil ver que
 
 \begin{proof}
     \begin{enumerate}
-    \item $F*G$ es monótona no decreciente. Sean $a < b$, $a,b \in \mathbb{R}$, entonces
-    \begin{align*}
-        (F*G)(a) = \int_{\mathbb{R}} F(a-y) \ dG(y) \leq \int_{\mathbb{R}} F(b-y) \ dG(y) = (F*G)(b),
-    \end{align*}
-    donde usamos que $F$ es función de distribución.
-    \item $\lim_{x \to - \infty}(F*G)(x) = 0$ y $\lim_{x \to \infty}(F*G)(x) = 1$.
-    \begin{align*}
-        \lim_{x \to -\infty} (F*G)(x) &= \lim_{x \to -\infty} \int_{\mathbb{R}} F(x-y) \ dG(y)  = \int_{\mathbb{R}} \lim_{x \to -\infty} F(x-y) \ dG(y) 
-        = \int_{\mathbb{R}} 0 \ dG(y) = 0 \\
-        \lim_{x \to \infty} (F*G)(x) &= \lim_{x \to \infty} \int_{\mathbb{R}} F(x-y) \ dG(y)  = \int_{\mathbb{R}} \lim_{x \to \infty} F(x-y) \ dG(y) 
-        = \int_{\mathbb{R}} 1 \ dG(y) = 1
-    \end{align*}
-    donde usamos que $F$ y $G$ son funciones de distribución.
-    \item $F*G$ es continua por la derecha, es decir, $\lim_{h \to 0^+}(F*G)(x+h) = (F*G)(x)$ para todo $x \in \mathbb{R}$.
-        \begin{align*}
-        \lim_{h \to 0^+} (F*G)(x+h) &= \lim_{h \to 0^+} \int_{\mathbb{R}} F(x+h-y) \ dG(y) \\
-        &= \int_{\mathbb{R}} \lim_{h \to 0^+} F(x+h-y) \ dG(y) \\
-        &= \int_{\mathbb{R}} F(x-y) \ dG(y) = (F*G)(x)
-    \end{align*}
-    donde usamos el Teorema de la Convergencia Dominada y que $F$ es función de distribución.
-    \item Existe el límite por la izquierda, es decir, $\lim_{h \to 0^-}(F*G)(x+h) = (F*G)(x^-)$ para todo $x \in \mathbb{R}$.
-    \begin{align*}
-        \lim_{h \to 0^-} (F*G)(x+h) &= \lim_{h \to 0^-} \int_{\mathbb{R}} F(x+h-y) \ dG(y) \\
-        &= \int_{\mathbb{R}} \lim_{h \to 0^-} F(x+h-y) \ dG(y) \\
-        &= \int_{\mathbb{R}} F(x^--y) \ dG(y) = (F*G)(x^-)
-    \end{align*}
-    donde usamos el Teorema de la Convergencia Dominada y que $F$ es función de distribución.
-\end{enumerate}
+        \item $F*G$ es monótona no decreciente. Sean $a < b$, $a,b \in \mathbb{R}$, entonces
+              \begin{align*}
+                  (F*G)(a) = \int_{\mathbb{R}} F(a-y) \ dG(y) \leq \int_{\mathbb{R}} F(b-y) \ dG(y) = (F*G)(b),
+              \end{align*}
+              donde usamos que $F$ es función de distribución.
+        \item $\lim_{x \to - \infty}(F*G)(x) = 0$ y $\lim_{x \to \infty}(F*G)(x) = 1$.
+              \begin{align*}
+                  \lim_{x \to -\infty} (F*G)(x) & = \lim_{x \to -\infty} \int_{\mathbb{R}} F(x-y) \ dG(y)  = \int_{\mathbb{R}} \lim_{x \to -\infty} F(x-y) \ dG(y)
+                  = \int_{\mathbb{R}} 0 \ dG(y) = 0                                                                                                                \\
+                  \lim_{x \to \infty} (F*G)(x)  & = \lim_{x \to \infty} \int_{\mathbb{R}} F(x-y) \ dG(y)  = \int_{\mathbb{R}} \lim_{x \to \infty} F(x-y) \ dG(y)
+                  = \int_{\mathbb{R}} 1 \ dG(y) = 1
+              \end{align*}
+              donde usamos que $F$ y $G$ son funciones de distribución.
+        \item $F*G$ es continua por la derecha, es decir, $\lim_{h \to 0^+}(F*G)(x+h) = (F*G)(x)$ para todo $x \in \mathbb{R}$.
+              \begin{align*}
+                  \lim_{h \to 0^+} (F*G)(x+h) & = \lim_{h \to 0^+} \int_{\mathbb{R}} F(x+h-y) \ dG(y) \\
+                                              & = \int_{\mathbb{R}} \lim_{h \to 0^+} F(x+h-y) \ dG(y) \\
+                                              & = \int_{\mathbb{R}} F(x-y) \ dG(y) = (F*G)(x)
+              \end{align*}
+              donde usamos el Teorema de la Convergencia Dominada y que $F$ es función de distribución.
+        \item Existe el límite por la izquierda, es decir, $\lim_{h \to 0^-}(F*G)(x+h) = (F*G)(x^-)$ para todo $x \in \mathbb{R}$.
+              \begin{align*}
+                  \lim_{h \to 0^-} (F*G)(x+h) & = \lim_{h \to 0^-} \int_{\mathbb{R}} F(x+h-y) \ dG(y) \\
+                                              & = \int_{\mathbb{R}} \lim_{h \to 0^-} F(x+h-y) \ dG(y) \\
+                                              & = \int_{\mathbb{R}} F(x^--y) \ dG(y) = (F*G)(x^-)
+              \end{align*}
+              donde usamos el Teorema de la Convergencia Dominada y que $F$ es función de distribución.
+    \end{enumerate}
 \end{proof}
 
 \begin{teo}
@@ -259,11 +259,11 @@ es fácil ver que
 \end{teo}
 
 \begin{proof}
-Definimos la variable aleatoria $Z = X+Y$. Si llamamos $F_{(X,Y)}$ a la función de distribución conjunta del par $(X,Y)$, entonces la función de distribución de $Z$ es
-\begin{align*}
-    F_Z(z) &= P(Z \leq z) = P(X+Y \leq z) = \int_{\{(x,y) \in \mathbb{R}^2 : x+y\leq z \}} \ dF_{(X,Y)}(x,y) \\
-    &= \int_{-\infty}^{\infty} \int_{-\infty}^{z-y} \ dF_X(x)dF_Y(y) = \int_{\mathbb{R}} F_X(z-y) \ dF_Y(y) = (F_X*F_Y)(z)
-\end{align*}
+    Definimos la variable aleatoria $Z = X+Y$. Si llamamos $F_{(X,Y)}$ a la función de distribución conjunta del par $(X,Y)$, entonces la función de distribución de $Z$ es
+    \begin{align*}
+        F_Z(z) & = P(Z \leq z) = P(X+Y \leq z) = \int_{\{(x,y) \in \mathbb{R}^2 : x+y\leq z \}} \ dF_{(X,Y)}(x,y)                      \\
+               & = \int_{-\infty}^{\infty} \int_{-\infty}^{z-y} \ dF_X(x)dF_Y(y) = \int_{\mathbb{R}} F_X(z-y) \ dF_Y(y) = (F_X*F_Y)(z)
+    \end{align*}
 \end{proof}
 
 \begin{teo}
@@ -275,8 +275,8 @@ Definimos la variable aleatoria $Z = X+Y$. Si llamamos $F_{(X,Y)}$ a la función
 
 \begin{proof}
     \begin{align*}
-        (F*G)(z) &= \int_{-\infty}^{\infty} \int_{-\infty}^{z-y} f(s) \ ds \ dG(y) = \int_{-\infty}^{\infty} \int_{-\infty}^{z} f(s-y) \ ds \ dG(y) \\
-        &= \int_{-\infty}^{z} \int_{-\infty}^{\infty} f(s-y) \ dG(y) \ ds
+        (F*G)(z) & = \int_{-\infty}^{\infty} \int_{-\infty}^{z-y} f(s) \ ds \ dG(y) = \int_{-\infty}^{\infty} \int_{-\infty}^{z} f(s-y) \ ds \ dG(y) \\
+                 & = \int_{-\infty}^{z} \int_{-\infty}^{\infty} f(s-y) \ dG(y) \ ds
     \end{align*}
 \end{proof}
 
@@ -286,14 +286,14 @@ Definimos la variable aleatoria $Z = X+Y$. Si llamamos $F_{(X,Y)}$ a la función
 
 \begin{proof}
     \begin{align*}
-        (F*G)(z) &= \int_{-\infty}^{\infty} \int_{-\infty}^{z-y} f(s) \ ds \ dG(y) = \int_{-\infty}^{\infty} \int_{-\infty}^{z} f(s-y) \ ds \ dG(y) \\
-        &= \int_{-\infty}^{z} \int_{-\infty}^{\infty} f(s-y) \ dG(y) \ ds = \int_{-\infty}^{z} \int_{-\infty}^{\infty} f(s-y) g(y) \ dy \ ds
+        (F*G)(z) & = \int_{-\infty}^{\infty} \int_{-\infty}^{z-y} f(s) \ ds \ dG(y) = \int_{-\infty}^{\infty} \int_{-\infty}^{z} f(s-y) \ ds \ dG(y)   \\
+                 & = \int_{-\infty}^{z} \int_{-\infty}^{\infty} f(s-y) \ dG(y) \ ds = \int_{-\infty}^{z} \int_{-\infty}^{\infty} f(s-y) g(y) \ dy \ ds
     \end{align*}
 \end{proof}
 
 \section{Convergencia en distribución}
 
-\noindent Para cada $n \in \mathbb{N}$, tenemos una variable aleatoria $X_n$ en $(\Omega, \mathcal{A}_n, P_n)$. De esta forma $\{X_n\}$ tiene una suceesión asociada $\{F_n\}$ de funciones de distribución.
+Para cada $n \in \mathbb{N}$, tenemos una variable aleatoria $X_n$ en $(\Omega, \mathcal{A}_n, P_n)$. De esta forma $\{X_n\}$ tiene una suceesión asociada $\{F_n\}$ de funciones de distribución.
 \begin{defi}
     Sea $F$ y $F_n$, $n \in \mathbb{N}$, funciones de distribución. Decimos que la sucesión $\{F_n\}$ converge a $F$ débilmente (o en distribución), y se denota como $F_n \xrightarrow[]{d} F$, cuando
     \begin{align*}
@@ -348,8 +348,7 @@ Definimos la variable aleatoria $Z = X+Y$. Si llamamos $F_{(X,Y)}$ a la función
         \liminf_{n \to \infty} F_n(x) = \limsup_{n \to \infty} F_n(x) = F(x),
     \end{align*}
     es decir, $F_n \xrightarrow[]{d} F$.
-    \\
-    \newline
+
     $\boxed{\Longrightarrow}$ Sea $x \in \mathbb{R}$ e $y \in C(F)$, $y > x$. Entocnes
     \begin{align*}
         F_n(x) \leq F_(y) \Longrightarrow \limsup_{n \to \infty} F_n(x) \leq \limsup_{n \to \infty} F_n(y) = \lim_{n \to \infty} F_n(y) = F(y).
@@ -381,13 +380,13 @@ Definimos la variable aleatoria $Z = X+Y$. Si llamamos $F_{(X,Y)}$ a la función
         \item[(i)] Es monótona no decreciente.
         \item[(ii)] Es continua por la derecha.
         \item[(iii)] Para cada $x \in \mathbb{R}$ existe
-        \begin{align*}
-            \lim_{h \to 0^-} F(x+h) = F(x^-).
-        \end{align*}
+              \begin{align*}
+                  \lim_{h \to 0^-} F(x+h) = F(x^-).
+              \end{align*}
         \item[(iv)]
-        \begin{align*}
-            \lim_{x \to \infty} F(x) > 0 \ \ \ \text{ò} \ \ \ \lim_{x \to \infty} F(x) < 1.
-        \end{align*}
+              \begin{align*}
+                  \lim_{x \to \infty} F(x) > 0 \ \ \ \text{ò} \ \ \ \lim_{x \to \infty} F(x) < 1.
+              \end{align*}
     \end{enumerate}
 \end{defi}
 
@@ -423,8 +422,7 @@ Definimos la variable aleatoria $Z = X+Y$. Si llamamos $F_{(X,Y)}$ a la función
 
 \begin{proof}
     $\boxed{\Longrightarrow}$ Es directo, pues basta tomar $D = C(F)$.
-    \\
-    \newline
+
     $\boxed{\Longleftarrow}$ Sea $r \in D$, definimos
     \begin{align*}
         F_D(r) = \lim_{n \to \infty} F_n(r).
@@ -450,12 +448,11 @@ Definimos la variable aleatoria $Z = X+Y$. Si llamamos $F_{(X,Y)}$ a la función
         F(x^+) = \lim_{y \downarrow x} F(y) \leq F_D(r).
     \end{align*}
     Además $F(x^+) \leq \inf \Pi_x = F(x)$ (pues $x^+ > x$) y como $F$ es monótona no decreciente, tenemos que $F(x) \leq F(x^+)$, por tanto, $F(x) = F(x^+)$.
-    \\
-    \newline
+
     Con todo esto, hemos probado que $F$ es función de distribución imp`ropia. Veamos que $F_n \xrightarrow[]{v} F$ en $C(F)$. Sean $x \in C(F)$, $r',s \in D$ tales que $r' < x < s$, entonces
     \begin{align*}
-       \inf \Pi_r =  F(r) &\leq F_D(r) \leq \lim_{n \to \infty} F_n(r) = \liminf_{n \to \infty} F_n(r) \leq \liminf_{n \to \infty} F_n(x) \\ 
-       &\leq \limsup_{n \to \infty} F_n(s) = F_D(s) \leq F(s) = \inf \Pi_s.
+        \inf \Pi_r =  F(r) & \leq F_D(r) \leq \lim_{n \to \infty} F_n(r) = \liminf_{n \to \infty} F_n(r) \leq \liminf_{n \to \infty} F_n(x) \\
+                           & \leq \limsup_{n \to \infty} F_n(s) = F_D(s) \leq F(s) = \inf \Pi_s.
     \end{align*}
     Tomando $r < r'$, $r \in D$, tenemos que
     \begin{align*}
@@ -463,7 +460,7 @@ Definimos la variable aleatoria $Z = X+Y$. Si llamamos $F_{(X,Y)}$ a la función
     \end{align*}
     Si tomamos límite $r \uparrow x$, $s \downarrow x$, tenemos que
     \begin{align*}
-        F(x) \leq \liminf_{n \to \infty} F_n(x) \leq \limsup_{n \to \infty} F_n(x) \leq F(x),  
+        F(x) \leq \liminf_{n \to \infty} F_n(x) \leq \limsup_{n \to \infty} F_n(x) \leq F(x),
     \end{align*}
     de donde concluimos que
     \begin{align*}
@@ -477,17 +474,17 @@ Definimos la variable aleatoria $Z = X+Y$. Si llamamos $F_{(X,Y)}$ a la función
 \end{teo}
 
 \begin{defi}
-    Sea $\mathscr{H}$ familia de funciones de distribución. Diremos que $\mathscr{H}$ es ajustada si para cada $\varepsilon > 0$, existe $a > 0$ tal que
+    Sea $\mathcal{H}$ familia de funciones de distribución. Diremos que $\mathcal{H}$ es ajustada si para cada $\varepsilon > 0$, existe $a > 0$ tal que
     \begin{align*}
         P_F((-a,a]) > 1 - \varepsilon,
     \end{align*}
-    para cada $F \in \mathscr{H}$.
+    para cada $F \in \mathcal{H}$.
 \end{defi}
 
 \begin{defi}
-    Sea $\mathscr{H}$ una familia de funciones de distribución. Diremos que $\mathscr{H}$ es relativamente compacta (respecto de la convergencia debil) si cada sucesión $\{F_n\}$, $F_n \in \mathscr{H}$, tiene un subsucesión convergente (de forma debil, a un límite no esté necesariamente en $\mathscr{H}$).
+    Sea $\mathcal{H}$ una familia de funciones de distribución. Diremos que $\mathcal{H}$ es relativamente compacta (respecto de la convergencia debil) si cada sucesión $\{F_n\}$, $F_n \in \mathcal{H}$, tiene un subsucesión convergente (de forma debil, a un límite no esté necesariamente en $\mathcal{H}$).
 \end{defi}
 
 \begin{teo}[Prokhorov]
-    Sea $\mathscr{H}$ una familia de funciones de distribución. $\mathscr{H}$ es relativamente compacta si y solo si es ajustada.
+    Sea $\mathcal{H}$ una familia de funciones de distribución. $\mathcal{H}$ es relativamente compacta si y solo si es ajustada.
 \end{teo}

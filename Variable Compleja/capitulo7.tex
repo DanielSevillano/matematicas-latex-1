@@ -3,154 +3,151 @@
 \section{Cadenas y ciclos}
 
 \begin{defi}
-Sea $\Omega$ un abierto de $\com$. Consideramos el conjunto $\mathscr{C}_{\Omega}$ de todas las sumas formales de caminos de $\Omega$, el tipo $\gamma_1 + ... + \gamma_N$, siendo cada $\gamma_j$ caminno en $\Omega$. En $\mathscr{C}_{\Omega}$ definimos la relación $\sim$ como sigue: $(\gamma_1 + ... + \gamma_N) \sim (\sigma_1 + ... + \sigma_M)$ si y solo si
-\begin{align*}
-    \sum_{j=1}^{N} \int_{\gamma_j} f(z) \ dz = \sum_{i=1}^{M} \int_{\sigma_i} f(z) \ dz
-\end{align*}
-para toda función 
-\begin{align*}
-    f : \left(\bigcup_{j=1}^{N} sop(\gamma_j)\right) \cup \left(\bigcup_{i=1}^{M} sop(\sigma_i)\right) \longrightarrow \com
-\end{align*}
+    Sea $\Omega$ un abierto de $\com$. Consideramos el conjunto $\mathcal{C}_{\Omega}$ de todas las sumas formales de caminos de $\Omega$, el tipo $\gamma_1 + ... + \gamma_N$, siendo cada $\gamma_j$ caminno en $\Omega$. En $\mathcal{C}_{\Omega}$ definimos la relación $\sim$ como sigue: $(\gamma_1 + ... + \gamma_N) \sim (\sigma_1 + ... + \sigma_M)$ si y solo si
+    \begin{align*}
+        \sum_{j=1}^{N} \int_{\gamma_j} f(z) \ dz = \sum_{i=1}^{M} \int_{\sigma_i} f(z) \ dz
+    \end{align*}
+    para toda función
+    \begin{align*}
+        f : \left(\bigcup_{j=1}^{N} sop(\gamma_j)\right) \cup \left(\bigcup_{i=1}^{M} sop(\sigma_i)\right) \longrightarrow \com
+    \end{align*}
 \end{defi}
 
 \begin{obs}
-Es claro que esta relación es una relación de equivalencia en $\mathscr{C}_{\Omega}$.
+    Es claro que esta relación es una relación de equivalencia en $\mathcal{C}_{\Omega}$.
 \end{obs}
 
 \begin{defi}
-A los elementos de $\mathscr{C}_{\Omega}$ les llamamos cadenas en $\Omega$. Un ciclo en $\Omega$ es una cadena en $\Omega$ que admite una representación de la forma $\Gamma = \gamma_1 + ... + \gamma_N$, siendo cada $\gamma_j$ un camino cerrado en $\Omega$.
+    A los elementos de $\mathcal{C}_{\Omega}$ les llamamos cadenas en $\Omega$. Un ciclo en $\Omega$ es una cadena en $\Omega$ que admite una representación de la forma $\Gamma = \gamma_1 + ... + \gamma_N$, siendo cada $\gamma_j$ un camino cerrado en $\Omega$.
 \end{defi}
 
 \begin{obs}
-Dada la naturaleza de la cadena, es imposible definir origen y extremo de una cadena, así como soporte de una cadena: Si $\gamma_1,\gamma_2$ son caminos en $\Omega$, entonces $\gamma_1$ y $\gamma_1 + \gamma_2 + (-\gamma_2)$ representan a la misma cadena y tienen ''soportes'' distintos.
+    Dada la naturaleza de la cadena, es imposible definir origen y extremo de una cadena, así como soporte de una cadena: Si $\gamma_1,\gamma_2$ son caminos en $\Omega$, entonces $\gamma_1$ y $\gamma_1 + \gamma_2 + (-\gamma_2)$ representan a la misma cadena y tienen ''soportes'' distintos.
 \end{obs}
 
 \begin{obs}
-Sea $\Omega \subseteq \com$ abierto y sea $f: \Omega \longrightarrow \com$. Sea $\Gamma$ una cadena en $\Omega$. Entonces, para cualesquier representación de $\Gamma$ $\gamma_1 + ... + \gamma_N \sim \gamma_1' + ... + \gamma_M'$, $\gamma_j,\gamma_i'$ caminos en $\Omega$, hemos de tener  
-\begin{align*}
-    \sum_{j=1}^{N} \int_{\gamma_j} f(z) \ dz = \sum_{i=1}^{M} \int_{\gamma_i'} f(z) \ dz
-\end{align*}
-lo que nos lleva a la siguiente definición.
+    Sea $\Omega \subseteq \com$ abierto y sea $f: \Omega \longrightarrow \com$. Sea $\Gamma$ una cadena en $\Omega$. Entonces, para cualesquier representación de $\Gamma$ $\gamma_1 + ... + \gamma_N \sim \gamma_1' + ... + \gamma_M'$, $\gamma_j,\gamma_i'$ caminos en $\Omega$, hemos de tener
+    \begin{align*}
+        \sum_{j=1}^{N} \int_{\gamma_j} f(z) \ dz = \sum_{i=1}^{M} \int_{\gamma_i'} f(z) \ dz
+    \end{align*}
+    lo que nos lleva a la siguiente definición.
 \end{obs}
 
 \begin{defi}
-Definimos la integral de $f$ a lo largo de $\Gamma$ como
-\begin{align*}
-    \int_{\Gamma} f(z) \ dz = \sum_{j=1}^{N} \int_{\gamma_j} f(z) \ dz
-\end{align*}
+    Definimos la integral de $f$ a lo largo de $\Gamma$ como
+    \begin{align*}
+        \int_{\Gamma} f(z) \ dz = \sum_{j=1}^{N} \int_{\gamma_j} f(z) \ dz
+    \end{align*}
 \end{defi}
 
 \begin{defi}
-Sea $\Gamma$ un ciclo en $\com$ representado por $\gamma_1 + ... + \gamma_N$, siendo cada $\gamma_j$ camino cerrado en $\com$. Si $a \in \com \backslash \bigcup_{j=1}^{N} sop(\gamma_j)$, definimos el índice de $a$ respecto de $\Gamma$ como
-\begin{align*}
-    n(\Gamma,a) = \frac{1}{2\pi i} \int_{\Gamma} \frac{1}{z-a} \ dz =  \sum_{j=1}^{N} \frac{1}{2\pi i} \int_{\gamma_j} \frac{1}{z-a} \ dz = \sum_{j=1}^{N} n(\gamma_j,a)
-\end{align*}
+    Sea $\Gamma$ un ciclo en $\com$ representado por $\gamma_1 + ... + \gamma_N$, siendo cada $\gamma_j$ camino cerrado en $\com$. Si $a \in \com \backslash \bigcup_{j=1}^{N} sop(\gamma_j)$, definimos el índice de $a$ respecto de $\Gamma$ como
+    \begin{align*}
+        n(\Gamma,a) = \frac{1}{2\pi i} \int_{\Gamma} \frac{1}{z-a} \ dz =  \sum_{j=1}^{N} \frac{1}{2\pi i} \int_{\gamma_j} \frac{1}{z-a} \ dz = \sum_{j=1}^{N} n(\gamma_j,a)
+    \end{align*}
 \end{defi}
 
 \begin{obs}
-Claramente, tenemos las mismas propiedades que teníamos para caminos cerrados, una vez hayamos fijado una representación $\gamma_1 + ... + \gamma_N$ del ciclo $\Gamma$:
-\begin{itemize}
-    \item $n(\Gamma,z) \in \mathbb{Z}$ para todo $z\in \com \backslash \bigcup_{j=1}^{N} sop(\gamma_j)$.
-    \item $n(\Gamma,\bullet)$ es una función continua en $\com \backslash \bigcup_{j=1}^{N} sop(\gamma_j)$, luego es constante en cada componente conexa de $\com \backslash \bigcup_{j=1}^{N} sop(\gamma_j)$.
-    \item $n(\Gamma,z) = 0$ para todo $z$ en la componente conexa no acotada de $\com \backslash \bigcup_{j=1}^{N} sop(\gamma_j)$.
-\end{itemize}
+    Claramente, tenemos las mismas propiedades que teníamos para caminos cerrados, una vez hayamos fijado una representación $\gamma_1 + ... + \gamma_N$ del ciclo $\Gamma$:
+    \begin{itemize}
+        \item $n(\Gamma,z) \in \mathbb{Z}$ para todo $z\in \com \backslash \bigcup_{j=1}^{N} sop(\gamma_j)$.
+        \item $n(\Gamma,\bullet)$ es una función continua en $\com \backslash \bigcup_{j=1}^{N} sop(\gamma_j)$, luego es constante en cada componente conexa de $\com \backslash \bigcup_{j=1}^{N} sop(\gamma_j)$.
+        \item $n(\Gamma,z) = 0$ para todo $z$ en la componente conexa no acotada de $\com \backslash \bigcup_{j=1}^{N} sop(\gamma_j)$.
+    \end{itemize}
 \end{obs}
 
 \begin{defi}
-Sea $\Omega$ abierto de $\com$. Decimos que un ciclo $\Gamma$ en $\Omega$ es homólogo a 0 módulo $\Omega$, denotado como $\Gamma \sim 0 (\text{mód } \Omega)$, si $n(z,\Gamma) = 0$ para todo $z \in \com \backslash \Omega$.
-\\
-\newline
-Decimos que dos ciclos en $\Omega$, $\Gamma_1$ y $\Gamma_2$, son homólogos módulo $\Omega$, si $\Gamma_1 - \Gamma_2 \sim 0 (\text{mód } \Omega).$
+    Sea $\Omega$ abierto de $\com$. Decimos que un ciclo $\Gamma$ en $\Omega$ es homólogo a 0 módulo $\Omega$, denotado como $\Gamma \sim 0 (\text{mód } \Omega)$, si $n(z,\Gamma) = 0$ para todo $z \in \com \backslash \Omega$.
+
+    Decimos que dos ciclos en $\Omega$, $\Gamma_1$ y $\Gamma_2$, son homólogos módulo $\Omega$, si $\Gamma_1 - \Gamma_2 \sim 0 (\text{mód } \Omega).$
 \end{defi}
 
 \begin{teo}[Lema de separación]
-Sea $\Omega$ abierto en $\com$ y sea $K$ un compacto en $\Omega$. Entonces existe un ciclo $\Gamma$ en $\Omega \backslash K$ que satisface
-\begin{enumerate}
-    \item[(i)] $\Gamma \sim 0 (\text{mód } \Omega)$.
-    \item[(ii)] $n(\Gamma,z) = 1$ para todo $z \in K$.
-    \item[(iii)] Para toda función holomorfa en $\Omega$ se tiene que
-    \begin{align*}
-        \int_{\Gamma} f(\xi) \ d\xi = 0 \ \ \ \text{y} \ \ \ f(z) = \frac{1}{2\pi i}\int_{\Gamma} \frac{f(\xi)}{\xi - z} \ d\xi, \ \ \forall z\in K
-    \end{align*}
-\end{enumerate}
+    Sea $\Omega$ abierto en $\com$ y sea $K$ un compacto en $\Omega$. Entonces existe un ciclo $\Gamma$ en $\Omega \backslash K$ que satisface
+    \begin{enumerate}
+        \item[(i)] $\Gamma \sim 0 (\text{mód } \Omega)$.
+        \item[(ii)] $n(\Gamma,z) = 1$ para todo $z \in K$.
+        \item[(iii)] Para toda función holomorfa en $\Omega$ se tiene que
+              \begin{align*}
+                  \int_{\Gamma} f(\xi) \ d\xi = 0 \ \ \ \text{y} \ \ \ f(z) = \frac{1}{2\pi i}\int_{\Gamma} \frac{f(\xi)}{\xi - z} \ d\xi, \ \ \forall z\in K
+              \end{align*}
+    \end{enumerate}
 \end{teo}
 
 \begin{teo}
-Sea $\Omega$ un abierto en $\com$ y sea $\Gamma$ un ciclo en $\Omega$. Entonces
-\begin{align*}
-    \int_{\Gamma} f(z) \ dz = 0 \text{ para toda } f \text{ holomorfa}\Longleftrightarrow \Gamma \sim 0 (\text{mód } \Omega).
-\end{align*}
+    Sea $\Omega$ un abierto en $\com$ y sea $\Gamma$ un ciclo en $\Omega$. Entonces
+    \begin{align*}
+        \int_{\Gamma} f(z) \ dz = 0 \text{ para toda } f \text{ holomorfa}\Longleftrightarrow \Gamma \sim 0 (\text{mód } \Omega).
+    \end{align*}
 \end{teo}
 
 \begin{teo}[Fórmulas integrales de Cauchy]
-Sea $\Omega \subseteq \com$ abierto. Sea $f$ holomorfa en $\Omega$ y sea $\Gamma$ un ciclo en $\Omega$ homólogo a 0 módulo $\Omega$. Supongamos que una representación $\Gamma$ es $\gamma_1 + ... + \gamma_N$ siendo cada $\gamma_j$ camino cerrado en en $\Omega$. Entonces, para cada $z \in \com \backslash \cup_{j=1}^{N} sop(\gamma_j)$ y para cada $n \in \mathbb{N} \cup \{0\}$ se tiene 
-\begin{align*}
-    f^{(n)}(z)n(\Gamma,z) = \frac{n!}{2\pi i} \int_{\Gamma} \frac{f(\xi)}{(\xi - z)^{n+1}} \ d\xi
-\end{align*}
+    Sea $\Omega \subseteq \com$ abierto. Sea $f$ holomorfa en $\Omega$ y sea $\Gamma$ un ciclo en $\Omega$ homólogo a 0 módulo $\Omega$. Supongamos que una representación $\Gamma$ es $\gamma_1 + ... + \gamma_N$ siendo cada $\gamma_j$ camino cerrado en en $\Omega$. Entonces, para cada $z \in \com \backslash \cup_{j=1}^{N} sop(\gamma_j)$ y para cada $n \in \mathbb{N} \cup \{0\}$ se tiene
+    \begin{align*}
+        f^{(n)}(z)n(\Gamma,z) = \frac{n!}{2\pi i} \int_{\Gamma} \frac{f(\xi)}{(\xi - z)^{n+1}} \ d\xi
+    \end{align*}
 \end{teo}
 
 \begin{proof}
-Sea $z \in \com \backslash \cup_{j=1}^{N} sop(\gamma_j)$ y sea $n \in \mathbb{N} \cup \{0\}$. Al ser $f$ holomorfa en $\Omega$, se tiene que $f$ es analítica en $\Omega$. Por tanto, podemos considerar:
-\begin{align*}
-    g(\xi) = \left\{ \begin{array}{lcc}
-             \frac{n!}{2\pi i} \cdot \frac{f(\xi) - \sum_{k=0}^{\infty} \frac{f^{(k)}(z)}{k!}(\xi - z)^k}{(\xi - z)^{n+1}} & si & \xi \in \Omega \backslash \{z\}\\
-             \\ \frac{n!}{2\pi i} \cdot \frac{f^{(n+1)}(z)}{(n+1)!} &  si & \xi = z \\
-             \end{array}
-   \right.
-\end{align*}
-Se puede comprobar facilmente que esta función es continua en $\Omega$ y holomorfa, inicialmente en $\Omega \backslash \{z\}$, por lo que, por un resultado anterior, $g$ es holomorfa en $\Omega$. Así, por la versión homológica del Teorema de Cauchy, $\int_{\Gamma} g(\xi) \ d\xi = 0$. Desgranando esta integral, resulta entonces
-\begin{align*}
-    \frac{n!}{2\pi i} \int_{\Gamma} \frac{f(\xi)}{(\xi -z)^{n+1}} \ d\xi = \sum_{k=0}^{\infty} \left( \frac{f^{(k)}(z)}{k!}(\xi - z)^k \cdot \frac{n!}{2\pi i} \int_{\Gamma} \frac{1}{(\xi - z)^{n-k+1}} \ d\xi \right) \underset{(*)}{=}
-\end{align*}
-Como $\frac{1}{(\xi - z)^{n-k+1}}$ tiene primitiva si y solo si $n \not = k$, entonces
-\begin{align*}
-    \underset{(*)}{=} \frac{f^{(n)}(z)}{n!} \cdot \frac{n!}{2\pi i} \int_{\Gamma} \frac{1}{\xi -z} \ d\xi + 0 = f^{(n)}(z)n(\Gamma,z).
-\end{align*}
+    Sea $z \in \com \backslash \cup_{j=1}^{N} sop(\gamma_j)$ y sea $n \in \mathbb{N} \cup \{0\}$. Al ser $f$ holomorfa en $\Omega$, se tiene que $f$ es analítica en $\Omega$. Por tanto, podemos considerar:
+    \begin{align*}
+        g(\xi) = \left\{ \begin{array}{lcc}
+                             \frac{n!}{2\pi i} \cdot \frac{f(\xi) - \sum_{k=0}^{\infty} \frac{f^{(k)}(z)}{k!}(\xi - z)^k}{(\xi - z)^{n+1}} & si & \xi \in \Omega \backslash \{z\} \\
+                             \\ \frac{n!}{2\pi i} \cdot \frac{f^{(n+1)}(z)}{(n+1)!} &  si & \xi = z \\
+                         \end{array}
+        \right.
+    \end{align*}
+    Se puede comprobar facilmente que esta función es continua en $\Omega$ y holomorfa, inicialmente en $\Omega \backslash \{z\}$, por lo que, por un resultado anterior, $g$ es holomorfa en $\Omega$. Así, por la versión homológica del Teorema de Cauchy, $\int_{\Gamma} g(\xi) \ d\xi = 0$. Desgranando esta integral, resulta entonces
+    \begin{align*}
+        \frac{n!}{2\pi i} \int_{\Gamma} \frac{f(\xi)}{(\xi -z)^{n+1}} \ d\xi = \sum_{k=0}^{\infty} \left( \frac{f^{(k)}(z)}{k!}(\xi - z)^k \cdot \frac{n!}{2\pi i} \int_{\Gamma} \frac{1}{(\xi - z)^{n-k+1}} \ d\xi \right) \underset{(*)}{=}
+    \end{align*}
+    Como $\frac{1}{(\xi - z)^{n-k+1}}$ tiene primitiva si y solo si $n \not = k$, entonces
+    \begin{align*}
+        \underset{(*)}{=} \frac{f^{(n)}(z)}{n!} \cdot \frac{n!}{2\pi i} \int_{\Gamma} \frac{1}{\xi -z} \ d\xi + 0 = f^{(n)}(z)n(\Gamma,z).
+    \end{align*}
 \end{proof}
 
 \section{Dominios simplemente conexos}
 En su día dimos la definición de dominio simplemente conexo en $\com$, como un dominio $D$ en $\com$ tal que $\com^* \backslash D$ es conexo.
 
 \begin{teo}[Caracterización de dominios simplementes conexos en $\com$]
-Sea $D \subseteq \com$ un dominio. Son equivalentes:
-\begin{enumerate}
-    \item[(a)] $D$ es un dominio simplemente conexo en $\com$.
-    \item[(b)] Todo ciclo en $D$ es homólogo a 0 módulo $D$.
-    \item[(c)] Todo camino cerrado en $D$ es homólogo a 0 módulo $D$.
-\end{enumerate}
+    Sea $D \subseteq \com$ un dominio. Son equivalentes:
+    \begin{enumerate}
+        \item[(a)] $D$ es un dominio simplemente conexo en $\com$.
+        \item[(b)] Todo ciclo en $D$ es homólogo a 0 módulo $D$.
+        \item[(c)] Todo camino cerrado en $D$ es homólogo a 0 módulo $D$.
+    \end{enumerate}
 \end{teo}
 
 \begin{teo}[Teorema de Cauchy para dominios simplementes conexos]
-Sea $D \subseteq \com$ un dominio simplemente conexo y sean $f$ holomorfa en $D$ y $\gamma$ un camino cerrado o un ciclo en $D$, entonces $\int_{\gamma} f(z) \ dz = 0$.
+    Sea $D \subseteq \com$ un dominio simplemente conexo y sean $f$ holomorfa en $D$ y $\gamma$ un camino cerrado o un ciclo en $D$, entonces $\int_{\gamma} f(z) \ dz = 0$.
 \end{teo}
 
 \begin{teo}[Fórmula integrales de Cauchy]
-Sea $D \subseteq \com$ un dominio simplemente conexo. Sean $f$ holomorfa en $D$ y $\gamma_1,...,\gamma_N$ caminos cerrados en $D$. Entonces, para cada $z \in D \backslash \bigcup_{j=1}^{N} \gamma_j$ y cada $n \in \mathbb{N} \cup \{0\}$:
-\begin{align*}
-    f^{(n)}(z) \sum_{j=1}^{N} n(\gamma_j,z) = \sum_{j=1}^{N} \frac{n!}{2\pi i} \int_{\gamma_j} \frac{f(\xi)}{(\xi -z)^{n+1}} \ d\xi
-\end{align*}
+    Sea $D \subseteq \com$ un dominio simplemente conexo. Sean $f$ holomorfa en $D$ y $\gamma_1,...,\gamma_N$ caminos cerrados en $D$. Entonces, para cada $z \in D \backslash \bigcup_{j=1}^{N} \gamma_j$ y cada $n \in \mathbb{N} \cup \{0\}$:
+    \begin{align*}
+        f^{(n)}(z) \sum_{j=1}^{N} n(\gamma_j,z) = \sum_{j=1}^{N} \frac{n!}{2\pi i} \int_{\gamma_j} \frac{f(\xi)}{(\xi -z)^{n+1}} \ d\xi
+    \end{align*}
 \end{teo}
 
 Con estos resultados para dominios simplemente conexos, podemos dar otras caracterizaciones de estos dominios.
 
 \begin{teo}[Caracterizaciones de dominio simplemente conexo]
-Sea $D \subseteq \com$ un dominio en $\com$. Son equivalentes:
-\begin{enumerate}
-    \item[(i)] $D$ es un dominio simplemente conexo en $\com$.
-    \item[(ii)] Todo camino en $D$ (ciclo en $D$), $\gamma$, es homólogo a 0 módulo $D$.
-    \item[(iii)] $\int_{\gamma} f(\xi) \ d\xi = 0$ para toda función $f$ holomorfa en $D$, y todo camino cerrado $\gamma$ (ciclo) en $D$.
-    \item[(iv)] Toda función holomorfa en $D$ tiene primitiva en $D$.
-    \item[(v)] Para toda función f holomorfa en $D$, sin ceros en $D$, existe una rama del $\log(f)$ en $D$.
-    \item[(vi)] Toda función armónica en $D$ tiene conjugada armónica en $D$.
-\end{enumerate}
+    Sea $D \subseteq \com$ un dominio en $\com$. Son equivalentes:
+    \begin{enumerate}
+        \item[(i)] $D$ es un dominio simplemente conexo en $\com$.
+        \item[(ii)] Todo camino en $D$ (ciclo en $D$), $\gamma$, es homólogo a 0 módulo $D$.
+        \item[(iii)] $\int_{\gamma} f(\xi) \ d\xi = 0$ para toda función $f$ holomorfa en $D$, y todo camino cerrado $\gamma$ (ciclo) en $D$.
+        \item[(iv)] Toda función holomorfa en $D$ tiene primitiva en $D$.
+        \item[(v)] Para toda función f holomorfa en $D$, sin ceros en $D$, existe una rama del $\log(f)$ en $D$.
+        \item[(vi)] Toda función armónica en $D$ tiene conjugada armónica en $D$.
+    \end{enumerate}
 \end{teo}
 
 \begin{proof}
-Ya tenemos que $(i) \Longleftrightarrow (ii) \Longleftrightarrow (iii) \Longleftrightarrow (iv) \Longrightarrow (v)$ y que $(iv) \Longrightarrow (vi)$.
-\\
-\newline
- Veamos que $(v) \Longrightarrow (ii)$. Sea $a \not \in D$. La función $f(z) = z-a$, $z \in D$ es holomorfa en $D$, y nunca 0 en $D$. Entonces existe rama del $\log(z-a)$ en $D$, lo que equivale a decir que $\frac{1}{z-a} = \frac{f'}{f}$ tiene primitiva en $D$, y esto, a su vez, equivale a decir que $\int_{\gamma} \frac{1}{z-a} \ dz = 0$ para todo camino cerrado $\gamma$ en $D$. Como $a \not \in D$ ha sido elegido de manera arbitraria, concluimos que todo camino cerrado en $D$ es homólogo a 0 módulo $D$.
-\\
-\newline
-Finalizamos el teorema probando que $(vi) \Longrightarrow (v)$. Sea $f$ holomorfa en $D$, sin ceros en $D$. Entonces $u = \log |f|$ es armónica en $D$, ya que localmente es la parte real de una función holomorfa. Por hipótesis, existe $g$ holomorfa en $D$ tal que $u = \log|f| = \re(g)$ en $D$. Vamos a probar ahora que existe una constante $\beta \in \com$ tal que $e^{g + \beta} = f$, o sea, tal que $g + \beta$ es rama del $\log(f)$ en $D$. Para probarlo, observamos que la función $F(z) = f(z)e^{-g(z)}$, $z \in D$, es holomorfa en $D$, y $|F(z)| = |f(z)|e^{-\re(g)} = |f(z)|e^{-\log|f(z)|} = 1$, $z \in D$. Esto nos dice que $F$ es constante enn $D$, y es una constate $C$ no nula, pues $|F| = 1 \not = 0$ en $D$. Sea $\bea \in \log(C)$. Entonces $f(z)e^{-g(z)} = F(z) = e^{\beta}$, $z \in D$, o sea, $f(z) = e^{g(z) +\beta}$, $z \in D$.
+    Ya tenemos que $(i) \Longleftrightarrow (ii) \Longleftrightarrow (iii) \Longleftrightarrow (iv) \Longrightarrow (v)$ y que $(iv) \Longrightarrow (vi)$.
+
+    Veamos que $(v) \Longrightarrow (ii)$. Sea $a \not \in D$. La función $f(z) = z-a$, $z \in D$ es holomorfa en $D$, y nunca 0 en $D$. Entonces existe rama del $\log(z-a)$ en $D$, lo que equivale a decir que $\frac{1}{z-a} = \frac{f'}{f}$ tiene primitiva en $D$, y esto, a su vez, equivale a decir que $\int_{\gamma} \frac{1}{z-a} \ dz = 0$ para todo camino cerrado $\gamma$ en $D$. Como $a \not \in D$ ha sido elegido de manera arbitraria, concluimos que todo camino cerrado en $D$ es homólogo a 0 módulo $D$.
+
+    Finalizamos el teorema probando que $(vi) \Longrightarrow (v)$. Sea $f$ holomorfa en $D$, sin ceros en $D$. Entonces $u = \log |f|$ es armónica en $D$, ya que localmente es la parte real de una función holomorfa. Por hipótesis, existe $g$ holomorfa en $D$ tal que $u = \log|f| = \re(g)$ en $D$. Vamos a probar ahora que existe una constante $\beta \in \com$ tal que $e^{g + \beta} = f$, o sea, tal que $g + \beta$ es rama del $\log(f)$ en $D$. Para probarlo, observamos que la función $F(z) = f(z)e^{-g(z)}$, $z \in D$, es holomorfa en $D$, y $|F(z)| = |f(z)|e^{-\re(g)} = |f(z)|e^{-\log|f(z)|} = 1$, $z \in D$. Esto nos dice que $F$ es constante enn $D$, y es una constate $C$ no nula, pues $|F| = 1 \not = 0$ en $D$. Sea $\beta \in \log(C)$. Entonces $f(z)e^{-g(z)} = F(z) = e^{\beta}$, $z \in D$, o sea, $f(z) = e^{g(z) +\beta}$, $z \in D$.
 \end{proof}

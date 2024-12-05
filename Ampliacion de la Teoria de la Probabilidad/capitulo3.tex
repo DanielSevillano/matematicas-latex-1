@@ -1,5 +1,5 @@
 \chapter{Convergencia}
-\noindent Consideremos un espacio de probabilidad $(\Omega, \mathcal{A}, P)$, $P : \mathcal{A} \longrightarrow [0,1]$. Sean $A_1,\ldots,A_n \in \mathbb{A}$ una sucesión de sucesos. Definimos el límite inferior y superior como sigue
+Consideremos un espacio de probabilidad $(\Omega, \mathcal{A}, P)$, $P : \mathcal{A} \longrightarrow [0,1]$. Sean $A_1,\ldots,A_n \in \mathbb{A}$ una sucesión de sucesos. Definimos el límite inferior y superior como sigue
 \begin{align*}
     \liminf_{n} A_n = \bigcup_{n \ge 1} \bigcap_{m \ge n} A_m \in \mathcal{A}, \quad
     \limsup_{n} A_n = \bigcap_{n \ge 1} \bigcup_{m \ge n} A_m \in \mathcal{A}.
@@ -28,9 +28,9 @@ Decimos que la sucesión $\{A_n\}$ converge si $\liminf_{n} A_n = \limsup_{n} A_
     \end{align*}
     De aquí,
     \begin{align*}
-        P \left( \bigcup_{i \ge 1} A_i\right) &= P(A_1) + P(F_2) + \ldots + P(F_n) + \ldots 
-        = P(A_1) + \lim_{n \to \infty} \sum_{i=2}^{n} P(F_i) \\
-        &= P(A_1) + \lim_{n \to \infty} (P(A_n) - P(A_1)) = \lim_{n \to \infty} A_n.
+        P \left( \bigcup_{i \ge 1} A_i\right) & = P(A_1) + P(F_2) + \ldots + P(F_n) + \ldots
+        = P(A_1) + \lim_{n \to \infty} \sum_{i=2}^{n} P(F_i)                                                                \\
+                                              & = P(A_1) + \lim_{n \to \infty} (P(A_n) - P(A_1)) = \lim_{n \to \infty} A_n.
     \end{align*}
 \end{proof}
 
@@ -44,7 +44,7 @@ Decimos que la sucesión $\{A_n\}$ converge si $\liminf_{n} A_n = \limsup_{n} A_
 \begin{proof}
     Consideramos $\{A_n^c\}$, que es una sucesión monótoa decreciente. Por el Teorema anterior
     \begin{align*}
-       P\left( \bigcup_{i \ge 1} A_i^c \right) = P\left( \lim_n A_n^c \right) = \lim_n P(A_n^c).
+        P\left( \bigcup_{i \ge 1} A_i^c \right) = P\left( \lim_n A_n^c \right) = \lim_n P(A_n^c).
     \end{align*}
     Por las leyes de De Morgan:
     \begin{align*}
@@ -64,7 +64,7 @@ Decimos que la sucesión $\{A_n\}$ converge si $\liminf_{n} A_n = \limsup_{n} A_
 \end{teo}
 
 \begin{proof}
-    Como $\limsup_n A_n = \cap_{n \ge 1} \cup_{m \ge n} A_m$, tenemos que $\left\{ \cup_{m \ge n} A_m \right\}$ es una sucesión decreciente y 
+    Como $\limsup_n A_n = \cap_{n \ge 1} \cup_{m \ge n} A_m$, tenemos que $\left\{ \cup_{m \ge n} A_m \right\}$ es una sucesión decreciente y
     \begin{align*}
         \bigcap_{n \ge 1} \bigcup_{m \ge n} A_m = \lim_{n \to \infty} \left( \bigcup_{m \ge n} A_m \right),
     \end{align*}
@@ -88,11 +88,10 @@ Decimos que la sucesión $\{A_n\}$ converge si $\liminf_{n} A_n = \limsup_{n} A_
 \begin{proof}
     $\boxed{\Longrightarrow}$ Supongamos que $\omega \in \limsup A_n$, es decir,
     \begin{align*}
-        \omega \i \bigcap_{n \ge 1} \bigcup_{m \ge n} A_m.
+        \omega \in \bigcap_{n \ge 1} \bigcup_{m \ge n} A_m.
     \end{align*}
     En particular, $\omega \in \cup_{m \ge 1} A_m$, es decir, existe $\xi \in \mathbb{N}$, tal que $\omega \in A_{\xi}$. Tomamos $n_1 = \xi$. Por inducción sobre $k$, suponemos que $w \in A_{n_i}$, $i=1,...,k$. Actuando de igual forma, $\omega \in \cup_{m \ge n_{k+1}} A_m$, es decir, existe $\xi' \in \mathbb{N}$ tal que $\omega \in A_{\xi'}$ y tomamos $n_{k+1} = \xi'$.
-    \\
-    \newline
+
     $\boxed{\Longleftarrow}$ Por reducción al absurdo, supongamos que existe una sucesión de índices $n_1 < n_2 < \ldots < n_k < \ldots $ tal que $\omega \in A_{n_k}$ para todo $k \in \mathbb{N}$ y que $\omega \not \in \limsup A_n$. De esto últimos, tenemos que
     \begin{align*}
         \omega \not \in \bigcap_{n \ge 1} \bigcup_{m \ge n} A_m \Longrightarrow \omega \in \left( \bigcap_{n \ge 1} \bigcup_{m \ge n} A_m \right)^c \Longrightarrow \omega \in \bigcup_{n \ge 1} \bigcap_{m \ge n} A_m^c,
@@ -113,14 +112,14 @@ Decimos que la sucesión $\{A_n\}$ converge si $\liminf_{n} A_n = \limsup_{n} A_
 
 \begin{proof}
     \begin{align*}
-        P\left( \limsup_n A_n \right) &= P \left( \bigcap_{n \ge 1} \bigcup_{m \ge n} A_m \right) \underset{(*)}{=} P \left( \lim_{n \to \infty} \bigcup_{m \ge n} A_m \right) \\
-        &= \lim_{n \to \infty} P \left( \bigcup_{m \ge n} A_m \right) \leq \lim_{n \to \infty} \sum_{m \ge n} P(A_n) = 0.
+        P\left( \limsup_n A_n \right) & = P \left( \bigcap_{n \ge 1} \bigcup_{m \ge n} A_m \right) \underset{(*)}{=} P \left( \lim_{n \to \infty} \bigcup_{m \ge n} A_m \right) \\
+                                      & = \lim_{n \to \infty} P \left( \bigcup_{m \ge n} A_m \right) \leq \lim_{n \to \infty} \sum_{m \ge n} P(A_n) = 0.
     \end{align*}
     En $(*)$ estamos usando que la sucesión $\left\{ \cup_{m \ge n} A_m \right\}$ es decreciente.
 \end{proof}
 
 \begin{teo}[Segundo Lema de Borel-Cantelli]
-     Sea $(\Omega,\mathcal{A},P)$ un espacio de probabilidad y consideremos $\{A_n\} \subset \mathcal{A}$ una sucesión tal que $\sum_{n \ge 1} P(A_n) = \infty$. Entonces
+    Sea $(\Omega,\mathcal{A},P)$ un espacio de probabilidad y consideremos $\{A_n\} \subset \mathcal{A}$ una sucesión tal que $\sum_{n \ge 1} P(A_n) = \infty$. Entonces
     \begin{align*}
         P\left( \limsup_n A_n \right) = 1.
     \end{align*}
@@ -128,17 +127,17 @@ Decimos que la sucesión $\{A_n\}$ converge si $\liminf_{n} A_n = \limsup_{n} A_
 
 \begin{proof}
     \begin{align*}
-        P\left( \limsup_n A_n \right) &= P \left( \bigcap_{n \ge 1} \bigcup_{m \ge n} A_m \right) = 1 - P\left[ \left( \bigcap_{n \ge 1} \bigcup_{m \ge n} A_m \right)^c \right] \\
-        &= 1 - P\left(\bigcup_{n \ge 1} \bigcap_{m \ge n} A_m^c\right) = 1 - P\left(\lim_{n \to \infty} \bigcap_{m \ge n} A_m^c\right) \\
-        &= 1 - \lim_{n \to \infty } P\left( \bigcap_{m \ge n} A_m^c\right) = 1 - \lim_{n \to \infty} \prod_{m \ge n} P(A_m^c) \\
-        &= 1 - \lim_{n \to \infty} \prod_{m \ge} (1 - P(A_m)).
+        P\left( \limsup_n A_n \right) & = P \left( \bigcap_{n \ge 1} \bigcup_{m \ge n} A_m \right) = 1 - P\left[ \left( \bigcap_{n \ge 1} \bigcup_{m \ge n} A_m \right)^c \right] \\
+                                      & = 1 - P\left(\bigcup_{n \ge 1} \bigcap_{m \ge n} A_m^c\right) = 1 - P\left(\lim_{n \to \infty} \bigcap_{m \ge n} A_m^c\right)             \\
+                                      & = 1 - \lim_{n \to \infty } P\left( \bigcap_{m \ge n} A_m^c\right) = 1 - \lim_{n \to \infty} \prod_{m \ge n} P(A_m^c)                      \\
+                                      & = 1 - \lim_{n \to \infty} \prod_{m \ge} (1 - P(A_m)).
     \end{align*}
     Observamos que
     \begin{align*}
         \prod_{m \ge} (1 - P(A_m)) \underset{(*)}{=} \prod_{m \ge nn} e^{-P(A_m)}= e^{-\sum_{m \ge n}P(A_m)} = 0.
     \end{align*}
     En $(*)$ usamos que si $x \ge 0$, entonces $1 - x \leq e^{-x}$. Finalmente, gracias a lo anterior
-        \begin{align*}
+    \begin{align*}
         P\left( \limsup_n A_n \right) = 1.
     \end{align*}
 \end{proof}
@@ -146,7 +145,7 @@ Decimos que la sucesión $\{A_n\}$ converge si $\liminf_{n} A_n = \limsup_{n} A_
 \begin{cor}[Ley 0-1 de Borel-Cantelli]
     Sea $(\Omega,\mathcal{A},P)$ un espacio de probabilidad y consideremos $\{A_n\} \subset \mathcal{A}$ una sucesión de sucesos independientes, entonces $P\left( \limsup_n A_n\right)$ o bien es 0, o bien es 1.
 \end{cor}
-\noindent Sean $X_n$ variables aleatorias en $(\Omega, \mathcal{A}, P)$. Definimos
+Sean $X_n$ variables aleatorias en $(\Omega, \mathcal{A}, P)$. Definimos
 \begin{align*}
     \Omega_1 = \{ \omega \in \Omega : \liminf_n X_n(\omega) = \limsup_n X_n(\omega) \},
 \end{align*}
@@ -159,8 +158,8 @@ que es el conjunto de $\omega \in \Omega$ para los cuales existe $\lim_n X_n$.
 \begin{proof}
     Sea $Y = \inf_n X_n$ y fijemos $b \in \mathbb{R}$. Entonces
     \begin{align*}
-        Y^{-1}((-\infty,b)) &= \left\{ \omega \in \Omega : \inf_n X_n(\omega) < b  \right\} = \bigcup_{n \ge 1} \left\{ \omega \in \Omega : X_n(\omega) < b  \right\} \\
-        & \bigcup_{n \ge 1} X_n^{-1}((-\infty,b)) \in \mathcal{A},
+        Y^{-1}((-\infty,b)) & = \left\{ \omega \in \Omega : \inf_n X_n(\omega) < b  \right\} = \bigcup_{n \ge 1} \left\{ \omega \in \Omega : X_n(\omega) < b  \right\} \\
+                            & \bigcup_{n \ge 1} X_n^{-1}((-\infty,b)) \in \mathcal{A},
     \end{align*}
     es decir, $Y$ es variable aleatoria. Observamos que $\sup_n X_n = - \inf_{n} (-X_n)$, \newline$\liminf_n X_n = \sup_n \inf_{m \ge n} A_m$ y $\limsup_n X_n = \inf_n \sup_{m \ge n} X_m$. Aplicar una función medible a una variable aleatoria, nos sigue dando una variable aleatoria, por tanto, todo lo anterior eran variables aleatorias.
 \end{proof}
@@ -185,7 +184,7 @@ que es el conjunto de $\omega \in \Omega$ para los cuales existe $\lim_n X_n$.
 \end{teo}
 
 \begin{defi}
-    Diremos que $X_n$ converge en probabilidad a $X$ si para todo $\varepsilon > 0$ 
+    Diremos que $X_n$ converge en probabilidad a $X$ si para todo $\varepsilon > 0$
     \begin{align*}
         P(y_{n,\varepsilon}) \xrightarrow[n\to \infty]{p} 1,
     \end{align*}
@@ -219,11 +218,11 @@ que es el conjunto de $\omega \in \Omega$ para los cuales existe $\lim_n X_n$.
     Sean $X_n$, $X$ variables aleatorias en $(\Omega, \mathcal{A}, P)$ con $X \sim \delta(c)$, $c$ constante. Entonces $X_n \xrightarrow[]{p} X$ si y solo si $X_n \xrightarrow[]{d} X$.
 \end{teo}
 
-\noindent Consideremos el espacio 
+Consideremos el espacio
 \begin{align*}
     L^p(\Omega, \mathcal{A}, P) = \{ X \text{ v.a} : E[|X|^p] < \infty \}.
 \end{align*}
-Se puede probar que $(L^p, \|.\|_p)$ es un espacio métrico, siendo 
+Se puede probar que $(L^p, \|.\|_p)$ es un espacio métrico, siendo
 \begin{align*}
     \|X \|_p = \left( \int_{\Omega} |X|^p \ dP \right)^{1/p}
 \end{align*}
@@ -231,16 +230,16 @@ Se puede probar que $(L^p, \|.\|_p)$ es un espacio métrico, siendo
 \begin{defi}
     Diremos que $X_n$ converge a $X$ en $L^p$, $X_n \xrightarrow[]{L^p} X$, cuando $\|X_n - X\|_p \xrightarrow[n \to \infty]{} 0$.
 \end{defi}
-\noindent Diremos que
+Diremos que
 \begin{itemize}
     \item Converge en media si $p = 1$.
     \item Converge en media cuadrática si $p = 2$.
 \end{itemize}
-\noindent \underline{Desigualdad de Markov}: Sea $X$ variable no negativa y $a>0$, entonces
+\underline{Desigualdad de Markov}: Sea $X$ variable no negativa y $a>0$, entonces
 \begin{align*}
     P(X \ge a) \leq \frac{E[X]}{a}.
 \end{align*}
-\noindent Si además $X \in L^p$
+Si además $X \in L^p$
 \begin{align*}
     P(X \ge a) \leq \frac{E[X^p]}{a^p}.
 \end{align*}
@@ -257,7 +256,7 @@ Se puede probar que $(L^p, \|.\|_p)$ es un espacio métrico, siendo
 \end{teo}
 
 \subsubsection{Ley débil de los grandes números (LDGN)}
-\noindent Sean $X_1,X_2,\ldots$ variables aleatorias en $(\Omega, \mathcal{A}, P)$. Definimos
+Sean $X_1,X_2,\ldots$ variables aleatorias en $(\Omega, \mathcal{A}, P)$. Definimos
 \begin{align*}
     S_n = X_1 + \ldots + X_n, \quad n \ge 1.
 \end{align*}
@@ -267,11 +266,11 @@ La sucesión $\{X_n\}$ verifica la ley débil de los grandes números si existen
 \end{align*}
 
 \begin{teo}[Bernoulli, 1713]
-     Sean $X_1,X_2,\ldots$ variables aleatorias independientes en $(\Omega, \mathcal{A}, P)$ con $X_i \sim Ber(p)$, $0<p<1$. Entonces
-     \begin{align*}
-         \frac{S_n}{n} \xrightarrow[\quad]{p} p,
-     \end{align*}
-     es decir, verfica LDGN para $a_n = np$ y $b_n = n$.
+    Sean $X_1,X_2,\ldots$ variables aleatorias independientes en $(\Omega, \mathcal{A}, P)$ con $X_i \sim Ber(p)$, $0<p<1$. Entonces
+    \begin{align*}
+        \frac{S_n}{n} \xrightarrow[\quad]{p} p,
+    \end{align*}
+    es decir, verfica LDGN para $a_n = np$ y $b_n = n$.
 \end{teo}
 
 \begin{teo}[Chebyshev]
@@ -289,7 +288,7 @@ La sucesión $\{X_n\}$ verifica la ley débil de los grandes números si existen
 \end{teo}
 
 \begin{teo}[Markov]
-     Sea $\{X_n\}$ una sucesión de variables aleatorias independientes tal que $Var[S_n/n] \xrightarrow[n\to \infty]{} 0$. Entonces
+    Sea $\{X_n\}$ una sucesión de variables aleatorias independientes tal que $Var[S_n/n] \xrightarrow[n\to \infty]{} 0$. Entonces
     \begin{align*}
         \frac{S_n - E[S_n]}{n} \xrightarrow[\quad]{p} 0
     \end{align*}
@@ -303,7 +302,7 @@ La sucesión $\{X_n\}$ verifica la ley débil de los grandes números si existen
 \end{teo}
 
 \subsubsection{Ley fuerte de los grandes números (LFGN)}
-\noindent Sean $X_1,X_2,\ldots$ variables aleatorias en $(\Omega, \mathcal{A}, P)$. La sucesión $\{X_n\}$ verifica la ley fuerte de los grandes números si existen sucesiones numéricas $\{a_n\}$ y $\{b_n\}$ con $b_n \uparrow \infty$ tales que
+Sean $X_1,X_2,\ldots$ variables aleatorias en $(\Omega, \mathcal{A}, P)$. La sucesión $\{X_n\}$ verifica la ley fuerte de los grandes números si existen sucesiones numéricas $\{a_n\}$ y $\{b_n\}$ con $b_n \uparrow \infty$ tales que
 \begin{align*}
     \frac{S_n - a_n}{b_n} \xrightarrow[]{c.s} 0.
 \end{align*}
@@ -339,7 +338,7 @@ La sucesión $\{X_n\}$ verifica la ley débil de los grandes números si existen
 \end{teo}
 
 \begin{lema}[Kronecker]
-    Sea $\{X_n\}$ una sucesión de variables aleatorias y $\{a_n\}$ una sucesión de números reales tal que $a_n \uparrow \infty$. Si $\sum_{n=1}^{\infty} \frac{X_n}{a_n} < \infty$ c.s, entonces $\frac{1}{a_n} \sum_{k=1}^{n} X_k \xrightarrow[n\to \infty]{c.s} 0$. 
+    Sea $\{X_n\}$ una sucesión de variables aleatorias y $\{a_n\}$ una sucesión de números reales tal que $a_n \uparrow \infty$. Si $\sum_{n=1}^{\infty} \frac{X_n}{a_n} < \infty$ c.s, entonces $\frac{1}{a_n} \sum_{k=1}^{n} X_k \xrightarrow[n\to \infty]{c.s} 0$.
 \end{lema}
 
 \begin{defi}
@@ -358,13 +357,12 @@ La sucesión $\{X_n\}$ verifica la ley débil de los grandes números si existen
     \begin{enumerate}
         \item $P\left( \limsup_n \{X_n \not = Y_n \}\right) = 0$.
         \item $\sum_{n=1}^{\infty} X_n < \infty$ c.s si y solo si $\sum_{n=1}^{\infty} Y_n < \infty$ c.s.
-        \item $\frac{1}{n} \sum_{k=1}^{n} (X_k -Y_k) < \infty \xrightarrow[n \to \infty]{c.s} 0$. 
+        \item $\frac{1}{n} \sum_{k=1}^{n} (X_k -Y_k) < \infty \xrightarrow[n \to \infty]{c.s} 0$.
     \end{enumerate}
 \end{teo}
 \begin{teo}[3 series de Kolmogórov]
     Sean $\{X_n\}$ una sucesión de variables aleatorias independientes y $\{X_n^c\}$ una sucesión de variables aleatorias $X_n$ truncadas, para alguna constante $c>0$. Si existe $c>0$ tal que las series $\sum_{n=1}^{\infty} P(X_n \not = X_n^c)$, $\sum_{n=1}^{\infty} E[X_n^c]$ y $\sum_{n=1}^{\infty} Var[X_n^c]$ convergen, entonces $\sum_{n=1}^{\infty} X_n$ converge c.s.
-    \\
-    \newline
+
     Recíprocamete, si $\sum_{n=1}^{\infty} X_n$ converge c.s, entonces las tres series convergen para todo $c>0$.
 \end{teo}
 

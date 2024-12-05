@@ -2,104 +2,103 @@
 \section{Introducción}
 
 \begin{defi}
-Sea $\{f_n\}$ una sucesión de funciones tal que $f_n:[a,b] & \longrightarrow & \mathbb{R}$. Decimos que la sucesón $\{f_n\}$ converge puntualmente si para todo x $\in$ [a,b] existe el límite de la sucesión $\{f_n(x)\}$. En tal caso, la función  $f:[a,b]\longrightarrow\mathbb{R}$ definida por $f(x) = \displaystyle\lim_{n \to{+}\infty}{f_n(x)}$ se llama límite puntual de la sucesión $\{f_n\}$.
+    Sea $\{f_n\}$ una sucesión de funciones tal que $f_n:[a,b] \longrightarrow \mathbb{R}$. Decimos que la sucesón $\{f_n\}$ converge puntualmente si para todo x $\in$ [a,b] existe el límite de la sucesión $\{f_n(x)\}$. En tal caso, la función  $f:[a,b]\longrightarrow\mathbb{R}$ definida por $f(x) = \displaystyle\lim_{n \to{+}\infty}{f_n(x)}$ se llama límite puntual de la sucesión $\{f_n\}$.
 \end{defi}
 
 \begin{ejemplo}
-Demos un ejemplo de una sucesión de funciones $\{f_n\}$ integrables-Riemann en [a,b] y cuyo límite puntual no sea integrable-Riemann en [a,b].
+    Demos un ejemplo de una sucesión de funciones $\{f_n\}$ integrables-Riemann en [a,b] y cuyo límite puntual no sea integrable-Riemann en [a,b].
 \end{ejemplo}
 Sabemos que los números racionales son numerables, luego exite una sucesión de números naturales tal que $[0,1]\cap\mathbb{Q} = \{ r_n : n\in\mathbb{N}\}$.
-Definimos $f_n:[0,1] & \cap & \mathbb{Q} & \longrightarrow & \mathbb{R}$ dada por:
+Definimos $f_n:[0,1] \cap \mathbb{Q} \longrightarrow \mathbb{R}$ dada por:
 $$
-f_n(x) = \left \{ \begin{matrix} 1 & \mbox{si }x\mbox{ \in $\{r_1, ...,r_n\}$}
-\\ 0 & \mbox{si }x\mbox{ \not\in $\{r_1, ...,r_n\}$}\end{matrix}\right.
+    f_n(x) = \left\{ \begin{matrix} 1 & \text{si } x \in \{r_1, ...,r_n\}     \\
+               0 & \text{si } x \not\in \{r_1, ...,r_n\}
+    \end{matrix}\right.
 $$
-que es integrable-Riemann en [0,1] para cada $n\in\mathbb{N}$. Sin embargo 
+que es integrable-Riemann en [0,1] para cada $n\in\mathbb{N}$. Sin embargo
 $$
-f(x) = \displaystyle\lim_{n \to{+}\infty}{f_n(x)} = \left \{ \begin{matrix} 1 & \mbox{si }x\mbox{ $\in\mathbb{Q}$}
-\\ 0 & \mbox{si }x\mbox{ $\not\in\mathbb{Q}$}\end{matrix}\right.
+    f(x) = \displaystyle\lim_{n \to{+}\infty}{f_n(x)} = \left\{ \begin{matrix} 1 & \mbox{si }x\mbox{ $\in\mathbb{Q}$}
+               \\ 0 & \mbox{si }x\mbox{ $\not\in\mathbb{Q}$}\end{matrix}\right.
 $$
 que es la función de Dirichlet, la cual no es integrable-Riemann.
 
 \begin{teo}[Teorema de Arzelá]
-Supongamos
-\begin{enumerate}
-    \item[1)] $\{f_n\}$ una sucesión de funciones que converge puntualmente a f en $[a,b]$.
-    \item[2)] Para todo $n \in \mathbb_{N}$, $f_n$ es integrable-Riemann en $[a,b]$.
-    \item[3)] f es integrable-Riemann en $[a,b]$.
-    \item[4)] Existe M tal que $|f_n(x)| \leq M$ para todo $x \in [a,b]$ y todo $n \in \mathbb_{N}$.
-\end{enumerate}
-Entonces:
-$$
-\displaystyle\lim_{n \to{+}\infty}{\int_{a}^{b} f_n(x)\, dx} = \displaystyle\int_{a}^{b} \lim_{n \to{+}\infty}{f_n(x)} \, dx = 	 \displaystyle\int_{a}^{b} f(x)\, dx
-$$
+    Supongamos
+    \begin{enumerate}
+        \item $\{f_n\}$ una sucesión de funciones que converge puntualmente a f en $[a,b]$.
+        \item Para todo $n \in \mathbb{N}$, $f_n$ es integrable-Riemann en $[a,b]$.
+        \item f es integrable-Riemann en $[a,b]$.
+        \item Existe M tal que $|f_n(x)| \leq M$ para todo $x \in [a,b]$ y todo $n \in \mathbb{N}$.
+    \end{enumerate}
+    Entonces:
+    $$
+        \lim_{n \to{+}\infty}{\int_{a}^{b} f_n(x)\, dx} = \int_{a}^{b} \lim_{n \to{+}\infty}{f_n(x)} \, dx = \int_{a}^{b} f(x)\, dx
+    $$
 \end{teo}
 
 \newpage
 \section{Idea vaga de la medida y de la integral de Lebesgue}
 
 \begin{teo}
-\label{teo:asd}
-No existe ninguna aplicación $ m_n: \mathcal{P}(\mathbb{R}^n) \longrightarrow [0, +\infty]$ tal que:
-\begin{enumerate}
-    \item[(i)] $m_n([0,1) \times ... \times [0,1)) = $ $m_n([0,1)^n) = 1$.
-    \item[(ii)] $m_n\left(\displaystyle\bigcup_{i=1}^{\infty}{A_i }\right) = \displaystyle\sum_{i=1}^\infty m_n(A_i)$.
-    \item[(iii)] $m_n(A) = m_n(A+a)$, donde $A + a = \{x+a : x \in A\}$.
-\end{enumerate}
+    \label{teo:asd}
+    No existe ninguna aplicación $ m_n: \mathcal{P}(\mathbb{R}^n) \longrightarrow [0, +\infty]$ tal que:
+    \begin{enumerate}
+        \item[(i)] $m_n([0,1) \times ... \times [0,1)) = $ $m_n([0,1)^n) = 1$.
+        \item[(ii)] $m_n\left(\displaystyle\bigcup_{i=1}^{\infty}{A_i }\right) = \displaystyle\sum_{i=1}^\infty m_n(A_i)$.
+        \item[(iii)] $m_n(A) = m_n(A+a)$, donde $A + a = \{x+a : x \in A\}$.
+    \end{enumerate}
 \end{teo}
 \begin{proof}
-En primer lugar, señalamos que si $m$ cumple esas tres propiedades entonces también verifica
-\begin{enumerate}
-    \item[(iv)] $A \subset B \Longrightarrow m(A) \leq m(B)$.
-\end{enumerate}
-En efecto, si aplicamos $(i)$ con $E_1 = A, E_2 = B \backslash A, E_i = \emptyset$ para $i \ge 2$, obtenemos
-\begin{align*}
-    m(B) = m\left(\bigcup_{i=1}^{\infty}{E_i}\right) = \sum_{i=1}^{\infty}{m(E_i)} \ge m(E_1) = m(A)
-\end{align*}
-Una vez hecha esta observación, comenzamos la demostración propiamente dicha. Razonaremos por reducción al absurdo. Supongamos que existe $m$ con las propiedades (i), (ii) y (iii). Definimos en [0,1) la relación binaria $\sim: x \sim y$ si $x -y \in \mathbb{Q}$. Esta relación binaria es una relación de equivalencia. Veamoslo:
-\begin{enumerate}
-    \item[(a)] Reflexiva.Sea $x \in [0,1)$, $x \sim x$ si $x - x \in \mathbb{Q}$ pero $x - x = 0 \in \mathbb{Q}$, luego $x \sim x$.
-    \item[(b)] Simétrica. Supongamos que $x \sim y$. Veamos que $y \sim x$. Como $x \sim y$, entonces $x - y \in \mathbb{Q}$ por tanto $-(x-y) \in \mathbb{Q}$, esto es, $y - x \in \mathbb{Q}$ lo que nos dice que $y \sim x$.
-    \item[(c)] Transitiva. Supongamos que $x \sim y$ e $y \sim z$. Veamos que $x \sim z$. 
+    En primer lugar, señalamos que si $m$ cumple esas tres propiedades entonces también verifica
     \begin{enumerate}
-        \item[(*)] Como $x \sim y$ entonces $x - y \in \mathbb{Q}$.
-        \item[(**)] Como $y \sim z$ entonces $y - z \in \mathbb{Q}$.
+        \item[(iv)] $A \subset B \Longrightarrow m(A) \leq m(B)$.
     \end{enumerate}
-\end{enumerate}
-Sumando (*) y (**) nos dice que $x - y + y - z \in \mathbb{Q})$, es decir, $x - z \in \mathbb{Q}$, luego $x \sim z$. Entonces $\sim$ es un relación de equivalencia.
-\\
-\newline
-Sea $E$ un conjunto que tenga un elemento y solamente uno de cada clase de equivalencia de $\sim$ (este conjunto se denomina conjunto de Vitali). Sea $\{r_n\}_{n \in \mathbb{N}}$ una enumeración de $\mathbb{Q} \cap [-1,1]$, es decir, $r_n \not = r_m$ si $n \not = m$ entonces para todo $r \in \mathbb{Q} \cap [-1,1]$ existe $n \in \mathbb{N}$ tal que $r = r_n$.
-\\
-\newline
-Para todo $k \in \mathbb{N}$ definimos $E_k = E + r_k = \{x + r_k : x \in E \}$. Onsérvese que se cumplen las dos propiedades siguientes
-\begin{enumerate}
-    \item[(I)] Si $j \not = k$ entonces $E_j \cap E_k = \emptyset$.
-    \item[(II)] $[0,1) \subset \bigcup_{j=1}^{\infty}{E_j} \subset [-1,2)$. 
-\end{enumerate}
-Con lo que tenemos lo siguiente
-\begin{align*}
-    m([0,1)) \leq m\left( \bigcup_{j=1}^{\infty}{E_j} \right) = \sum_{j=1}^{\infty}{m(E_j)} \leq m([-1,2))
-\end{align*}
-Aplicando las propiedades (ii) y (iii), obtenemos
-\begin{align*}
-    1 \leq \sum_{j=1}^{\infty}{m(E_j)} \leq 3
-\end{align*}
-De nuevo, por (iii), $m(E_j) = m(E) = \lambda \in [0,\infty]$ para todo $j$. Luego
-\begin{align*}
-    1 \leq \sum_{j=1}^{\infty}{\lambda} \leq 3
-\end{align*}
-Esto es un contradicción pues ningún $\lambda \in [0,\infty]$ cumple dicha desigualdad.
+    En efecto, si aplicamos $(i)$ con $E_1 = A, E_2 = B \backslash A, E_i = \emptyset$ para $i \ge 2$, obtenemos
+    \begin{align*}
+        m(B) = m\left(\bigcup_{i=1}^{\infty}{E_i}\right) = \sum_{i=1}^{\infty}{m(E_i)} \ge m(E_1) = m(A)
+    \end{align*}
+    Una vez hecha esta observación, comenzamos la demostración propiamente dicha. Razonaremos por reducción al absurdo. Supongamos que existe $m$ con las propiedades (i), (ii) y (iii). Definimos en [0,1) la relación binaria $\sim: x \sim y$ si $x -y \in \mathbb{Q}$. Esta relación binaria es una relación de equivalencia. Veamoslo:
+    \begin{enumerate}
+        \item[(a)] Reflexiva.Sea $x \in [0,1)$, $x \sim x$ si $x - x \in \mathbb{Q}$ pero $x - x = 0 \in \mathbb{Q}$, luego $x \sim x$.
+        \item[(b)] Simétrica. Supongamos que $x \sim y$. Veamos que $y \sim x$. Como $x \sim y$, entonces $x - y \in \mathbb{Q}$ por tanto $-(x-y) \in \mathbb{Q}$, esto es, $y - x \in \mathbb{Q}$ lo que nos dice que $y \sim x$.
+        \item[(c)] Transitiva. Supongamos que $x \sim y$ e $y \sim z$. Veamos que $x \sim z$.
+              \begin{enumerate}
+                  \item[(*)] Como $x \sim y$ entonces $x - y \in \mathbb{Q}$.
+                  \item[(**)] Como $y \sim z$ entonces $y - z \in \mathbb{Q}$.
+              \end{enumerate}
+    \end{enumerate}
+    Sumando (*) y (**) nos dice que $x - y + y - z \in \mathbb{Q}$, es decir, $x - z \in \mathbb{Q}$, luego $x \sim z$. Entonces $\sim$ es un relación de equivalencia.
+
+    Sea $E$ un conjunto que tenga un elemento y solamente uno de cada clase de equivalencia de $\sim$ (este conjunto se denomina conjunto de Vitali). Sea $\{r_n\}_{n \in \mathbb{N}}$ una enumeración de $\mathbb{Q} \cap [-1,1]$, es decir, $r_n \not = r_m$ si $n \not = m$ entonces para todo $r \in \mathbb{Q} \cap [-1,1]$ existe $n \in \mathbb{N}$ tal que $r = r_n$.
+
+    Para todo $k \in \mathbb{N}$ definimos $E_k = E + r_k = \{x + r_k : x \in E \}$. Onsérvese que se cumplen las dos propiedades siguientes
+    \begin{enumerate}
+        \item[(I)] Si $j \not = k$ entonces $E_j \cap E_k = \emptyset$.
+        \item[(II)] $[0,1) \subset \bigcup_{j=1}^{\infty}{E_j} \subset [-1,2)$.
+    \end{enumerate}
+    Con lo que tenemos lo siguiente
+    \begin{align*}
+        m([0,1)) \leq m\left( \bigcup_{j=1}^{\infty}{E_j} \right) = \sum_{j=1}^{\infty}{m(E_j)} \leq m([-1,2))
+    \end{align*}
+    Aplicando las propiedades (ii) y (iii), obtenemos
+    \begin{align*}
+        1 \leq \sum_{j=1}^{\infty}{m(E_j)} \leq 3
+    \end{align*}
+    De nuevo, por (iii), $m(E_j) = m(E) = \lambda \in [0,\infty]$ para todo $j$. Luego
+    \begin{align*}
+        1 \leq \sum_{j=1}^{\infty}{\lambda} \leq 3
+    \end{align*}
+    Esto es un contradicción pues ningún $\lambda \in [0,\infty]$ cumple dicha desigualdad.
 \end{proof}
 
 \section{Álgebras y $\sigma$-álgberas}
 \begin{defi}
-Un álgebra $\mathcal{A}$ sobre $X$ es una familia de subconjuntos de $X$ ($\mathcal{A} \subset \mathcal{P}(X)$) tal que
-\begin{enumerate}
-    \item[(i)] $X \in \mathcal{A}$.
-    \item[(ii)] Si $E \in \mathcal{A}$ entonces $E^c = X \backslash E \in \mathcal{A}$.
-    \item[(iii)] Si $A, B \in \mathcal{A}$ entonces $A \cup B \in \mathcal{A}$.
-\end{enumerate}
+    Un álgebra $\mathcal{A}$ sobre $X$ es una familia de subconjuntos de $X$ ($\mathcal{A} \subset \mathcal{P}(X)$) tal que
+    \begin{enumerate}
+        \item[(i)] $X \in \mathcal{A}$.
+        \item[(ii)] Si $E \in \mathcal{A}$ entonces $E^c = X \backslash E \in \mathcal{A}$.
+        \item[(iii)] Si $A, B \in \mathcal{A}$ entonces $A \cup B \in \mathcal{A}$.
+    \end{enumerate}
 \end{defi}
 Algunas propiedades inmediatas para un álgebra $\mathcal{A}$:
 \begin{enumerate}
@@ -109,12 +108,12 @@ Algunas propiedades inmediatas para un álgebra $\mathcal{A}$:
     \item[(vii)] Si $A_1, A_2,..., A_n \in \mathcal{A}$ entonces $\bigcup_{i=1}^{n}{A_i} \in \mathcal{A}$ y $\bigcap_{i=1}^{n}{A_i} \in \mathcal{A}$.
 \end{enumerate}
 \begin{defi}
-Una $\sigma$-álgebra $\mathcal{M}$ sobre $X$ es una familia de subconjuntos de $X$ ($\mathcal{M} \subset \mathcal{P}(X)$) tal que
-\begin{enumerate}
-    \item[(i)] $X \in \mathcal{M}$.
-    \item[(ii)] Si $E \in \mathcal{M}$, entonces $E^c = X \backslash E \in \mathcal{M}$.
-    \item[(iii)] Si $\{E_i\}_{i=1}^{\infty}$ es tal que $E_i \in \mathcal{M}$ entonces $\bigcup_{i=1}^{\infty}{E_i} \in \mathcal{M}$.
-\end{enumerate}
+    Una $\sigma$-álgebra $\mathcal{M}$ sobre $X$ es una familia de subconjuntos de $X$ ($\mathcal{M} \subset \mathcal{P}(X)$) tal que
+    \begin{enumerate}
+        \item[(i)] $X \in \mathcal{M}$.
+        \item[(ii)] Si $E \in \mathcal{M}$, entonces $E^c = X \backslash E \in \mathcal{M}$.
+        \item[(iii)] Si $\{E_i\}_{i=1}^{\infty}$ es tal que $E_i \in \mathcal{M}$ entonces $\bigcup_{i=1}^{\infty}{E_i} \in \mathcal{M}$.
+    \end{enumerate}
 \end{defi}
 Algunas propiedades inmediatas para un $\sigma$-álgebra $\mathcal{M}$:
 \begin{enumerate}
@@ -122,175 +121,175 @@ Algunas propiedades inmediatas para un $\sigma$-álgebra $\mathcal{M}$:
     \item[(v)] Si $\{E_i\}_{i=1}^{\infty}$ es tal que $E_i \in \mathcal{M}$ entonces $\bigcap_{i=1}^{\infty}{E_i} \in \mathcal{M}$.
 \end{enumerate}
 \begin{defi}
-Si $\mathcal{E} \in \mathcal{P}(X)$ es una familia de subconjuntos de $X$, la $\sigma$-álgebra generada por $\mathcal{E}$, denotada por $\mathcal{M(E)}$, es la intersección de todas las $\sigma$-álgebras que contienen a $\mathcal{E}$ (siempre hay una por lo menos ya que $\mathcal{P}(X)$ es un $\sigma$-álgebra que contiene a $\mathcal{E}$).
-\newline
-Por consiguiente, si $\mathcal{E} \subset \mathcal{M}$ y $\mathcal{M}$ es un $\sigma$-álgebra entonces $\mathcal{M(E)} \subset \mathcal{M}$, dicho de otro modo, $\mathcal{M(E)}$ es la menor $\sigma$-álgebra que contiene a $\mathcal{E}$.
+    Si $\mathcal{E} \in \mathcal{P}(X)$ es una familia de subconjuntos de $X$, la $\sigma$-álgebra generada por $\mathcal{E}$, denotada por $\mathcal{M(E)}$, es la intersección de todas las $\sigma$-álgebras que contienen a $\mathcal{E}$ (siempre hay una por lo menos ya que $\mathcal{P}(X)$ es un $\sigma$-álgebra que contiene a $\mathcal{E}$).
+
+    Por consiguiente, si $\mathcal{E} \subset \mathcal{M}$ y $\mathcal{M}$ es un $\sigma$-álgebra entonces $\mathcal{M(E)} \subset \mathcal{M}$, dicho de otro modo, $\mathcal{M(E)}$ es la menor $\sigma$-álgebra que contiene a $\mathcal{E}$.
 \end{defi}
 \begin{defi}
-Sea $(X, \tau)$ un espacio topológico. La $\sigma$-álgebra de Borel $\mathcal{B}_X$ es la $\sigma$-álgebra generada por los abiertos de la topología.
+    Sea $(X, \tau)$ un espacio topológico. La $\sigma$-álgebra de Borel $\mathcal{B}_X$ es la $\sigma$-álgebra generada por los abiertos de la topología.
 \end{defi}
 
 \newpage
 \section{La $\sigma$-álgebra de Borel de $\mathbb{R}$ y de $\mathbb{R}^n$}
 \begin{prop}
-La $\sigma$-álgebra de Borel $\mathcal{B}_{\mathbb{R}}$ sobre $\mathbb{R}$ está generada por cada una de las siguientes familias de intervalos siguientes:
-\begin{enumerate}
-    \item[(a)] $\mathcal{E}_1 = \{(a,b) : \infty \leq a < b \leq +\infty \}$.
-    \item[(b)] $\mathcal{E}_2 = \{(a,b) : a.b \in \mathbb{R} \}$.
-    \item[(c)] $\mathcal{E}_3 = \{[a,b) : a,b \in \mathbb{R} \}$.
-    \item[(d)] $\mathcal{E}_4 = \{(a,b] : a,b \in \mathbb{R} \}$.
-    \item[(e)] $\mathcal{E}_5 = \{[a,b] : a,b \in \mathbb{R} \}$.
-    \item[(f)] $\mathcal{E}_6 = \{(a,+\infty) : a \in \mathbb{R} \}$.
-    \item[(g)] $\mathcal{E}_7 = \{[a,+\infty) : a \in \mathbb{R} \}$.
-    \item[(h)] $\mathcal{E}_8 = \{(-\infty,b) : b \in \mathbb{R} \}$.
-    \item[(i)] $\mathcal{E}_9 = \{(-\infty,b] : b \in \mathbb{R} \}$.
-\end{enumerate}
+    La $\sigma$-álgebra de Borel $\mathcal{B}_{\mathbb{R}}$ sobre $\mathbb{R}$ está generada por cada una de las siguientes familias de intervalos siguientes:
+    \begin{enumerate}
+        \item[(a)] $\mathcal{E}_1 = \{(a,b) : \infty \leq a < b \leq +\infty \}$.
+        \item[(b)] $\mathcal{E}_2 = \{(a,b) : a.b \in \mathbb{R} \}$.
+        \item[(c)] $\mathcal{E}_3 = \{[a,b) : a,b \in \mathbb{R} \}$.
+        \item[(d)] $\mathcal{E}_4 = \{(a,b] : a,b \in \mathbb{R} \}$.
+        \item[(e)] $\mathcal{E}_5 = \{[a,b] : a,b \in \mathbb{R} \}$.
+        \item[(f)] $\mathcal{E}_6 = \{(a,+\infty) : a \in \mathbb{R} \}$.
+        \item[(g)] $\mathcal{E}_7 = \{[a,+\infty) : a \in \mathbb{R} \}$.
+        \item[(h)] $\mathcal{E}_8 = \{(-\infty,b) : b \in \mathbb{R} \}$.
+        \item[(i)] $\mathcal{E}_9 = \{(-\infty,b] : b \in \mathbb{R} \}$.
+    \end{enumerate}
 \end{prop}
 
 \begin{prop}
-La $\sigma$-álgebra de Borel $\mathcal{B}_{\mathbb{R}^n}$ sobre $\mathbb{R}^n$ está generada por cada una de las familias siguientes de intervalos:
-\begin{enumerate}
-    \item[(a)] $\mathcal{E}_2 = \{(a_1,b_1) \times ... \times (a_n,b_n) : a_i,b_i \in \mathbb{R} \}$.
-    \item[(b)] $\mathcal{E}_3 = \{[a_1,b_1) \times ... \times [a_n,b_n) : a_i,b_i \in \mathbb{R} \}$.
-    \item[(c)] $\mathcal{E}_4 = \{(a_1,b_1] \times ... \times (a_n,b_n] : a_i,b_i \in \mathbb{R} \}$.
-    \item[(d)] $\mathcal{E}_5 = \{[a_1,b_1] \times ... \times [a_n,b_n] : a_i,b_i \in \mathbb{R} \}$.
-    \item[(e)] $\mathcal{E}_6 = \{ S_i(a) : a \in \mathbb{R}, i = 1,..., n \} $, donde :
-        $$S_i(a) = \{ x = (x_1, ..., x_n) : x_i > a \}.$$
-    \item[(f)] $\mathcal{E}_7 = \{ S_i(a) : a \in \mathbb{R}, i = 1,..., n \} $, donde :
-        $$S_i(a) = \{ x = (x_1, ..., x_n) : x_i \leq a \}.$$
-    \item[(g)] $\mathcal{E}_8 = \{ S_i(a) : a \in \mathbb{R}, i = 1,..., n \} $, donde :
-        $$S_i(a) = \{ x = (x_1, ..., x_n) : x_i < a \}.$$
-    \item[(h)] $\mathcal{E}_9 = \{ S_i(a) : a \in \mathbb{R}, i = 1,..., n \} $, donde :
-        $$S_i(a) = \{ x = (x_1, ..., x_n) : x_i \ge a \}.$$
-\end{enumerate}
+    La $\sigma$-álgebra de Borel $\mathcal{B}_{\mathbb{R}^n}$ sobre $\mathbb{R}^n$ está generada por cada una de las familias siguientes de intervalos:
+    \begin{enumerate}
+        \item[(a)] $\mathcal{E}_2 = \{(a_1,b_1) \times ... \times (a_n,b_n) : a_i,b_i \in \mathbb{R} \}$.
+        \item[(b)] $\mathcal{E}_3 = \{[a_1,b_1) \times ... \times [a_n,b_n) : a_i,b_i \in \mathbb{R} \}$.
+        \item[(c)] $\mathcal{E}_4 = \{(a_1,b_1] \times ... \times (a_n,b_n] : a_i,b_i \in \mathbb{R} \}$.
+        \item[(d)] $\mathcal{E}_5 = \{[a_1,b_1] \times ... \times [a_n,b_n] : a_i,b_i \in \mathbb{R} \}$.
+        \item[(e)] $\mathcal{E}_6 = \{ S_i(a) : a \in \mathbb{R}, i = 1,..., n \} $, donde :
+              $$S_i(a) = \{ x = (x_1, ..., x_n) : x_i > a \}.$$
+        \item[(f)] $\mathcal{E}_7 = \{ S_i(a) : a \in \mathbb{R}, i = 1,..., n \} $, donde :
+              $$S_i(a) = \{ x = (x_1, ..., x_n) : x_i \leq a \}.$$
+        \item[(g)] $\mathcal{E}_8 = \{ S_i(a) : a \in \mathbb{R}, i = 1,..., n \} $, donde :
+              $$S_i(a) = \{ x = (x_1, ..., x_n) : x_i < a \}.$$
+        \item[(h)] $\mathcal{E}_9 = \{ S_i(a) : a \in \mathbb{R}, i = 1,..., n \} $, donde :
+              $$S_i(a) = \{ x = (x_1, ..., x_n) : x_i \ge a \}.$$
+    \end{enumerate}
 \end{prop}
 \section{Medidas}
 \subsection{Medidas finitamente aditivas}
 \begin{defi}
-Sean $X$ un conjunto y $\mathcal{A}$ un álgebra sobre X. Una medida finitamente aditiva sobre $(X, \mathcal{A})$ (o, simplemente, sobre $\mathcal{A}$) es una aplicación $\mu : \mathcal{A} \longrightarrow [0, +\infty]$ tal que
-\begin{enumerate}
-    \item[(a)] $\mu (\emptyset) = 0$.
-    \item[(b)] Si $A, B \in \mathcal{A}$ y $A \cap B = \emptyset$ entonces $\mu(A \cup B) = \mu(A) + \mu(B)$.
-\end{enumerate}
+    Sean $X$ un conjunto y $\mathcal{A}$ un álgebra sobre X. Una medida finitamente aditiva sobre $(X, \mathcal{A})$ (o, simplemente, sobre $\mathcal{A}$) es una aplicación $\mu : \mathcal{A} \longrightarrow [0, +\infty]$ tal que
+    \begin{enumerate}
+        \item[(a)] $\mu (\emptyset) = 0$.
+        \item[(b)] Si $A, B \in \mathcal{A}$ y $A \cap B = \emptyset$ entonces $\mu(A \cup B) = \mu(A) + \mu(B)$.
+    \end{enumerate}
 \end{defi}
 \begin{prop}
-Sea $\mu$ una medida finitamente aditiva. Entonces $\mu$ tiene las propiedades siguientes:
-\begin{enumerate}
-    \item[(a)] $\mu \left(\bigcup_{i=1}^{N}{E_i} \right) = \sum_{i=1}^{N} \mu(E_i)$ para cualquier $\{ E_i \}_{i=1}^{N}$ finita y disjunta de subconjuntos de $\mathcal{A}$.
-    \item[(b)] $A, B \in \mathcal{A}$ tales que $A \subset B$ entonces $\mu(A) \leq \mu(B)$.
-    \item[(c)] $A, B \in \mathcal{A}$ tales que $A \subset B$ y $\mu(A) < +\infty$ entonces $\mu(B \backslash A) = \mu(B) - \mu(A)$.
-    \item[(d)] $A, B \in \mathcal{A}$ entonces $\mu(A \cup B) + \mu(A \cap B) = \mu(A) + \mu(B)$.
-\end{enumerate}
+    Sea $\mu$ una medida finitamente aditiva. Entonces $\mu$ tiene las propiedades siguientes:
+    \begin{enumerate}
+        \item[(a)] $\mu \left(\bigcup_{i=1}^{N}{E_i} \right) = \sum_{i=1}^{N} \mu(E_i)$ para cualquier $\{ E_i \}_{i=1}^{N}$ finita y disjunta de subconjuntos de $\mathcal{A}$.
+        \item[(b)] $A, B \in \mathcal{A}$ tales que $A \subset B$ entonces $\mu(A) \leq \mu(B)$.
+        \item[(c)] $A, B \in \mathcal{A}$ tales que $A \subset B$ y $\mu(A) < +\infty$ entonces $\mu(B \backslash A) = \mu(B) - \mu(A)$.
+        \item[(d)] $A, B \in \mathcal{A}$ entonces $\mu(A \cup B) + \mu(A \cap B) = \mu(A) + \mu(B)$.
+    \end{enumerate}
 \end{prop}
 \begin{proof}
-\begin{enumerate}
-    \item[(a)] Se demuestra por inducción.
-    \item[(b)] Es claro que $B = A \cup (B \backslash A)$ y que $A$ y $B \backslash A$ son disjuntos. Por ser $\mu$ finitamente aditiva, $\mu(B) = \mu(A) + \mu(B \backslash A)$ y puesto que $\mu(B \backslash A) \ge 0$ tenemos
-    \begin{align*}
-        \mu(B) = \mu(A) + \mu(B \backslash A) \ge \mu(A)
-    \end{align*}
-    \item[(c)] Como antes, $\mu(B) = \mu(A) + \mu(B \backslash A)$, y, ya que $\mu(A) < +\infty$, se deduce que $\mu(B \backslash A) = \mu(B) - \mu(A)$.
-    \item[(d)] Hágase como ejercicio.
-\end{enumerate}
+    \begin{enumerate}
+        \item[(a)] Se demuestra por inducción.
+        \item[(b)] Es claro que $B = A \cup (B \backslash A)$ y que $A$ y $B \backslash A$ son disjuntos. Por ser $\mu$ finitamente aditiva, $\mu(B) = \mu(A) + \mu(B \backslash A)$ y puesto que $\mu(B \backslash A) \ge 0$ tenemos
+              \begin{align*}
+                  \mu(B) = \mu(A) + \mu(B \backslash A) \ge \mu(A)
+              \end{align*}
+        \item[(c)] Como antes, $\mu(B) = \mu(A) + \mu(B \backslash A)$, y, ya que $\mu(A) < +\infty$, se deduce que $\mu(B \backslash A) = \mu(B) - \mu(A)$.
+        \item[(d)] Hágase como ejercicio.
+    \end{enumerate}
 \end{proof}
 
 \subsection{Medidas (o medidas numerablemente aditivas)}
 \begin{defi}
-Si $\mathcal{M}$ es una $\sigma$-álgebra sobre $X$, decimos que $(X, \mathcal{M})$ es un espacio medible y a los conjuntos $E \in \mathcal{M}$ se les llama conjuntos medibles.
+    Si $\mathcal{M}$ es una $\sigma$-álgebra sobre $X$, decimos que $(X, \mathcal{M})$ es un espacio medible y a los conjuntos $E \in \mathcal{M}$ se les llama conjuntos medibles.
 \end{defi}
 \begin{defi}
-Sea $(X, \mathcal{M})$ un espacio medibe. Una medida sobre $(X, \mathcal{M})$ es una aplicación $\mu : \mathcal{A} \longrightarrow [0, +\infty]$ tal que
-\begin{enumerate}
-    \item[(a)] $\mu (\emptyset) = 0$.
-    \item[(b)] $\mu \left(\bigcup_{i=1}^{\infty}{E_i} \right) = \sum_{i=1}^{\infty} \mu(E_i)$ para cualquier $\{ E_i \}_{i=1}^{\infty}$ numerable y disjunta de subconjuntos de $\mathcal{M}$.
-\end{enumerate}
-En este caso diremos que $(X, \mathcal{M}, \mu)$ es un espacio de medida y que $\mu$ es una medida sobre $X$ o sobre $\mathcal{M}$.
+    Sea $(X, \mathcal{M})$ un espacio medibe. Una medida sobre $(X, \mathcal{M})$ es una aplicación $\mu : \mathcal{A} \longrightarrow [0, +\infty]$ tal que
+    \begin{enumerate}
+        \item[(a)] $\mu (\emptyset) = 0$.
+        \item[(b)] $\mu \left(\bigcup_{i=1}^{\infty}{E_i} \right) = \sum_{i=1}^{\infty} \mu(E_i)$ para cualquier $\{ E_i \}_{i=1}^{\infty}$ numerable y disjunta de subconjuntos de $\mathcal{M}$.
+    \end{enumerate}
+    En este caso diremos que $(X, \mathcal{M}, \mu)$ es un espacio de medida y que $\mu$ es una medida sobre $X$ o sobre $\mathcal{M}$.
 \end{defi}
 \begin{ejemplo}
-\begin{enumerate}
-    \item[(i)] Sea $X$ cualquier conjunto y $\mathcal{M} = \mathcal{P}(X)$. Definimos
-    \begin{align*}
-    \mu(E) =  \left\{ \begin{array}{lcc}
-             #E &  si  &\textit{E es finito}\\
-             +\infty &  si &\textit{E es infinito} \\
-             \end{array}
-   \right.
-    \end{align*}
-    $\mu$ es una medida que se denomina \textbf{medida contadora}.
-    \item[(ii)] Sea $X$ cualquier conjunto y $\mathcal{M} = \mathcal{P}(X)$. Fijamos $a \in X$. Definimos
-    \begin{align*}
-    \mu(E) =  \left\{ \begin{array}{lcc}
-             1 &  si  &a \in E\\
-             0 &  si &a \not \in E \\
-             \end{array}
-   \right.
-    \end{align*}
-    $\mu$ es una medida que se denomina \textbf{delta de Dirac en el punto a} y se denota por $\delta_a$.
-    \item[(iii)] Sea $X$ cualquier conjunto y 
-    \begin{align*}
-    \mathcal{M} =\{ E \subset X : E \textit{ es numerable o } E^c \textit{ es numerable} \} \\
-    \mu(E) =  \left\{ \begin{array}{lcc}
-             0 &  si  &\textit{E es numerable}\\
-             1 &  si &\textit{E no es numerable} \\
-             \end{array}
-   \right.
-    \end{align*}
-    Se tiene que $\mu$ es una medida.
-    \item[(iv)] Sea $X = \mathbb{N}$ y $\mathcal{M} = \mathcal{P}(\mathbb{N})$. Definimos
-    \begin{align*}
-    \mu(E) =  \left\{ \begin{array}{lcc}
-             0 &  si  &\textit{E es finito}\\
-             +\infty &  si &\textit{E es infinito} \\
-             \end{array}
-   \right.
-    \end{align*}
-    $\mu$ no es una medida pero es una medida finitamente aditiva.
-\end{enumerate}
+    \begin{enumerate}
+        \item[(i)] Sea $X$ cualquier conjunto y $\mathcal{M} = \mathcal{P}(X)$. Definimos
+              \begin{align*}
+                  \mu(E) =  \left\{ \begin{array}{lcc}
+                                        \#E     & si & \textit{E es finito}   \\
+                                        +\infty & si & \textit{E es infinito} \\
+                                    \end{array}
+                  \right.
+              \end{align*}
+              $\mu$ es una medida que se denomina \textbf{medida contadora}.
+        \item[(ii)] Sea $X$ cualquier conjunto y $\mathcal{M} = \mathcal{P}(X)$. Fijamos $a \in X$. Definimos
+              \begin{align*}
+                  \mu(E) =  \left\{ \begin{array}{lcc}
+                                        1 & si & a \in E      \\
+                                        0 & si & a \not \in E \\
+                                    \end{array}
+                  \right.
+              \end{align*}
+              $\mu$ es una medida que se denomina \textbf{delta de Dirac en el punto a} y se denota por $\delta_a$.
+        \item[(iii)] Sea $X$ cualquier conjunto y
+              \begin{align*}
+                  \mathcal{M} =\{ E \subset X : E \textit{ es numerable o } E^c \textit{ es numerable} \} \\
+                  \mu(E) =  \left\{ \begin{array}{lcc}
+                                        0 & si & \textit{E es numerable}    \\
+                                        1 & si & \textit{E no es numerable} \\
+                                    \end{array}
+                  \right.
+              \end{align*}
+              Se tiene que $\mu$ es una medida.
+        \item[(iv)] Sea $X = \mathbb{N}$ y $\mathcal{M} = \mathcal{P}(\mathbb{N})$. Definimos
+              \begin{align*}
+                  \mu(E) =  \left\{ \begin{array}{lcc}
+                                        0       & si & \textit{E es finito}   \\
+                                        +\infty & si & \textit{E es infinito} \\
+                                    \end{array}
+                  \right.
+              \end{align*}
+              $\mu$ no es una medida pero es una medida finitamente aditiva.
+    \end{enumerate}
 \end{ejemplo}
 \begin{prop}
-Sea $\mu$ una medida sobre $\mathcal{M}$, es decir, $(X, \mathcal{M}, \mu)$ es un espacio de medida. Se verifican las propiedades siguientes:
-\begin{enumerate}
-    \item[(a)] $\mu$ es finitamente aditiva sobre $\mathcal{M}$.
-    \item[(b)] Si $A, B \in \mathcal{M}$ y $A \subset B$ entonces $\mu(A) \leq \mu(B)$.
-    \item[(c)] Si $A, B \in \mathcal{M}$ y $A \subset B$ y $\mu(A) < +\infty$ entonces $\mu(B \backslash A) = \mu(B) - \mu(A)$.
-    \item[(d)] Si  $\{ E_i \}_{i=1}^{\infty}$ es una colecciónn numerable en $\mathcal{M}$ tal que $E_i \subset E_{i+1}$, para todo i entonces
-    \begin{align*}
-        \mu \left( \bigcup_{i=1}^{\infty}{E_i} \right) = \lim_{i \to \infty}{\mu(E_i)}
-    \end{align*}
-\end{enumerate}
+    Sea $\mu$ una medida sobre $\mathcal{M}$, es decir, $(X, \mathcal{M}, \mu)$ es un espacio de medida. Se verifican las propiedades siguientes:
+    \begin{enumerate}
+        \item[(a)] $\mu$ es finitamente aditiva sobre $\mathcal{M}$.
+        \item[(b)] Si $A, B \in \mathcal{M}$ y $A \subset B$ entonces $\mu(A) \leq \mu(B)$.
+        \item[(c)] Si $A, B \in \mathcal{M}$ y $A \subset B$ y $\mu(A) < +\infty$ entonces $\mu(B \backslash A) = \mu(B) - \mu(A)$.
+        \item[(d)] Si  $\{ E_i \}_{i=1}^{\infty}$ es una colecciónn numerable en $\mathcal{M}$ tal que $E_i \subset E_{i+1}$, para todo i entonces
+              \begin{align*}
+                  \mu \left( \bigcup_{i=1}^{\infty}{E_i} \right) = \lim_{i \to \infty}{\mu(E_i)}
+              \end{align*}
+    \end{enumerate}
 \end{prop}
 \begin{proof}
 
 \end{proof}
 
 \begin{defi}
-Sea $(X, \mathcal{M}, \mu)$ un espacio de medida.
-\begin{enumerate}
-    \item[(a)] Decimos que el espacio de medida es finito o que $\mu$ es finita si $\mu(X) < \infty$.
-    \item[(b)] Decimos que el espacio de medida es de probabilidad o que $\mu$ es una probabilidad si $\mu(X) = 1$.
-    \item[(c)] Decimos que el espacio e medida es $\sigma$-finito o que $\mu$ es $\sigma$-finita si existe una sucesión $\{ X_n \}$ de conjuntos mediables ($X_n \in \mathcal{M}$) tal que  $X = \bigcup_{n=1}^{\infty}{X_n}$ y $\mu(X_n) < \infty$ para todo $n$.
-\end{enumerate}
+    Sea $(X, \mathcal{M}, \mu)$ un espacio de medida.
+    \begin{enumerate}
+        \item[(a)] Decimos que el espacio de medida es finito o que $\mu$ es finita si $\mu(X) < \infty$.
+        \item[(b)] Decimos que el espacio de medida es de probabilidad o que $\mu$ es una probabilidad si $\mu(X) = 1$.
+        \item[(c)] Decimos que el espacio e medida es $\sigma$-finito o que $\mu$ es $\sigma$-finita si existe una sucesión $\{ X_n \}$ de conjuntos mediables ($X_n \in \mathcal{M}$) tal que  $X = \bigcup_{n=1}^{\infty}{X_n}$ y $\mu(X_n) < \infty$ para todo $n$.
+    \end{enumerate}
 \end{defi}
 \begin{defi}
-Decimos que un espacio de medida $(X, \mathcal{M}, \mu)$ es completo si son medibles todos los subconjuntos de los conjuntos de medida cero, es decir, si $F \subset N \in \mathcal{M}$ y $\mu(N) = 0$ implica $F \in \mathcal{M}$.
+    Decimos que un espacio de medida $(X, \mathcal{M}, \mu)$ es completo si son medibles todos los subconjuntos de los conjuntos de medida cero, es decir, si $F \subset N \in \mathcal{M}$ y $\mu(N) = 0$ implica $F \in \mathcal{M}$.
 \end{defi}
 Los espacios de medida se pueden completar.
 \begin{teo}
-\label{teo:completar}
-Sea $(X, \mathcal{M}, \mu)$ un espacio de medida. Definimos
-\begin{align*}
-    \overline{\mathcal{M}} = \{ E \cup F : E \in \mathcal{M}, F \subset N \in \mathcal{M}, \mu(N) = 0\}
-\end{align*}
-y $\overline{\mu}: \overline{\mathcal{M}} \longrightarrow [0, +\infty]$ mediante
-\begin{align*}
-    \overline{\mu}(A) = \mu(E) \text{, donde } A \in \overline{\mathcal{M}}
-\end{align*}
-Entonces
-\begin{enumerate}
-    \item[(a)] $\mathcal{M} \subset \overline{\mathcal{M}}$, $\overline{\mathcal{M}}$ es un $\sigma$-álgebra y $\overline{\mu}$ está bien definida.
-    \item[(b)] $(X, \mathcal{\overline{M}}, \overline{\mu})$ es un espacio de medida completo y $\overline{\mu}|_{\mathcal{M}} = \mu$.
-    \item[(c)] Si $(X, \mathcal{N}, \mu)$ es otro espacio completo tal que $\mathcal{M} \subset \mathcal{N}$ y $\nu |_{\mathcal{M}} = \mu$ entonces $\overline{\mathcal{M}} \subset \mathcal{N}$ y $\nu |_{\overline{\mathcal{M}}} = \overline{\mu}$.
-\end{enumerate}
+    \label{teo:completar}
+    Sea $(X, \mathcal{M}, \mu)$ un espacio de medida. Definimos
+    \begin{align*}
+        \overline{\mathcal{M}} = \{ E \cup F : E \in \mathcal{M}, F \subset N \in \mathcal{M}, \mu(N) = 0\}
+    \end{align*}
+    y $\overline{\mu}: \overline{\mathcal{M}} \longrightarrow [0, +\infty]$ mediante
+    \begin{align*}
+        \overline{\mu}(A) = \mu(E) \text{, donde } A \in \overline{\mathcal{M}}
+    \end{align*}
+    Entonces
+    \begin{enumerate}
+        \item[(a)] $\mathcal{M} \subset \overline{\mathcal{M}}$, $\overline{\mathcal{M}}$ es un $\sigma$-álgebra y $\overline{\mu}$ está bien definida.
+        \item[(b)] $(X, \mathcal{\overline{M}}, \overline{\mu})$ es un espacio de medida completo y $\overline{\mu}|_{\mathcal{M}} = \mu$.
+        \item[(c)] Si $(X, \mathcal{N}, \mu)$ es otro espacio completo tal que $\mathcal{M} \subset \mathcal{N}$ y $\nu |_{\mathcal{M}} = \mu$ entonces $\overline{\mathcal{M}} \subset \mathcal{N}$ y $\nu |_{\overline{\mathcal{M}}} = \overline{\mu}$.
+    \end{enumerate}
 \end{teo}
 \begin{proof}
 
@@ -300,15 +299,15 @@ Entonces
 \subsection{Preliminares}
 Vamos a considerar en $\mathbb{R}$ intervalos acotados con la notación habitual: $(a, b)$, $[a, b)$, $(a, b]$, $[a, b]$, $a \leq b$, $a, b \in \mathbb{R}$. Si $I$ es uno de esos intervalos la longitud de $I$ es $b - a$ y escribimos $l(I) = b - a$. Los intervalos $(a, a)$, $[a, a)$ y $(a, a]$ son el conjunto vacío.
 Observamos que, en consecuencia, $l(\emptyset) = 0$ cualquiera que sea la representación elegida.
-\newline
+
 Un intervalo (acotado) $I$ en $\mathbb{R}^n$ es un producto de $n$ intervalos acotados de $\mathbb{R}$: $I = I_1 \times ... \times I_n$. El volumen de $I$ se define como $\mathcal{V}(I) = \mathcal{V}(I_1) \cdot ... \cdot \mathcal{V}(I_n)$. Como antes, $l(\emptyset) = 0$. Decimos que $I$ es un cubo si todos los intervalos $I_i$ tienen la misma longitud. Algunas propiedades de los intervalos y del volumen son las siguientes:
 \begin{enumerate}
     \item[(a)] Si $\emptyset \not = I_1 \times ... \times I_n \subset J_1 \times ... \times J_n$ entonces $I_i \subset J_i$ para todo $i$.
     \item[(b)] Si $I$ y $J$ son intervalos con $I \subset J$ entonces $\mathcal{V}(I) \leq \mathcal{V}(J)$.
-    \begin{enumerate}
-        \item[(i)] Sea $A \not = \emptyset$ un intervalo. Entonces para todo $\varepsilon > 0$ existe un intervalo cerrado $J \subset A$ tal que $\mathcal{V}(A) - \mathcal{V}(J) < \varepsilon$. 
-        \item[(ii)] Sea $A$ un intervalo. Entonces para todo $\varepsilon > 0$ existe un intervalo abierto $J$ tal que $A \subset J$ y $\mathcal{V}(J) - \mathcal{V}(A) < \varepsilon$.
-    \end{enumerate}
+          \begin{enumerate}
+              \item[(i)] Sea $A \not = \emptyset$ un intervalo. Entonces para todo $\varepsilon > 0$ existe un intervalo cerrado $J \subset A$ tal que $\mathcal{V}(A) - \mathcal{V}(J) < \varepsilon$.
+              \item[(ii)] Sea $A$ un intervalo. Entonces para todo $\varepsilon > 0$ existe un intervalo abierto $J$ tal que $A \subset J$ y $\mathcal{V}(J) - \mathcal{V}(A) < \varepsilon$.
+          \end{enumerate}
     \item[(c)] Si $A, B_1,..., B_s$ son intervalos de $\mathbb{R}^n$ y $A \subset \bigcup_{i=1}^{s}{B_i}$ entonces $\mathcal{V}(A) \leq \sum_{i=1}^{s}{\mathcal{V}(B_i)}$.
     \item[(d)] Si $A, B_1,..., B_s$ son intervalos de $\mathbb{R}^n$ y $A = \bigcup_{i=1}^{s}{B_i}$ y los intervalos $B_i$ son disjuntos entonces $\mathcal{V}(A) = \sum_{i=1}^{s}{\mathcal{V}(B_i)}$.
     \item[(e)] La $\sigma$-álgebra de Borel de $\mathbb{R}^n$ está generada por los intervalos de $\mathbb{R}^n$.
@@ -316,138 +315,137 @@ Un intervalo (acotado) $I$ en $\mathbb{R}^n$ es un producto de $n$ intervalos ac
 \subsection{La medida exterior de Lebesgue}
 Pretendemos definir una medida $m$ sobre una $\sigma$-álgebra $\mathcal{M}$ de $\mathbb{R}^n$ de forma que los intervalos pertenezcan a $\mathcal{M}$ y que $m(I) = \mathcal{V}(I)$.
 \begin{defi}
-Definimos la medida exterior de Lebesgue $m^*: \mathcal{P}(\mathbb{R}^n) \longrightarrow [0, +\infty]$ como
-$$m^*(A) = ínf(H_A)$$
-donde 
-\begin{align*}
-    H_A = \left\{ \sum_{i=1}^{\infty}{\mathcal{V}(I_i)} : A \subset \bigcup_{i=1}^{\infty}{I_i}, I_i \textit{ es un intervalo de } \mathbb{R}^n \right\}
-\end{align*}
+    Definimos la medida exterior de Lebesgue $m^*: \mathcal{P}(\mathbb{R}^n) \longrightarrow [0, +\infty]$ como
+    $$m^\ast(A) = \inf(H_A)$$
+    donde
+    \begin{align*}
+        H_A = \left\{ \sum_{i=1}^{\infty}{\mathcal{V}(I_i)} : A \subset \bigcup_{i=1}^{\infty}{I_i}, I_i \textit{ es un intervalo de } \mathbb{R}^n \right\}
+    \end{align*}
 \end{defi}
 \begin{obs}
-$m^*(A) = 0$ si y sólo si para todo $\varepsilon > 0$ existe una familia numerable de intervalos abiertos $\{ I_i\}_{i=1}^{\infty}$ tal que
-\begin{align*}
-    A \subset \bigcup_{i=1}^{\infty}{I_i} \text{ y } \sum_{i=1}^{\infty}{\mathcal{V}(I_i)} < \varepsilon
-\end{align*}
+    $m^*(A) = 0$ si y sólo si para todo $\varepsilon > 0$ existe una familia numerable de intervalos abiertos $\{ I_i\}_{i=1}^{\infty}$ tal que
+    \begin{align*}
+        A \subset \bigcup_{i=1}^{\infty}{I_i} \text{ y } \sum_{i=1}^{\infty}{\mathcal{V}(I_i)} < \varepsilon
+    \end{align*}
 \end{obs}
 \begin{prop}
-Algunas propiedades de $m^*$
-\begin{enumerate}
-    \item[(a)] Si $A \subset B$ entonces $m^*(A) \leq m^*(B)$.
-    \item[(b)] $m^*(\{ x \}) = 0$ para todo $x \in \mathbb{R}^n$.
-    \item[(c)] $m^*(\emptyset) = 0$.
-    \item[(d)] La medida exterior de Lebesgue de un conjunto numerable es cero.
-    \item[(e)] La medida exterior de Lebesgue de un intervalo $I$ es su volumen.
-    \item[(f)] La medida exterior de Lebesgue de $\mathbb{R}^n$ es $+\infty$.
-    \item[(g)] La medida exterior de Lebesgue es invariante a traslaciones: si $A \subset \mathbb{R}^n$ y $b \in \mathbb{R}^n$ entonces $m^*(A + b) = m^*(A)$.
-    \item[(h)] La medida exterior de Lebesgue no es una medida sobre $\mathcal{P}(\mathbb{R}^n)$.
-\end{enumerate}
+    Algunas propiedades de $m^*$
+    \begin{enumerate}
+        \item[(a)] Si $A \subset B$ entonces $m^*(A) \leq m^*(B)$.
+        \item[(b)] $m^*(\{ x \}) = 0$ para todo $x \in \mathbb{R}^n$.
+        \item[(c)] $m^*(\emptyset) = 0$.
+        \item[(d)] La medida exterior de Lebesgue de un conjunto numerable es cero.
+        \item[(e)] La medida exterior de Lebesgue de un intervalo $I$ es su volumen.
+        \item[(f)] La medida exterior de Lebesgue de $\mathbb{R}^n$ es $+\infty$.
+        \item[(g)] La medida exterior de Lebesgue es invariante a traslaciones: si $A \subset \mathbb{R}^n$ y $b \in \mathbb{R}^n$ entonces $m^*(A + b) = m^*(A)$.
+        \item[(h)] La medida exterior de Lebesgue no es una medida sobre $\mathcal{P}(\mathbb{R}^n)$.
+    \end{enumerate}
 \end{prop}
 \begin{proof}
-\begin{enumerate}
-    \item[(a)] Se sigue fácilmente porque $A \subset B \Longrightarrow H_B \subset H_A$.
-    \item[(b)] Sea $x = (x_1,...,x_n) \in \mathbb{R}^n$. Sea $\varepsilon > 0$. Sean
-    \begin{align*}
-        I_1 = (x_1 - \varepsilon, x_1 + \varepsilon) \times (x_2 - \varepsilon, x_2 + \varepsilon) \times ... \times (x_n - \varepsilon, x_n + \varepsilon), I_i = \emptyset \text{ para todo } i\ge 2
-    \end{align*}
-    Entonces 
-    \begin{align*}
-        \{x\} \subset \bigcup_{i=1}^{\infty}{I_i} \text{ \ \ \ y \ \ \ } \sum_{i=1}^{\infty}{\mathcal{V}(I_i)} = (2\varepsilon)^n
-    \end{align*}
-    Por lo tanto, $m^*(\{x\}) \leq (2\varepsilon)^n$ para todo $\varepsilon > 0$, lo que implica $m^*(\{x\}) = 0$.
-    \item[(c)] Se sigue de (a) y (b).
-    \item[(d)] Escribimos $A = \{a_j\}_{j=1}^{\infty}$ y sea $\varepsilon > 0$. Por lo ya demostrado en (b), para casa $j \in \mathbb{N}$, existe un intervalo abierto $I_j$ con $a_j \in I_j$ y $\mathcal{V}(I_j) < \frac{\varepsilon}{2^j}$, de donde,
-    \begin{align*}
-        m^*(A) \leq \sum_{j=1}^{\infty}{\mathcal{V}(I_j)} \leq \sum_{j=1}^{\infty}{\frac{\varepsilon}{2^j}} = \varepsilon
-    \end{align*}
-    y por lo tanto, $m^*(A) = 0$.
-    \item[(e)] Es claro que $m^*(I) = \mathcal{V}(I)$ para intervalos abiertos $I$.
-    \newline
-    Sea ahora $I$ un intervalo cualquiera no vacío. Dado $\varepsilon > 0$ existen dos intervalos abiertos $I_1$ e $I_2$ tales que $I_1 \subset I \subset I_2$, $\mathcal{V}(I) - \varepsilon \leq \mathcal{V}(I_1)$ y $\mathcal{V}(I_2) \leq \mathcal{V}(I) + \varepsilon$. Entonces, aplicando que $m^*$ es una medida exterior y lo ya demostrado para intervalos abiertos, 
-    \begin{align*}
-        \mathcal{V}(I) - \varepsilon \leq \mathcal{V}(I_1) = m^*(I_1) \leq m*(I_2) = \mathcal{V}(I_2) \leq \mathcal{V}(I) + \varepsilon
-    \end{align*}
-    Tomando limites cuando $\varepsilon$ tiende a cero, concluimos $m^*(I) = \mathcak{V}(I)$.
-    \item[(f)] Para cada natural $k$ tenemos $I_k = (-k,k) \times ... \times (-k,k) \subset \mathbb{R}^n$. Entonces
-    \begin{align*}
-        m^*(I_k) = \mathcal{V}(I_k) \leq m^*(\mathbb{R}^n)
-    \end{align*}
-    es decir, $(2k)^n \leq m^*(\mathbb{R})^n$ para todo $k \in \mathbb{N}$. Luego $m^*(\mathbb{R}^n) = +\infty$.
-    \item[(g)] Sea $A \subset \mathbb{R}^n$ y $b \in \mathbb{R}^n$. Consideramos $A + b = \{ a + b : a \in A\}$. Sean
-    \begin{align*}
-        S = \left\{  \sum_{j=1}^{\infty}{\mathcal{V}(I_j)} : A \subset \bigcup_{j=1}^{\infty}{I_j}, I_j \text{ intervalo abierto}\right\} \text{ y }\\
-        T = \left\{  \sum_{j=1}^{\infty}{\mathcal{V}(H_j)} : A + b \subset \bigcup_{j=1}^{\infty}{H_j}, H_j \text{ intervalo abierto}\right\}
-    \end{align*}
-    Así, $m^*(A) = ínf(S)$ y $m^*(A + b) = ínf(T)$. Bastará ver que $S = T$.
-    \newline
-    Comenzamos probando $S \subset T$. Sea $\lambda \in S$. Entonces, existe $\{ I_j \}_{j=1}^{\infty}$ tal que $A \subset \bigcup_{j=1}^{\infty}{I_j}$, con $I_j$ intervalo abierto y $\lambda = \sum_{j=1}^{\infty}{\mathcal{V}(I_j)}$. Entonces,
-    \begin{align*}
-        A + b \subset \left( \bigcup_{j=1}^{\infty}{I_j} \right) + b =  \bigcup_{j=1}^{\infty}{(I_j + b)} 
-    \end{align*}
-    Así, si $H_j = I_j + b$ se tiene que $H_j$ es un intervalo abierto, $\mathcal{V}(H_j) = \mathcal{V}(I_j)$, $A + b \subset \bigcup_{j=1}^{\infty}{H_j}$ y
-    \begin{align*}
-        \sum_{j=1}^{\infty}{\mathcal{V}(H_j)} = \sum_{j=1}^{\infty}{\mathcal{V}(I_j)} = \lambda
-    \end{align*}
-    por lo que $\lambda \in T$. La otra inclusión es análoga (basta restar b).
-    \item[(h)] Se sigue de las propiedades (c), (e) y (g) y del teorema \ref{teo:asd}.
-\end{enumerate}
+    \begin{enumerate}
+        \item[(a)] Se sigue fácilmente porque $A \subset B \Longrightarrow H_B \subset H_A$.
+        \item[(b)] Sea $x = (x_1,...,x_n) \in \mathbb{R}^n$. Sea $\varepsilon > 0$. Sean
+              \begin{align*}
+                  I_1 = (x_1 - \varepsilon, x_1 + \varepsilon) \times (x_2 - \varepsilon, x_2 + \varepsilon) \times ... \times (x_n - \varepsilon, x_n + \varepsilon), I_i = \emptyset \text{ para todo } i\ge 2
+              \end{align*}
+              Entonces
+              \begin{align*}
+                  \{x\} \subset \bigcup_{i=1}^{\infty}{I_i} \text{ \ \ \ y \ \ \ } \sum_{i=1}^{\infty}{\mathcal{V}(I_i)} = (2\varepsilon)^n
+              \end{align*}
+              Por lo tanto, $m^*(\{x\}) \leq (2\varepsilon)^n$ para todo $\varepsilon > 0$, lo que implica $m^*(\{x\}) = 0$.
+        \item[(c)] Se sigue de (a) y (b).
+        \item[(d)] Escribimos $A = \{a_j\}_{j=1}^{\infty}$ y sea $\varepsilon > 0$. Por lo ya demostrado en (b), para casa $j \in \mathbb{N}$, existe un intervalo abierto $I_j$ con $a_j \in I_j$ y $\mathcal{V}(I_j) < \frac{\varepsilon}{2^j}$, de donde,
+              \begin{align*}
+                  m^*(A) \leq \sum_{j=1}^{\infty}{\mathcal{V}(I_j)} \leq \sum_{j=1}^{\infty}{\frac{\varepsilon}{2^j}} = \varepsilon
+              \end{align*}
+              y por lo tanto, $m^*(A) = 0$.
+        \item[(e)] Es claro que $m^*(I) = \mathcal{V}(I)$ para intervalos abiertos $I$.
+
+        Sea ahora $I$ un intervalo cualquiera no vacío. Dado $\varepsilon > 0$ existen dos intervalos abiertos $I_1$ e $I_2$ tales que $I_1 \subset I \subset I_2$, $\mathcal{V}(I) - \varepsilon \leq \mathcal{V}(I_1)$ y $\mathcal{V}(I_2) \leq \mathcal{V}(I) + \varepsilon$. Entonces, aplicando que $m^*$ es una medida exterior y lo ya demostrado para intervalos abiertos,
+              \begin{align*}
+                  \mathcal{V}(I) - \varepsilon \leq \mathcal{V}(I_1) = m^*(I_1) \leq m*(I_2) = \mathcal{V}(I_2) \leq \mathcal{V}(I) + \varepsilon
+              \end{align*}
+              Tomando limites cuando $\varepsilon$ tiende a cero, concluimos $m^*(I) = \mathcal{V}(I)$.
+        \item[(f)] Para cada natural $k$ tenemos $I_k = (-k,k) \times ... \times (-k,k) \subset \mathbb{R}^n$. Entonces
+              \begin{align*}
+                  m^*(I_k) = \mathcal{V}(I_k) \leq m^*(\mathbb{R}^n)
+              \end{align*}
+              es decir, $(2k)^n \leq m^*(\mathbb{R})^n$ para todo $k \in \mathbb{N}$. Luego $m^*(\mathbb{R}^n) = +\infty$.
+        \item[(g)] Sea $A \subset \mathbb{R}^n$ y $b \in \mathbb{R}^n$. Consideramos $A + b = \{ a + b : a \in A\}$. Sean
+              \begin{align*}
+                  S = \left\{  \sum_{j=1}^{\infty}{\mathcal{V}(I_j)} : A \subset \bigcup_{j=1}^{\infty}{I_j}, I_j \text{ intervalo abierto}\right\} \text{ y } \\
+                  T = \left\{  \sum_{j=1}^{\infty}{\mathcal{V}(H_j)} : A + b \subset \bigcup_{j=1}^{\infty}{H_j}, H_j \text{ intervalo abierto}\right\}
+              \end{align*}
+              Así, $m^*(A) = \inf(S)$ y $m^*(A + b) = \inf(T)$. Bastará ver que $S = T$.
+
+              Comenzamos probando $S \subset T$. Sea $\lambda \in S$. Entonces, existe $\{ I_j \}_{j=1}^{\infty}$ tal que $A \subset \bigcup_{j=1}^{\infty}{I_j}$, con $I_j$ intervalo abierto y $\lambda = \sum_{j=1}^{\infty}{\mathcal{V}(I_j)}$. Entonces,
+              \begin{align*}
+                  A + b \subset \left( \bigcup_{j=1}^{\infty}{I_j} \right) + b =  \bigcup_{j=1}^{\infty}{(I_j + b)}
+              \end{align*}
+              Así, si $H_j = I_j + b$ se tiene que $H_j$ es un intervalo abierto, $\mathcal{V}(H_j) = \mathcal{V}(I_j)$, $A + b \subset \bigcup_{j=1}^{\infty}{H_j}$ y
+              \begin{align*}
+                  \sum_{j=1}^{\infty}{\mathcal{V}(H_j)} = \sum_{j=1}^{\infty}{\mathcal{V}(I_j)} = \lambda
+              \end{align*}
+              por lo que $\lambda \in T$. La otra inclusión es análoga (basta restar b).
+        \item[(h)] Se sigue de las propiedades (c), (e) y (g) y del teorema \ref{teo:asd}.
+    \end{enumerate}
 \end{proof}
 
 \subsection{La medida de Lebesgue}
 La medida exterior de Lebesgue restringida a la $\sigma$-álgebra de Borel de $\mathbb{R}^n$ es una medida. Enunciamos el teorema pero posponemos la demostración para más adelante.
 \begin{teo}
-La medida exterior de Lebesgue $m^*$ restringida a $\mathcal{B}_{\mathbb{R}^n}$ es una medida, denotada por $m$, sobre la $\sigma$-álgebra de Borel de $\mathbb{R}^n$ y verifica que $m(I) = \mathcal{V}(I)$ para todo intervalo $I$. A la medida $m$ se le denomina medida Lebesgue.
+    La medida exterior de Lebesgue $m^*$ restringida a $\mathcal{B}_{\mathbb{R}^n}$ es una medida, denotada por $m$, sobre la $\sigma$-álgebra de Borel de $\mathbb{R}^n$ y verifica que $m(I) = \mathcal{V}(I)$ para todo intervalo $I$. A la medida $m$ se le denomina medida Lebesgue.
 \end{teo}
 \begin{teo}
-La medida de Lebesgue $m = m^* |_{\mathcal{B}_{\mathbb{R}^n}}$ es la única medida $\mu$ definida sobre $\mathcal{B}_{\mathbb{R}^n}$ tal que $\mu(I) = \mathcal{V}(I)$ para todo intervalo abierto $I$ de $\mathbb{R}^n$.
+    La medida de Lebesgue $m = m^* |_{\mathcal{B}_{\mathbb{R}^n}}$ es la única medida $\mu$ definida sobre $\mathcal{B}_{\mathbb{R}^n}$ tal que $\mu(I) = \mathcal{V}(I)$ para todo intervalo abierto $I$ de $\mathbb{R}^n$.
 \end{teo}
 \begin{proof}
-Sea $\mu: \mathcal{B}_{\mathbb{R}^n} \longrightarrow [0,+\infty]$ otra medida tal que $\mu(I) = \mathcal{V}(I)$ para todo intervalo $I$ abierto de $\mathbb{R}^n$. Tenemos que probar que $m(E) = \mu(E)$ para todo $E \in B_{\mathbb{R}^n}$. Sea $E \in B_{\mathbb{R}^n}$, por definición $\m(E) = ínf(H_E)$ donde
-\begin{align*}
-    H_E = \left\{ \lambda = \sum_{i=1}^{\infty}{\mathcal{V}(I_i)} : A \subset \bigcup_{i=1}^{\infty}{I_i}, I_i \textit{ es un intervalo de } \mathbb{R}^n \right\}
-\end{align*}
-\begin{enumerate}
-    \item[(i)] Veamos que $\mu(E) \leq m(E)$. Sea $\{I_i\}_{i=1}^{\infty}$ una familia numerable tal que $E \subset \bigcup_{i=1}^{\infty}{I_i}$. Como $\mu$ es medida
+    Sea $\mu: \mathcal{B}_{\mathbb{R}^n} \longrightarrow [0,+\infty]$ otra medida tal que $\mu(I) = \mathcal{V}(I)$ para todo intervalo $I$ abierto de $\mathbb{R}^n$. Tenemos que probar que $m(E) = \mu(E)$ para todo $E \in B_{\mathbb{R}^n}$. Sea $E \in B_{\mathbb{R}^n}$, por definición $m(E) = \inf(H_E)$ donde
     \begin{align*}
-        \mu(E) \leq \mu \left( \bigcup_{i=1}^{\infty}{I_i}\right) \leq \sum_{i=1}^{\infty}{\mu(I_i)} = \sum_{i=1}^{\infty}{\mathcal{V}(I_i)}
+        H_E = \left\{ \lambda = \sum_{i=1}^{\infty}{\mathcal{V}(I_i)} : A \subset \bigcup_{i=1}^{\infty}{I_i}, I_i \textit{ es un intervalo de } \mathbb{R}^n \right\}
     \end{align*}
-    Luego $\mu(E) \leq \lambda$ para todo $\lambda \in H_E$, esto es, $\mu(E)$ es cota inferior de $H_E$, por tanto, $\mu(E) \leq ínf(H_E) = m^*(E) = m(E)$. Por tanto
-    \begin{align*}
-        \mu(E) \leq m(E) \forall E \in B_{\mathbb{R}^n}
-    \end{align*}
-    \item[(ii)] Veamos que $m(E) \leq \mu(E)$. Nótese que $\mathbb{R}^n = \bigcup_{k=1}^{\infty}{I_k}$, donde $I_k = (-k,k) \times ... \times (-k,k) = (-k,k)^n$. Además $I_k \subset I_{k+1}$ y $E = \bigcup_{k=1}^{\infty}{E_k}$ donde $E_k = E \cap I_k$ y $E_k \subset E_{k+1}$. Por (i), sabemos que
-    \begin{align*}
-        \mu(I_k \backslash E_k) \leq m(I_k \backslash E_k)
-    \end{align*}
-    Entonces
-    \begin{align*}
-        m(E_k) + m(I_k \backslash E_k) &= m( E_k \cup (I_k \backslash E_k))\\
-        &= m(I_k) = \mathcal{V}(I_k) = \mu(I_k)\\
-        &= \mu ( E_k \cup (I_k \backslash E_k)) = \mu(E_k) + \mu(I_k \backslash E_k)\\
-        &\leq \mu(E_k) + m(I_k \backslash E_k)
-    \end{align*}
-    Como $\mu(I_k \backslash E_k) < +\infty$, obtenemos que
-    \begin{align*}
-        m(E_k) \leq \mu(E_k)
-    \end{align*}
-    y, consecuentemente, 
-    \begin{align*}
-        m(E) = m\left( \bigcup_{i=1}^{\infty}{E_k}\right) = \lim_{k \to \infty}{m(E_k)} \leq \lim_{k \to \infty}{\mu(E_k)} = \mu \left( \bigcup_{i=1}^{\infty}{E_k}\right) = \mu(E)
-    \end{align*}
-    es decir
-    \begin{align*}
-        m(E) \leq \mu(E) \text{, } \forall E \in \mathcal{B}_{\mathbb{R}^n}
-    \end{align*}
-\end{enumerate}
-Luego $m = \mu$, como queríamos probar.
+    \begin{enumerate}
+        \item[(i)] Veamos que $\mu(E) \leq m(E)$. Sea $\{I_i\}_{i=1}^{\infty}$ una familia numerable tal que $E \subset \bigcup_{i=1}^{\infty}{I_i}$. Como $\mu$ es medida
+              \begin{align*}
+                  \mu(E) \leq \mu \left( \bigcup_{i=1}^{\infty}{I_i}\right) \leq \sum_{i=1}^{\infty}{\mu(I_i)} = \sum_{i=1}^{\infty}{\mathcal{V}(I_i)}
+              \end{align*}
+              Luego $\mu(E) \leq \lambda$ para todo $\lambda \in H_E$, esto es, $\mu(E)$ es cota inferior de $H_E$, por tanto, $\mu(E) \leq \inf(H_E) = m^*(E) = m(E)$. Por tanto
+              \begin{align*}
+                  \mu(E) \leq m(E) \forall E \in B_{\mathbb{R}^n}
+              \end{align*}
+        \item[(ii)] Veamos que $m(E) \leq \mu(E)$. Nótese que $\mathbb{R}^n = \bigcup_{k=1}^{\infty}{I_k}$, donde $I_k = (-k,k) \times ... \times (-k,k) = (-k,k)^n$. Además $I_k \subset I_{k+1}$ y $E = \bigcup_{k=1}^{\infty}{E_k}$ donde $E_k = E \cap I_k$ y $E_k \subset E_{k+1}$. Por (i), sabemos que
+              \begin{align*}
+                  \mu(I_k \backslash E_k) \leq m(I_k \backslash E_k)
+              \end{align*}
+              Entonces
+              \begin{align*}
+                  m(E_k) + m(I_k \backslash E_k) & = m( E_k \cup (I_k \backslash E_k))                                         \\
+                                                 & = m(I_k) = \mathcal{V}(I_k) = \mu(I_k)                                      \\
+                                                 & = \mu ( E_k \cup (I_k \backslash E_k)) = \mu(E_k) + \mu(I_k \backslash E_k) \\
+                                                 & \leq \mu(E_k) + m(I_k \backslash E_k)
+              \end{align*}
+              Como $\mu(I_k \backslash E_k) < +\infty$, obtenemos que
+              \begin{align*}
+                  m(E_k) \leq \mu(E_k)
+              \end{align*}
+              y, consecuentemente,
+              \begin{align*}
+                  m(E) = m\left( \bigcup_{i=1}^{\infty}{E_k}\right) = \lim_{k \to \infty}{m(E_k)} \leq \lim_{k \to \infty}{\mu(E_k)} = \mu \left( \bigcup_{i=1}^{\infty}{E_k}\right) = \mu(E)
+              \end{align*}
+              es decir
+              \begin{align*}
+                  m(E) \leq \mu(E) \text{, } \forall E \in \mathcal{B}_{\mathbb{R}^n}
+              \end{align*}
+    \end{enumerate}
+    Luego $m = \mu$, como queríamos probar.
 \end{proof}
 \begin{teo}
-La medida de Lebesgue $m$ es la única medida sobre la $\sigma$-álgebra de Borel, invariante frente a traslaciones y tal que la medida del cubo unidad $[0,1) \times ... \times [0,1)$ es 1.
+    La medida de Lebesgue $m$ es la única medida sobre la $\sigma$-álgebra de Borel, invariante frente a traslaciones y tal que la medida del cubo unidad $[0,1) \times ... \times [0,1)$ es 1.
 \end{teo}
 
 \subsection{El conjunto de Cantor}
 No es difícil ver que en $\mathbb{R}^2$ existen conjuntos de medida cero que no son numerables. Por ejemplo, el intervalo $\{ (x,y) : x \in [0,1], y = 0\} = [0,1] \times \{0\}$. En esta sección vamos a estudiar un conjunto muy interesante, el conjunto de Cantor que, además de otras propiedades, tiene medida cero y es no numerable.
-\\
-\newline
+
 Partimos del intervalo $I = [0,1]$ y suprimimos el tercio central. Llamemos $H_1$ a lo que suprimimos y $C_1$ a lo que queda, es decir,
 \begin{align*}
     H_1 = \left( \frac{1}{3}, \frac{2}{3}\right) \text{ y } C_1 = I \backslash H_1 = \left[ 0, \frac{1}{3} \right] \cup \left[ \frac{2}{3}, 1\right]
@@ -456,56 +454,52 @@ Repetimos este proceso que cada uno de los intervalos cerrados que forman $C_1$.
 \begin{align*}
     H_2 = \left( \frac{1}{9}, \frac{2}{9}\right) \cup \left( \frac{7}{9}, \frac{8}{9}\right) \text{ y } C_2 = C_1 \backslash H_2
 \end{align*}
-Repitiendo este proceso sucesivamente, en el paso n quitamos $H_n$ que es una unión disjunta de $2^{n-1}$ intervalos abiertos de longitud $\frac{1}{3^n}$ y obtenemos $C_n$ que es una unión disjunta de $2^n$ intervalos cerrados de longitud $\frac{1}{3^n}$. 
-\\
-\newline
+Repitiendo este proceso sucesivamente, en el paso n quitamos $H_n$ que es una unión disjunta de $2^{n-1}$ intervalos abiertos de longitud $\frac{1}{3^n}$ y obtenemos $C_n$ que es una unión disjunta de $2^n$ intervalos cerrados de longitud $\frac{1}{3^n}$.
+
 El \textbf{conjunto de Cantor} es lo que queda después de este proceso, esto es,
 \begin{align*}
     C = \bigcap_{n=1}^{\infty}{C_n} = I \backslash \bigcup_{n=1}^{\infty}{H_n}
 \end{align*}
-\\
-\newline
+
 Algunas propiedades del conjunto de Cantor son:
 \begin{enumerate}
     \item[(1)] $0 \in C$. De hecho, pertenecen a $C$ los extremos de todos los intervalos cerrados que forman $C_n$ cualquiera que sea $n$.
     \item[(2)] $C$ es compacto.
-    \\
-    \newline Es claro que es acotado y es cerrado pues es la intersección de cerrados (cada $C_n$ es cerrado).
+
+          Es claro que es acotado y es cerrado pues es la intersección de cerrados (cada $C_n$ es cerrado).
     \item[(3)] $m(C) = 0$
-    \\
-    \newline
-    En efecto, $m(C) \leq m(C_n) = \frac{2^n}{3^n}$ para todo $n \in \mathbb{N}$. Tomando límites, $m(C) = 0$.
+
+          En efecto, $m(C) \leq m(C_n) = \frac{2^n}{3^n}$ para todo $n \in \mathbb{N}$. Tomando límites, $m(C) = 0$.
     \item[(4)] $C$ no contiene intervalos ([0,1] $\backslash C$ es denso en [0,1]).
     \item[(5)] $C$ no tiene puntos aislados.
     \item[(6)] $C$ no es numerable ($\#C = \#\mathbb{R}$).
-    \\
-    \newline
-    Sea $\{ 0,1 \}^{\mathbb{N}} = \{ f: \mathbb{N} \longrightarrow \{0,1\}\} = \{ \{a_n\}_{n=1}^{\infty} : a_n = 0 \text{ ó } a_n = 1\}$
-    Ahora
-    \begin{align*}
-        \sigma: C &\longrightarrow \{ 0,1 \}^{\mathbb{N}}\\
-     x \in C &\longmapsto \{ 0,1,0,1,1,0,1,...\}
-    \end{align*}
-    donde 0 si $x$ está en el ntervalo de la izquierda y 1 si $x$ está en el intervalo de la derecha. $\sigma$ es  biyectiva.
-    \begin{align*}
-        \bar{\sigma}: \{ 0,1 \}^{\mathbb{N}} &\longrightarrow [0,1]\\
-        \{a_n\}_{n=1}^{\infty} &\longmapsto t = \sum_{n=1}^{\infty}\frac{a_n}{2^n}
-    \end{align*}
-    y $\bar{\sigma}$ es sobreyectiva.
-    \begin{align*}
-        \bar{\sigma} \circ{} \sigma: C \longrightarrow [0,1]
-    \end{align*}
-    es sobreyectiva
-    \begin{align*}
-        \bar{\bar{\sigma}}: C &\longrightarrow [0,1]\\
-        x &\longmapsto x
-    \end{align*}
-    es inyectiva, luego $\#C = \#[0,1] = \#\mathbb{R}$. 
-    \item[(7)] Del punto anterior se sigue que $\#(\mathcal{P}(C)) = \#(\mathcal{P}(\mathbb{R})$. Por otra parte, se sabe que $\#\mathcal{B}_{\mathbb{R}^n} = \#\mathbb{R}$. Luego $\#\mathcal{B}_{\mathbb{R}^n} < \#(\mathcal{P}(C))$. Esto implica que existe algún conjunto $F \subset C$ tal que $F \not \in \mathcal{B}_{\mathbb{R}^n}$ y sabemos que $C \in \mathcal{B}_{\mathbb{R}^n}$ y $m(C) = 0$. Por consiguiente, el espacio de medida $(\mathbb{R}^n, \mathcal{B}_{\mathbb{R}^n}, m)$ no es completo.
+
+          Sea $\{ 0,1 \}^{\mathbb{N}} = \{ f: \mathbb{N} \longrightarrow \{0,1\}\} = \{ \{a_n\}_{n=1}^{\infty} : a_n = 0 \text{ ó } a_n = 1\}$
+          Ahora
+          \begin{align*}
+              \sigma: C & \longrightarrow \{ 0,1 \}^{\mathbb{N}} \\
+              x \in C   & \longmapsto \{ 0,1,0,1,1,0,1,...\}
+          \end{align*}
+          donde 0 si $x$ está en el ntervalo de la izquierda y 1 si $x$ está en el intervalo de la derecha. $\sigma$ es  biyectiva.
+          \begin{align*}
+              \bar{\sigma}: \{ 0,1 \}^{\mathbb{N}} & \longrightarrow [0,1]                              \\
+              \{a_n\}_{n=1}^{\infty}               & \longmapsto t = \sum_{n=1}^{\infty}\frac{a_n}{2^n}
+          \end{align*}
+          y $\bar{\sigma}$ es sobreyectiva.
+          \begin{align*}
+              \bar{\sigma} \circ{} \sigma: C \longrightarrow [0,1]
+          \end{align*}
+          es sobreyectiva
+          \begin{align*}
+              \bar{\bar{\sigma}}: C & \longrightarrow [0,1] \\
+              x                     & \longmapsto x
+          \end{align*}
+          es inyectiva, luego $\#C = \#[0,1] = \#\mathbb{R}$.
+    \item[(7)] Del punto anterior se sigue que $\#(\mathcal{P}(C)) = \#(\mathcal{P}(\mathbb{R}))$. Por otra parte, se sabe que $\#\mathcal{B}_{\mathbb{R}^n} = \#\mathbb{R}$. Luego $\#\mathcal{B}_{\mathbb{R}^n} < \#(\mathcal{P}(C))$. Esto implica que existe algún conjunto $F \subset C$ tal que $F \not \in \mathcal{B}_{\mathbb{R}^n}$ y sabemos que $C \in \mathcal{B}_{\mathbb{R}^n}$ y $m(C) = 0$. Por consiguiente, el espacio de medida $(\mathbb{R}^n, \mathcal{B}_{\mathbb{R}^n}, m)$ no es completo.
 \end{enumerate}
 
 \begin{ejemplo}
-El conjunto de Cantor generalizado. Sea $0 < \alpha < 1$. Como antes, partimos del intervalo $I = [0, 1]$ y suprimimos el intervalo central de longitud $\frac{\alpha}{3}$ y nos quedamos con un conjunto $C_{2,\alpha}$, que es unión de dos intervalos. En el segundo paso, de cada uno de los dos intervalos centrales suprimimos los intervalos centrales de longitud $\frac{\alpha}{3^2}$ y el conjunto que nos queda es $C_{2,\alpha}$. Seguimos así y consideramos el conjunto de Cantor generalizado $C_{\alpha} = \bigcap_{n=1}^{\infty}{C_{n,\alpha}}$ (si $\alpha = 1$, $C_{\alpha}$ es el conjunto de Cantor). ¿Qué propiedades tiene $C_{\alpha}$? ¿Qué medida tiene?
+    El conjunto de Cantor generalizado. Sea $0 < \alpha < 1$. Como antes, partimos del intervalo $I = [0, 1]$ y suprimimos el intervalo central de longitud $\frac{\alpha}{3}$ y nos quedamos con un conjunto $C_{2,\alpha}$, que es unión de dos intervalos. En el segundo paso, de cada uno de los dos intervalos centrales suprimimos los intervalos centrales de longitud $\frac{\alpha}{3^2}$ y el conjunto que nos queda es $C_{2,\alpha}$. Seguimos así y consideramos el conjunto de Cantor generalizado $C_{\alpha} = \bigcap_{n=1}^{\infty}{C_{n,\alpha}}$ (si $\alpha = 1$, $C_{\alpha}$ es el conjunto de Cantor). ¿Qué propiedades tiene $C_{\alpha}$? ¿Qué medida tiene?
 \end{ejemplo}
 
 \subsection{Completación de ($\mathbb{R}^n, \mathcal{B}_{\mathbb{R}^n}, m$)}
@@ -514,44 +508,43 @@ El espacio ($\mathbb{R}^n, \mathcal{B}_{\mathbb{R}^n}, m$) no es completo. Si ha
     \item[(a)] $\mathcal{B}_{\mathbb{R}^n} \subset \overline{\mathcal{B}_{\mathbb{R}^n}}$
     \item[(b)] $\overline{m}|_{\mathcal{B}_{\mathbb{R}^n}} = m = m^*|_{\mathcal{B}_{\mathbb{R}^n}}$
     \item[(c)] Si $(\mathbb{R}^n, \mathcal{N}, \mu)$ es otro espacio completo tal que $\mathcal{B}_{\mathbb{R}^n} \subset \mathcal{N}$ y $\nu |_{\mathcal{B}_{\mathbb{R}^n}} = m$ entonces $\overline{\mathcal{B}_{\mathbb{R}^n}} \subset \mathcal{N}$ y $\nu |_{\overline{\mathcal{B}_{\mathbb{R}^n}}} = \overline{m}$.
-    \\
-    \newline
-    A la $\sigma$-álgebra $\overline{\mathcal{B}_{\mathbb{R}^n}}$ se le denomina $\sigma$-álgebra de Lesbesgue u se denota $\mathcal{L}_n$, es decir,
-    \begin{align*}
-        \mathcal{L}_n := \overline{\mathcal{B}_{\mathbb{R}^n}}
-    \end{align*}
-    Recuérdese que, por definición
-    \begin{align*}
-        A \in \mathcal{L}_n \Longleftrightarrow \text{ existen } E, N \in \mathcal{B}_{\mathbb{R}^n} \text{ y } F \in N \text{ tales que } A = E \cup F \text{ y } m(N) = 0
-    \end{align*}
-    y que
-    \begin{align*}
-        m(A) = m(E)
-    \end{align*}
-    En realidad
-    \item[(d)] $\overline{m}(A) = m^*(A)$ para todo $A \in \mathcal{L}_n$, es decir, $\overline{m} = m^*|_{\mathcal{L}_n}$. En efecto, supongamos que 
-    \begin{align*}
-        A = E \cup F \text{, siendo } A,N \in \mathcal{B}_{\mathbb{R}^n} \text{ y } F \subset N \text{ y } m(N) = 0
-    \end{align*} 
-    Entonces $A \subset E \cup N$. Por ser $\overline{m}$ una medida se sigue que
-    \begin{align*}
-        \overline{m}(A) = m(E) = m^*(E)
-    \end{align*}
-    Puesto que $E \subset A$, tenemos que $m^*(E) \leq m^*(A)$ y, por lo tanto,
-    \begin{align*}
-        \overline{m}(A) \leq m^*(E) \leq m^*(A)
-    \end{align*}
-    Por otra parte, usando de nuevo que $A \subset E \cup N$,
-    \begin{align*}
-        m^*(A) \leq m^*(E \cup N) = m(E \cup N) \leq m(E) + m(N) = m(E) = \overline{m}(A)
-    \end{align*}
-    donde la última desigualdad se ha aplicado la definición de $\overline{m}$. De ambas desigualdades se sigue que la afirmación contenida enn (d) es cierta.
-    $\hfill{\square}$
+
+          A la $\sigma$-álgebra $\overline{\mathcal{B}_{\mathbb{R}^n}}$ se le denomina $\sigma$-álgebra de Lesbesgue u se denota $\mathcal{L}_n$, es decir,
+          \begin{align*}
+              \mathcal{L}_n := \overline{\mathcal{B}_{\mathbb{R}^n}}
+          \end{align*}
+          Recuérdese que, por definición
+          \begin{align*}
+              A \in \mathcal{L}_n \Longleftrightarrow \text{ existen } E, N \in \mathcal{B}_{\mathbb{R}^n} \text{ y } F \in N \text{ tales que } A = E \cup F \text{ y } m(N) = 0
+          \end{align*}
+          y que
+          \begin{align*}
+              m(A) = m(E)
+          \end{align*}
+          En realidad
+    \item[(d)] $\overline{m}(A) = m^*(A)$ para todo $A \in \mathcal{L}_n$, es decir, $\overline{m} = m^*|_{\mathcal{L}_n}$. En efecto, supongamos que
+          \begin{align*}
+              A = E \cup F \text{, siendo } A,N \in \mathcal{B}_{\mathbb{R}^n} \text{ y } F \subset N \text{ y } m(N) = 0
+          \end{align*}
+          Entonces $A \subset E \cup N$. Por ser $\overline{m}$ una medida se sigue que
+          \begin{align*}
+              \overline{m}(A) = m(E) = m^*(E)
+          \end{align*}
+          Puesto que $E \subset A$, tenemos que $m^*(E) \leq m^*(A)$ y, por lo tanto,
+          \begin{align*}
+              \overline{m}(A) \leq m^*(E) \leq m^*(A)
+          \end{align*}
+          Por otra parte, usando de nuevo que $A \subset E \cup N$,
+          \begin{align*}
+              m^*(A) \leq m^*(E \cup N) = m(E \cup N) \leq m(E) + m(N) = m(E) = \overline{m}(A)
+          \end{align*}
+          donde la última desigualdad se ha aplicado la definición de $\overline{m}$. De ambas desigualdades se sigue que la afirmación contenida enn (d) es cierta.
+          $\hfill{\square}$
 \end{enumerate}
 \begin{obs}
-\begin{enumerate}
-    \item[(a)] $A \in \mathcal{L}_n$ si y sólo si existen $B, C \in \mathcal{B}_{\mathbb{R}^n}$ tales que $B \subset A \subset C$ y $m(C \backslash B) = 0$. A los conjuntos de $\mathcal{L}_n$ se les llama conjuntos medibles-Lebesgue.
-    \item[(b)] Por lo que acabamos de enunciar, se puede decir que son casi-borelianos.
-    \item[(c)] Abusando de la notación, a la medida $\overline{m} = m^*|_{\mathcal{L}_n}$ la denotaremos también por $m$ y la llamaremos medida de Lebesgue (por supuesto, deberíamos escribir $m_n$ puesto que hay una para cada dimensión).
-\end{enumerate}
+    \begin{enumerate}
+        \item[(a)] $A \in \mathcal{L}_n$ si y sólo si existen $B, C \in \mathcal{B}_{\mathbb{R}^n}$ tales que $B \subset A \subset C$ y $m(C \backslash B) = 0$. A los conjuntos de $\mathcal{L}_n$ se les llama conjuntos medibles-Lebesgue.
+        \item[(b)] Por lo que acabamos de enunciar, se puede decir que son casi-borelianos.
+        \item[(c)] Abusando de la notación, a la medida $\overline{m} = m^*|_{\mathcal{L}_n}$ la denotaremos también por $m$ y la llamaremos medida de Lebesgue (por supuesto, deberíamos escribir $m_n$ puesto que hay una para cada dimensión).
+    \end{enumerate}
 \end{obs}

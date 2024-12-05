@@ -3,108 +3,106 @@
 \section{Variable aleatoria. Función indicadora. Variables aleatorias simples}
 
 \begin{defi}
-Sea $(\Omega, \mathcal{A})$ espacio probabilizable. Una aplicación $X: \Omega \longrightarrow \mathbb{R}$ diremos que es variable aleatoria si $X^{-1}(B) \in \mathcal{A}$ para todo $B \in \mathbb{B}_1$.
+    Sea $(\Omega, \mathcal{A})$ espacio probabilizable. Una aplicación $X: \Omega \longrightarrow \mathbb{R}$ diremos que es variable aleatoria si $X^{-1}(B) \in \mathcal{A}$ para todo $B \in \mathbb{B}_1$.
 \end{defi}
 
 \begin{defi}
-Sea $(\Omega, \mathcal{A})$ espacio probabilizable. Una aplicación $X: \Omega \longrightarrow \mathbb{R}$ diremos que es variable aleatoria si $X^{-1}((-\infty,a]) \in \mathcal{A}$ para todo $a \in \mathbb{R}$.
+    Sea $(\Omega, \mathcal{A})$ espacio probabilizable. Una aplicación $X: \Omega \longrightarrow \mathbb{R}$ diremos que es variable aleatoria si $X^{-1}((-\infty,a]) \in \mathcal{A}$ para todo $a \in \mathbb{R}$.
 \end{defi}
 
 \begin{obs}
-Estas dos definiciones son equivalentes.
+    Estas dos definiciones son equivalentes.
 \end{obs}
 
 \begin{defi}
-Sea $(\Omega, \mathcal{A})$ espacio probabilizable y sea $A \in \mathcal{A}$. La función $I_A: \Omega \longrightarrow \mathbb{R}$ definida por
-\begin{align*}
-    I_A(\omega) = \left\{ \begin{array}{lcc}
-             1 &  si  & \omega \in \mathcal{A}\\
-             0 &  si  &\omega \not \in \mathcal{A}\\
-             \end{array}
+    Sea $(\Omega, \mathcal{A})$ espacio probabilizable y sea $A \in \mathcal{A}$. La función $I_A: \Omega \longrightarrow \mathbb{R}$ definida por
+    \begin{align*}
+        I_A(\omega) = \left\{ \begin{array}{lcc}
+                                  1 & si & \omega \in \mathcal{A}      \\
+                                  0 & si & \omega \not \in \mathcal{A} \\
+                              \end{array}
         \right.
-\end{align*}
-es una variable aleatoria y se denomina función indicadora o variable indicadora.
+    \end{align*}
+    es una variable aleatoria y se denomina función indicadora o variable indicadora.
 \end{defi}
 
 \begin{defi}
-Sea $(\Omega, \mathcal{A})$ espacio probabilizable y sea $\{A_i\}_{i=1}^{n}$ una partición de $\Omega$, $A_i \in \mathcal{A}$. Sean $x_1,...,x_n \in \mathbb{R}$. La aplicación $X: \Omega \longrightarrow \mathbb{R}$ definida por
-\begin{align*}
-    X(\omega) = \left\{ \begin{array}{lcc}
-             x_1 &  si  & \omega \in A_1\\
-             x_2 &  si  &\omega  \in A_2\\
-             \vdots & \vdots & \vdots \\
-             x_n & si & \omega  \in A_n
-             \end{array}
+    Sea $(\Omega, \mathcal{A})$ espacio probabilizable y sea $\{A_i\}_{i=1}^{n}$ una partición de $\Omega$, $A_i \in \mathcal{A}$. Sean $x_1,...,x_n \in \mathbb{R}$. La aplicación $X: \Omega \longrightarrow \mathbb{R}$ definida por
+    \begin{align*}
+        X(\omega) = \left\{ \begin{array}{lcc}
+                                x_1    & si     & \omega \in A_1  \\
+                                x_2    & si     & \omega  \in A_2 \\
+                                \vdots & \vdots & \vdots          \\
+                                x_n    & si     & \omega  \in A_n
+                            \end{array}
         \right.
-\end{align*}
-es una variable aleatoria y se denomina variable aleatoria simple. Nótese que $X(\omega) = \sum_{i=1}^{n}{x_iI_{A_i}(\omega)}$.
+    \end{align*}
+    es una variable aleatoria y se denomina variable aleatoria simple. Nótese que $X(\omega) = \sum_{i=1}^{n}{x_iI_{A_i}(\omega)}$.
 \end{defi}
 
 \section{Propiedades y operaciones algebraicas con variables aleatorias}
 
 \begin{teo}
-Sean X e Y variables aleatorias definidas sobre $(\Omega, \mathcal{A})$. Entonces
-\begin{enumerate}
-    \item[(i)] $A = \{ \omega \in \Omega : X(\omega) < Y(\omega) \} \in \mathcal{A}$.
-    \item[(ii)] $B = \{ \omega \in \Omega : X(\omega) \leq Y(\omega) \} \in \mathcal{A}$.
-    \item[(iii)] $C = \{ \omega \in \Omega : X(\omega) = Y(\omega) \} \in \mathcal{A}$.
-\end{enumerate}
+    Sean X e Y variables aleatorias definidas sobre $(\Omega, \mathcal{A})$. Entonces
+    \begin{enumerate}
+        \item[(i)] $A = \{ \omega \in \Omega : X(\omega) < Y(\omega) \} \in \mathcal{A}$.
+        \item[(ii)] $B = \{ \omega \in \Omega : X(\omega) \leq Y(\omega) \} \in \mathcal{A}$.
+        \item[(iii)] $C = \{ \omega \in \Omega : X(\omega) = Y(\omega) \} \in \mathcal{A}$.
+    \end{enumerate}
 \end{teo}
 
 \begin{proof}
-Probemos $(i)$. $A = \{ \omega \in \Omega : X(\omega) < Y(\omega) \}$. Sea $\omega_0 \in A$, entonces $X(\omega_0) < Y(\omega_0)$. Ambos son números reales, por tanto, existe $r_0 \in \mathbb{Q}$ tal que $X(\omega_0) < r_0 < Y(\omega_0)$. Por tanto
-\begin{align*}
-    A = \{ \omega \in \Omega : X(\omega) < Y(\omega) \} &= \bigcup_{r \in \mathbb{Q}}{\{ \omega \in \Omega : X(\omega) < r < Y(\omega) \}}\\
-    &= \bigcup_{r \in \mathbb{Q}}{\left(\{ \omega \in \Omega : X(\omega) < r \} \cap \{ \omega \in \Omega :  r < Y(\omega) \}\right)} \\
-    &= \bigcup_{r \in \mathbb{Q}}{\left( X^{-1}((-\infty, r)) \cap Y^{-1}((r,+\infty))\right)}
-\end{align*}
-Como $X$ e $Y$ son variables aleatorias se tiene que $ X^{-1}((-\infty, r)) \in \mathcal{A}$ e $Y^{-1}((r,+\infty)) \in \mathcal{A}$. Como $A$ es unión numerable de elementos de $\mathcal{A}$ se tiene que $A \in \mathcal{A}$.
-\\
-\newline
-Para probar $(ii)$ basta ver que
-\begin{align*}
-    B = \{ \omega \in \Omega : X(\omega) \leq Y(\omega) \} = (A^*)^c
-\end{align*}
-donde $A^* = \{ \omega \in \Omega : X(\omega) > Y(\omega) \}$. Como $A^* \in \mathcal{A}$ entonces $(A^*)^c = B \in \mathcal{A}$.
-\\
-\newline
-Para probar $(iii)$ basta ver que
-\begin{align*}
-    C = \{ \omega \in \Omega : X(\omega) = Y(\omega) \} = B \backslash A = B \cap A^c \in \mathcal{A}.
-\end{align*}
+    Probemos $(i)$. $A = \{ \omega \in \Omega : X(\omega) < Y(\omega) \}$. Sea $\omega_0 \in A$, entonces $X(\omega_0) < Y(\omega_0)$. Ambos son números reales, por tanto, existe $r_0 \in \mathbb{Q}$ tal que $X(\omega_0) < r_0 < Y(\omega_0)$. Por tanto
+    \begin{align*}
+        A = \{ \omega \in \Omega : X(\omega) < Y(\omega) \} & = \bigcup_{r \in \mathbb{Q}}{\{ \omega \in \Omega : X(\omega) < r < Y(\omega) \}}                                                \\
+                                                            & = \bigcup_{r \in \mathbb{Q}}{\left(\{ \omega \in \Omega : X(\omega) < r \} \cap \{ \omega \in \Omega :  r < Y(\omega) \}\right)} \\
+                                                            & = \bigcup_{r \in \mathbb{Q}}{\left( X^{-1}((-\infty, r)) \cap Y^{-1}((r,+\infty))\right)}
+    \end{align*}
+    Como $X$ e $Y$ son variables aleatorias se tiene que $ X^{-1}((-\infty, r)) \in \mathcal{A}$ e $Y^{-1}((r,+\infty)) \in \mathcal{A}$. Como $A$ es unión numerable de elementos de $\mathcal{A}$ se tiene que $A \in \mathcal{A}$.
+
+    Para probar $(ii)$ basta ver que
+    \begin{align*}
+        B = \{ \omega \in \Omega : X(\omega) \leq Y(\omega) \} = (A^*)^c
+    \end{align*}
+    donde $A^* = \{ \omega \in \Omega : X(\omega) > Y(\omega) \}$. Como $A^* \in \mathcal{A}$ entonces $(A^*)^c = B \in \mathcal{A}$.
+
+    Para probar $(iii)$ basta ver que
+    \begin{align*}
+        C = \{ \omega \in \Omega : X(\omega) = Y(\omega) \} = B \backslash A = B \cap A^c \in \mathcal{A}.
+    \end{align*}
 \end{proof}
 
 \begin{prop}
-Sean X e Y variables aleatorias definidas sobre $(\Omega, \mathcal{A})$. Entonces
-\begin{enumerate}
-    \item[(1)] Dado $a \in \mathbb{R}$ se tiene que Z = aX es variable aleatoria.
-    \item[(2)] X + Y es variable aleatoria.
-    \item[(3)] $X^2$ es variable aleatoria.
-    \item[(4)] $|X|$ es variable aleatoria.
-    \item[(5)] $X \cdot Y$ es variable aleatoria.
-\end{enumerate}
+    Sean X e Y variables aleatorias definidas sobre $(\Omega, \mathcal{A})$. Entonces
+    \begin{enumerate}
+        \item[(1)] Dado $a \in \mathbb{R}$ se tiene que Z = aX es variable aleatoria.
+        \item[(2)] X + Y es variable aleatoria.
+        \item[(3)] $X^2$ es variable aleatoria.
+        \item[(4)] $|X|$ es variable aleatoria.
+        \item[(5)] $X \cdot Y$ es variable aleatoria.
+    \end{enumerate}
 \end{prop}
 
 \begin{teo}
-Sea X variable aleatoria definida sobre  $(\Omega, \mathcal{A})$. Sea $g: \mathbb{R} \longrightarrow \mathbb{R}$ una función tal que $g^{-1}(B) \in \mathbb{B}_1$ para todo $B \in \mathbb{B}_1$. Entonces $Y = g(X)$ es también una variable aleatoria definida sobre  $(\Omega, \mathcal{A})$.
+    Sea X variable aleatoria definida sobre  $(\Omega, \mathcal{A})$. Sea $g: \mathbb{R} \longrightarrow \mathbb{R}$ una función tal que $g^{-1}(B) \in \mathbb{B}_1$ para todo $B \in \mathbb{B}_1$. Entonces $Y = g(X)$ es también una variable aleatoria definida sobre  $(\Omega, \mathcal{A})$.
 \end{teo}
 
 \begin{proof}
-\begin{align*}
-    \Omega \xrightarrow[]{X} \mathbb{R} \xrightarrow[]{g} \mathbb{R}
-\end{align*}
-Seea $B \in \mathbb{B}_1$. Entonces
-\begin{align*}
-    Y^{-1}(B) = X^{-1}(g^{-1}(B)),
-\end{align*}
-$g^{-1}(B) \in \mathbb{B}_1$ por hipótesis y como $X$ es variable aleatoria, entonces $X^{-1}(g^{-1}(B)) = Y^{-1}(B) \in \mathbb{B}_1$.
+    \begin{align*}
+        \Omega \xrightarrow[]{X} \mathbb{R} \xrightarrow[]{g} \mathbb{R}
+    \end{align*}
+    Seea $B \in \mathbb{B}_1$. Entonces
+    \begin{align*}
+        Y^{-1}(B) = X^{-1}(g^{-1}(B)),
+    \end{align*}
+    $g^{-1}(B) \in \mathbb{B}_1$ por hipótesis y como $X$ es variable aleatoria, entonces $X^{-1}(g^{-1}(B)) = Y^{-1}(B) \in \mathbb{B}_1$.
 \end{proof}
 
 \section{Probabilidad inducida en $\mathbb{R}$ por una variable aleatoria}
 \begin{prop}
-Sea $(\Omega, \mathcal{A}), P$ un espacio de probabilidad y sea X una variable aleatoria definida en $\Omega$, esto es, $X: \Omega \longrightarrow \mathbb{R}$. Entonces X induce sobre $(\mathbb{R}, \mathbb{B}_1)$ una medida de probabilidad $P_X : \mathbb{B}_1 \longrightarrow [0,+\infty)$ dada por
-\begin{align*}
-    P_X(B) = P[\{\omega \in \Omega : X(\omega) \in B\}] = P(X^{-1}(B))
-\end{align*}
-para todo $B \in \mathbb{B}_1$.
+    Sea $(\Omega, \mathcal{A}), P$ un espacio de probabilidad y sea X una variable aleatoria definida en $\Omega$, esto es, $X: \Omega \longrightarrow \mathbb{R}$. Entonces X induce sobre $(\mathbb{R}, \mathbb{B}_1)$ una medida de probabilidad $P_X : \mathbb{B}_1 \longrightarrow [0,+\infty)$ dada por
+    \begin{align*}
+        P_X(B) = P[\{\omega \in \Omega : X(\omega) \in B\}] = P(X^{-1}(B))
+    \end{align*}
+    para todo $B \in \mathbb{B}_1$.
 \end{prop}

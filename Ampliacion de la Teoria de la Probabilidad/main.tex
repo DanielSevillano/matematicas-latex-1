@@ -1,34 +1,11 @@
 \documentclass{book}
-\usepackage[utf8]{inputenc}
-\usepackage{amsmath,amsfonts}
-\usepackage[mathscr]{euscript}
+\usepackage[hmargin = 3cm, vmargin = 2.5cm]{geometry}
 \usepackage[spanish]{babel}
-\usepackage{mathrsfs}
-\usepackage{fancyhdr}
-\usepackage{graphicx}
-\usepackage{caption}
-\usepackage{subcaption}
-\usepackage{amssymb}
-\usepackage{amsthm}
-\usepackage{vmargin}
-\usepackage{hyperref}
-\usepackage{vmargin}
-\usepackage[all]{xy}
-\usepackage{relsize}
-\usepackage{bigints}
-\usepackage{mdframed}
-\usepackage{xcolor}
-\usepackage[autostyle]{csquotes} 
-\usepackage{tcolorbox}
-\tcbuselibrary{listingsutf8}
-\usepackage{float}
-\usepackage{bbold}
-
-\usepackage{mathtools}
-\DeclarePairedDelimiter\autobracket{(}{)}
-\newcommand{\br}[1]{\autobracket*{#1}}
+\usepackage{amssymb, amsmath, amsthm, graphicx, float, fancyhdr, parskip}
+\usepackage[pdfusetitle]{hyperref}
 
 \pagestyle{fancy}
+\setlength{\headheight}{25.1pt}
 \fancyhf{}
 \lhead[\leftmark]{}
 \rhead[]{\rightmark}
@@ -37,13 +14,14 @@
 \fancyfoot[RO]{\thepage}
 \fancyfoot[LO]{\includegraphics[width=0.045\textwidth]{insta.png} \text{@jorgeroddom}}
 
-\title{\Huge \textbf{Probabilidad}}
+\title{\Huge \textbf{Ampliación de Teoría de la Probabilidad}}
 \author{Jorge Rodríguez Domínguez}
 \date{}
 
-\newcommand{\re}[]{\text{Re}}
+\newcommand{\re}{\text{Re}}
+\renewcommand{\sin}{\operatorname{sen}}
 
-\definecolor{light-gray}{gray}{0.85}
+%\definecolor{light-gray}{gray}{0.85}
 
 %\newmdtheoremenv[backgroundcolor=light-gray]{teo}{Teorema}[chapter]
 \newtheorem{teo}{Teorema}[chapter]

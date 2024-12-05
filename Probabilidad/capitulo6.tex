@@ -3,214 +3,214 @@
 \section{Esperanza o valor esperado}
 
 \begin{defi}
-Sea X una variable aleatoria con función de distribución $F_X$. Se define la esperanza o valor esperado de X como
-\begin{align*}
-    E(X) &= \int_{\mathbb{R}}{x \ dF_X(x)} \\
-        & =\left\{ \begin{array}{lcc}
-            \sum_{x_n \in D_x}{x_nP_X(\{x_n\})} &  si  &  X \ es\  discreta\\ \\
-            \int_{-\infty}^{+\infty}{xf_X(x) \ dx} &  si  & X \ es \ absolutamente \  conntinua\\ \\
-            \sum_{x_n \in D_x}{x_nP_X(\{x_n\})} + \int_{-\infty}^{+\infty}{xf_X(x) \ dx} &  si  &  X \ es \ mixta
-             \end{array}
+    Sea X una variable aleatoria con función de distribución $F_X$. Se define la esperanza o valor esperado de X como
+    \begin{align*}
+        E(X) & = \int_{\mathbb{R}}{x \ dF_X(x)}                                                                                                    \\
+             & =\left\{ \begin{array}{lcc}
+                            \sum_{x_n \in D_x}{x_nP_X(\{x_n\})}                                          & si & X \ es\  discreta                   \\ \\
+                            \int_{-\infty}^{+\infty}{xf_X(x) \ dx}                                       & si & X \ es \ absolutamente \  conntinua \\ \\
+                            \sum_{x_n \in D_x}{x_nP_X(\{x_n\})} + \int_{-\infty}^{+\infty}{xf_X(x) \ dx} & si & X \ es \ mixta
+                        \end{array}
         \right.
-\end{align*}
-siempre que la serie y/o las integrales existan, es decir, convejan absolutamente.
+    \end{align*}
+    siempre que la serie y/o las integrales existan, es decir, convejan absolutamente.
 \end{defi}
 
 \begin{prop}
-Sea X una variable aleatoria con función de distribución $F_X$. Sea g una función medible y sea $Y = g(X)$. Entonces
-\begin{align*}
-    E(Y) &= \int_{\mathbb{R}}{g(x) \ dF_X(x)} \\
-        & =\left\{ \begin{array}{lcc}
-            \sum_{x_n \in D_x}{g(x_n)P_X(\{x_n\})} &  si  &  X \ es\  discreta\\ \\
-            \int_{-\infty}^{+\infty}{g(x)f_X(x) \ dx} &  si  & X \ es \ absolutamente \  conntinua\\ \\
-            \sum_{x_n \in D_x}{g(x_n)P_X(\{x_n\})} + \int_{-\infty}^{+\infty}{g(x)f_X(x) \ dx} &  si  &  X \ es \ mixta
-             \end{array}
+    Sea X una variable aleatoria con función de distribución $F_X$. Sea g una función medible y sea $Y = g(X)$. Entonces
+    \begin{align*}
+        E(Y) & = \int_{\mathbb{R}}{g(x) \ dF_X(x)}                                                                                                       \\
+             & =\left\{ \begin{array}{lcc}
+                            \sum_{x_n \in D_x}{g(x_n)P_X(\{x_n\})}                                             & si & X \ es\  discreta                   \\ \\
+                            \int_{-\infty}^{+\infty}{g(x)f_X(x) \ dx}                                          & si & X \ es \ absolutamente \  conntinua \\ \\
+                            \sum_{x_n \in D_x}{g(x_n)P_X(\{x_n\})} + \int_{-\infty}^{+\infty}{g(x)f_X(x) \ dx} & si & X \ es \ mixta
+                        \end{array}
         \right.
-\end{align*}
-siempre que la esperanza exista.
+    \end{align*}
+    siempre que la esperanza exista.
 \end{prop}
 
 \begin{prop}
-Sea X una vaiable aleatoria con función de distribución $F_X$ y sean $g,g_1,...,g_n$ funciones medibles Borel tales que $E[|g_i(X)|] < +\infty$. Entonces
-\begin{enumerate}
-    \item[(1)] $E[|\sum_{i=1}^{n}g_i(X)|] < +\infty$ y $E[\sum_{i=1}^{n}g_i(X)] = \sum_{i=1}^{n}{E[g_i(X)]}$.
-    \item[(2)] Si $g_1(X) \leq g_2(X)$ en casi todo punto, entonces $E[g_1(X)] \leq E[g_2(X)]$.
-    \item[(3)] $|E[g(X)]| \leq E[|g(X)|]$.
-\end{enumerate}
+    Sea X una vaiable aleatoria con función de distribución $F_X$ y sean $g,g_1,...,g_n$ funciones medibles Borel tales que $E[|g_i(X)|] < +\infty$. Entonces
+    \begin{enumerate}
+        \item[(1)] $E[|\sum_{i=1}^{n}g_i(X)|] < +\infty$ y $E[\sum_{i=1}^{n}g_i(X)] = \sum_{i=1}^{n}{E[g_i(X)]}$.
+        \item[(2)] Si $g_1(X) \leq g_2(X)$ en casi todo punto, entonces $E[g_1(X)] \leq E[g_2(X)]$.
+        \item[(3)] $|E[g(X)]| \leq E[|g(X)|]$.
+    \end{enumerate}
 \end{prop}
 
 \section{Momentos de una variable o de su distribución}
 
 \begin{defi}[Momento de orden k respecto a c]
-\begin{align*}
-    M_{k,c} = E[(X - c)^k]
-\end{align*}
-con $c \in \mathbb{R}$ y $k = 0, 1, 2,...$
+    \begin{align*}
+        M_{k,c} = E[(X - c)^k]
+    \end{align*}
+    con $c \in \mathbb{R}$ y $k = 0, 1, 2,...$
 \end{defi}
 
 \begin{defi}[Momento ordinario de orden k respecto del origen]
-\begin{align*}
-    m_k = \alpha_k = E[X^k]
-\end{align*}
-\begin{itemize}
-    \item $m_0 = 1$.
-    \item $m_1 = E[X]$.
-    \item $m_2 = E[X^2]$.
-\end{itemize}
+    \begin{align*}
+        m_k = \alpha_k = E[X^k]
+    \end{align*}
+    \begin{itemize}
+        \item $m_0 = 1$.
+        \item $m_1 = E[X]$.
+        \item $m_2 = E[X^2]$.
+    \end{itemize}
 \end{defi}
 
 \begin{defi}[Momento central de orden k]
-\begin{align*}
-    \mu_k = M_k =  E[(X - E(X))^k]
-\end{align*}
-\begin{itemize}
-    \item $\mu_0 = 1$.
-    \item $\mu_1 = 0$.
-    \item $\mu_2 = V[X] = m_2 - m_1$.
-    \item $\mu_k = \sum_{i=0}^{k}\binom{k}{i}(-1)^{k-i}\alpha^i\alpha_1^{k-i}$.
-\end{itemize}
+    \begin{align*}
+        \mu_k = M_k =  E[(X - E(X))^k]
+    \end{align*}
+    \begin{itemize}
+        \item $\mu_0 = 1$.
+        \item $\mu_1 = 0$.
+        \item $\mu_2 = V[X] = m_2 - m_1$.
+        \item $\mu_k = \sum_{i=0}^{k}\binom{k}{i}(-1)^{k-i}\alpha^i\alpha_1^{k-i}$.
+    \end{itemize}
 \end{defi}
 
 \begin{defi}[Momento absoluto de orden k]
-\begin{align*}
-    \beta_k = E[|X|^k]
-\end{align*}
-$m_k$ existe si y solo si $\beta_k < +\infty$.
+    \begin{align*}
+        \beta_k = E[|X|^k]
+    \end{align*}
+    $m_k$ existe si y solo si $\beta_k < +\infty$.
 \end{defi}
 
 \begin{defi}[Momento factorial de orden k]
-\begin{align*}
-    \gamma_k = E[X(X - 1)(X - 2)...(X - k + 1)]
-\end{align*}
-\begin{itemize}
-    \item $\gamma_1 = E[X]$.
-    \item $V[X] = \gamma_2 + \gamma_1 - \gamma_1^2$
-\end{itemize}
+    \begin{align*}
+        \gamma_k = E[X(X - 1)(X - 2)...(X - k + 1)]
+    \end{align*}
+    \begin{itemize}
+        \item $\gamma_1 = E[X]$.
+        \item $V[X] = \gamma_2 + \gamma_1 - \gamma_1^2$
+    \end{itemize}
 \end{defi}
 
 \section{Otras funciones}
 
 \begin{defi}[Función generatriz de probabilidad]
-Sea X una variable aleatoria discreta con valores enteros no negativos, con distribución de probabilidad $p_0, p_1,...,p_n$. La función genetriz de probabilidad de la variable aleatoria X es una función real de variable real dada por la expresión
-\begin{align*}
-    G_X(s) = \sum_{n=0}^{\infty}{s^np_n}.
-\end{align*}
-Esta función solo está definida para aquellos valores reales que hacen convergente esta serie de potencias.
+    Sea X una variable aleatoria discreta con valores enteros no negativos, con distribución de probabilidad $p_0, p_1,...,p_n$. La función genetriz de probabilidad de la variable aleatoria X es una función real de variable real dada por la expresión
+    \begin{align*}
+        G_X(s) = \sum_{n=0}^{\infty}{s^np_n}.
+    \end{align*}
+    Esta función solo está definida para aquellos valores reales que hacen convergente esta serie de potencias.
 \end{defi}
 
 \begin{obs}
-$G_X(s) = E(s^X)$.
+    $G_X(s) = E(s^X)$.
 \end{obs}
 
 \begin{teo}[Teoema de inversión para la función generatriz de probabilidad]
-Si X es una variable aleatoria que toma valores enteros no negativos y $G_X$ es su función generatriz de probabilidad, entonces
-\begin{align*}
-    P(X = n) = p_n = \frac{G_X^{(n)}(0)}{n!} 
-\end{align*}
-para todo $n= 0, 1, 2,...$
+    Si X es una variable aleatoria que toma valores enteros no negativos y $G_X$ es su función generatriz de probabilidad, entonces
+    \begin{align*}
+        P(X = n) = p_n = \frac{G_X^{(n)}(0)}{n!}
+    \end{align*}
+    para todo $n= 0, 1, 2,...$
 \end{teo}
 
 \begin{defi}[Función generatriz de momentos]
-Sea X una variable aleatoria. Se define la función generatriz de momentos asociada a X como una función $M_X: \mathbb{R} \longrightarrow \mathbb{R}$ dada por la ecuación
-\begin{align*}
-    M_X(t) = E(e^{tX})
-\end{align*}
-siempre que la esperanza exista en un entorno del cero y donde $e^{tX}$ es la variable aleatoria transformada de X mediante la función medible $g(x) = e^{tx}$.
+    Sea X una variable aleatoria. Se define la función generatriz de momentos asociada a X como una función $M_X: \mathbb{R} \longrightarrow \mathbb{R}$ dada por la ecuación
+    \begin{align*}
+        M_X(t) = E(e^{tX})
+    \end{align*}
+    siempre que la esperanza exista en un entorno del cero y donde $e^{tX}$ es la variable aleatoria transformada de X mediante la función medible $g(x) = e^{tx}$.
 \end{defi}
 
 \begin{obs}
-Si X es una variable aleatoria discreta con valores enteros no negativos y distribución de probabilidad $\{p_n\}_{n=1}^{\infty}$ entonces
-\begin{align*}
-    M_X(t) = E(e^{tX}) = \sum_{n=0}^{\infty}{e^{tn}p_n}.
-\end{align*}
+    Si X es una variable aleatoria discreta con valores enteros no negativos y distribución de probabilidad $\{p_n\}_{n=1}^{\infty}$ entonces
+    \begin{align*}
+        M_X(t) = E(e^{tX}) = \sum_{n=0}^{\infty}{e^{tn}p_n}.
+    \end{align*}
 \end{obs}
 
 \begin{teo}
-Si X tiene una función generatriz de momentos $M_X$ que es finita en $(-t_0, t_0)$, con $t_0 > 0$, entonces la distribución de probabilidad o función de densidad asociada a dicha variable aleatoria queda determinada de forma única.
+    Si X tiene una función generatriz de momentos $M_X$ que es finita en $(-t_0, t_0)$, con $t_0 > 0$, entonces la distribución de probabilidad o función de densidad asociada a dicha variable aleatoria queda determinada de forma única.
 \end{teo}
 
 \begin{teo}
-Sea X una variable aleatoria con $M_X$ que es finita para $|t| < t_0$, con $t_0 > 0$. Enntonces
-\begin{enumerate}
-    \item[(a)] X posee momentos ordinarios de todos los órdenes.
-    \item[(b)] $M_X$ admite un desarollo en serie de Taylor en torno al cero.
-    \begin{align*}
-        M_X(t) = \sum_{k=0}^{\infty}{\frac{t^k}{k!}M_X^{(k)}(0)}.
-    \end{align*}
-    Además $M_X^{(k)}(0) = E(X^k)$.
-\end{enumerate}
+    Sea X una variable aleatoria con $M_X$ que es finita para $|t| < t_0$, con $t_0 > 0$. Enntonces
+    \begin{enumerate}
+        \item[(a)] X posee momentos ordinarios de todos los órdenes.
+        \item[(b)] $M_X$ admite un desarollo en serie de Taylor en torno al cero.
+              \begin{align*}
+                  M_X(t) = \sum_{k=0}^{\infty}{\frac{t^k}{k!}M_X^{(k)}(0)}.
+              \end{align*}
+              Además $M_X^{(k)}(0) = E(X^k)$.
+    \end{enumerate}
 \end{teo}
 
 \begin{defi}[Función característica]
-Sea X una variable aleatoria con función de distribución $F_X$. Se define la función caractrística de $X$ como una función de $\mathbb{R}$ en $\mathbb{R}$ dada por
-\begin{align*}
-    \varphi(t) = E\left[e^{itX}\right] = \int_{\mathbb{R}}{e^{itx} \ dF_X(x)}.
-\end{align*}
+    Sea X una variable aleatoria con función de distribución $F_X$. Se define la función caractrística de $X$ como una función de $\mathbb{R}$ en $\mathbb{R}$ dada por
+    \begin{align*}
+        \varphi(t) = E\left[e^{itX}\right] = \int_{\mathbb{R}}{e^{itx} \ dF_X(x)}.
+    \end{align*}
 \end{defi}
 
 \section{El problema de la existencia de momentos}
 
 \begin{teo}
-Sea X una variable aleatoria con función de distribución $F_X$. Si existe $m_k$ entonces existe $m_j$ para cada $j < k$.
+    Sea X una variable aleatoria con función de distribución $F_X$. Si existe $m_k$ entonces existe $m_j$ para cada $j < k$.
 \end{teo}
 
 \begin{proof}
-Vamos a verlo para variables aleatorias absolutamente continuas. Sea $r < k$, entonces
-\begin{align*}
-    E[|X|^r] &= \int_{-\infty}^{+\infty}{|x|^rf(x) \ dx} = \int_{-\infty}^{-1}{|x|^rf(x) \ dx} + \int_{-1}^{1}{|x|^rf(x) \ dx} + \int_{-1}^{+\infty}{|x|^rf(x) \ dx}\\
-    & \leq \int_{-\infty}^{-1}{|x|^kf(x) \ dx} + \int_{-1}^{1}{f(x) \ dx} + \int_{-1}^{+\infty}{|x|^kf(x) \ dx} \\
-    & \leq \int_{-\infty}^{+\infty}{|x|^kf(x) \ dx} + \int_{-\infty}^{+\infty}{f(x) \ dx} = E[X] + 1 < +\infty.
-\end{align*}
-Luego, existe $m_r$ para cada $r < k$.
+    Vamos a verlo para variables aleatorias absolutamente continuas. Sea $r < k$, entonces
+    \begin{align*}
+        E[|X|^r] & = \int_{-\infty}^{+\infty}{|x|^rf(x) \ dx} = \int_{-\infty}^{-1}{|x|^rf(x) \ dx} + \int_{-1}^{1}{|x|^rf(x) \ dx} + \int_{-1}^{+\infty}{|x|^rf(x) \ dx} \\
+                 & \leq \int_{-\infty}^{-1}{|x|^kf(x) \ dx} + \int_{-1}^{1}{f(x) \ dx} + \int_{-1}^{+\infty}{|x|^kf(x) \ dx}                                              \\
+                 & \leq \int_{-\infty}^{+\infty}{|x|^kf(x) \ dx} + \int_{-\infty}^{+\infty}{f(x) \ dx} = E[X] + 1 < +\infty.
+    \end{align*}
+    Luego, existe $m_r$ para cada $r < k$.
 \end{proof}
 
 \begin{cor}
-\begin{enumerate}
-    \item[(1)] Si X es una variable aleatoria con $m_2 < +\infty$, para cualesquiera $a,b \in \mathbb{R}$ se verifica que
-    \begin{align*}
-        E[a + bX] = a + bE[X] \ \ \ y \ \ \ V[a + bX] = b^2V[X].    
-    \end{align*}
-    \item[(2)] Si X es una variable aleatoria, entonces
-        \begin{align*}
-            Y = \frac{X - E[X]}{V[X]}
-        \end{align*}
-        es una variable aleatoria.
-\end{enumerate}
+    \begin{enumerate}
+        \item[(1)] Si X es una variable aleatoria con $m_2 < +\infty$, para cualesquiera $a,b \in \mathbb{R}$ se verifica que
+              \begin{align*}
+                  E[a + bX] = a + bE[X] \ \ \ y \ \ \ V[a + bX] = b^2V[X].
+              \end{align*}
+        \item[(2)] Si X es una variable aleatoria, entonces
+              \begin{align*}
+                  Y = \frac{X - E[X]}{V[X]}
+              \end{align*}
+              es una variable aleatoria.
+    \end{enumerate}
 \end{cor}
 
 \begin{prop}
-Sea X una variable aleatoria con función de distribución $F_X$. Si existe $c \in \mathbb{R}$ tal que $P[|X| \leq c] = 1$, entonces existen los momentos $\beta_r$, $m_r$ y se verifica que $|E[X^r]| \leq c^r$.
+    Sea X una variable aleatoria con función de distribución $F_X$. Si existe $c \in \mathbb{R}$ tal que $P[|X| \leq c] = 1$, entonces existen los momentos $\beta_r$, $m_r$ y se verifica que $|E[X^r]| \leq c^r$.
 \end{prop}
 
 \begin{teo}
-Sea X una variable aleatoria con función de distribución $F_X$. Si existe $m_k$ para algún $k > 0$ entonces
-\begin{align*}
-    \lim_{n \to +\infty}{n^kP[|X| > n]} = 0.
-\end{align*}
+    Sea X una variable aleatoria con función de distribución $F_X$. Si existe $m_k$ para algún $k > 0$ entonces
+    \begin{align*}
+        \lim_{n \to +\infty}{n^kP[|X| > n]} = 0.
+    \end{align*}
 \end{teo}
 
 \begin{teo}
-Sea X una variable aleatoria no negativa con función de distribución $F_X$. Entonces $E[X]$ existe si y solo si
-\begin{align*}
-    \int_{0}^{+\infty}{(1 - F_X(x)) \ dx} < +\infty.
-\end{align*}
-Además $E[X] = \int_{0}^{+\infty}{(1 - F_X(x)) \ dx} = \int_{0}^{+\infty}{P(X > x)\ dx}$.
+    Sea X una variable aleatoria no negativa con función de distribución $F_X$. Entonces $E[X]$ existe si y solo si
+    \begin{align*}
+        \int_{0}^{+\infty}{(1 - F_X(x)) \ dx} < +\infty.
+    \end{align*}
+    Además $E[X] = \int_{0}^{+\infty}{(1 - F_X(x)) \ dx} = \int_{0}^{+\infty}{P(X > x)\ dx}$.
 \end{teo}
 
 \begin{teo}
-Sea X una variable aleatoria arbitraria con función de distribución $F_X$. Una condición necesaria y suficiente para que exista $E[X]$ es que existan las integrales
-\begin{align*}
-    \int_{0}^{+\infty}{(1 - F_X(x)) \ dx} \ \ \ y \ \ \ \int_{-\infty}^{0}{F_X(x) \ dx},
-\end{align*}
-y en este caso
-\begin{align*}
-    E[X] = \int_{0}^{+\infty}{(1 - F_X(x)) \ dx} - \int_{-\infty}^{0}{F_X(x) \ dx}.
-\end{align*}
+    Sea X una variable aleatoria arbitraria con función de distribución $F_X$. Una condición necesaria y suficiente para que exista $E[X]$ es que existan las integrales
+    \begin{align*}
+        \int_{0}^{+\infty}{(1 - F_X(x)) \ dx} \ \ \ y \ \ \ \int_{-\infty}^{0}{F_X(x) \ dx},
+    \end{align*}
+    y en este caso
+    \begin{align*}
+        E[X] = \int_{0}^{+\infty}{(1 - F_X(x)) \ dx} - \int_{-\infty}^{0}{F_X(x) \ dx}.
+    \end{align*}
 \end{teo}
 
 \begin{teo}
-Sea X una variable aleatoria arbitraria con función de distribución $F_X$. Una condición necesaria y suficiente para que exista $E[X]$ es que
-\begin{align*}
-    \sum_{n=1}^{+\infty}{P[|X|\ge n]} < +\infty.
-\end{align*}
+    Sea X una variable aleatoria arbitraria con función de distribución $F_X$. Una condición necesaria y suficiente para que exista $E[X]$ es que
+    \begin{align*}
+        \sum_{n=1}^{+\infty}{P[|X|\ge n]} < +\infty.
+    \end{align*}
 \end{teo}
