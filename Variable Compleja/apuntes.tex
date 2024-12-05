@@ -1,27 +1,12 @@
 \documentclass{book}
-\usepackage[utf8]{inputenc}
-\usepackage{amsmath,amsfonts}
-\usepackage[mathscr]{euscript}
+\usepackage[hmargin = 3cm, vmargin = 2.5cm]{geometry}
 \usepackage[spanish]{babel}
-\usepackage{mathrsfs}
-\usepackage{fancyhdr}
-\usepackage{graphicx}
-\usepackage{caption}
-\usepackage{subcaption}
-\usepackage{amssymb}
-\usepackage{amsthm}
-\usepackage{vmargin}
-\usepackage{hyperref}
-\usepackage{vmargin}
+\usepackage{amssymb, amsmath, amsthm, graphicx, float, fancyhdr, parskip}
 \usepackage[all]{xy}
-\usepackage{relsize}
-\usepackage{bigints}
-\usepackage{mdframed}
-\usepackage{xcolor}
-\usepackage{mathtools}
-\usepackage{float}
+\usepackage[pdfusetitle]{hyperref}
 
 \pagestyle{fancy}
+\setlength{\headheight}{25.1pt}
 \fancyhf{}
 \lhead[\leftmark]{}
 \rhead[]{\rightmark}
@@ -34,33 +19,32 @@
 \author{Jorge Rodríguez Domínguez}
 \date{}
 
-\newcommand{\re}[]{\text{Re}}
-\newcommand{\im}[]{\text{Im}}
-\newcommand{\com}[]{\mathbb{C}}
-\newcommand{\comz}[]{\mathbb{C} \backslash \{0\}}
-\newcommand{\arg}[]{\text{arg}}
-\newcommand{\argp}[]{\text{Arg}}
-\newcommand{\logp}[]{\text{Log}}
-\newcommand{\var}[]{\text{Var}}
+\newcommand{\re}{\text{Re}}
+\newcommand{\im}{\text{Im}}
+\newcommand{\com}{\mathbb{C}}
+\newcommand{\comz}{\mathbb{C} \backslash \{0\}}
+\newcommand{\argp}{\text{Arg}}
+\newcommand{\logp}{\text{Log}}
+\newcommand{\var}{\text{Var}}
+\renewcommand{\arg}{\text{arg}}
 
-\definecolor{light-gray}{gray}{0.85}
+%\definecolor{light-gray}{gray}{0.85}
 
-\newmdtheoremenv[backgroundcolor=light-gray]{teo}{Teorema}[section]
-% \newtheorem{teo}{Teorema}[section]
-\newmdtheoremenv[backgroundcolor=light-gray]{cor}[teo]{Corolario}
-%\newtheorem{cor}[teo]{Corolario}
-\newmdtheoremenv[backgroundcolor=light-gray]{lema}[teo]{Lema}
-%\newtheorem{lema}[teo]{Lema}
+%\newmdtheoremenv[backgroundcolor=light-gray]{teo}{Teorema}[section]
+\newtheorem{teo}{Teorema}[section]
+%\newmdtheoremenv[backgroundcolor=light-gray]{cor}[teo]{Corolario}
+\newtheorem{cor}[teo]{Corolario}
+%\newmdtheoremenv[backgroundcolor=light-gray]{lema}[teo]{Lema}
+\newtheorem{lema}[teo]{Lema}
 
-%\newtheorem{defi}[teo]{Definición}
-\newmdtheoremenv[backgroundcolor=light-gray]{prop}[teo]{Proposición}
-% \newtheorem{prop}[teo]{Proposición}
+%\newmdtheoremenv[backgroundcolor=light-gray]{prop}[teo]{Proposición}
+\newtheorem{prop}[teo]{Proposición}
 
 \theoremstyle{definition}
-\newmdtheoremenv[backgroundcolor=light-gray]{defi}[teo]{Definición}
+%\newmdtheoremenv[backgroundcolor=light-gray]{defi}[teo]{Definición}
+\newtheorem{defi}[teo]{Definición}
 \newtheorem{ejemplo}[teo]{Ejemplo}
 \newtheorem{obs}[teo]{Observación}
-% \newtheorem{obs}[teo]{Observación}
 
 \begin{document}
 % =========================================

@@ -5,17 +5,16 @@
 \subsection{Definición de intervalo de confianza}
 
 \begin{defi}
-Sea $X_1,...,X_n$ una muestra aleatoria simple de una variable aleatoria $X$ con función de densidad $f(x;\theta)$, $\theta \in \Theta$. Sean $T_1 = t_1(X_1,...,X_n)$ y $T_2 = t_2(X_1,...,X_n)$ dos estadísticos que satisfacen $T_1 \leq T_2$ tales que $P_{\theta}[T_1 < \tau(\theta) < T_2] \equiv \gamma$, donde $\gamma$ no depende de $\theta$. Entonces, el intervalo aleatorio $(T_1,T_2)$ se llama \textbf{intervalo  de $\tau(\theta)$ al $100\gamma\% $ de confianza}. A $\gamma$ se le llama \textbf{coeficiente de confianza}.
-\\
-\newline
-Un valor $(t_1,t_2)$ del intervalo aleatorio $(T_1,T_2)$ también se llama intervalo  de $\tau(\theta)$ al $100\gamma\% $ de confianza.
+    Sea $X_1,...,X_n$ una muestra aleatoria simple de una variable aleatoria $X$ con función de densidad $f(x;\theta)$, $\theta \in \Theta$. Sean $T_1 = t_1(X_1,...,X_n)$ y $T_2 = t_2(X_1,...,X_n)$ dos estadísticos que satisfacen $T_1 \leq T_2$ tales que $P_{\theta}[T_1 < \tau(\theta) < T_2] \equiv \gamma$, donde $\gamma$ no depende de $\theta$. Entonces, el intervalo aleatorio $(T_1,T_2)$ se llama \textbf{intervalo  de $\tau(\theta)$ al $100\gamma\% $ de confianza}. A $\gamma$ se le llama \textbf{coeficiente de confianza}.
+
+    Un valor $(t_1,t_2)$ del intervalo aleatorio $(T_1,T_2)$ también se llama intervalo  de $\tau(\theta)$ al $100\gamma\% $ de confianza.
 \end{defi}
 
 
 \begin{ejemplo}
-Sea $X_1,...,X_n$ una muestra aleatoria simple de una variable aleatoria $X \sim N(\mu = \theta,\sigma^2 =9)$. Sea $T_! = \overline{X} - \frac{6}{\sqrt{n}}$ y $T_2 = \overline{X} + \frac{6}{\sqrt{n}}$. Entonces $(T_1,T_2)$ constituye un intervalo aleatorio y es un intervalo de confianza para $\tau(\theta) = \theta$ cuyo coeficiente de confianza es
-\begin{align*}
-    \gamma = P_{\theta}\left[\overline{X} - \frac{6}{\sqrt{n}} < \theta < \overline{X} + \frac{6}{\sqrt{n}}\right] = P_{\theta}\left[ -2 < \frac{\overline{X} - \theta}{3/\sqrt{n}} < 2\right]
+    Sea $X_1,...,X_n$ una muestra aleatoria simple de una variable aleatoria $X \sim N(\mu = \theta,\sigma^2 =9)$. Sea $T_! = \overline{X} - \frac{6}{\sqrt{n}}$ y $T_2 = \overline{X} + \frac{6}{\sqrt{n}}$. Entonces $(T_1,T_2)$ constituye un intervalo aleatorio y es un intervalo de confianza para $\tau(\theta) = \theta$ cuyo coeficiente de confianza es
+    \begin{align*}
+        \gamma = P_{\theta}\left[\overline{X} - \frac{6}{\sqrt{n}} < \theta < \overline{X} + \frac{6}{\sqrt{n}}\right] = P_{\theta}\left[ -2 < \frac{\overline{X} - \theta}{3/\sqrt{n}} < 2\right]
     \end{align*}
     Como $\overline{X} \sim N\left(\theta, \frac{\theta}{\sqrt{n}} \right)$, tenemos que $\gamma =\Phi(2) - \Phi(-2) = 0'9544$. Además, si en una muestra aleatoria de 25 observaciones se tiene una media muestral de, digamos, 17'5, entonces el intervalo $\left(17'5 - \frac{6}{\sqrt{25}}, 17'5 + \frac{6}{\sqrt{25}} \right)$ es un intervalo de confianza para $\theta$.
 \end{ejemplo}
@@ -23,143 +22,139 @@ Sea $X_1,...,X_n$ una muestra aleatoria simple de una variable aleatoria $X \sim
 \subsection{Método del pivote}
 
 \begin{defi}
-Sea $X_1,...,X_n$ una muestra aleatoria simple de una variable aleatoria $X$ con función de densidad $f(x;\theta)$, $\theta \in \Theta$. Sea $Q = q(X_1,...,X_n;\theta)$ una función de $X_1,...,X_n$ y $\theta$. Si $Q$ tiene una distribución que no depende de $\theta$, entonces decimos que $Q$ es un \textbf{pivote}.
+    Sea $X_1,...,X_n$ una muestra aleatoria simple de una variable aleatoria $X$ con función de densidad $f(x;\theta)$, $\theta \in \Theta$. Sea $Q = q(X_1,...,X_n;\theta)$ una función de $X_1,...,X_n$ y $\theta$. Si $Q$ tiene una distribución que no depende de $\theta$, entonces decimos que $Q$ es un \textbf{pivote}.
 \end{defi}
 
 \begin{ejemplo}
-Sea $X_1,...,X_n$ una muestra aleatoria simple de una variable aleatoria $X \sim N(\mu = \theta,\sigma^2 =9)$. Tenemos que $\overline{X} - \theta$ es un pivote ya que $\overline{X} - \theta$ tiene una distribución $N\left(\mu = 0, \sigma^2 = \frac{9}{n}\right)$, que no depende de $\theta$.
+    Sea $X_1,...,X_n$ una muestra aleatoria simple de una variable aleatoria $X \sim N(\mu = \theta,\sigma^2 =9)$. Tenemos que $\overline{X} - \theta$ es un pivote ya que $\overline{X} - \theta$ tiene una distribución $N\left(\mu = 0, \sigma^2 = \frac{9}{n}\right)$, que no depende de $\theta$.
 \end{ejemplo}
 
 \begin{obs}
-Si tenemos una muestra aleatoria simple $X_1,...,X_n$ de una variable aleatoria $X$ con función de distribución $F(x;\theta)$ continua, entonces
-\begin{itemize}
-    \item $F(X_i;\theta) \sim U([0,1])$ para cada $i= 1,...,n$.
-    \item $-\log F(X_i;\theta) \sim Exp(\lambda = 1)$ para cada $i= 1,...,n$.
-\end{itemize}
-Por tanto, tenemos que los siguientes pivotes:
-\begin{itemize}
-    \item $Q = \prod_{i=1}^{n} F(X_i;\theta) \sim U([0,1])$.
-    \item $Q = \sum_{i=1}^{n} - \log F(X_i;\theta) \sim Ga(\alpha = n, \beta = 1)$.
-\end{itemize}
+    Si tenemos una muestra aleatoria simple $X_1,...,X_n$ de una variable aleatoria $X$ con función de distribución $F(x;\theta)$ continua, entonces
+    \begin{itemize}
+        \item $F(X_i;\theta) \sim U([0,1])$ para cada $i= 1,...,n$.
+        \item $-\log F(X_i;\theta) \sim Exp(\lambda = 1)$ para cada $i= 1,...,n$.
+    \end{itemize}
+    Por tanto, tenemos que los siguientes pivotes:
+    \begin{itemize}
+        \item $Q = \prod_{i=1}^{n} F(X_i;\theta) \sim U([0,1])$.
+        \item $Q = \sum_{i=1}^{n} - \log F(X_i;\theta) \sim Ga(\alpha = n, \beta = 1)$.
+    \end{itemize}
 \end{obs}
 
 \begin{ejemplo}
-Sea $X_1,...,X_n$ una muestra aleatoria simple de una variable aleatoria $X \sim N(\mu,\sigma)$, $\mu$ y $\sigma$ desconocidos.
-\\
-\newline
-¿Intervalo de confianza para $\mu$? Por el Teorema de Fisher sabemos que $\overline{X}$ y $S^2$ son independientes y:
-\begin{align*}
-    \overline{X} \sim N\left( \mu, \frac{\sigma}{\sqrt{n}} \right), \ \ \ \ \frac{(n-1)S^2}{\sigma^2} \sim \chi^2_{(n-1)}
-\end{align*}
-Consideramos el pivote:
-\begin{align*}
-    Q = \frac{\frac{\overline{X} -\mu}{\sigma/\sqrt{n}}}{\sqrt{\frac{(n-1)S^2}{(n-1)\sigma^2}}} = \frac{\frac{\overline{X} -\mu}{\sigma/\sqrt{n}}}{\sqrt{\frac{S^2}{\sigma^2}}} = \frac{\frac{\overline{X} -\mu}{\sigma/\sqrt{n}}}{{\frac{S}{\sigma}}} = \frac{\overline{X} - \mu}{S/\sqrt{n}} \sim t_{n-1}
-\end{align*}
-que es independiente de $\mu$ y $\sigma$. Sean $q_1 < q_2$ y sea $x_1,...,x_n$ una realización de la muestra, entonces
-\begin{align*}
-    \left\{ q_1 < \frac{\overline{x} -\mu}{s/\sqrt{n}} < q_2 \right\} \Longleftrightarrow \left\{ \overline{x} - q_2 \frac{s}{\sqrt{n}} < \mu < \overline{x} -q_1\frac{s}{\sqrt{n}}\right\}
-\end{align*}
-Definimos:
-\begin{align*}
-    P\left[  q_1 < \frac{\overline{X} -\mu}{S/\sqrt{n}} < q_2 \right] = \int_{q_1}^{q_2}{f_T(t) \ dt} = \gamma 
-\end{align*}
-con lo que tenemos que $\left(\overline{X} - q_2 \frac{S}{\sqrt{n}} , \overline{X} -q_1\frac{S}{\sqrt{n}}\right)$ es un intervalo para $\mu$ al $100\gamma \%$ de confianza. La longitud de dicho intervalo es $(q_2 - q_1)(S/\sqrt{n})$. Intentemos minimizar la longitud del intevalo sujeto a que la confianza es $\gamma$, es decir, hemos de resolver el siguiente problema de optimización:
-\begin{align*}
-    \text{Min: }  &L = \frac{S}{\sqrt{n}}(q_2 - q_1) \\
-    & s.a \int_{q_1}^{q_2}{f_T(t) \ dt} = \gamma
-\end{align*}
-Vamos a considerar que $q_2$ es función de $q_1$, así que para minimizar $L$, tenemos que hacer:
-\begin{align*}
-    \frac{d L}{d q_1} = 0 \Longleftrightarrow \frac{S}{\sqrt{n}}\left( \frac{d q_2}{d q_1} -1 \right) = 0
-\end{align*}
-Además:
-\begin{align*}
-    \int_{q_1}^{q_2}{f_T(t) \ dt} = \gamma \Longrightarrow F_T(q_2) - F_T(q_1) = \gamma \underset{\text{derivando}}{\Longrightarrow} f_T(q_2)\frac{d q_2}{d q_1} - f_T(q_1) = 0
-\end{align*}
-Con esto tenemos que
-\begin{align*}
-    0 = \frac{S}{\sqrt{n}}\left( \frac{d q_2}{d q_1} -1 \right) = \frac{S}{\sqrt{n}}\left( \frac{f_T(q_1)}{f_T(q_2)} -1 \right) = 0
-\end{align*}
-y esto puede ocurrir si $f_T(q_1) = f_T(q_2)$, lo que implica que $q_1 = -q_2$ (no puede ser $q_1 = q_2$ porque estamos suponiendo que $q_1 < q_2$). Por tanto el intervalo para $\mu$ al $100 \gamma \%$ de confianza con longitud mínima es $\left(\overline{X} - q_2 \frac{S}{\sqrt{n}} , \overline{X} +q_2\frac{S}{\sqrt{n}}\right)$.
-\\
-\newline
-¿Intervalo de confianza para $\sigma$? Por el Teorema de Fisher:
-\begin{align*}
-    \frac{(n-1)S^2}{\sigma^2} \sim \chi^2_{(n-1)}
-\end{align*}
-Consideramos el pivote:
-\begin{align*}
-    Q = \frac{(n-1)S^2}{\sigma^2} \sim \chi^2_{(n-1)}
-\end{align*}
-que es independiente de $\mu$ y $\sigma$. Sean $a_1 < q_2$ y sea $x_1,...,x_n$ una realización de la muestra, entonces
-\begin{align*}
-    \left\{ q_1 < \frac{(n-1)S^2}{\sigma^2} < q_2\right\} \Longleftrightarrow \left\{ \frac{(n-1)s^2}{q_2} < \sigma^2 < \frac{(n-1)s^2}{q_1} \right\}
-\end{align*}
-Definimos:
-\begin{align*}
-    P\left[ \frac{(n-1)s^2}{q_2} < \sigma^2 < \frac{(n-1)s^2}{q_1} \right] = \gamma
-\end{align*}
-con lo que tenemos que $\left(\frac{(n-1)S^2}{q_2}, \frac{(n-1)S^2}{q_1}\right)$ es un intervalo para $\sigma^2$ al $100\gamma \%$ de confianza.
+    Sea $X_1,...,X_n$ una muestra aleatoria simple de una variable aleatoria $X \sim N(\mu,\sigma)$, $\mu$ y $\sigma$ desconocidos.
+
+    ¿Intervalo de confianza para $\mu$? Por el Teorema de Fisher sabemos que $\overline{X}$ y $S^2$ son independientes y:
+    \begin{align*}
+        \overline{X} \sim N\left( \mu, \frac{\sigma}{\sqrt{n}} \right), \ \ \ \ \frac{(n-1)S^2}{\sigma^2} \sim \chi^2_{(n-1)}
+    \end{align*}
+    Consideramos el pivote:
+    \begin{align*}
+        Q = \frac{\frac{\overline{X} -\mu}{\sigma/\sqrt{n}}}{\sqrt{\frac{(n-1)S^2}{(n-1)\sigma^2}}} = \frac{\frac{\overline{X} -\mu}{\sigma/\sqrt{n}}}{\sqrt{\frac{S^2}{\sigma^2}}} = \frac{\frac{\overline{X} -\mu}{\sigma/\sqrt{n}}}{{\frac{S}{\sigma}}} = \frac{\overline{X} - \mu}{S/\sqrt{n}} \sim t_{n-1}
+    \end{align*}
+    que es independiente de $\mu$ y $\sigma$. Sean $q_1 < q_2$ y sea $x_1,...,x_n$ una realización de la muestra, entonces
+    \begin{align*}
+        \left\{ q_1 < \frac{\overline{x} -\mu}{s/\sqrt{n}} < q_2 \right\} \Longleftrightarrow \left\{ \overline{x} - q_2 \frac{s}{\sqrt{n}} < \mu < \overline{x} -q_1\frac{s}{\sqrt{n}}\right\}
+    \end{align*}
+    Definimos:
+    \begin{align*}
+        P\left[  q_1 < \frac{\overline{X} -\mu}{S/\sqrt{n}} < q_2 \right] = \int_{q_1}^{q_2}{f_T(t) \ dt} = \gamma
+    \end{align*}
+    con lo que tenemos que $\left(\overline{X} - q_2 \frac{S}{\sqrt{n}} , \overline{X} -q_1\frac{S}{\sqrt{n}}\right)$ es un intervalo para $\mu$ al $100\gamma \%$ de confianza. La longitud de dicho intervalo es $(q_2 - q_1)(S/\sqrt{n})$. Intentemos minimizar la longitud del intevalo sujeto a que la confianza es $\gamma$, es decir, hemos de resolver el siguiente problema de optimización:
+    \begin{align*}
+        \text{Min: } & L = \frac{S}{\sqrt{n}}(q_2 - q_1)          \\
+                     & s.a \int_{q_1}^{q_2}{f_T(t) \ dt} = \gamma
+    \end{align*}
+    Vamos a considerar que $q_2$ es función de $q_1$, así que para minimizar $L$, tenemos que hacer:
+    \begin{align*}
+        \frac{d L}{d q_1} = 0 \Longleftrightarrow \frac{S}{\sqrt{n}}\left( \frac{d q_2}{d q_1} -1 \right) = 0
+    \end{align*}
+    Además:
+    \begin{align*}
+        \int_{q_1}^{q_2}{f_T(t) \ dt} = \gamma \Longrightarrow F_T(q_2) - F_T(q_1) = \gamma \underset{\text{derivando}}{\Longrightarrow} f_T(q_2)\frac{d q_2}{d q_1} - f_T(q_1) = 0
+    \end{align*}
+    Con esto tenemos que
+    \begin{align*}
+        0 = \frac{S}{\sqrt{n}}\left( \frac{d q_2}{d q_1} -1 \right) = \frac{S}{\sqrt{n}}\left( \frac{f_T(q_1)}{f_T(q_2)} -1 \right) = 0
+    \end{align*}
+    y esto puede ocurrir si $f_T(q_1) = f_T(q_2)$, lo que implica que $q_1 = -q_2$ (no puede ser $q_1 = q_2$ porque estamos suponiendo que $q_1 < q_2$). Por tanto el intervalo para $\mu$ al $100 \gamma \%$ de confianza con longitud mínima es $\left(\overline{X} - q_2 \frac{S}{\sqrt{n}} , \overline{X} +q_2\frac{S}{\sqrt{n}}\right)$.
+
+    ¿Intervalo de confianza para $\sigma$? Por el Teorema de Fisher:
+    \begin{align*}
+        \frac{(n-1)S^2}{\sigma^2} \sim \chi^2_{(n-1)}
+    \end{align*}
+    Consideramos el pivote:
+    \begin{align*}
+        Q = \frac{(n-1)S^2}{\sigma^2} \sim \chi^2_{(n-1)}
+    \end{align*}
+    que es independiente de $\mu$ y $\sigma$. Sean $a_1 < q_2$ y sea $x_1,...,x_n$ una realización de la muestra, entonces
+    \begin{align*}
+        \left\{ q_1 < \frac{(n-1)S^2}{\sigma^2} < q_2\right\} \Longleftrightarrow \left\{ \frac{(n-1)s^2}{q_2} < \sigma^2 < \frac{(n-1)s^2}{q_1} \right\}
+    \end{align*}
+    Definimos:
+    \begin{align*}
+        P\left[ \frac{(n-1)s^2}{q_2} < \sigma^2 < \frac{(n-1)s^2}{q_1} \right] = \gamma
+    \end{align*}
+    con lo que tenemos que $\left(\frac{(n-1)S^2}{q_2}, \frac{(n-1)S^2}{q_1}\right)$ es un intervalo para $\sigma^2$ al $100\gamma \%$ de confianza.
 \end{ejemplo}
 
 \begin{ejemplo}
-Sea $X_1,...,X_n$ una muestra aleatoria simple de una variable aleatoria $X \sim N(\mu,\sigma)$, $\mu$ y $\sigma$ desconocidos. ¿Región de confianza para $(\mu,\sigma^2)$?
-\begin{align*}
-    Q_1 = \frac{\overline{X} - \mu}{\sigma/\sqrt{n}}, \ \ \ Q_2 = \frac{(n-1)S^2}{\sigma^2}
-\end{align*}
-son pivotes para $\mu$ y $\sigma^2$ respectivamente. Definimos
-\begin{align*}
-    &P\left[-q_1 < \frac{\overline{X} - \mu}{\sigma/\sqrt{n}} < q_1\right] = \gamma_1 \\
-    &P\left[q_2' < \frac{(n-1)S^2}{\sigma^2} < q_2''\right] = \gamma_2
-\end{align*}
-Si hacemos que se alcanzen las igualdades, podemos representar una región de confianza para $(\mu,\sigma^2)$
-\begin{align*}
-     -q_1 &=  \frac{\overline{X} - \mu}{\sigma/\sqrt{n}} \Longrightarrow \sigma^2 = \frac{\sqrt{n}}{q_1}(\overline{X} - \mu)\\
-     q_1 &= \frac{\overline{X} - \mu}{\sigma/\sqrt{n}} \Longrightarrow \sigma^2 = \frac{\sqrt{n}}{q_1}(\overline{X} - \mu) \\
-     q_2' &= \frac{(n-1)S^2}{\sigma^2} \Longrightarrow \sigma^2 = \frac{(n-1)S^2}{q_2'}\\
-     q_2'' &= \frac{(n-1)S^2}{\sigma^2} \Longrightarrow \sigma^2 = \frac{(n-1)S^2}{q_2''}
-\end{align*}
-Como $Q_1$ y $Q_2$ son independientes:
-\begin{align*}
-    P[-q_1 < Q_1 < q_1, q_2' < Q_2 < q_2''] = P[-q_1 < Q_1 < q_1] \cdot P[ q_2' < Q_2 < q_2''] = \gamma_1 \cdot \gamma_2
-\end{align*}
-Luego
-\begin{align*}
-    \left\{  (\mu,\sigma^2) : q_1 < \frac{\overline{X} - \mu}{\sigma/\sqrt{n}}< q_1, q_2' < \frac{(n-1)S^2}{\sigma^2} < q_2''\right\}
-\end{align*}
-es una región de confianza para $(\mu,\sigma^2)$ a un $100\gamma_1 \gamma_2 \%$.
+    Sea $X_1,...,X_n$ una muestra aleatoria simple de una variable aleatoria $X \sim N(\mu,\sigma)$, $\mu$ y $\sigma$ desconocidos. ¿Región de confianza para $(\mu,\sigma^2)$?
+    \begin{align*}
+        Q_1 = \frac{\overline{X} - \mu}{\sigma/\sqrt{n}}, \ \ \ Q_2 = \frac{(n-1)S^2}{\sigma^2}
+    \end{align*}
+    son pivotes para $\mu$ y $\sigma^2$ respectivamente. Definimos
+    \begin{align*}
+         & P\left[-q_1 < \frac{\overline{X} - \mu}{\sigma/\sqrt{n}} < q_1\right] = \gamma_1 \\
+         & P\left[q_2' < \frac{(n-1)S^2}{\sigma^2} < q_2''\right] = \gamma_2
+    \end{align*}
+    Si hacemos que se alcanzen las igualdades, podemos representar una región de confianza para $(\mu,\sigma^2)$
+    \begin{align*}
+        -q_1  & =  \frac{\overline{X} - \mu}{\sigma/\sqrt{n}} \Longrightarrow \sigma^2 = \frac{\sqrt{n}}{q_1}(\overline{X} - \mu) \\
+        q_1   & = \frac{\overline{X} - \mu}{\sigma/\sqrt{n}} \Longrightarrow \sigma^2 = \frac{\sqrt{n}}{q_1}(\overline{X} - \mu)  \\
+        q_2'  & = \frac{(n-1)S^2}{\sigma^2} \Longrightarrow \sigma^2 = \frac{(n-1)S^2}{q_2'}                                      \\
+        q_2'' & = \frac{(n-1)S^2}{\sigma^2} \Longrightarrow \sigma^2 = \frac{(n-1)S^2}{q_2''}
+    \end{align*}
+    Como $Q_1$ y $Q_2$ son independientes:
+    \begin{align*}
+        P[-q_1 < Q_1 < q_1, q_2' < Q_2 < q_2''] = P[-q_1 < Q_1 < q_1] \cdot P[ q_2' < Q_2 < q_2''] = \gamma_1 \cdot \gamma_2
+    \end{align*}
+    Luego
+    \begin{align*}
+        \left\{  (\mu,\sigma^2) : q_1 < \frac{\overline{X} - \mu}{\sigma/\sqrt{n}}< q_1, q_2' < \frac{(n-1)S^2}{\sigma^2} < q_2''\right\}
+    \end{align*}
+    es una región de confianza para $(\mu,\sigma^2)$ a un $100\gamma_1 \gamma_2 \%$.
 \end{ejemplo}
 
 \begin{ejemplo}
-Intervalo de confianza para la diferencia de medias de distribuciones normales.
-Sea $X_1,...,X_n$ una muestra aleatoria simple de una variable aleatoria $X \sim N(\mu_1\sigma)$ y sea $Y_1,...,Y_k$ una muestra aleatoria simple de una variable aleatoria $Y \sim N(\mu_2,\sigma)$. Sabemos entonces que $\overline{X} \sim N\left(\mu_1,\frac{\sigma}{\sqrt{n}} \right)$ y $\overline{Y} \sim N\left(\mu_2,\frac{\sigma}{\sqrt{k}} \right)$. Por tanto $\overline{Y} - \overline{X} \sim N\left(\mu_2 - \mu_1,\sqrt{\frac{\sigma^2}{n} + \frac{\sigma^2}{m}} \right)$. Por el Teorema de Fisher:
-\begin{align*}
-    \frac{1}{\sigma^2}S^2_X = \frac{1}{\sigma^2} \sum_{i=1}^{n} (X_i - \overline{X})^2 \sim \chi_{(n-1)}^2 \\
-    \frac{1}{\sigma^2}S^2_Y = \frac{1}{\sigma^2} \sum_{J=1}^{k} (Y_i - \overline{Y})^2 \sim \chi_{(k-1)}^2 \\
-
-\end{align*}
-de donnde deducimos que 
-\begin{align*}
-    \frac{1}{\sigma^2} \left(\sum_{i=1}^{n} (X_i - \overline{X})^2 +  \sum_{J=1}^{k} (Y_i - \overline{Y})^2\right) \sim \chi_{(n+k-2)}^2 
-\end{align*}
-Definimos
-\begin{align*}
-    Q_1 &= \frac{\frac{\overline{Y} - \overline{X} - (\mu_2 - \mu_1)}{\sqrt{\sigma^2/n + \sigma^2/k}}}{\sqrt{\frac{\sum_{i=1}^{n} (x_i - \overline{x})^2 + \sum_{j=1}^{k} (x_i - \overline{y})^2}{\sigma^2(n+k-2)}}} = \frac{\frac{\overline{Y} - \overline{X} - (\mu_2 -\mu_1)}{\sigma\sqrt{1/n + 1/k}}}{S_p/\sigma} = \frac{\overline{Y} - \overline{X} - (\mu_2 -\mu_1)}{S_p\sqrt{1/n + 1/k}} \sim t_{n+k-2}
-\end{align*}
-siendo 
-\begin{align*}
-    S_p = \sum_{i=1}^{n} (X_i - \overline{X})^2 +  \sum_{J=1}^{k} (Y_i - \overline{Y})^2
-\end{align*}
+    Intervalo de confianza para la diferencia de medias de distribuciones normales.
+    Sea $X_1,...,X_n$ una muestra aleatoria simple de una variable aleatoria $X \sim N(\mu_1\sigma)$ y sea $Y_1,...,Y_k$ una muestra aleatoria simple de una variable aleatoria $Y \sim N(\mu_2,\sigma)$. Sabemos entonces que $\overline{X} \sim N\left(\mu_1,\frac{\sigma}{\sqrt{n}} \right)$ y $\overline{Y} \sim N\left(\mu_2,\frac{\sigma}{\sqrt{k}} \right)$. Por tanto $\overline{Y} - \overline{X} \sim N\left(\mu_2 - \mu_1,\sqrt{\frac{\sigma^2}{n} + \frac{\sigma^2}{m}} \right)$. Por el Teorema de Fisher:
+    \begin{align*}
+        \frac{1}{\sigma^2}S^2_X = \frac{1}{\sigma^2} \sum_{i=1}^{n} (X_i - \overline{X})^2 \sim \chi_{(n-1)}^2 \\
+        \frac{1}{\sigma^2}S^2_Y = \frac{1}{\sigma^2} \sum_{J=1}^{k} (Y_i - \overline{Y})^2 \sim \chi_{(k-1)}^2 \\
+    \end{align*}
+    de donnde deducimos que
+    \begin{align*}
+        \frac{1}{\sigma^2} \left(\sum_{i=1}^{n} (X_i - \overline{X})^2 +  \sum_{J=1}^{k} (Y_i - \overline{Y})^2\right) \sim \chi_{(n+k-2)}^2
+    \end{align*}
+    Definimos
+    \begin{align*}
+        Q_1 & = \frac{\frac{\overline{Y} - \overline{X} - (\mu_2 - \mu_1)}{\sqrt{\sigma^2/n + \sigma^2/k}}}{\sqrt{\frac{\sum_{i=1}^{n} (x_i - \overline{x})^2 + \sum_{j=1}^{k} (x_i - \overline{y})^2}{\sigma^2(n+k-2)}}} = \frac{\frac{\overline{Y} - \overline{X} - (\mu_2 -\mu_1)}{\sigma\sqrt{1/n + 1/k}}}{S_p/\sigma} = \frac{\overline{Y} - \overline{X} - (\mu_2 -\mu_1)}{S_p\sqrt{1/n + 1/k}} \sim t_{n+k-2}
+    \end{align*}
+    siendo
+    \begin{align*}
+        S_p = \sum_{i=1}^{n} (X_i - \overline{X})^2 +  \sum_{J=1}^{k} (Y_i - \overline{Y})^2
+    \end{align*}
 \end{ejemplo}
 
 \section{Determinación del tamaño muestral}
-Sea $X_1,...,X_n$ una muestra aleatoria simple de una variable aleatoria $X$ con función de densidad $f(x;\theta)$. Sea $Q$ un pivote. Supongamos que 
+Sea $X_1,...,X_n$ una muestra aleatoria simple de una variable aleatoria $X$ con función de densidad $f(x;\theta)$. Sea $Q$ un pivote. Supongamos que
 \begin{align*}
     P(q_1 < Q < q_2) = \gamma = P(t_1(x_1,...,x_n) < \theta < t_2(x_1,...,x_n))
 \end{align*}
 para ciertos $t_1,t_2$ estadísticos y $x_1,...,x_n$ una realización de la muestra.
-\\
-\newline
+
 Si suponemos que $X \sim N(\mu, \sigma)$. Fijamos $\varepsilon > 0$. Sabemos que
 \begin{align*}
     \left( \overline{X} - t_{n-1, 1 - \frac{1-\gamma}{2}}\frac{S^2}{\sqrt{n}},\overline{X} + t_{n-1, 1 - \frac{1-\gamma}{2}}\frac{S^2}{\sqrt{n}} \right)

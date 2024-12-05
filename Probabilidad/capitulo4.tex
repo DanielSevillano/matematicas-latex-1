@@ -2,82 +2,82 @@
 
 \section{Variables aleatorias discretas}
 \begin{defi}
-Una variable aleatoria X tiene una distribución discreta si $P_X$ es discreta, es decir, $P_X$ está concentrada en un conjunto $D_X = \{x_i\}$, $x_i \in \mathbb{R}$ a lo sumo infinito numerable tal que
-\begin{itemize}
-    \item $P_X(\{x_i\}) > 0$ para todo $x_i \in D_X$.
-    \item $\sum_{x_i \in D_x}{P_X(\{x_i\})} = 1$.
-\end{itemize}
-En tal caso
-\begin{align*}
-    P_X(B) = \sum_{x_i \in D_X \cap B}{P_X(\{x_i\})}
-\end{align*}
-para todo $B \in \mathbb{B}_1$ y
-\begin{align*}
-    F_X(x) = \sum_{\{x_i \in D_x : x_i \leq x \}}{P_X(\{x_i\})} = P_X((-\infty,x]).
-\end{align*}
+    Una variable aleatoria X tiene una distribución discreta si $P_X$ es discreta, es decir, $P_X$ está concentrada en un conjunto $D_X = \{x_i\}$, $x_i \in \mathbb{R}$ a lo sumo infinito numerable tal que
+    \begin{itemize}
+        \item $P_X(\{x_i\}) > 0$ para todo $x_i \in D_X$.
+        \item $\sum_{x_i \in D_x}{P_X(\{x_i\})} = 1$.
+    \end{itemize}
+    En tal caso
+    \begin{align*}
+        P_X(B) = \sum_{x_i \in D_X \cap B}{P_X(\{x_i\})}
+    \end{align*}
+    para todo $B \in \mathbb{B}_1$ y
+    \begin{align*}
+        F_X(x) = \sum_{\{x_i \in D_x : x_i \leq x \}}{P_X(\{x_i\})} = P_X((-\infty,x]).
+    \end{align*}
 \end{defi}
 
 \begin{obs}
-Si $X$ es una variable aleatoria discreta
-\begin{enumerate}
-    \item[(1)] $F_X$ es escalonada donde cada salto coincide con $P_X(\{x_i\})$.
-    \item[(2)] $P_X(D_X) = 1 = \sum_{x_i \in D_x}{P_X(\{x_i\})}$.
-    \item[(3)] $S_X = D_X$.
-    \item[(4)] $F_X = F_d$.
-    \item[(5)] Podemos establecer una partición de $\Omega$.
-    \begin{align*}
-        X: \Omega \longrightarrow \mathbb{R}, \ \ \ P_X: \mathbb{B}_1 \longrightarrow [0,1].
-    \end{align*}
-    Definimos
-    \begin{align*}
-        A_i = \{ \omega \in \Omega : X(\omega) = x_i \}.
-    \end{align*}
-    Es claro que si $x_i \not = x_j$ entonces $A_i \cap A_j = \emptyset$.
-\end{enumerate}
+    Si $X$ es una variable aleatoria discreta
+    \begin{enumerate}
+        \item[(1)] $F_X$ es escalonada donde cada salto coincide con $P_X(\{x_i\})$.
+        \item[(2)] $P_X(D_X) = 1 = \sum_{x_i \in D_x}{P_X(\{x_i\})}$.
+        \item[(3)] $S_X = D_X$.
+        \item[(4)] $F_X = F_d$.
+        \item[(5)] Podemos establecer una partición de $\Omega$.
+              \begin{align*}
+                  X: \Omega \longrightarrow \mathbb{R}, \ \ \ P_X: \mathbb{B}_1 \longrightarrow [0,1].
+              \end{align*}
+              Definimos
+              \begin{align*}
+                  A_i = \{ \omega \in \Omega : X(\omega) = x_i \}.
+              \end{align*}
+              Es claro que si $x_i \not = x_j$ entonces $A_i \cap A_j = \emptyset$.
+    \end{enumerate}
 \end{obs}
 
 \section{Variables aleatorias absolutamente continuas}
 
 \begin{defi}
-Una variable aleatoria X decimos que tiene una distibución absolutamente continua si existe una función $f: \mathbb{R} \longrightarrow \mathbb{R}$ no negativa tal que
-\begin{align*}
-    F_X(b) - F_X(a) = P_X((a,b]) = \int_{a}^{b}{f(x) \ dx},
-\end{align*}
-donde $a, b \in \mathbb{R}$ y $a < b$.
+    Una variable aleatoria X decimos que tiene una distibución absolutamente continua si existe una función $f: \mathbb{R} \longrightarrow \mathbb{R}$ no negativa tal que
+    \begin{align*}
+        F_X(b) - F_X(a) = P_X((a,b]) = \int_{a}^{b}{f(x) \ dx},
+    \end{align*}
+    donde $a, b \in \mathbb{R}$ y $a < b$.
 \end{defi}
 
 \begin{prop}
-Una función $f: \mathbb{R} \longrightarrow \mathbb{R}$ no negativa e integrable-Riemann en cualquier intervalo $[a,b] \subset \mathbb{R}$ es función de densidad de alguna función de distribución si y solo si
-\begin{align*}
-    \int_{-\infty}^{+\infty}{f(x) \ dx} = 1.
-\end{align*}
+    Una función $f: \mathbb{R} \longrightarrow \mathbb{R}$ no negativa e integrable-Riemann en cualquier intervalo $[a,b] \subset \mathbb{R}$ es función de densidad de alguna función de distribución si y solo si
+    \begin{align*}
+        \int_{-\infty}^{+\infty}{f(x) \ dx} = 1.
+    \end{align*}
 \end{prop}
 
 \begin{obs}
-Si X es una variable aleatoria absolutamente continua
-\begin{enumerate}
-    \item[(1)] $F_X(x) = \int_{-\infty}^{x}{f(t) \ dt} = P_X((-\infty,x])$.
-    \item[(2)] $F'(x) = f(x)$.
-    \item[(3)] $C_X = \{x \in \mathbb{R} : f(x) > 0 \}$ y $D_X = \{x \in \mathbb{R} : P_X(\{x\}) > 0 \} = \emptyset$.
-    \item[(4)] $P_X(B) = \int_{B}{f(x) \dx}$ para todo $B \in \mathbb{B}_1$.
-    \item[(5)] $F_X$ es continua.
-    \item[(6)] $P_X(\{a\}) = 0$ para todo $a \in \mathbb{R}$.
-\end{enumerate}
+    Si X es una variable aleatoria absolutamente continua
+    \begin{enumerate}
+        \item[(1)] $F_X(x) = \int_{-\infty}^{x}{f(t) \ dt} = P_X((-\infty,x])$.
+        \item[(2)] $F'(x) = f(x)$.
+        \item[(3)] $C_X = \{x \in \mathbb{R} : f(x) > 0 \}$ y $D_X = \{x \in \mathbb{R} : P_X(\{x\}) > 0 \} = \emptyset$.
+        \item[(4)] $P_X(B) = \int_{B}{f(x) \ dx}$ para todo $B \in \mathbb{B}_1$.
+        \item[(5)] $F_X$ es continua.
+        \item[(6)] $P_X(\{a\}) = 0$ para todo $a \in \mathbb{R}$.
+    \end{enumerate}
 \end{obs}
 
 \section{Distribuciones mixtas}
 
 \begin{defi}
-Una variable aleatoria X decimos que tiene una dsitribución mixta si la función de distribución, $F_X$, posee a lo sumo un número infinito numerable de puntos de salto y crece de forma continua en al menos un intervalo $I \subset \mathbb{R}$.
+    Una variable aleatoria X decimos que tiene una dsitribución mixta si la función de distribución, $F_X$, posee a lo sumo un número infinito numerable de puntos de salto y crece de forma continua en al menos un intervalo $I \subset \mathbb{R}$.
 \end{defi}
 
 \begin{obs}
-Si X es una variable aleatoria mixta
-\begin{enumerate}
-    \item[(1)] $D_X = \{x_n\}$ y $P_X(D_X) < 1$.
-    \item[(2)] $C_X^* = \{ x \in \mathbb{R} : f^*(x) > 0 \}$ y $P_X(C_X^*) < 1$.
-    \item[(3)] $f^*$ es una distribución de pseudodensidad.
-    \item[(4)] $P_X(D_X) + P_X(C_X^*) = 1$.
-    \item[(5)] $P_X(B) = \sum_{x_n \in D_X \cap B}{P_X(X_n)} + \int_{B}{f^*(x) \ dx}$ para todo $B \in \mathbb{B}_1$.
-\end{enumerate}
+    Si X es una variable aleatoria mixta
+    \begin{enumerate}
+        \item[(1)] $D_X = \{x_n\}$ y $P_X(D_X) < 1$.
+        \item[(2)] $C_X^* = \{ x \in \mathbb{R} : f^*(x) > 0 \}$ y $P_X(C_X^*) < 1$.
+        \item[(3)] $f^*$ es una distribución de pseudodensidad.
+        \item[(4)] $P_X(D_X) + P_X(C_X^*) = 1$.
+        \item[(5)] $P_X(B) = \sum_{x_n \in D_X \cap B}{P_X(X_n)} + \int_{B}{f^*(x) \ dx}$ para todo $B \in \mathbb{B}_1$.
+    \end{enumerate}
 \end{obs}

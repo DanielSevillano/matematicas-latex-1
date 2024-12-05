@@ -3,15 +3,15 @@
 \section{Función característica}
 
 \begin{defi}
-Sea $X$ una variable aleatoria en $(\Omega, \mathcal{A}, P)$. La función característica asociada a $X$ es $\varphi_X : \mathbb{R} \longrightarrow \mathbb{C}$ dada por
-\begin{align*}
-    \varphi_X(t) = E\left[ e^{itX} \right] = \int_{\mathbb{R}} e^{itx} \ dF(x).
-\end{align*}
-Si $Y : \Omega \longrightarrow \mathbb{R}^d$, $d \ge 1$, es un vector de variables aleatorias, entonces $\varphi_Y : \mathbb{R}^d \longrightarrow \mathbb{C}$ viene dada por
-\begin{align*}
-    \varphi_Y(t) = \int_{\mathbb{R}^d} e^{i<t,x>} \ dF(x),
-\end{align*}
-siendo $<,>$ un producto escalar en $\mathbb{R}^d$.
+    Sea $X$ una variable aleatoria en $(\Omega, \mathcal{A}, P)$. La función característica asociada a $X$ es $\varphi_X : \mathbb{R} \longrightarrow \mathbb{C}$ dada por
+    \begin{align*}
+        \varphi_X(t) = E\left[ e^{itX} \right] = \int_{\mathbb{R}} e^{itx} \ dF(x).
+    \end{align*}
+    Si $Y : \Omega \longrightarrow \mathbb{R}^d$, $d \ge 1$, es un vector de variables aleatorias, entonces $\varphi_Y : \mathbb{R}^d \longrightarrow \mathbb{C}$ viene dada por
+    \begin{align*}
+        \varphi_Y(t) = \int_{\mathbb{R}^d} e^{i\langle t,x\rangle} \ dF(x),
+    \end{align*}
+    siendo $\langle,\rangle$ un producto escalar en $\mathbb{R}^d$.
 \end{defi}
 
 \begin{obs}
@@ -20,33 +20,33 @@ siendo $<,>$ un producto escalar en $\mathbb{R}^d$.
         \varphi_X(t) = \int_{\mathbb{R}} \cos(tx) \ dF(x) + i \int_{\mathbb{R}} \sin(tx) \ dF(x).
     \end{align*}
 \end{obs}
-\noindent Algunas propiedades de la función característica son
+Algunas propiedades de la función característica son
 \begin{enumerate}
     \item $\varphi(0) = 1$.
     \item $|\varphi(t)| \leq 1$ para todo $t \in \mathbb{R}$.
-    \begin{proof}
-        \begin{align*}
-            |\varphi(t)| = \left|E \left[ e^{itX} \right] \right| \leq E \left[ \left| e^{itX} \right| \right] = 1.
-        \end{align*}
-    \end{proof}
+          \begin{proof}
+              \begin{align*}
+                  |\varphi(t)| = \left|E \left[ e^{itX} \right] \right| \leq E \left[ \left| e^{itX} \right| \right] = 1.
+              \end{align*}
+          \end{proof}
     \item $\varphi(-t) = \overline{\varphi(t)}$ para todo $t \in \mathbb{R}$.
-    \begin{proof}
-        \begin{align*}
-            \varphi(-t) &= E \left[ e^{-itX} \right] = E[\cos(-tx) + i\sin(-tx)] = E[\cos(tx) - i\sin(tx)] \\
-            &= \overline{E[\cos(tx)] + iE[\sin(tx)]} = \overline{E[\cos(tx) + i\sin(tx)]} = \overline{\varphi(t)}.
-        \end{align*}
-    \end{proof}
+          \begin{proof}
+              \begin{align*}
+                  \varphi(-t) & = E \left[ e^{-itX} \right] = E[\cos(-tx) + i\sin(-tx)] = E[\cos(tx) - i\sin(tx)]                     \\
+                              & = \overline{E[\cos(tx)] + iE[\sin(tx)]} = \overline{E[\cos(tx) + i\sin(tx)]} = \overline{\varphi(t)}.
+              \end{align*}
+          \end{proof}
     \item $\varphi$ es una función definida positiva, es decir, para cada $n \in \mathbb{N}$ y para cada $z \in \mathbb{C}^n$, $z = (z_1,...,z_n)$ se tiene que
-    \begin{align*}
-        \sum_{k,j=1}^{n} z_k \varphi(t_j-t_k)\overline{z_j} \ge 0.
-    \end{align*}
-    \begin{proof}
-        \begin{align*}
-            \sum_{k,j=1}^{n} z_k \varphi(t_j-t_k)\overline{z_j} &=\sum_{k,j=1}^{n} z_k E\left[ e^{i(t_j-t_k)X} \right]\overline{z_j} = \sum_{k,j=1}^{n} z_k E\left[ e^{it_jX}e^{-it_kX} \right]\overline{z_j} \\
-            &= E \left[ \sum_{k,j=1}^{n} z_k e^{it_jX}e^{-it_kX} \overline{z_j} \right] = E \left[ \sum_{k=1}^{n} z_k e^{-t_kX} \left( \sum_{j=1}^{n} \overline{z_j} e^{it_jX} \right)\right] \\
-            &= E \left[ \sum_{k=1}^{n} z_k e^{-t_kX} \overline{ \left( \sum_{j=1}^{n} z_j e^{-it_jX} \right)}\right] = E \left[ \left| \sum_{k=1}^{n} z_k e^{-it_kX} \right|^2 \right] \ge 0.
-        \end{align*}
-    \end{proof}
+          \begin{align*}
+              \sum_{k,j=1}^{n} z_k \varphi(t_j-t_k)\overline{z_j} \ge 0.
+          \end{align*}
+          \begin{proof}
+              \begin{align*}
+                  \sum_{k,j=1}^{n} z_k \varphi(t_j-t_k)\overline{z_j} & =\sum_{k,j=1}^{n} z_k E\left[ e^{i(t_j-t_k)X} \right]\overline{z_j} = \sum_{k,j=1}^{n} z_k E\left[ e^{it_jX}e^{-it_kX} \right]\overline{z_j}                                     \\
+                                                                      & = E \left[ \sum_{k,j=1}^{n} z_k e^{it_jX}e^{-it_kX} \overline{z_j} \right] = E \left[ \sum_{k=1}^{n} z_k e^{-t_kX} \left( \sum_{j=1}^{n} \overline{z_j} e^{it_jX} \right)\right] \\
+                                                                      & = E \left[ \sum_{k=1}^{n} z_k e^{-t_kX} \overline{ \left( \sum_{j=1}^{n} z_j e^{-it_jX} \right)}\right] = E \left[ \left| \sum_{k=1}^{n} z_k e^{-it_kX} \right|^2 \right] \ge 0.
+              \end{align*}
+          \end{proof}
 \end{enumerate}
 
 \begin{teo}
@@ -56,11 +56,11 @@ siendo $<,>$ un producto escalar en $\mathbb{R}^d$.
 \begin{proof}
     Sean $t,h \in \mathbb{R}$, entonces
     \begin{align*}
-        |\varphi(t+h) - \varphi(t)| &= \left| E\left[ e^{i(t+h)X} \right] - E\left[ e^{itX} \right] \right| = \left|E\left[ e^{i(t+h)X} - e^{itX} \right] \right| \\
-        &= \left|E\left[ e^{itX}\left( e^{ihX} - 1 \right) \right] \right| \leq E\left[ \left|e^{itX}\left( e^{ihX} - 1 \right) \right|\right] \\
-        &= E\left[ \left|e^{itX}\right|\left| e^{ihX} - 1 \right| \right] = E\left[\left| e^{ihX} - 1 \right| \right]
+        |\varphi(t+h) - \varphi(t)| & = \left| E\left[ e^{i(t+h)X} \right] - E\left[ e^{itX} \right] \right| = \left|E\left[ e^{i(t+h)X} - e^{itX} \right] \right|          \\
+                                    & = \left|E\left[ e^{itX}\left( e^{ihX} - 1 \right) \right] \right| \leq E\left[ \left|e^{itX}\left( e^{ihX} - 1 \right) \right|\right] \\
+                                    & = E\left[ \left|e^{itX}\right|\left| e^{ihX} - 1 \right| \right] = E\left[\left| e^{ihX} - 1 \right| \right]
     \end{align*}
-    Como 
+    Como
     \begin{itemize}
         \item $\left| e^{ihX} - 1\right| \leq \left| e^{ihX} \right| + 1 = 2$.
         \item $\left| e^{ihX} - 1 \right| \xrightarrow[h \to 0]{} 0$.
@@ -82,17 +82,17 @@ siendo $<,>$ un producto escalar en $\mathbb{R}^d$.
     \end{align*}
     Usando el Teorema de Fubini
     \begin{align*}
-        \frac{1}{2\pi} \int_{-T}^{T} \frac{e^{-itb} - e^{-ita}}{-it} \varphi(t) dt &= \frac{1}{2\pi} \int_{-T}^{T} \frac{e^{-itb} - e^{-ita}}{-it} \left( \int_{-\infty}^{\infty} e^{itx} \ dF(x)\right) dt \\
-        &=\frac{1}{\pi} \int_{-\infty}^{\infty}\int_{-T}^{T} \frac{e^{-it(x-a) - i^{it(x-b)}}}{2it} \ dt \ dF(x).
+        \frac{1}{2\pi} \int_{-T}^{T} \frac{e^{-itb} - e^{-ita}}{-it} \varphi(t) dt & = \frac{1}{2\pi} \int_{-T}^{T} \frac{e^{-itb} - e^{-ita}}{-it} \left( \int_{-\infty}^{\infty} e^{itx} \ dF(x)\right) dt \\
+                                                                                   & =\frac{1}{\pi} \int_{-\infty}^{\infty}\int_{-T}^{T} \frac{e^{-it(x-a) - i^{it(x-b)}}}{2it} \ dt \ dF(x).
     \end{align*}
-    Llamemos 
+    Llamemos
     \begin{align*}
         I(t) := \int_{-T}^{T} \frac{e^{-it(x-a) - i^{it(x-b)}}}{2it} \ dt,
     \end{align*}
     así
     \begin{align*}
-        I(T) &= \int_{-T}^{T} \frac{\cos(t(x-a)) + i\sen(t(x-a)) - \cos(t(x-b)) - i\sen(t(x-b))}{2it} \ dt \\
-        &= \int_{0}^{T} \frac{i2\sen(t(x-a)) - i2\sen(t(x-b))}{2it} \ dt = \int_{0}^{T} \left( \frac{\sen(t(x-a))}{t} - \frac{\sen(t(x-b))}{t} \right) dt.
+        I(T) & = \int_{-T}^{T} \frac{\cos(t(x-a)) + i\sen(t(x-a)) - \cos(t(x-b)) - i\sen(t(x-b))}{2it} \ dt                                                      \\
+             & = \int_{0}^{T} \frac{i2\sen(t(x-a)) - i2\sen(t(x-b))}{2it} \ dt = \int_{0}^{T} \left( \frac{\sen(t(x-a))}{t} - \frac{\sen(t(x-b))}{t} \right) dt.
     \end{align*}
     Definimos ahora la función
     \begin{align*}
@@ -101,34 +101,34 @@ siendo $<,>$ un producto escalar en $\mathbb{R}^d$.
     que sabemos que verifica que $H(-y) = H(y)$ y $\lim_{y \to \infty} H(y) = \pi/2$. Consideremos ahora el cambio de variables $u = t(x-a)$, de esta forma
     \begin{align*}
         \int_{0}^{T} \frac{\sen(t(x-a))}{t} \ dt = \int_{0}^{T(x-a)} \frac{\sin(u)}{u} \ du = H(T(x-a)) \xrightarrow[T \to \infty]{} \left\{ \begin{array}{lcc}
-             -\pi/2 & x < a\\
-             0  & x = a \\
-             \pi/2 & x > a
-             \end{array}
-   \right. .
+                                                                                                                                                 -\pi/2 & x < a \\
+                                                                                                                                                 0      & x = a \\
+                                                                                                                                                 \pi/2  & x > a
+                                                                                                                                             \end{array}
+        \right. .
     \end{align*}
     Actuando de igual forma para el cambio $u = t(x-b)$, llegamos a que
     \begin{align*}
         \lim_{T \to \infty} \int_{0}^{T} \left( \frac{\sen(t(x-a))}{t} - \frac{\sen(t(x-b))}{t} \right) dt = \left\{ \begin{array}{lcc}
-            0 & x < a \\
-             \pi/2 & x = a\\
-             \pi  & a < x < b \\
-             \pi/2 & x < b \\
-             0 & x > b
-             \end{array}
-   \right. .
+                                                                                                                         0     & x < a     \\
+                                                                                                                         \pi/2 & x = a     \\
+                                                                                                                         \pi   & a < x < b \\
+                                                                                                                         \pi/2 & x < b     \\
+                                                                                                                         0     & x > b
+                                                                                                                     \end{array}
+        \right. .
     \end{align*}
     Entonces
     \begin{align*}
-        \lim_{T \to \infty} \frac{1}{2\pi} \int_{-T}^{T} \frac{e^{-itb} - e^{-ita}}{-it} \varphi(b) \ dt &= \lim_{T \to \infty} \frac{1}{\pi} \int_{-\infty}^{\infty} I(t) \ dF(x) = \int_{-\infty}^{\infty} \lim_{T \to \infty} \frac{1}{\pi} I(t) \ dF(x) \\
-        &= \frac{1}{\pi}\left( \frac{\pi}{2}P(X = a) + \pi P(a < X < b) + \frac{\pi}{2} P(X = b) \right) \\
-        &= \frac{1}{\pi} \left( \frac{\pi}{2}(F(a) - F(a^-)) + \pi(F(b^-) - F(a)) + \frac{\pi}{2}(F(b) - F(b^-)) \right) \\
-        &= \frac{F(b) + F(b^-)}{2} - \frac{F(a) + F(a^-)}{2}.
+        \lim_{T \to \infty} \frac{1}{2\pi} \int_{-T}^{T} \frac{e^{-itb} - e^{-ita}}{-it} \varphi(b) \ dt & = \lim_{T \to \infty} \frac{1}{\pi} \int_{-\infty}^{\infty} I(t) \ dF(x) = \int_{-\infty}^{\infty} \lim_{T \to \infty} \frac{1}{\pi} I(t) \ dF(x) \\
+                                                                                                         & = \frac{1}{\pi}\left( \frac{\pi}{2}P(X = a) + \pi P(a < X < b) + \frac{\pi}{2} P(X = b) \right)                                                   \\
+                                                                                                         & = \frac{1}{\pi} \left( \frac{\pi}{2}(F(a) - F(a^-)) + \pi(F(b^-) - F(a)) + \frac{\pi}{2}(F(b) - F(b^-)) \right)                                   \\
+                                                                                                         & = \frac{F(b) + F(b^-)}{2} - \frac{F(a) + F(a^-)}{2}.
     \end{align*}
 \end{proof}
 
 \begin{cor}
-        Sea $X$ una varaible aleatoria en $(\Omega, \mathcal{A}, P)$ con función de distribución $F$ y función característica $\varphi$. Dados $a,b \in C(F)$, $a < b$, se tiene que
+    Sea $X$ una varaible aleatoria en $(\Omega, \mathcal{A}, P)$ con función de distribución $F$ y función característica $\varphi$. Dados $a,b \in C(F)$, $a < b$, se tiene que
     \begin{align*}
         F(b) - F(a) = \lim_{T \to \infty} \int_{-T}^{T} \frac{e^{-itb} - e^{-ita}}{-it} \varphi(t) \ dt.
     \end{align*}
@@ -164,7 +164,7 @@ siendo $<,>$ un producto escalar en $\mathbb{R}^d$.
 \begin{proof}
     Nótese que
     \begin{align*}
-        \re ( \varphi_F(t)) = \re E\left[e^{itX} \right] = \re E[\cos(tx) + i\sen(tx)] = E[\cos(tx)],  
+        \re ( \varphi_F(t)) = \re E\left[e^{itX} \right] = \re E[\cos(tx) + i\sen(tx)] = E[\cos(tx)],
     \end{align*}
     de donde
     \begin{align*}
@@ -172,9 +172,9 @@ siendo $<,>$ un producto escalar en $\mathbb{R}^d$.
     \end{align*}
     Así,
     \begin{align*}
-        \frac{1}{a} \int_{0}^{a} (1 - \re (\varphi_F(t))) \ dt &= \frac{1}{a} \int_{0}^{a} \int_{\mathbb{R}} (1 - \cos(tx)) \ dF(x) \ dt = \int_{\mathbb{R}} \frac{1}{a} \int_{0}^{a} (1 - \cos(tx)) \ dt \ dF(x) \\
-        &= \int_{\mathbb{R}} \frac{1}{a} \left( \int_{0}^{a} 1 \ dt - \int_{0}^{a} \cos(tx) \ dt\right) \ dF(x) = \int_{\mathbb{R}} \left( 1 - \frac{\sen(ax)}{ax} \right) \ dF(x) \\
-        & \ge \int_{|ax|>1} \left( 1 - \frac{\sen(ax)}{ax} \right) \ dF(x) \ge \inf_{|t| > 1} \left( 1 - \frac{\sen(t)}{t} \right) \cdot  P_F\left( \left[ - \frac{1}{a}, \frac{1}{a} \right]^c \right)
+        \frac{1}{a} \int_{0}^{a} (1 - \re (\varphi_F(t))) \ dt & = \frac{1}{a} \int_{0}^{a} \int_{\mathbb{R}} (1 - \cos(tx)) \ dF(x) \ dt = \int_{\mathbb{R}} \frac{1}{a} \int_{0}^{a} (1 - \cos(tx)) \ dt \ dF(x)                                             \\
+                                                               & = \int_{\mathbb{R}} \frac{1}{a} \left( \int_{0}^{a} 1 \ dt - \int_{0}^{a} \cos(tx) \ dt\right) \ dF(x) = \int_{\mathbb{R}} \left( 1 - \frac{\sen(ax)}{ax} \right) \ dF(x)                     \\
+                                                               & \ge \int_{|ax|>1} \left( 1 - \frac{\sen(ax)}{ax} \right) \ dF(x) \ge \inf_{|t| > 1} \left( 1 - \frac{\sen(t)}{t} \right) \cdot  P_F\left( \left[ - \frac{1}{a}, \frac{1}{a} \right]^c \right)
     \end{align*}
     Basta tomar
     \begin{align*}
@@ -186,8 +186,8 @@ siendo $<,>$ un producto escalar en $\mathbb{R}^d$.
 \begin{cor} \label{cor1}
     Sea $\{X_n\}$ una sucesión de variables aleatorias, con $F_n$, $P_n$ y $\varphi_n$ asociada a $X_n$. Supongamos que
     \begin{enumerate}
-        \item[1.] Existe $\delta > 0$ tal que $\varphi_n \xrightarrow[n \to \infty]{} \varphi(t)$ para todo $t \in [-\delta,\delta]$.
-        \item[2.] $\varphi$ es continua en $0$.
+        \item Existe $\delta > 0$ tal que $\varphi_n \xrightarrow[n \to \infty]{} \varphi(t)$ para todo $t \in [-\delta,\delta]$.
+        \item $\varphi$ es continua en $0$.
     \end{enumerate}
     Entonces $\{X_n\}$ es ajustada, es decir, $\{F_n\}$ forma una familia ajustada.
 \end{cor}
@@ -197,7 +197,7 @@ siendo $<,>$ un producto escalar en $\mathbb{R}^d$.
 \end{teo}
 
 \begin{proof}
-    Supongamos por reducción al absurdo que $F_n \not \xrightarrow[]{d} F$, entonces existe $x \in C(F)$ tal que $F_n(x) \not \xrightarrow[]{} F(x)$, es decir, existe una subsucesión $\{F_{n_k}\}$ tal que $F_{n_k}(x) \xrightarrow[]{} \alpha \not = F(x)$. Por hipótesis, $\{F_{n_k}\}$ es ajustada, por el Teorema de Prokhorov, existe $\{F_{n_k'}\} \subset \{F_{n_k}\}$ tal que $F_{n_k'} \xrightarrow[]{} F$ (por hipótesis). Como $x \in C(F)$, entonces $F_{n_k'} \xrightarrow[]{} F(x) \not = \alpha$, lo que es una cotradicción. 
+    Supongamos por reducción al absurdo que $F_n \not \xrightarrow[]{d} F$, entonces existe $x \in C(F)$ tal que $F_n(x) \not \xrightarrow[]{} F(x)$, es decir, existe una subsucesión $\{F_{n_k}\}$ tal que $F_{n_k}(x) \xrightarrow[]{} \alpha \not = F(x)$. Por hipótesis, $\{F_{n_k}\}$ es ajustada, por el Teorema de Prokhorov, existe $\{F_{n_k'}\} \subset \{F_{n_k}\}$ tal que $F_{n_k'} \xrightarrow[]{} F$ (por hipótesis). Como $x \in C(F)$, entonces $F_{n_k'} \xrightarrow[]{} F(x) \not = \alpha$, lo que es una cotradicción.
 \end{proof}
 
 \begin{teo}[Continuidad de Levy]
@@ -211,8 +211,7 @@ siendo $<,>$ un producto escalar en $\mathbb{R}^d$.
 
 \begin{proof}
     Por el Corolario \ref{cor1} tenemos que $\{X_n\}$ es una familia ajustada. Veamos que el límite de las subssucesioes de $\{F_n\}$ es único, con lo que bastaría usar el Teorema \ref{teo1} para llegar al resultado.
-    \\
-    \newline
+
     Sean $\{F_{n_k}\}$ y $\{F_{n_j}\}$ subsucesiones tales que
     \begin{align*}
         F_{n_k} \xrightarrow[]{d} G_1, \quad F_{n_j} \xrightarrow[]{d} G_2.
@@ -236,57 +235,58 @@ siendo $<,>$ un producto escalar en $\mathbb{R}^d$.
 \end{teo}
 
 \begin{obs}[Teorema Central del Límite de De Moivre]
-Sea $\{X_n\}$ una sucesión de variables aleatorias tales que $X_n \sim Bi(n,p)$. Tenemos entonces que $E[X_n] = p$ y $Var[X_n] = npq$, siendo $q = 1 - p$. Si definimos las variables aleatorias 
-\begin{align*}
-    Z_n = \frac{X_n - np}{\sqrt{npq}},
-\end{align*}
-tenemos que $Z_n \xrightarrow[]{d} Z$, siendo $Z \sim N(0,1)$.
-\begin{proof}
+    Sea $\{X_n\}$ una sucesión de variables aleatorias tales que $X_n \sim Bi(n,p)$. Tenemos entonces que $E[X_n] = p$ y $Var[X_n] = npq$, siendo $q = 1 - p$. Si definimos las variables aleatorias
     \begin{align*}
-        \varphi_{Z_n}(t) &= E \left[ e^{itZ_n} \right] = E \left[ e^{it\frac{X_n - np}{\sqrt{npq}}} \right] = E \left[ e^{it\frac{X_n}{\sqrt{npq}}} e^{-it\frac{np}{\sqrt{npq}}} \right] = e^{-it\frac{np}{\sqrt{npq}}} E \left[ e^{it\frac{X_n}{\sqrt{npq}}} \right]  \\
-        &= e^{-it\frac{np}{\sqrt{npq}}} \varphi_{X_n}\left( \frac{t}{\sqrt{npq}} \right) .
-    \end{align*} 
-    Como $X_n \sim Bi(n,p)$, entonces $\varphi_{X_n}(t) = \left( pe^{-it} + q \right)^n$. Por tanto,
-    \begin{align*}
-        \varphi_{Z_n}(t) &= e^{-it\frac{np}{\sqrt{npq}}} \left( pe^{-i \frac{t}{\sqrt{npq}}} + q \right)^n = \left( pe^{i\frac{tq}{\sqrt{npq}}} + qe^{-i\frac{tp}{\sqrt{npq}}} \right)^n
+        Z_n = \frac{X_n - np}{\sqrt{npq}},
     \end{align*}
-    Tomando límite cuando $n \to \infty$,
-    \begin{align*}
-        \lim_{n \to \infty} \varphi_{Z_n}(t) = \lim_{n \to \infty} \left( pe^{i\frac{tq}{\sqrt{npq}}} + qe^{-i\frac{tp}{\sqrt{npq}}} \right)^n \Longrightarrow \text{Indeterminación tipo ''$1^{\infty}$''}
-    \end{align*}
-    Recordemos que si
-    \begin{align*}
-        \lim_{x \to \infty} f(x) = 1, \quad \lim_{n \to \infty} g(x) = \infty,
-    \end{align*}
-    entonces,
-    \begin{align*}
-        \lim_{x \to \infty} f(x)^{g(x)} = e^{\lim_{x \to \infty} g(x)(f(x) - 1)}.
-    \end{align*}
-    Usando esto, tenemos que
-    \begin{align*}
-        \lim_{n \to \infty} \varphi_{Z_n}(t) = \exp\left[ \lim_{n \to \infty} n\left(pe^{i\frac{tq}{\sqrt{npq}}} + qe^{-i\frac{tp}{\sqrt{npq}}} - 1 \right) \right].
-    \end{align*}
-    Desarrollando la serie de Taylor de $e^{i\frac{tq}{\sqrt{npq}}}$:
-    \begin{align*}
-        e^{i\frac{tq}{\sqrt{npq}}} &= \sum_{k=0}^{\infty} \frac{\left( i \frac{tq}{\sqrt{npq}} \right)^k}{k!} = 1 + i\frac{tq}{\sqrt{npq}} + \frac{\left( i\frac{tq}{\sqrt{npq}} \right)^2}{2!} + o\left( \frac{t^2}{npq} \right),
-    \end{align*}
-    de donde,
-    \begin{align*}
-        pe^{i\frac{tq}{\sqrt{npq}}} + qe^{-i\frac{tp}{\sqrt{npq}}} - 1 &= p\left[ 1 + i\frac{tq}{\sqrt{npq}} + \frac{\left( i\frac{tq}{\sqrt{npq}} \right)^2}{2!}) \right] 
-            + q \left[ 1 - i\frac{tp}{\sqrt{npq}} + \frac{\left( -i\frac{tp}{\sqrt{npq}} \right)^2}{2!} \right] -1 + o\left( \frac{t^2}{npq} \right)  \\
-            &= p(iq)^2 \frac{t^2}{2npq} + q(ip)^2 \frac{t^2}{2npq} + o\left( \frac{t^2}{npq} \right)
-            = -pq^2 \frac{t^2}{2npq} - qp^2 \frac{t^2}{2npq} + o\left( \frac{t^2}{npq} \right) \\
-            &= -\frac{t^2}{2npq} \left(pq^2 + qp^2 \right) + o\left( \frac{t^2}{npq} \right) = -\frac{t^2}{2npq} pq + o\left( \frac{t^2}{npq} \right)  \\
-            &= -\frac{t^2}{2n} + o\left( \frac{t^2}{npq} \right) = -\frac{t^2}{2n} + o\left( \frac{t^2}{n} \right).
-    \end{align*}
-    Finalmente, 
-    \begin{align*}
-        \lim_{n \to \infty} \varphi_{Z_n}(t) &= \exp\left[ \lim_{n \to \infty} n\left(pe^{i\frac{tq}{\sqrt{npq}}} + qe^{-i\frac{tp}{\sqrt{npq}}} - 1 \right) \right] 
-    = \exp\left[ \lim_{n \to \infty} n \left( -\frac{t^2}{2n} + o\left( \frac{t^2}{n} \right) \right) \right] \\
-    &= e^{-t^2/2} = \varphi_Z(t),
-    \end{align*}
-    siendo $Z \sim N(0,1)$. Por el Teorema de Levy, $Z_n \xrightarrow[]{d} Z$, $Z \sim N(0,1)$.
-\end{proof}
+    tenemos que $Z_n \xrightarrow[]{d} Z$, siendo $Z \sim N(0,1)$.
+    \begin{proof}
+        \begin{align*}
+            \varphi_{Z_n}(t) & = E \left[ e^{itZ_n} \right] = E \left[ e^{it\frac{X_n - np}{\sqrt{npq}}} \right] = E \left[ e^{it\frac{X_n}{\sqrt{npq}}} e^{-it\frac{np}{\sqrt{npq}}} \right] = e^{-it\frac{np}{\sqrt{npq}}} E \left[ e^{it\frac{X_n}{\sqrt{npq}}} \right] \\
+                             & = e^{-it\frac{np}{\sqrt{npq}}} \varphi_{X_n}\left( \frac{t}{\sqrt{npq}} \right) .
+        \end{align*}
+        Como $X_n \sim Bi(n,p)$, entonces $\varphi_{X_n}(t) = \left( pe^{-it} + q \right)^n$. Por tanto,
+        \begin{align*}
+            \varphi_{Z_n}(t) & = e^{-it\frac{np}{\sqrt{npq}}} \left( pe^{-i \frac{t}{\sqrt{npq}}} + q \right)^n = \left( pe^{i\frac{tq}{\sqrt{npq}}} + qe^{-i\frac{tp}{\sqrt{npq}}} \right)^n
+        \end{align*}
+        Tomando límite cuando $n \to \infty$,
+        \begin{align*}
+            \lim_{n \to \infty} \varphi_{Z_n}(t) = \lim_{n \to \infty} \left( pe^{i\frac{tq}{\sqrt{npq}}} + qe^{-i\frac{tp}{\sqrt{npq}}} \right)^n \Longrightarrow \text{Indeterminación tipo ''$1^{\infty}$''}
+        \end{align*}
+        Recordemos que si
+        \begin{align*}
+            \lim_{x \to \infty} f(x) = 1, \quad \lim_{n \to \infty} g(x) = \infty,
+        \end{align*}
+        entonces,
+        \begin{align*}
+            \lim_{x \to \infty} f(x)^{g(x)} = e^{\lim_{x \to \infty} g(x)(f(x) - 1)}.
+        \end{align*}
+        Usando esto, tenemos que
+        \begin{align*}
+            \lim_{n \to \infty} \varphi_{Z_n}(t) = \exp\left[ \lim_{n \to \infty} n\left(pe^{i\frac{tq}{\sqrt{npq}}} + qe^{-i\frac{tp}{\sqrt{npq}}} - 1 \right) \right].
+        \end{align*}
+        Desarrollando la serie de Taylor de $e^{i\frac{tq}{\sqrt{npq}}}$:
+        \begin{align*}
+            e^{i\frac{tq}{\sqrt{npq}}} & = \sum_{k=0}^{\infty} \frac{\left( i \frac{tq}{\sqrt{npq}} \right)^k}{k!} = 1 + i\frac{tq}{\sqrt{npq}} + \frac{\left( i\frac{tq}{\sqrt{npq}} \right)^2}{2!} + o\left( \frac{t^2}{npq} \right),
+        \end{align*}
+        de donde,
+        \begin{align*}
+             & pe^{i\frac{tq}{\sqrt{npq}}} + qe^{-i\frac{tp}{\sqrt{npq}}} - 1                                                                           \\
+             & = p\left[ 1 + i\frac{tq}{\sqrt{npq}} + \frac{\left( i\frac{tq}{\sqrt{npq}} \right)^2}{2!}) \right]
+            + q \left[ 1 - i\frac{tp}{\sqrt{npq}} + \frac{\left( -i\frac{tp}{\sqrt{npq}} \right)^2}{2!} \right] -1 + o\left( \frac{t^2}{npq} \right)    \\
+             & = p(iq)^2 \frac{t^2}{2npq} + q(ip)^2 \frac{t^2}{2npq} + o\left( \frac{t^2}{npq} \right)
+            = -pq^2 \frac{t^2}{2npq} - qp^2 \frac{t^2}{2npq} + o\left( \frac{t^2}{npq} \right)                                                          \\
+             & = -\frac{t^2}{2npq} \left(pq^2 + qp^2 \right) + o\left( \frac{t^2}{npq} \right) = -\frac{t^2}{2npq} pq + o\left( \frac{t^2}{npq} \right) \\
+             & = -\frac{t^2}{2n} + o\left( \frac{t^2}{npq} \right) = -\frac{t^2}{2n} + o\left( \frac{t^2}{n} \right).
+        \end{align*}
+        Finalmente,
+        \begin{align*}
+            \lim_{n \to \infty} \varphi_{Z_n}(t) & = \exp\left[ \lim_{n \to \infty} n\left(pe^{i\frac{tq}{\sqrt{npq}}} + qe^{-i\frac{tp}{\sqrt{npq}}} - 1 \right) \right]
+            = \exp\left[ \lim_{n \to \infty} n \left( -\frac{t^2}{2n} + o\left( \frac{t^2}{n} \right) \right) \right]                                                     \\
+                                                 & = e^{-t^2/2} = \varphi_Z(t),
+        \end{align*}
+        siendo $Z \sim N(0,1)$. Por el Teorema de Levy, $Z_n \xrightarrow[]{d} Z$, $Z \sim N(0,1)$.
+    \end{proof}
 \end{obs}
 
 \begin{prop}
@@ -361,7 +361,7 @@ tenemos que $Z_n \xrightarrow[]{d} Z$, siendo $Z \sim N(0,1)$.
 \end{defi}
 
 \begin{prop}
-    Sean $X_1,\ldtos, X_n$  variables aleatorias independientes con funciones características $\varphi_1,\ldots,\varphi_n$ respectivamente. Sea $S = X_1 + \ldots + X_n$, entonces
+    Sean $X_1,\ldots, X_n$  variables aleatorias independientes con funciones características $\varphi_1,\ldots,\varphi_n$ respectivamente. Sea $S = X_1 + \ldots + X_n$, entonces
     \begin{align*}
         \kappa_S(t) = \sum_{i=1}^{n} \kappa_{X_i}(t).
     \end{align*}
@@ -380,7 +380,7 @@ tenemos que $Z_n \xrightarrow[]{d} Z$, siendo $Z \sim N(0,1)$.
 \end{teo}
 
 \begin{obs}
-$C_1 = E[X]$ y $C_2 = Var[X]$.
+    $C_1 = E[X]$ y $C_2 = Var[X]$.
 \end{obs}
 
 \begin{obs}
@@ -416,17 +416,17 @@ $C_1 = E[X]$ y $C_2 = Var[X]$.
 
 \begin{obs}
     \begin{align*}
-        G_X^{(k)}(t) &= \sum_{n=k}^{\infty} n(n-1) \ldots (n-k+1) t^{n-k}P(X = n) \\
-        G_X^{(k)}(0) &= k! P(X = k) \Longrightarrow P(X = K) = \frac{G_X^{(K)}(0)}{k!}.
+        G_X^{(k)}(t) & = \sum_{n=k}^{\infty} n(n-1) \ldots (n-k+1) t^{n-k}P(X = n)       \\
+        G_X^{(k)}(0) & = k! P(X = k) \Longrightarrow P(X = K) = \frac{G_X^{(K)}(0)}{k!}.
     \end{align*}
 \end{obs}
 
 \begin{obs}
     Sea $X = Y_1+\ldots+Y_N$, siendo $Y_i$ variables aleatorias independientes e igualmente distribuidas y $N$ una variable aleatoria en $Z_+$. Entonces $X$ sigue una distribución compuesta y su función característiva es
     \begin{align*}
-        \varphi_X(t) &= E \left[e^{itX} \right] = E\left[ E \left[e^{itX} | N \right]\right] = \sum_{n=0}^{\infty} E \left[ e^{itX} | N = n \right] P(N = n) \\
-        &= \sum_{n=0}^{\infty} E \left[ e^{it \sum_{i=1}^{n} Y_i} | N = n \right] P(N = n) = \sum_{n=0}^{\infty} \left( \varphi_Y(t) \right)^n P(N = n) \\
-        &= G_N \left( \varphi_Y(t) \right)
+        \varphi_X(t) & = E \left[e^{itX} \right] = E\left[ E \left[e^{itX} | N \right]\right] = \sum_{n=0}^{\infty} E \left[ e^{itX} | N = n \right] P(N = n)         \\
+                     & = \sum_{n=0}^{\infty} E \left[ e^{it \sum_{i=1}^{n} Y_i} | N = n \right] P(N = n) = \sum_{n=0}^{\infty} \left( \varphi_Y(t) \right)^n P(N = n) \\
+                     & = G_N \left( \varphi_Y(t) \right)
     \end{align*}
 \end{obs}
 
@@ -436,7 +436,7 @@ $C_1 = E[X]$ y $C_2 = Var[X]$.
 
 \begin{proof}
     \begin{align*}
-        \varphi(t) &= \int_{\mathbb{R}} e^{itx} d(\alpha_1 \mu_1 + \ldots + \alpha_n \mu_n) 
+        \varphi(t) & = \int_{\mathbb{R}} e^{itx} d(\alpha_1 \mu_1 + \ldots + \alpha_n \mu_n)
         = \alpha_1 \int_{\mathbb{R}} e^{itx} \ d\mu_1 + \ldots + \alpha_n \int_{\mathbb{R}} e^{itx} \ d\mu_n
     \end{align*}
 \end{proof}
@@ -458,7 +458,7 @@ $C_1 = E[X]$ y $C_2 = Var[X]$.
 \end{teo}
 
 \begin{lema}[Herglotz]
-    Si $\phi : \mathbb{Z} \longrightarrow \mathbb{C}$ es definida postiva y $\phi(0) = 1$, entonces existe $\mu$ distribución de probabilidad en $[-\pi,\pi]$ tal que $\phi$ es su función característica ascociada, es decir, 
+    Si $\phi : \mathbb{Z} \longrightarrow \mathbb{C}$ es definida postiva y $\phi(0) = 1$, entonces existe $\mu$ distribución de probabilidad en $[-\pi,\pi]$ tal que $\phi$ es su función característica ascociada, es decir,
     \begin{align*}
         \phi(t) = \int_{-\pi}^{\pi} e^{itx} \ d\mu,
     \end{align*}
@@ -480,12 +480,12 @@ $C_1 = E[X]$ y $C_2 = Var[X]$.
 \end{cor}
 
 \begin{prop}
-    La función $\varphi_T$ dada por 
+    La función $\varphi_T$ dada por
     \begin{align*}
         \varphi_T(t) = \max \left\{ 1 - \dfrac{|t|}{T},0 \right\} \equiv \begin{cases}
-            1 - \dfrac{|t|}{T}, & |t| \leq T \\
-            0, & |t| > T
-        \end{cases}, \quad T \in \mathbb{R},
+                                                                             1 - \dfrac{|t|}{T}, & |t| \leq T \\
+                                                                             0,                  & |t| > T
+                                                                         \end{cases}, \quad T \in \mathbb{R},
     \end{align*}
     es función característica.
 \end{prop}

@@ -3,52 +3,51 @@
 \section{La medida producto}
 
 Sabemos que si $A$ es medible-Lebesgue de $\mathbb{R}^p$ y $B$ es medible-Lebesgue de $\mathbb{R}^q$ entonces $A \times B$ es medible-Lebesgue de $\mathbb{R}^{p+q}$ y $m_{p+q}(A \times B) = m_p(A)m_q(B)$. La medida de Lebesgue de $\mathbb{R}^{p+q}$ es, en este sentido, la medida producto de las medidas de Lebesgue de $\mathbb{R}^p$ y de $\mathbb{R}^q$. Más aún, el Principio de Cavalieri nos dice que la medida de Lebesgue de cualquier medible de $\mathbb{R}^{p+q}$ se puede obtener a partir de las medidas de Lebesgue de $\mathbb{R}^p$ y de $\mathbb{R}^{q}$. La idea de este tema es obtener una medida producto en el contexto de espacio de medida abstractos, medida que ha de conservar las propiedades anterior. Pasamos a precisar lo que acabamos de decir.
-\\
-\newline
+
 Nuestro punto de partida es la consideración de dos espacios de medida $(X, \mathcal{M}, \mu)$ e $(Y, \mathcal{N}, \nu)$. El objetivo es definir una medida $\mu \times \nu$ sobre el espacio producto cartesiano $X \times Y$ de manera que $\mu \times \nu(A \times B) = \mu(A)\nu(B)$, donde $A \in \mathcal{M}$ y $B \in \mathcal{N}$.
 
 \subsection{La $\sigma$-álgebra producto}
 Comenzamos con la definición de rectángulo medible.
 
 \begin{defi}
-Sean $(X, \mathcal{M})$ e $(Y, \mathcal{N})$ dos espacios medibles. Si $A \in \mathcal{M}$ y $B \in \mathcal{N}$ decimos que el conjunto $A \times B$ es un rectángulo medible. Denotaremos por $\mathcal{E}$ a la familia de los rectángulos medibles.
+    Sean $(X, \mathcal{M})$ e $(Y, \mathcal{N})$ dos espacios medibles. Si $A \in \mathcal{M}$ y $B \in \mathcal{N}$ decimos que el conjunto $A \times B$ es un rectángulo medible. Denotaremos por $\mathcal{E}$ a la familia de los rectángulos medibles.
 \end{defi}
 
 \begin{defi}
-Dados dos espacios medibles $(X, \mathcal{M})$ e $(Y, \mathcal{N})$, llamamos $\sigma$-álgebra producto, y la denotamos por $\mathcal{M} \otimes \mathcal{N}$, a la $\sigma$-álgebra generada por la familia de rectángulos medibles $\mathcal{E} = \{ A \times B : A \in \mathcal{M}, B \in \mathcal{N}\}$.
+    Dados dos espacios medibles $(X, \mathcal{M})$ e $(Y, \mathcal{N})$, llamamos $\sigma$-álgebra producto, y la denotamos por $\mathcal{M} \otimes \mathcal{N}$, a la $\sigma$-álgebra generada por la familia de rectángulos medibles $\mathcal{E} = \{ A \times B : A \in \mathcal{M}, B \in \mathcal{N}\}$.
 \end{defi}
 
 \begin{prop}
-Consideremos $(\mathbb{R}^p, \mathcal{B}_{\mathbb{R}^p})$ y $(\mathbb{R}^q, \mathcal{B}_{\mathbb{R}^q})$. Entonces
-\begin{align*}
-    \mathcal{B}_{\mathbb{R}^p} \otimes \mathcal{B}_{\mathbb{R}^q} = \mathcal{B}_{\mathbb{R}^{p+q}}.
-\end{align*}
+    Consideremos $(\mathbb{R}^p, \mathcal{B}_{\mathbb{R}^p})$ y $(\mathbb{R}^q, \mathcal{B}_{\mathbb{R}^q})$. Entonces
+    \begin{align*}
+        \mathcal{B}_{\mathbb{R}^p} \otimes \mathcal{B}_{\mathbb{R}^q} = \mathcal{B}_{\mathbb{R}^{p+q}}.
+    \end{align*}
 \end{prop}
 
 \begin{proof}
-Primero veamos que $\mathcal{B}_{\mathbb{R}^p} \otimes \mathcal{B}_{\mathbb{R}^q} \subset \mathcal{B}_{\mathbb{R}^{p+q}}$. Consideremos
-\begin{align*}
-    \mathcal{E} = \{A \times B : A \in \mathcal{B}_{\mathbb{R}^p}, B \in \mathcal{B}_{\mathbb{R}^q} \} \subset \mathcal{B}_{\mathbb{R}^{p+q}}.
-\end{align*}
-Entonces
-\begin{align*}
-    \mathcal{B}_{\mathbb{R}^p} \otimes \mathcal{B}_{\mathbb{R}^q} = \mathcal{MMM}(\mmathcal{E}) \subset \mathcal{B}_{\mathbb{R}^{p+q}}.
-\end{align*}
-Veamos ahora que  $\mathcal{B}_{\mathbb{R}^p} \otimes \mathcal{B}_{\mathbb{R}^q} \supset \mathcal{B}_{\mathbb{R}^{p+q}}$. Consideremos
-\begin{align*}
-    \mathcal{F} = \{ \text{intervalos de } \mathbb{R}^{p+q} \} = \{ I \times J : I \text{ intervalo de } \mathbb{R}^p, J \text{ intervalo de } \mathbb{R}^q\}
-\end{align*}
-Es claro que $\mathcal{B}_{\mathbb{R}^{p+q}} = \mmathcal{M}(\mathcal{F})$ y que $\mathcal{F} \subset \mathcal{E}$, por tanto
-\begin{align*}
-    \mathcal{B}_{\mathbb{R}^{p+q}} = \mmathcal{M}(\mathcal{F}) \subset \mathcal{M}(\mathcal{E}) = \mathcal{B}_{\mathbb{R}^p} \otimes \mathcal{B}_{\mathbb{R}^q}. 
-\end{align*}
+    Primero veamos que $\mathcal{B}_{\mathbb{R}^p} \otimes \mathcal{B}_{\mathbb{R}^q} \subset \mathcal{B}_{\mathbb{R}^{p+q}}$. Consideremos
+    \begin{align*}
+        \mathcal{E} = \{A \times B : A \in \mathcal{B}_{\mathbb{R}^p}, B \in \mathcal{B}_{\mathbb{R}^q} \} \subset \mathcal{B}_{\mathbb{R}^{p+q}}.
+    \end{align*}
+    Entonces
+    \begin{align*}
+        \mathcal{B}_{\mathbb{R}^p} \otimes \mathcal{B}_{\mathbb{R}^q} = \mathcal{MMM}(\mathcal{E}) \subset \mathcal{B}_{\mathbb{R}^{p+q}}.
+    \end{align*}
+    Veamos ahora que  $\mathcal{B}_{\mathbb{R}^p} \otimes \mathcal{B}_{\mathbb{R}^q} \supset \mathcal{B}_{\mathbb{R}^{p+q}}$. Consideremos
+    \begin{align*}
+        \mathcal{F} = \{ \text{intervalos de } \mathbb{R}^{p+q} \} = \{ I \times J : I \text{ intervalo de } \mathbb{R}^p, J \text{ intervalo de } \mathbb{R}^q\}
+    \end{align*}
+    Es claro que $\mathcal{B}_{\mathbb{R}^{p+q}} = \mathcal{M}(\mathcal{F})$ y que $\mathcal{F} \subset \mathcal{E}$, por tanto
+    \begin{align*}
+        \mathcal{B}_{\mathbb{R}^{p+q}} = \mathcal{M}(\mathcal{F}) \subset \mathcal{M}(\mathcal{E}) = \mathcal{B}_{\mathbb{R}^p} \otimes \mathcal{B}_{\mathbb{R}^q}.
+    \end{align*}
 \end{proof}
 
 \subsection{Definición de la medida producto}
 
 Fijemos dos espacios de medida $(X, \mathcal{M}, \mu)$ e $(Y, \mathcal{N}, \nu)$. Sea $\mathcal{E}$ la familia de los rectángulos medibles. Es claro que $\mathcal{E}$ es una familia recubridora pues
 \begin{itemize}
-    \item $\emptyset = \emmptyset \times \emptyset \in \mathcal{E}$ y
+    \item $\emptyset = \emptyset \times \emptyset \in \mathcal{E}$ y
     \item $X \times Y \subset X \times Y \in \mathcal{E}$.
 \end{itemize}
 Sea $\rho : \mathcal{E} \longrightarrow [0,+\infty]$ definida por
@@ -57,16 +56,16 @@ Sea $\rho : \mathcal{E} \longrightarrow [0,+\infty]$ definida por
 \end{align*}
 Es claro que $p(\emptyset) = 0$, luego $\pi^* : \mathcal{P}(X \times Y) \longrightarrow [0,+\infty]$ definida por
 \begin{align*}
-    \pi^*(E) &= \inf\left\{ \sum_{i=1}^{\infty}{\rho(E_i)} : E \subset \cup_{i=1}^{\infty}{E_i}, E_i \in \mathcal{E}\right\} \\
-     &= \inf\left\{ \sum_{i=1}^{\infty}{\mu(A_i)\nu(B_i)} : E \subset \cup_{i=1}^{\infty}{(A_i \times  B_i)}, A_i \in \mathcal{M}, B_i \in \mathcal{N}\right\},
+    \pi^*(E) & = \inf\left\{ \sum_{i=1}^{\infty}{\rho(E_i)} : E \subset \cup_{i=1}^{\infty}{E_i}, E_i \in \mathcal{E}\right\}                                            \\
+             & = \inf\left\{ \sum_{i=1}^{\infty}{\mu(A_i)\nu(B_i)} : E \subset \cup_{i=1}^{\infty}{(A_i \times  B_i)}, A_i \in \mathcal{M}, B_i \in \mathcal{N}\right\},
 \end{align*}
 es una medida exterior.
 
 \begin{prop}
-Supongamos que $E \subset \cup_{i=1}^{\infty}{E_i}$, donde E y todos los $E_i$ son rectángulos medibles. Entonces
-\begin{align*}
-    \rho(E) \leq \sum_{i=1}^{\infty}{\rho(E_i)}.
-\end{align*}
+    Supongamos que $E \subset \cup_{i=1}^{\infty}{E_i}$, donde E y todos los $E_i$ son rectángulos medibles. Entonces
+    \begin{align*}
+        \rho(E) \leq \sum_{i=1}^{\infty}{\rho(E_i)}.
+    \end{align*}
 \end{prop}
 de donde se sigue de forma inmediata que si $E = A \times B$ es un rectángulol medible entonces $\pi^*(A \times B) = \rho(E)$, es decir,
 \begin{align*}
@@ -74,181 +73,178 @@ de donde se sigue de forma inmediata que si $E = A \times B$ es un rectángulol 
 \end{align*}
 
 \begin{prop}
-Sea $\mathcal{M}^*_{\rho}$ la $\sigma$-álgebra de Carathéodory asociada a $\pi^*$. Se tiene que
-\begin{itemize}
-    \item $\pi^*|_{\mathcal{M}^*_{\rho}}$ es una medida completa.
-    \item $\mathcal{M} \otimes \mathcal{N} \subset \mathcal{M}^*_{\rho}$.
-    \item $\pi := \pi^*|_{\mathcal{M} \otimes \mathcal{N}}$ es una medida.
-    \item $\pi(A \times B) = \mu(A)\nu(B)$.
-\end{itemize}
+    Sea $\mathcal{M}^*_{\rho}$ la $\sigma$-álgebra de Carathéodory asociada a $\pi^*$. Se tiene que
+    \begin{itemize}
+        \item $\pi^*|_{\mathcal{M}^*_{\rho}}$ es una medida completa.
+        \item $\mathcal{M} \otimes \mathcal{N} \subset \mathcal{M}^*_{\rho}$.
+        \item $\pi := \pi^*|_{\mathcal{M} \otimes \mathcal{N}}$ es una medida.
+        \item $\pi(A \times B) = \mu(A)\nu(B)$.
+    \end{itemize}
 \end{prop}
 La medida $\pi$ es la medida producto que se suele deonta por $\mu \times \nu$.
 
 \begin{teo}
-Sean $(X, \mathcal{M}, \mu)$ e $(Y, \mathcal{N}, \nu)$ dos espacios de medida. Entonces, existe una medida $\pi$ definida sobre la $\sigma$-álgebra producto $\mathjcal{M} \otimes \mathcal{N}$ tal que
-\begin{align*}
-    \pi(A \times B) = \mu_(A)\nu(B) \ \text{cualesquiera que sean } A \in \mathcal{M} \text{ y } B \in \mathcal{N}.
-\end{align*}
+    Sean $(X, \mathcal{M}, \mu)$ e $(Y, \mathcal{N}, \nu)$ dos espacios de medida. Entonces, existe una medida $\pi$ definida sobre la $\sigma$-álgebra producto $\mathcal{M} \otimes \mathcal{N}$ tal que
+    \begin{align*}
+        \pi(A \times B) = \mu_(A)\nu(B) \ \text{cualesquiera que sean } A \in \mathcal{M} \text{ y } B \in \mathcal{N}.
+    \end{align*}
 \end{teo}
 Este teorema de existencia se complementa con el siguiente teorema de unicidad.
 \begin{teo}
-Sean $(X, \mathcal{M}, \mu)$ e $(Y, \mathcal{N}, \nu)$ dos espacios de medida $\sigma$-finitos. Entonces, existe una única medida $\gamma$ definida sobre la $\sigma$-álgebra producto $\mathjcal{M} \otimes \mathcal{N}$ tal que
-\begin{align*}
-    \gamma(A \times B) = \mu_(A)\nu(B) \ \text{cualesquiera que sean } A \in \mathcal{M} \text{ y } B \in \mathcal{N}.
-\end{align*}
-Dicha medida es $\gamma = \mu \times \nu$.
+    Sean $(X, \mathcal{M}, \mu)$ e $(Y, \mathcal{N}, \nu)$ dos espacios de medida $\sigma$-finitos. Entonces, existe una única medida $\gamma$ definida sobre la $\sigma$-álgebra producto $\mathcal{M} \otimes \mathcal{N}$ tal que
+    \begin{align*}
+        \gamma(A \times B) = \mu_(A)\nu(B) \ \text{cualesquiera que sean } A \in \mathcal{M} \text{ y } B \in \mathcal{N}.
+    \end{align*}
+    Dicha medida es $\gamma = \mu \times \nu$.
 \end{teo}
 
 \begin{obs}
-\begin{enumerate}
-    \item[(1)] Si las medidas $\mu$ y $\nu$ son finitas entonces $\mu \times \nu$ es finita.
-    \item[(2)] Si las medidas $\mu$ y $\nu$ son probabilidades entonces $\mu \times \nu$ es una probabilidad.
-    \item[(3)] Si las medidas $\mu$ y $\nu$ son $\sigma$-finitas entonces $\mu \times \nu$ es $\sigma$-finita.
-\end{enumerate}
+    \begin{enumerate}
+        \item[(1)] Si las medidas $\mu$ y $\nu$ son finitas entonces $\mu \times \nu$ es finita.
+        \item[(2)] Si las medidas $\mu$ y $\nu$ son probabilidades entonces $\mu \times \nu$ es una probabilidad.
+        \item[(3)] Si las medidas $\mu$ y $\nu$ son $\sigma$-finitas entonces $\mu \times \nu$ es $\sigma$-finita.
+    \end{enumerate}
 \end{obs}
 
 \begin{obs}
-Dado un número natural $n$, considermos $\mathbb{R}^n$ con la $\sigma$-álgebra de Borel $\mathcal{B}_{\mathbb{R}^n}$ y la medida de Lebesgue $m_n$. Sean $p$ y $q$ dos números naturales y tomemos los espacios de medida $(\mathbb{R}^p, \mathcal{B}_{\mathbb{R}^p}, m_p)$ y $(\mathbb{R}^q, \mathcal{B}_{\mathbb{R}^q}, m_q)$. Vamos a identificar el espacio de medida producto $(\mathbb{R}^{p+q}, \mathcal{B}_{\mathbb{R}^{p+q}}, m_{p+q})$. Ya hemos establecido que
-\begin{align*}
-    \mathcal{B}_{\mathbb{R}^q} \otimes \mathcal{B}_{\mathbb{R}^q} = \mathcal{B}_{\mathbb{R}^{p+q}}.
-\end{align*}
-Por otra parte, si $I$ es un intervalo de $\mathbb{R}^{p+q}$, $I = J \times H$ donde $J$ y $H$ son intervalos de $\mathbb{R}^p$ y $\mathbb{R}^q$, respectivamente,, se tiene que
-\begin{align*}
-    m_p \times m_q(I) = m_p \times m_q (J \times H) = m_p(J)m_q(H) = \mathcal{V}(I).
-\end{align*}
-Así que $m_p \times m_q$ es una medida definida sobre la $\sigma$-álgebra de Borel $\mathcal{B}_{\mathbb{R}^{p+q}}$ tal que la medida $m_p \times m_q(I)$ de cada intervalo coincide con su volumen. Por el teorema de unicidad de la medida de Lebesgue, $m_p \ties m_q$ es $m_{p+q}$ restringida a $\mathcal{B}_{\mathbb{R}^{p+q}}$. Por lo tanto,
-\begin{align*}
-    (\mathbb{R}^{p+q}, \mathcal{B}_{\mathbb{R}^p} \otimes \mathcal{B}_{\mathbb{R}^q}, m_p \times m_q) = (\mathbb{R}^{p+q}, \mathcal{B}_{\mathbb{R}^{p+q}}, m_{p+q})
-\end{align*}
-En particular, esta igualdad deuestra que si $A \in \mathcal{B}_{\mathbb{R}^p}$ y $B \in \mathcal{B}_{\mathbb{R}^q}$ entonces $A \times B \in \mathcal{B}_{\mathbb{R}^{p+q}}$ y 
-\begin{align*}
-    m_{p+q}(A \times B) = m_p \times m_q (A \times B) = m_p(A)m_q(B).
-\end{align*}
+    Dado un número natural $n$, considermos $\mathbb{R}^n$ con la $\sigma$-álgebra de Borel $\mathcal{B}_{\mathbb{R}^n}$ y la medida de Lebesgue $m_n$. Sean $p$ y $q$ dos números naturales y tomemos los espacios de medida $(\mathbb{R}^p, \mathcal{B}_{\mathbb{R}^p}, m_p)$ y $(\mathbb{R}^q, \mathcal{B}_{\mathbb{R}^q}, m_q)$. Vamos a identificar el espacio de medida producto $(\mathbb{R}^{p+q}, \mathcal{B}_{\mathbb{R}^{p+q}}, m_{p+q})$. Ya hemos establecido que
+    \begin{align*}
+        \mathcal{B}_{\mathbb{R}^q} \otimes \mathcal{B}_{\mathbb{R}^q} = \mathcal{B}_{\mathbb{R}^{p+q}}.
+    \end{align*}
+    Por otra parte, si $I$ es un intervalo de $\mathbb{R}^{p+q}$, $I = J \times H$ donde $J$ y $H$ son intervalos de $\mathbb{R}^p$ y $\mathbb{R}^q$, respectivamente,, se tiene que
+    \begin{align*}
+        m_p \times m_q(I) = m_p \times m_q (J \times H) = m_p(J)m_q(H) = \mathcal{V}(I).
+    \end{align*}
+    Así que $m_p \times m_q$ es una medida definida sobre la $\sigma$-álgebra de Borel $\mathcal{B}_{\mathbb{R}^{p+q}}$ tal que la medida $m_p \times m_q(I)$ de cada intervalo coincide con su volumen. Por el teorema de unicidad de la medida de Lebesgue, $m_p \times m_q$ es $m_{p+q}$ restringida a $\mathcal{B}_{\mathbb{R}^{p+q}}$. Por lo tanto,
+    \begin{align*}
+        (\mathbb{R}^{p+q}, \mathcal{B}_{\mathbb{R}^p} \otimes \mathcal{B}_{\mathbb{R}^q}, m_p \times m_q) = (\mathbb{R}^{p+q}, \mathcal{B}_{\mathbb{R}^{p+q}}, m_{p+q})
+    \end{align*}
+    En particular, esta igualdad deuestra que si $A \in \mathcal{B}_{\mathbb{R}^p}$ y $B \in \mathcal{B}_{\mathbb{R}^q}$ entonces $A \times B \in \mathcal{B}_{\mathbb{R}^{p+q}}$ y
+    \begin{align*}
+        m_{p+q}(A \times B) = m_p \times m_q (A \times B) = m_p(A)m_q(B).
+    \end{align*}
 \end{obs}
 
 \section{El Principio de Cavalieri}
 
 \begin{defi}
-Sean X e Y dos conjuntos. Si $E \subset X \times Y$ y $x \in X$, definimos la $x-sección$ de E como
-\begin{align*}
-    E_x = \{ y \in Y : (x,y) \in E \},
-\end{align*}
-y, si $y \in Y$, la $y-sección$ de E como
-\begin{align*}
-    E^y = \{ x \in X : (x,y) \in E \}.
-\end{align*}
+    Sean X e Y dos conjuntos. Si $E \subset X \times Y$ y $x \in X$, definimos la $x$-sección de E como
+    \begin{align*}
+        E_x = \{ y \in Y : (x,y) \in E \},
+    \end{align*}
+    y, si $y \in Y$, la $y$-sección de E como
+    \begin{align*}
+        E^y = \{ x \in X : (x,y) \in E \}.
+    \end{align*}
 \end{defi}
 Algunas propiedades inmediatas de las secciones son las siguientes:
 \begin{enumerate}
     \item[(i)] Si $E \subset X \times Y$ y $E^c$ es el complementario de $E$ entonces $(E^c)_x = (E_x)^c$ y $(E^c)^y = (E^y)^c$.
     \item[(ii)] Si $\{E_j\}$ es una familia arbitraria de conjuntos ded $X \times Y$ entonces
-    \begin{align*}
-        (\cup_j E_j)_x = \cup_j (E_j)_x, \ \ \ (\cap_j E_j)_x = \cap_j (E_j)_x,\\
-        (\cup_j E_j)^y = \cup_j (E_j)^y, \ \ \ (\cap_j E_j)^y = \cap_j (E_j)^y.
-    \end{align*}
+          \begin{align*}
+              (\cup_j E_j)_x = \cup_j (E_j)_x, \ \ \ (\cap_j E_j)_x = \cap_j (E_j)_x, \\
+              (\cup_j E_j)^y = \cup_j (E_j)^y, \ \ \ (\cap_j E_j)^y = \cap_j (E_j)^y.
+          \end{align*}
 \end{enumerate}
 \begin{prop}
-Sean $(X, \mathcal{M})$ e $(Y, \mathcal{N})$ dos espacios medibles. Sea $\mathcal{M} \otimes \mathcal{N}$ la $\sigma$-álgebra. Si $E \in \mathcal{M} \otimes \mathcal{N}$, $x \in X$ e $y \in Y$, entonces $E_x \in \mathcal{N}$ y $E^y \in \mathcal{M}$.
+    Sean $(X, \mathcal{M})$ e $(Y, \mathcal{N})$ dos espacios medibles. Sea $\mathcal{M} \otimes \mathcal{N}$ la $\sigma$-álgebra. Si $E \in \mathcal{M} \otimes \mathcal{N}$, $x \in X$ e $y \in Y$, entonces $E_x \in \mathcal{N}$ y $E^y \in \mathcal{M}$.
 \end{prop}
 
 \begin{proof}
-Sea $\mathcal{F} = \{ E \subset X \times Y : E_x \in \mathcal{N} \text{ para todo } x \in X \}$. Veamos que $\mathcal{F}$ es $\sigma$-álgebra.
-\begin{itemize}
-    \item $X \times Y \in \mathcal{F}$ pues
+    Sea $\mathcal{F} = \{ E \subset X \times Y : E_x \in \mathcal{N} \text{ para todo } x \in X \}$. Veamos que $\mathcal{F}$ es $\sigma$-álgebra.
+    \begin{itemize}
+        \item $X \times Y \in \mathcal{F}$ pues
+              \begin{align*}
+                  (X \times Y)_x = \{ y \in Y : (x,y) \in X \times Y \} = Y.
+              \end{align*}
+              Como $\mathcal{N}$ es $\sigma$-álgebra, entonces $(X \times Y)_x = Y \in \mathcal{N}$ y por tanto, $X \times Y \in \mathcal{F}$.
+        \item Si $E \in \mathcal{F}$ entonces $E^c \in \mathcal{F}$ pues
+              \begin{align*}
+                  (E^c)_x = (E_x)^c.
+              \end{align*}
+              Como $\mathcal{N}$ es $\sigma$-álgebra, entonces $(E_x)^c \in \mathcal{N}$ y por tanto, $E^c \in \mathcal{F}$.
+        \item Sea $\{E_i\}_{i=1}^{\infty}$, $E_i \in \mathcal{N}$ entonces $\cup_{i=1}^{\infty}{E_i} \in \mathcal{N}$ pues
+              \begin{align*}
+                  (\cup_j E_j)_x = \cup_j (E_j)_x.
+              \end{align*}
+              Como $\mathcal{N}$ es $\sigma$-álgebra, entonces $\cup_j (E_j)_x \in \mathcal{N}$ y por tanto, $\cup_{i=1}^{\infty}{E_i} \in \mathcal{F}$.
+    \end{itemize}
+    Además la familia $\mathcal{E}$ de los rectángulos medibles está contenida en $\mathcal{F}$. En efecto, si $E = A \times B$ con $A \in \mathcal{M}$ y $B \in \mathcal{N}$ entonces
     \begin{align*}
-        (X \times Y)_x = \{ y \in Y : (x,y) \in X \times Y \} = Y.
+        E_x = \left\{ \begin{array}{lcc}
+                          B         & si & x \in A      \\
+                          \emptyset & si & x \not \in A \\
+                      \end{array}
+        \right.
     \end{align*}
-    Como $\mathcal{N}$ es $\sigma$-álgebra, entonces $(X \times Y)_x = Y \in \mathcal{N}$ y por tanto, $X \times Y \in \mathcal{F}$.
-    \item Si $E \in \mathcal{F}$ entonces $E^c \in \mathcal{F}$ pues
-    \begin{align*}
-        (E^c)_x = (E_x)^c.
-    \end{align*}
-    Como $\mathcal{N}$ es $\sigma$-álgebra, entonces $(E_x)^c \in \mathcal{N}$ y por tanto, $E^c \in \mathcal{F}$.
-    \item Sea $\{E_i\}_{i=1}^{\infty}$, $E_i \in \mathcal{N}$ entonces $\cup_{i=1}^{\infty}{E_i} \in \mathcal{N}$ pues
-    \begin{align*}
-         (\cup_j E_j)_x = \cup_j (E_j)_x.
-    \end{align*}
-    Como $\mathcal{N}$ es $\sigma$-álgebra, entonces $\cup_j (E_j)_x \in \mathcal{N}$ y por tanto, $\cup_{i=1}^{\infty}{E_i} \in \mathcal{F}$.
-\end{itemize}
-Además la familia $\mathcal{E}$ de los rectángulos medibles está contenida en $\mathcal{F}$. En efecto, si $E = A \times B$ con $A \in \mathcal{M}$ y $B \in \mathcal{N}$ entonces
-\begin{align*}
-    E_x = \left\{ \begin{array}{lcc}
-             B &  si  & x \in A\\
-            \emptyset &  si  &  x \not \in A\\
-             \end{array}
-        \right. 
-\end{align*}
-Luego $E_x \in \mathcal{N}$ para todo $x \in X$ y, por consiguiente, $\mathcal{E} \subset \mathcal{F}$. Como $\mathcal{F}$ es una $\sigma$-álgebra, resulta que $\mathcal{M} \otimes \mathcal{N} = \mathcal{M}(\mathcal{E}) \subset \mathcal{F}$.
+    Luego $E_x \in \mathcal{N}$ para todo $x \in X$ y, por consiguiente, $\mathcal{E} \subset \mathcal{F}$. Como $\mathcal{F}$ es una $\sigma$-álgebra, resulta que $\mathcal{M} \otimes \mathcal{N} = \mathcal{M}(\mathcal{E}) \subset \mathcal{F}$.
 \end{proof}
 
 \begin{obs}
-Sean $p$ y $q$ dos números naturales y tomemos los espacios de medida $(\mathbb{R}^p, \mathcal{L}, m_p)$ y $(\mathbb{R}^q, \mathcal{L}_q, m_q)$. Veamos que
-\begin{align*}
-    \mathcal{L}_p \otimes \mathcal{L}_q \subsetneq \mathcal{L}_{p+q}.
-\end{align*}
-Primero vamos a probar que $\mathcal{L}_p \otimes \mathcal{L}_q \subset \mathcal{L}_{p+q}$. Sea $A \in \mathcal{L}_p$ y $B \in \mathcal{L}_q$. Entoces
-\begin{align*}
-    A = E_A \cup F_B, \ \ E_A \in \mathcal{B}_{\mathbb{R}^p}, \ \ m_P(F_A) = 0 \text{ y} \\
-    B = E_B \cup F_B, \ \ E_B \in \mathcal{B}_{\mathbb{R}^q}, \ \ m_q(F_B) = 0.
-\end{align*}
-Entonces
-\begin{align*}
-    A \times B = E_A \times E_B \cup E_A \timmes F_B \cup F_A \times E_B \cup F_A \times F_B.
-\end{align*}
-Nótese que
-\begin{itemize}
-    \item $E_A \times E_B \in \mathcal{B}_{\mathbb{R}^{p+q}}$.
-    \item Existe $N_B \in \mathcal{B}_{\mathbb{R}^{q}}$ tal que $F_B \subset N_B$, $m_q(N_B) = 0$. Por tanto $E_A \times F_B \subset E_A \times N_A$ y $m_{p+q}(E_A \times N_A) = m_p(A)m_q(N_A) = 0$. Luego
+    Sean $p$ y $q$ dos números naturales y tomemos los espacios de medida $(\mathbb{R}^p, \mathcal{L}, m_p)$ y $(\mathbb{R}^q, \mathcal{L}_q, m_q)$. Veamos que
     \begin{align*}
-    E_A \times F_B \in \mathcal{L}_{p +q} \text{ y } m_{p+q}(E_A \times F_B) = 0.
+        \mathcal{L}_p \otimes \mathcal{L}_q \subsetneq \mathcal{L}_{p+q}.
     \end{align*}
-    \item De igual forma se ve $F_A \times E_B \in \mathcal{L}_{p +q}$ y $m_{p+q}(F_A \times E_B) = 0$ y que $F_A \times F_B \in \mathcal{L}_{p+q}$ y $m_{p+q}(F_A \times F_B) = 0$.
-\end{itemize}
-Por tanto, $A \times B \in \mathcal{L}_{p+q}$ y
-\begin{align*}
-    &m_{p+q}(A \times B) = m_{p+q}(E_A \times E_B) = m_p(E_A)m_q(E_B) = m_p(A)m_q(B).
-\end{align*}
-Si consideramos ahora $(\mathbb{R}^{p+q}, \mathcal{L}_{p+q}, m_{p+q})$, se tiene $\mathcal{L}_p \otimes \mathcal{L}_q = \mathcal{M}(\mathcal{E})$ donde
-\begin{align*}
-    \mathcal{E} = \{ A \times B : A \in \mathcal{L}_p, B \in \mathcal{L}_q \}
-\end{align*}
-Es claro que $\mathcal{E} \subset \mathcal{L}_{p+q}$ y como $\mathcal{L}_{p+q}$ es $\sigma$-álgebra, entonces $\mathcal{L}_p \otimes \mathcal{L}_q = \mathcal{M}(\mathcal{E}) \subset \mathcal{L}_{p+q}$. Entonces $m_p \times m_q = m_{p+q}|_{\mathcal{L}_p \otimes \mathcal{L}_q}$.
-\\
-\newline
-Para ver que son distintos, tomamos el conjunto $E = A \times D$, donde $\emptyset \not = A \in \mathcal{L}_p$, $m_p(A) = 0$ y $D \subset \mathbb{R}^q$ es un un conjuto nno medible ($D \not \in \mathcal{L}_q$. Observamos que $E = A \times D \subset A \times \mathbb{R}^q$. Como $A$ tiene medida cero y $\mathbb{R}^q$ es medible-Lebesgue, tenemos que $A \times \mathbb{R}^q \in \mathcal{L}_{p+q}$ y $m_{p+q}(A \times \mathbb{R}^q) = 0$. Por la completitud de la medida $m_{p+q}$ llegamos a que $E = A \times D \in \mathcal{L}_{p+q}$.
-\\
-\newline
-Veamos ahora que $E \not \in \mathcal{L}_p \otimes \mathcal{L}_q$. Supongamos, por reducción al absurdo, que $E \in \mathcal{L}_p \otimes \mathcal{L}_q$, entonces todas sus secciones $E_x \in \mathcal{L}_q$. Ahora bien, como $A \not = \emmptyset$ existe $a \in A$ y como $E_a = D \not \in \mathcal{L}_q$ llegamos a ua contradicción. Luego $E = A \times D \in \mathcal{L}_{p+q}$ y $E \not \in \mathcal{L}_p \otimes \mathcal{L}_q$.
+    Primero vamos a probar que $\mathcal{L}_p \otimes \mathcal{L}_q \subset \mathcal{L}_{p+q}$. Sea $A \in \mathcal{L}_p$ y $B \in \mathcal{L}_q$. Entoces
+    \begin{align*}
+        A = E_A \cup F_B, \ \ E_A \in \mathcal{B}_{\mathbb{R}^p}, \ \ m_P(F_A) = 0 \text{ y} \\
+        B = E_B \cup F_B, \ \ E_B \in \mathcal{B}_{\mathbb{R}^q}, \ \ m_q(F_B) = 0.
+    \end{align*}
+    Entonces
+    \begin{align*}
+        A \times B = E_A \times E_B \cup E_A \times F_B \cup F_A \times E_B \cup F_A \times F_B.
+    \end{align*}
+    Nótese que
+    \begin{itemize}
+        \item $E_A \times E_B \in \mathcal{B}_{\mathbb{R}^{p+q}}$.
+        \item Existe $N_B \in \mathcal{B}_{\mathbb{R}^{q}}$ tal que $F_B \subset N_B$, $m_q(N_B) = 0$. Por tanto $E_A \times F_B \subset E_A \times N_A$ y $m_{p+q}(E_A \times N_A) = m_p(A)m_q(N_A) = 0$. Luego
+              \begin{align*}
+                  E_A \times F_B \in \mathcal{L}_{p +q} \text{ y } m_{p+q}(E_A \times F_B) = 0.
+              \end{align*}
+        \item De igual forma se ve $F_A \times E_B \in \mathcal{L}_{p +q}$ y $m_{p+q}(F_A \times E_B) = 0$ y que $F_A \times F_B \in \mathcal{L}_{p+q}$ y $m_{p+q}(F_A \times F_B) = 0$.
+    \end{itemize}
+    Por tanto, $A \times B \in \mathcal{L}_{p+q}$ y
+    \begin{align*}
+         & m_{p+q}(A \times B) = m_{p+q}(E_A \times E_B) = m_p(E_A)m_q(E_B) = m_p(A)m_q(B).
+    \end{align*}
+    Si consideramos ahora $(\mathbb{R}^{p+q}, \mathcal{L}_{p+q}, m_{p+q})$, se tiene $\mathcal{L}_p \otimes \mathcal{L}_q = \mathcal{M}(\mathcal{E})$ donde
+    \begin{align*}
+        \mathcal{E} = \{ A \times B : A \in \mathcal{L}_p, B \in \mathcal{L}_q \}
+    \end{align*}
+    Es claro que $\mathcal{E} \subset \mathcal{L}_{p+q}$ y como $\mathcal{L}_{p+q}$ es $\sigma$-álgebra, entonces $\mathcal{L}_p \otimes \mathcal{L}_q = \mathcal{M}(\mathcal{E}) \subset \mathcal{L}_{p+q}$. Entonces $m_p \times m_q = m_{p+q}|_{\mathcal{L}_p \otimes \mathcal{L}_q}$.
+
+    Para ver que son distintos, tomamos el conjunto $E = A \times D$, donde $\emptyset \not = A \in \mathcal{L}_p$, $m_p(A) = 0$ y $D \subset \mathbb{R}^q$ es un un conjuto nno medible ($D \not \in \mathcal{L}_q$. Observamos que $E = A \times D \subset A \times \mathbb{R}^q$. Como $A$ tiene medida cero y $\mathbb{R}^q$ es medible-Lebesgue, tenemos que $A \times \mathbb{R}^q \in \mathcal{L}_{p+q}$ y $m_{p+q}(A \times \mathbb{R}^q) = 0$. Por la completitud de la medida $m_{p+q}$ llegamos a que $E = A \times D \in \mathcal{L}_{p+q}$.
+
+    Veamos ahora que $E \not \in \mathcal{L}_p \otimes \mathcal{L}_q$. Supongamos, por reducción al absurdo, que $E \in \mathcal{L}_p \otimes \mathcal{L}_q$, entonces todas sus secciones $E_x \in \mathcal{L}_q$. Ahora bien, como $A \not = \emptyset$ existe $a \in A$ y como $E_a = D \not \in \mathcal{L}_q$ llegamos a ua contradicción. Luego $E = A \times D \in \mathcal{L}_{p+q}$ y $E \not \in \mathcal{L}_p \otimes \mathcal{L}_q$.
 \end{obs}
 La medida producto está determinada por las secciones. Este es el contenido del Principio de Cavalieri.
 
 \begin{teo}[El Principio de Cavalieri]
-Sean $(X, \mathcal{M}, \mu)$ e $(Y, \mathcal{N}, \nu)$ ds espacios de medida $\sigma$-finnintos. Sea $E \i \mathcal{M} \otimes \mathcal{N}$. Entonces
-\begin{enumerate}
-    \item[(i)] La aplicaciónn $\varphi_E : X \longrightarrow [0,+\infty]$ dada por
-    \begin{align*}
-        \varphi_E(x) = \nu(E_x)
-    \end{align*}
-    está definida para todo $x \in X$, es medible ($\mathcal{M}$-medible) y se verifica
-    \begin{align*}
-        \mu \times \nu (E) = \int_{X}{\varphi_E \ d\mu(x)} = \int_{X}{\nu(E_x) \ d\mu(x)}.
-    \end{align*}
-    \item[(ii)] La aplicación $\psi_E : Y \longrightarrow [0,+\infty]$ dada por
-    \begin{align*}
-        \psi_E(y) = \mu(E^y)
-    \end{align*}
-    está definida para todo $y \in Y$, es medible ($\mathcal{N}$-medible) y se verifica
-    \begin{align*}
-        \mu \times \nu (E) = \int_{Y}{\psi_E(y) \ d\nu(y)} = \int_{Y}{\mu(E^y) \ d\nu(y)}
-    \end{align*}
-\end{enumerate}
+    Sean $(X, \mathcal{M}, \mu)$ e $(Y, \mathcal{N}, \nu)$ dos espacios de medida $\sigma$-finitos. Sea $E \in \mathcal{M} \otimes \mathcal{N}$. Entonces
+    \begin{enumerate}
+        \item[(i)] La aplicación $\varphi_E : X \longrightarrow [0,+\infty]$ dada por
+              \begin{align*}
+                  \varphi_E(x) = \nu(E_x)
+              \end{align*}
+              está definida para todo $x \in X$, es medible ($\mathcal{M}$-medible) y se verifica
+              \begin{align*}
+                  \mu \times \nu (E) = \int_{X}{\varphi_E \ d\mu(x)} = \int_{X}{\nu(E_x) \ d\mu(x)}.
+              \end{align*}
+        \item[(ii)] La aplicación $\psi_E : Y \longrightarrow [0,+\infty]$ dada por
+              \begin{align*}
+                  \psi_E(y) = \mu(E^y)
+              \end{align*}
+              está definida para todo $y \in Y$, es medible ($\mathcal{N}$-medible) y se verifica
+              \begin{align*}
+                  \mu \times \nu (E) = \int_{Y}{\psi_E(y) \ d\nu(y)} = \int_{Y}{\mu(E^y) \ d\nu(y)}
+              \end{align*}
+    \end{enumerate}
 \end{teo}
 
 \begin{proof}
-Basta demostrar $(i)$ puesto que la demosrtación de $(ii)$ se hace de forma simétrica.
-\\
-\newline
-Es claro que la aplicación $\varphi_E : X \longrightarrow [0,+\infty]$ dada por
+    Basta demostrar $(i)$ puesto que la demosrtación de $(ii)$ se hace de forma simétrica.
+
+    Es claro que la aplicación $\varphi_E : X \longrightarrow [0,+\infty]$ dada por
     \begin{align*}
         \varphi_E(x) = \nu(E_x)
     \end{align*}
@@ -260,17 +256,17 @@ Es claro que la aplicación $\varphi_E : X \longrightarrow [0,+\infty]$ dada por
     \begin{itemize}
         \item $\gamma(\emptyset) = \int_X{\varphi_{\emptyset}(x) \ d\mu(x)} = \int_{X}{0 \ d\mu(x)} = 0$.
         \item Sea $\{E_i\}_{i=1}^{\infty}$, $E_i \in \mathcal{M} \otimes \mathcal{N}$ y disjunta. Entonces
-        \begin{align*}
-            \gamma(\cup_{i=1}^{\infty}{E_i}) &= \int_{X}{\varphi_{(\cup_{i=1}^{\infty}{E_i})}(x) \ d\mu(x)} = \int_{X}{\nu((\cup_{i=1}^{\infty}{E_i})_x) \ d\mu(x)} = \int_{X}{\nu(\cup_{i=1}^{\infty}{(E_i)_x}) \ d\mu(x)} \\
-            &= \int_{X}{\sum_{i=1}^{\infty}{\nu((E_i)_x)}} = \sum_{i=1}^{\infty}{\int_{X}{\nu((E_i)_x)}} = \sum_{i=1}^{\infty}{\gamma(E_i)}.
-        \end{align*}
+              \begin{align*}
+                  \gamma(\cup_{i=1}^{\infty}{E_i}) & = \int_{X}{\varphi_{(\cup_{i=1}^{\infty}{E_i})}(x) \ d\mu(x)} = \int_{X}{\nu((\cup_{i=1}^{\infty}{E_i})_x) \ d\mu(x)} = \int_{X}{\nu(\cup_{i=1}^{\infty}{(E_i)_x}) \ d\mu(x)} \\
+                                                   & = \int_{X}{\sum_{i=1}^{\infty}{\nu((E_i)_x)}} = \sum_{i=1}^{\infty}{\int_{X}{\nu((E_i)_x)}} = \sum_{i=1}^{\infty}{\gamma(E_i)}.
+              \end{align*}
     \end{itemize}
     Por tanto, $\gamma$ es medida. Sea $E = A \times B$ con $A \in \mathcal{M}$ y $B \in \mathcal{N}$ entonces
     \begin{align*}
         \varphi_E(x) = \nu(E_x) = \left\{ \begin{array}{lcc}
-            \nu(B) &  si  & x \in A\\
-            0 &  si  &  x \not \in A\\
-             \end{array}
+                                              \nu(B) & si & x \in A      \\
+                                              0      & si & x \not \in A \\
+                                          \end{array}
         \right.
         = \nu(B)\mathcal{X}_A,
     \end{align*}
@@ -282,18 +278,18 @@ Es claro que la aplicación $\varphi_E : X \longrightarrow [0,+\infty]$ dada por
 \end{proof}
 
 \begin{cor}
-Sea $B \in \mathcal{B}_{\mathbb{R}^{p+q}}$. Las afirmaciones siguientes son ciertas
-\begin{enumerate}
-    \item[(a)] $B_x \in \mathcal{B}_{\mathbb{R}^{q}}$ para todo $x \in \mathbb{R}^{p}$ y $B^y \in \mathcal{B}_{\mathbb{R}^{p}}$ para todo $y \in \mathbb{R}^{q}$.
-    \item[(b)] Las aplicaciones $\varphi: \mathbb{R}^p \longrightarrow [0,+\infty]$ y $\psi: \mathbb{R}^p \longrightarrow [0,+\infty]$, definidas por
-    \begin{align*}
-        \varphi(x) = m_q(B_x) \ \ \text{ y } \ \ \psi(y) = m_p(B^y),
-    \end{align*}
-    son medibles-Borel y 
-    \begin{align*}
-        m_{p+q}(B) = \int_{\mathbb{R}^p}{\varphi(x) \ dx} = \int_{\mathbb{R}^q}{\psi(y) \ dy}.
-    \end{align*}
-\end{enumerate}
+    Sea $B \in \mathcal{B}_{\mathbb{R}^{p+q}}$. Las afirmaciones siguientes son ciertas
+    \begin{enumerate}
+        \item[(a)] $B_x \in \mathcal{B}_{\mathbb{R}^{q}}$ para todo $x \in \mathbb{R}^{p}$ y $B^y \in \mathcal{B}_{\mathbb{R}^{p}}$ para todo $y \in \mathbb{R}^{q}$.
+        \item[(b)] Las aplicaciones $\varphi: \mathbb{R}^p \longrightarrow [0,+\infty]$ y $\psi: \mathbb{R}^p \longrightarrow [0,+\infty]$, definidas por
+              \begin{align*}
+                  \varphi(x) = m_q(B_x) \ \ \text{ y } \ \ \psi(y) = m_p(B^y),
+              \end{align*}
+              son medibles-Borel y
+              \begin{align*}
+                  m_{p+q}(B) = \int_{\mathbb{R}^p}{\varphi(x) \ dx} = \int_{\mathbb{R}^q}{\psi(y) \ dy}.
+              \end{align*}
+    \end{enumerate}
 \end{cor}
 
 \section{Los Teoremas de Tonelli y Fubini}
@@ -301,173 +297,170 @@ Sea $B \in \mathcal{B}_{\mathbb{R}^{p+q}}$. Las afirmaciones siguientes son cier
 \subsection{Secciones de aplicaciones}
 
 \begin{defi}
-Si f es una función definida sobrer $X \times Y$, $f: X \times Y \longrightarrow Z$, y $x \in X$ definimos la x-sección de f como la función
-\begin{align*}
-    f_x : Y \longrightarrow Z \text{ dada por } f_x(y) = f(x,y).
-\end{align*}
-Análogamente se define las secciones $f^y$ si $y \in Y$:
-\begin{align*}
-    f^y : X \longrightarrow Z \text{ dada por } f^y(x) = f(x,y).
-\end{align*}
+    Si f es una función definida sobrer $X \times Y$, $f: X \times Y \longrightarrow Z$, y $x \in X$ definimos la x-sección de f como la función
+    \begin{align*}
+        f_x : Y \longrightarrow Z \text{ dada por } f_x(y) = f(x,y).
+    \end{align*}
+    Análogamente se define las secciones $f^y$ si $y \in Y$:
+    \begin{align*}
+        f^y : X \longrightarrow Z \text{ dada por } f^y(x) = f(x,y).
+    \end{align*}
 \end{defi}
 
 \begin{prop}
-Sean $(X, \mathcal{M})$, $(Y, \mathcal{N})$ y $(Z, \mathcal{F})$ tres espacios medibles. Sea $\mathcal{M} \otimes \mathcal{N}$ la $\sigma$-álgebra producto. Si $f: X \times Y \longrightarrow Z$ es $(\mathcal{M} \otimes \mathcal{N}, \mathcal{F})$-medible, entonces, para todo $x \in X$ $f_x$ es $(\mathcal{N}, \mathcal{F})$-medible y para todo $y \in Y$ $f^y$ es $(\mathcal{M}, \mathcal{F})$-medible.
+    Sean $(X, \mathcal{M})$, $(Y, \mathcal{N})$ y $(Z, \mathcal{F})$ tres espacios medibles. Sea $\mathcal{M} \otimes \mathcal{N}$ la $\sigma$-álgebra producto. Si $f: X \times Y \longrightarrow Z$ es $(\mathcal{M} \otimes \mathcal{N}, \mathcal{F})$-medible, entonces, para todo $x \in X$ $f_x$ es $(\mathcal{N}, \mathcal{F})$-medible y para todo $y \in Y$ $f^y$ es $(\mathcal{M}, \mathcal{F})$-medible.
 \end{prop}
 
 \begin{proof}
-Sea $E \in \mathcal{F}$. Entonces
-\begin{align*}
-    (f_x)^{-1}(E) &= \{ y \in Y : f_x(y) \in E \} = \{ y \in Y : f(x,y) \in E \} \\
-    &= \{ y \in Y : (x,y) \in f^{-1}(E) \} = (f^{-1}(E))_x.
-\end{align*}
-Como $f: X \times Y \longrightarrow Z$ es $(\mathcal{M} \otimes \mathcal{N}, \mathcal{F})$-medible, entonces $E \in \mathcal{M} \otimes \mathcal{N}$. Luego $E_x \in \mathcal{N}$ puesto que $E_x = (f_x)^{-1}(E) = (f^{-1}(E))_x$.
+    Sea $E \in \mathcal{F}$. Entonces
+    \begin{align*}
+        (f_x)^{-1}(E) & = \{ y \in Y : f_x(y) \in E \} = \{ y \in Y : f(x,y) \in E \} \\
+                      & = \{ y \in Y : (x,y) \in f^{-1}(E) \} = (f^{-1}(E))_x.
+    \end{align*}
+    Como $f: X \times Y \longrightarrow Z$ es $(\mathcal{M} \otimes \mathcal{N}, \mathcal{F})$-medible, entonces $E \in \mathcal{M} \otimes \mathcal{N}$. Luego $E_x \in \mathcal{N}$ puesto que $E_x = (f_x)^{-1}(E) = (f^{-1}(E))_x$.
 \end{proof}
 
 \subsection{El Teorema de Tonelli}
 
 \begin{teo}[Teorema de Tonelli]
-Sean $(X, \mathcal{M}, \mu)$ e $(Y, \mathcal{N}, \nu)$ dos espacios de medida $\sigma$-finitos. Sea $f: X \times Y \longrightarrow \mathbb{R}$ una función $\mathcal{M} \otimes \mathcal{N}$-medible y no negativa. Entonces
-\begin{enumerate}
-    \item[(i)] La aplicación $\varphi: X \longrightarrow \mathbb{R}$, definida por
-    \begin{align*}
-        \varphi(x) = \int_{Y}{f_x \ d\nu}
-    \end{align*}
-    está definida en todo punto x de X, es $\mathcal{M}$-medible, no negativa (puede tomar el valor $+\infty$) y se verifica
-    \begin{align*}
-        \int_{X \times Y}{f \ d(\mu \times \nu)} = \int_{X}{\varphi \ d\mu} = \int_{X}\left( \int_{Y}{f(x,y) \ d\nu(y)}\right) \ d\mu(x).
-    \end{align*}
-    \item[(ii)] La aplicación $\psi: Y \longrightarrow \mathbb{R}$, definida por
-    \begin{align*}
-        \varphi(y) = \int_{X}{f^y \ d\mu}
-    \end{align*}
-    está definida en todo punto y de Y, es $\mathcal{N}$-medible, no negativa (puede tomar el valor $+\infty$) y se verifica
-    \begin{align*}
-        \int_{X \times Y}{f \ d(\mu \times \nu)} = \int_{Y}{\psi \ d\nu} = \int_{Y}\left( \int_{X}{f(x,y) \ d\mu(x)}\right) \ d\nu(y).
-    \end{align*}
-\end{enumerate}
+    Sean $(X, \mathcal{M}, \mu)$ e $(Y, \mathcal{N}, \nu)$ dos espacios de medida $\sigma$-finitos. Sea $f: X \times Y \longrightarrow \mathbb{R}$ una función $\mathcal{M} \otimes \mathcal{N}$-medible y no negativa. Entonces
+    \begin{enumerate}
+        \item[(i)] La aplicación $\varphi: X \longrightarrow \mathbb{R}$, definida por
+              \begin{align*}
+                  \varphi(x) = \int_{Y}{f_x \ d\nu}
+              \end{align*}
+              está definida en todo punto x de X, es $\mathcal{M}$-medible, no negativa (puede tomar el valor $+\infty$) y se verifica
+              \begin{align*}
+                  \int_{X \times Y}{f \ d(\mu \times \nu)} = \int_{X}{\varphi \ d\mu} = \int_{X}\left( \int_{Y}{f(x,y) \ d\nu(y)}\right) \ d\mu(x).
+              \end{align*}
+        \item[(ii)] La aplicación $\psi: Y \longrightarrow \mathbb{R}$, definida por
+              \begin{align*}
+                  \varphi(y) = \int_{X}{f^y \ d\mu}
+              \end{align*}
+              está definida en todo punto y de Y, es $\mathcal{N}$-medible, no negativa (puede tomar el valor $+\infty$) y se verifica
+              \begin{align*}
+                  \int_{X \times Y}{f \ d(\mu \times \nu)} = \int_{Y}{\psi \ d\nu} = \int_{Y}\left( \int_{X}{f(x,y) \ d\mu(x)}\right) \ d\nu(y).
+              \end{align*}
+    \end{enumerate}
 \end{teo}
 
 \begin{proof}
-Demostremos $(i)$ puesto que $(ii)$ se prueba de la misma forma.
-\\
-\newline
-En primer lugar, observamos que si $E$ es un conjunto medible y $f = \mathcal{X}_E$ entonces las conclusiones del Teorema de Tonelli no son otra cos que las contenidas en el Principio de Cavalieri.
-\begin{align*}
-    f_x(y) = \mathcal{X}_E(x,y) = \left\{ \begin{array}{lcc}
-             1 &  si  & (x,y) \in E\\
-            0&  si  &  (x,y) \not \in E\\
-             \end{array}
+    Demostremos $(i)$ puesto que $(ii)$ se prueba de la misma forma.
+
+    En primer lugar, observamos que si $E$ es un conjunto medible y $f = \mathcal{X}_E$ entonces las conclusiones del Teorema de Tonelli no son otra cos que las contenidas en el Principio de Cavalieri.
+    \begin{align*}
+        f_x(y) = \mathcal{X}_E(x,y) = \left\{ \begin{array}{lcc}
+                                                  1 & si & (x,y) \in E      \\
+                                                  0 & si & (x,y) \not \in E \\
+                                              \end{array}
         \right. = \left\{ \begin{array}{lcc}
-             1 &  si  & y \in E_x\\
-            0&  si  &  y \not \in E_x\\
-             \end{array}
+                              1 & si & y \in E_x      \\
+                              0 & si & y \not \in E_x \\
+                          \end{array}
         \right. = \mathcal{X}_{E_x}(y).
-\end{align*}
-Aplicando el Principio de Cavalieri
-\begin{align*}
-    \varphi(x) = \int_{Y}{f_x \ d\nu} = \int_{Y}{\mathcal{X}_{E_x} \ d\nu} = \nu(E_x) \ \ \text{ y } \\
-    \mu \times \nu (E) = \int_{X}{\nu(E) \ d\mu} = \int_{X}{\varphi \ d\mu}
-\end{align*}
-Luego
-\begin{align*}
-    \int_{X \times Y}{\mathcal{X}_E \ d(\mu \times \nu)} = \int_{X}{ \varphi(x) \ d\mu(x)},
-\end{align*}
-es decir, el teorema se da para funciones características de conjuntos medibles.
-\\
-\newline
-Supongamos ahora que $f$ es una función simple medible no negativa de expresión canónica $f = \sum_{i=1}^{s}{a_i\mathcal{X}_{A_i}}$. Entonces
-\begin{align*}
-    f_x = \sum_{i=1}^{s}{a_i(\mathcal{X}_{A_i})_x}
-\end{align*}
-Sabemos que $f_x$ es medible para todo $x \in X$. Denotemos por $ºvarphi$ a la función
-\begin{align*}
-    \varphi_i(x) = \int_{Y}{(\mathcal{X}_{A_i})_x(y) \ d\nu(y)} = \nu((A_i)_x).
-\end{align*}
-Esta aplicación es medible por lo ya probado. Además
-\begin{align*}
-    \varphi(x) = \int_{Y}{f_x \ d\nu(x)} = \int_{Y}{\sum_{i=1}^{s}{a_i(\mathcal{X}_{A_i}})_x} \ d\nu(x) = \sum_{i=1}^{s}{\int_{Y}{a_i(\mathcal{X}_{A_i})_x} \ d\nu(x)} = \sum_{i=1}^{s}{a_i\varphi_i(x)}
-\end{align*}
-Luego $\varphi$ es medible y
-\begin{align*}
-    \int_{X}{\varphi(x) \ d\mu(x)} &= \sum_{i=1}^{s}{a_i\int_{X}{\varphi_i(x) \ d\mu(x)}} = \sum_{i=1}^{s}{a_i\int_{X}{\nu((A_i)_x) \ d\mu(x)}} \\
-    &= \sum_{i=1}^{s}{a_i \mu \times \nu (A_i)} = \int_{X \times Y}{f(x,y) \ d(\mu \times \nu)(x,y)}.
-\end{align*}
-Finalmente, sea $f$ un función medible arbitraria. Por una parte, sabemos que $f_x$ es medible para todo $x \in X$. Además, es no negativa, luego $\varphi$ está definida en todo $x \in X$. Por otra parte existe un sucesión creciente $s_n$ de funciones simples, medibles, no negativas, tal que $\lim_{n \to \infty}{s_n} = f$. Se tiene entonces que las secciones $(s_n)_x$ constituyen una sucesión creciente de funciones medibles no negativas y $\lim_{n \to \infty}{(s_n)_x} = f_x$ para todo $x \in X$. Sabemos, por el caso anterior, que para todo $x \in X$, $(s_n)_x$ es medible, las funciones definidas en todo punto por
-\begin{align*}
-    \varphi_n(x) = \int_{Y}{(s_n)_x(y) \ d\nu(y)}
-\end{align*}
-son medibles y
-\begin{align*}
-    \int_{X}{\varphi_n(x) \ d\mu(x)} = \int_{X \times Y}{s_n(x,y) \ d(\mu \times \nu)(x,y)}.
-\end{align*}
-Aplicando entonces el Teorema de la Convergencia Monótona,
-\begin{align*}
-    \varphi(x) = \int_{Y}{f_x(y) \ d\nu(y)} = \lim_{n \to \infty}{\int_{Y}{(s_n)_x(y) \ d\nu(y)}} = \lim_{n \to \infty}{\vaphi_n(x)}
-\end{align*}
-para todo $x \in X$. Luego, $\varphi$ es medible en $X$. Además $\varphi_n$ es una sucesión creciente en $X$. Finalmente, aplicando el Teorema de la Convergencia Monótona (dos veces)
-\begin{align*}
-    \int_{X}{\varphi(x) \ d\mu(x)}
-\end{align*}
+    \end{align*}
+    Aplicando el Principio de Cavalieri
+    \begin{align*}
+        \varphi(x) = \int_{Y}{f_x \ d\nu} = \int_{Y}{\mathcal{X}_{E_x} \ d\nu} = \nu(E_x) \ \ \text{ y } \\
+        \mu \times \nu (E) = \int_{X}{\nu(E) \ d\mu} = \int_{X}{\varphi \ d\mu}
+    \end{align*}
+    Luego
+    \begin{align*}
+        \int_{X \times Y}{\mathcal{X}_E \ d(\mu \times \nu)} = \int_{X}{ \varphi(x) \ d\mu(x)},
+    \end{align*}
+    es decir, el teorema se da para funciones características de conjuntos medibles.
+
+    Supongamos ahora que $f$ es una función simple medible no negativa de expresión canónica $f = \sum_{i=1}^{s}{a_i\mathcal{X}_{A_i}}$. Entonces
+    \begin{align*}
+        f_x = \sum_{i=1}^{s}{a_i(\mathcal{X}_{A_i})_x}
+    \end{align*}
+    Sabemos que $f_x$ es medible para todo $x \in X$. Denotemos por $varphi$ a la función
+    \begin{align*}
+        \varphi_i(x) = \int_{Y}{(\mathcal{X}_{A_i})_x(y) \ d\nu(y)} = \nu((A_i)_x).
+    \end{align*}
+    Esta aplicación es medible por lo ya probado. Además
+    \begin{align*}
+        \varphi(x) = \int_{Y}{f_x \ d\nu(x)} = \int_{Y}{\sum_{i=1}^{s}{a_i(\mathcal{X}_{A_i}})_x} \ d\nu(x) = \sum_{i=1}^{s}{\int_{Y}{a_i(\mathcal{X}_{A_i})_x} \ d\nu(x)} = \sum_{i=1}^{s}{a_i\varphi_i(x)}
+    \end{align*}
+    Luego $\varphi$ es medible y
+    \begin{align*}
+        \int_{X}{\varphi(x) \ d\mu(x)} & = \sum_{i=1}^{s}{a_i\int_{X}{\varphi_i(x) \ d\mu(x)}} = \sum_{i=1}^{s}{a_i\int_{X}{\nu((A_i)_x) \ d\mu(x)}} \\
+                                       & = \sum_{i=1}^{s}{a_i \mu \times \nu (A_i)} = \int_{X \times Y}{f(x,y) \ d(\mu \times \nu)(x,y)}.
+    \end{align*}
+    Finalmente, sea $f$ un función medible arbitraria. Por una parte, sabemos que $f_x$ es medible para todo $x \in X$. Además, es no negativa, luego $\varphi$ está definida en todo $x \in X$. Por otra parte existe un sucesión creciente $s_n$ de funciones simples, medibles, no negativas, tal que $\lim_{n \to \infty}{s_n} = f$. Se tiene entonces que las secciones $(s_n)_x$ constituyen una sucesión creciente de funciones medibles no negativas y $\lim_{n \to \infty}{(s_n)_x} = f_x$ para todo $x \in X$. Sabemos, por el caso anterior, que para todo $x \in X$, $(s_n)_x$ es medible, las funciones definidas en todo punto por
+    \begin{align*}
+        \varphi_n(x) = \int_{Y}{(s_n)_x(y) \ d\nu(y)}
+    \end{align*}
+    son medibles y
+    \begin{align*}
+        \int_{X}{\varphi_n(x) \ d\mu(x)} = \int_{X \times Y}{s_n(x,y) \ d(\mu \times \nu)(x,y)}.
+    \end{align*}
+    Aplicando entonces el Teorema de la Convergencia Monótona,
+    \begin{align*}
+        \varphi(x) = \int_{Y}{f_x(y) \ d\nu(y)} = \lim_{n \to \infty}{\int_{Y}{(s_n)_x(y) \ d\nu(y)}} = \lim_{n \to \infty}{\varphi_n(x)}
+    \end{align*}
+    para todo $x \in X$. Luego, $\varphi$ es medible en $X$. Además $\varphi_n$ es una sucesión creciente en $X$. Finalmente, aplicando el Teorema de la Convergencia Monótona (dos veces)
+    \begin{align*}
+        \int_{X}{\varphi(x) \ d\mu(x)}
+    \end{align*}
 \end{proof}
 
 \subsection{El Teorema de Fubini}
 
 \begin{teo}[Teorema de Fubini]
-Sean $(X, \mathcal{M}, \mu)$ e $(Y, \mathcal{N}, \nu)$ dos espacios de medida $\sigma$-finitos. Sea $f: X \times Y \longrightarrow \mathbb{R}$ una función $\mathcal{M} \otimes \mathcal{N}$-medible e integrable. Entonces
-\begin{enumerate}
-    \item[(i)] Para casi todo $x \in X$, $f_x$ es integrable en $Y$.
-    \item[(ii)] La aplicación $\varphi: X \longrightarrow \mathbb{R}$, definida por
-    \begin{align*}
-        \varphi(x) = \int_{Y}{f_x \ d\nu}
-    \end{align*}
-    está definida en casi todo punto x de X, es integrable y se verifica
-    \begin{align*}
-        \int_{X \times Y}{f \ d(\mu \times \nu)} = \int_{X}{\varphi \ d\mu} = \int_{X}\left( \int_{Y}{f(x,y) \ d\nu(y)}\right) \ d\mu(x).
-    \end{align*}
-    \item[(iii)] Para casi todo $y \in Y$, $f^y$ es integrable en $X$.
-    \item[(iv)] La aplicación $\psi: Y \longrightarrow \mathbb{R}$, definida por
-    \begin{align*}
-        \varphi(y) = \int_{X}{f^y \ d\mu}
-    \end{align*}
-    está definida en casi todo punto y de Y, es integrable  y se verifica
-    \begin{align*}
-        \int_{X \times Y}{f \ d(\mu \times \nu)} = \int_{Y}{\psi \ d\nu} = \int_{Y}\left( \int_{X}{f(x,y) \ d\mu(x)}\right) \ d\nu(y).
-    \end{align*}
-\end{enumerate}
+    Sean $(X, \mathcal{M}, \mu)$ e $(Y, \mathcal{N}, \nu)$ dos espacios de medida $\sigma$-finitos. Sea $f: X \times Y \longrightarrow \mathbb{R}$ una función $\mathcal{M} \otimes \mathcal{N}$-medible e integrable. Entonces
+    \begin{enumerate}
+        \item[(i)] Para casi todo $x \in X$, $f_x$ es integrable en $Y$.
+        \item[(ii)] La aplicación $\varphi: X \longrightarrow \mathbb{R}$, definida por
+              \begin{align*}
+                  \varphi(x) = \int_{Y}{f_x \ d\nu}
+              \end{align*}
+              está definida en casi todo punto x de X, es integrable y se verifica
+              \begin{align*}
+                  \int_{X \times Y}{f \ d(\mu \times \nu)} = \int_{X}{\varphi \ d\mu} = \int_{X}\left( \int_{Y}{f(x,y) \ d\nu(y)}\right) \ d\mu(x).
+              \end{align*}
+        \item[(iii)] Para casi todo $y \in Y$, $f^y$ es integrable en $X$.
+        \item[(iv)] La aplicación $\psi: Y \longrightarrow \mathbb{R}$, definida por
+              \begin{align*}
+                  \varphi(y) = \int_{X}{f^y \ d\mu}
+              \end{align*}
+              está definida en casi todo punto y de Y, es integrable  y se verifica
+              \begin{align*}
+                  \int_{X \times Y}{f \ d(\mu \times \nu)} = \int_{Y}{\psi \ d\nu} = \int_{Y}\left( \int_{X}{f(x,y) \ d\mu(x)}\right) \ d\nu(y).
+              \end{align*}
+    \end{enumerate}
 \end{teo}
 
 \begin{proof}
-Por razones de simetria, basta demostrar $(i)$ y $(ii)$. Sabemos que $f = f^+ - f^-$. Aplicando el Teorema de Tonelli a estas dos funciones medibles y no negativas, sabemos que las aplicaciones
-\begin{align*}
-    \varphi_1(x) = \int_{Y}{(f^+)_x \ d\nu} \ \ \text{y} \ \ \varphi_2(x) = \int_{Y}{(f^-)_x \ d\nu}
-\end{align*}
-están bien definidas y son $\mathcal{M}$-medibles. Además
-\begin{align*}
-    \int_{X}{\varphi_1(x) \ d\mu} &= \int_{X \times Y}{f^+ \ d(\mu \times \nu)} \leq \int_{X \times Y}{|f| \ d(\mu \times \nu)} < +\infty \\
-    \int_{X}{\varphi_2(x) \ d\mu} &= \int_{X \times Y}{f^- \ d(\mu \times \nu)} \leq \int_{X \times Y}{|f| \ d(\mu \times \nu)} < +\infty
-\end{align*}
-Entonces si $E^+ = \{x \in X : \varphi_1 < +\infty\} = \{ x \in X : (f^+)_x \text{ es integrable}\}$ se tiene que $\mu(X \backslash E^+) = 0$. De la misma forma $E^- = \{x \in X : \varphi_2 < +\infty\} = \{ x \in X : (f^-)_x \text{ es integrable}\}$ entonces $\mu(X \backslash E^-) = 0$. Si $E = \{x \in X : f_x \text{ es integrable}\}$ se tiene que $E = E^+  \cap E^-$. Luego $\mu(X \backslash E) = 0$, lo que prueba $(i)$.
-\\
-\newline
-Es claro que $\varphi$ está bien definida en $E$. Luego está definida en casi todo punto. Además $\varphi = \varphi_1 - \varphi_2$ en $E$. Como $\varphi_1$ y $\varphi_2$ son integrabls en $X$ (en $B$) entonces $\varphi$ es integrable en $X$ y 
-\begin{align*}
-    \int_{X}{\varphi \ d\mu} &= \int_{B}{\varphi \ d\mu} = \int_{B}{\varphi_1 \ d\mu} - \int_{B}{\varphi_2 \ d\mu} \\
-    &= \int_{X \times Y}{f^+ \ d(\mu \times \nu)} - \int_{X \times Y}{f^- \ d(\mu \times \nu)} = \int_{X \times Y}{f \ d(\mu \times \nu)}.
-\end{align*}
+    Por razones de simetria, basta demostrar $(i)$ y $(ii)$. Sabemos que $f = f^+ - f^-$. Aplicando el Teorema de Tonelli a estas dos funciones medibles y no negativas, sabemos que las aplicaciones
+    \begin{align*}
+        \varphi_1(x) = \int_{Y}{(f^+)_x \ d\nu} \ \ \text{y} \ \ \varphi_2(x) = \int_{Y}{(f^-)_x \ d\nu}
+    \end{align*}
+    están bien definidas y son $\mathcal{M}$-medibles. Además
+    \begin{align*}
+        \int_{X}{\varphi_1(x) \ d\mu} & = \int_{X \times Y}{f^+ \ d(\mu \times \nu)} \leq \int_{X \times Y}{|f| \ d(\mu \times \nu)} < +\infty \\
+        \int_{X}{\varphi_2(x) \ d\mu} & = \int_{X \times Y}{f^- \ d(\mu \times \nu)} \leq \int_{X \times Y}{|f| \ d(\mu \times \nu)} < +\infty
+    \end{align*}
+    Entonces si $E^+ = \{x \in X : \varphi_1 < +\infty\} = \{ x \in X : (f^+)_x \text{ es integrable}\}$ se tiene que $\mu(X \backslash E^+) = 0$. De la misma forma $E^- = \{x \in X : \varphi_2 < +\infty\} = \{ x \in X : (f^-)_x \text{ es integrable}\}$ entonces $\mu(X \backslash E^-) = 0$. Si $E = \{x \in X : f_x \text{ es integrable}\}$ se tiene que $E = E^+  \cap E^-$. Luego $\mu(X \backslash E) = 0$, lo que prueba $(i)$.
+
+    Es claro que $\varphi$ está bien definida en $E$. Luego está definida en casi todo punto. Además $\varphi = \varphi_1 - \varphi_2$ en $E$. Como $\varphi_1$ y $\varphi_2$ son integrabls en $X$ (en $B$) entonces $\varphi$ es integrable en $X$ y
+    \begin{align*}
+        \int_{X}{\varphi \ d\mu} & = \int_{B}{\varphi \ d\mu} = \int_{B}{\varphi_1 \ d\mu} - \int_{B}{\varphi_2 \ d\mu}                                                  \\
+                                 & = \int_{X \times Y}{f^+ \ d(\mu \times \nu)} - \int_{X \times Y}{f^- \ d(\mu \times \nu)} = \int_{X \times Y}{f \ d(\mu \times \nu)}.
+    \end{align*}
 \end{proof}
 
 \begin{obs}
-\begin{enumerate}
-    \item Sean $(X, \mathcal{M}, \mu)$ e $(Y, \mathcal{N}, \nu)$ dos espacios de medida $\sigma$-finitos. Sea $D \in \mathcal{M} \otimes \mathcal{N}$ y $f: D \longrightarrow \mathbb{R}$ una función $\mathcal{M} \otimes \mathcal{N}$-medible y no negativa o integrable respecto de la meida producto. Entonces
-    \begin{align*}
-        \int_{D}{f \ d(\mu \times \nu)} = \int_{X}\left( \int_{D_x}{f(x,y) \ d\nu(u)}\right) \ d\mu(x) = \int_{Y}\left( \int_{D^y}{f(x,y) \ d\mu(x)}\right) \ d\nu(y).
-    \end{align*}
-    \item Si en el apartado anterior se toma $D = A \times B$, donde $A \in \mathcal{M}$ y $B \in \mathcal{N}$ se tiene que
-    \begin{align*}
-        \int_{A\times B}{f \ d(\mu \times \nu)} = \int_{A}\left( \int_{B}{f(x,y) \ d\nu(u)}\right) \ d\mu(x) = \int_{B}\left( \int_{A}{f(x,y) \ d\mu(x)}\right) \ d\nu(y).
-    \end{align*}
-\end{enumerate}
+    \begin{enumerate}
+        \item Sean $(X, \mathcal{M}, \mu)$ e $(Y, \mathcal{N}, \nu)$ dos espacios de medida $\sigma$-finitos. Sea $D \in \mathcal{M} \otimes \mathcal{N}$ y $f: D \longrightarrow \mathbb{R}$ una función $\mathcal{M} \otimes \mathcal{N}$-medible y no negativa o integrable respecto de la meida producto. Entonces
+              \begin{align*}
+                  \int_{D}{f \ d(\mu \times \nu)} = \int_{X}\left( \int_{D_x}{f(x,y) \ d\nu(u)}\right) \ d\mu(x) = \int_{Y}\left( \int_{D^y}{f(x,y) \ d\mu(x)}\right) \ d\nu(y).
+              \end{align*}
+        \item Si en el apartado anterior se toma $D = A \times B$, donde $A \in \mathcal{M}$ y $B \in \mathcal{N}$ se tiene que
+              \begin{align*}
+                  \int_{A\times B}{f \ d(\mu \times \nu)} = \int_{A}\left( \int_{B}{f(x,y) \ d\nu(u)}\right) \ d\mu(x) = \int_{B}\left( \int_{A}{f(x,y) \ d\mu(x)}\right) \ d\nu(y).
+              \end{align*}
+    \end{enumerate}
 \end{obs}
 
 \subsection{Los teoremas de Tonelli y Fubini para funciones medibles Borel}
@@ -475,163 +468,163 @@ Es claro que $\varphi$ está bien definida en $E$. Luego está definida en casi 
 Si tenemos en cuenta que $\mathcal{B}_{\mathbb{R}^{p+q}} = \mathcal{B}_{\mathbb{R}^{p}} \otimes \mathcal{B}_{\mathbb{R}^{q}}$ y que $m_{p+q} = m_p \times m_q$ y aplicamos el Teorema de Tonelli obtenemos el siguiente corolario.
 
 \begin{cor}[Teorema de Tonelli para funciones medibles Borel]
-Sea $f: \mathbb{R}^{p+q} \longrightarrow \mathbb{R}$ una función medible-Borel y no negativa. Entonces
-\begin{enumerate}
-    \item[(i)] La aplicación $\varphi: \mathbb{R}^p \longrightarrow \mathbb{R}$, definida por
-    \begin{align*}
-        \varphi(x) = \int_{\mathbb{R}^q}{f_x \ dy}
-    \end{align*}
-    está definida en todo punto x de $\mathbb{R}^q$, es medible-Borel, no negativa (puede tomar el valor $+\infty$) y se verifica
-    \begin{align*}
-        \int_{\mathbb{R}^{p+q}}{f \ d(x,y)} = \int_{\mathbb{R}^p}{\varphi \ dx} = \int_{\mathbb{R}^p}\left( \int_{\mathbb{R}^q}{f(x,y) \ dy}\right) \ dx.
-    \end{align*}
-    \item[(ii)] La aplicación $\psi: \mathbb{R}^q \longrightarrow \mathbb{R}$, definida por
-    \begin{align*}
-        \varphi(y) = \int_{\mathbb{R}^p}{f^y \ dx}
-    \end{align*}
-    está definida en todo punto y de $\mathbb{R}^p$, es medible-Borel, no negativa (puede tomar el valor $+\infty$) y se verifica
-    \begin{align*}
-        \int_{\mathbb{R}^{p+q}}{f \ d(x,y)} = \int_{\mathbb{R}^q}{\psi \ dy} = \int_{\mathbb{R}^q}\left( \int_{\mathbb{R}^p}{f(x,y) \ dx}\right) \ dy.
-    \end{align*}
-\end{enumerate}
+    Sea $f: \mathbb{R}^{p+q} \longrightarrow \mathbb{R}$ una función medible-Borel y no negativa. Entonces
+    \begin{enumerate}
+        \item[(i)] La aplicación $\varphi: \mathbb{R}^p \longrightarrow \mathbb{R}$, definida por
+              \begin{align*}
+                  \varphi(x) = \int_{\mathbb{R}^q}{f_x \ dy}
+              \end{align*}
+              está definida en todo punto x de $\mathbb{R}^q$, es medible-Borel, no negativa (puede tomar el valor $+\infty$) y se verifica
+              \begin{align*}
+                  \int_{\mathbb{R}^{p+q}}{f \ d(x,y)} = \int_{\mathbb{R}^p}{\varphi \ dx} = \int_{\mathbb{R}^p}\left( \int_{\mathbb{R}^q}{f(x,y) \ dy}\right) \ dx.
+              \end{align*}
+        \item[(ii)] La aplicación $\psi: \mathbb{R}^q \longrightarrow \mathbb{R}$, definida por
+              \begin{align*}
+                  \varphi(y) = \int_{\mathbb{R}^p}{f^y \ dx}
+              \end{align*}
+              está definida en todo punto y de $\mathbb{R}^p$, es medible-Borel, no negativa (puede tomar el valor $+\infty$) y se verifica
+              \begin{align*}
+                  \int_{\mathbb{R}^{p+q}}{f \ d(x,y)} = \int_{\mathbb{R}^q}{\psi \ dy} = \int_{\mathbb{R}^q}\left( \int_{\mathbb{R}^p}{f(x,y) \ dx}\right) \ dy.
+              \end{align*}
+    \end{enumerate}
 \end{cor}
 
 De la misma forma, aplicando el Teorema de Fubini nos queda el siguiente resultado para funciones medibles Borel.
 
 \begin{cor}[Teorema de Fubini para funciones medibles Borel]
-Sea $f: \mathbb{R}^{p+q} \longrightarrow \mathbb{R}$ una función medible-Borel y no negativa. Entonces
-\begin{enumerate}
-    \item[(i)] Para casi todo $x \in \mathbb{R}^p$, $f_x$ es integrable en $\mathbb{R}^q$.
-    \item[(ii)] La aplicación $\varphi: \mathbb{R}^p \longrightarrow \mathbb{R}$, definida por
-    \begin{align*}
-        \varphi(x) = \int_{\mathbb{R}^q}{f_x \ dy}
-    \end{align*}
-    está definida en casi todo punto x de $\mathbb{R}^p$, es medible-Borel e integrable y se verifica
-    \begin{align*}
-        \int_{\mathbb{R}^{p+q}}{f \ d(x,y)} = \int_{\mathbb{R}^p}{\varphi \ dx} = \int_{\mathbb{R}^p}\left( \int_{\mathbb{R}^q}{f(x,y) \ dy}\right) \ dx.
-    \end{align*}
-    \item[(iii)] Para casi todo $y \in \mathbb{R}^q$, $f^y$ es integrable en $\mathbb{R}^p$.
-    \item[(iv)] La aplicación $\psi: \mathbb{R}^q \longrightarrow \mathbb{R}$, definida por
-    \begin{align*}
-        \varphi(y) = \int_{\mathbb{R}^p}{f^y \ dx}
-    \end{align*}
-    está definida en casi todo punto y de Y, es integrable  y se verifica
-    \begin{align*}
-        \int_{\mathbb{R}^{p+q}}{f \ d(x,y)} = \int_{Y}{\psi \ dy} = \int_{\mathbb{R}^q}\left( \int_{\mathbb{R}^p}{f(x,y) \ dx}\right) \ dy.
-    \end{align*}
-\end{enumerate}
+    Sea $f: \mathbb{R}^{p+q} \longrightarrow \mathbb{R}$ una función medible-Borel y no negativa. Entonces
+    \begin{enumerate}
+        \item[(i)] Para casi todo $x \in \mathbb{R}^p$, $f_x$ es integrable en $\mathbb{R}^q$.
+        \item[(ii)] La aplicación $\varphi: \mathbb{R}^p \longrightarrow \mathbb{R}$, definida por
+              \begin{align*}
+                  \varphi(x) = \int_{\mathbb{R}^q}{f_x \ dy}
+              \end{align*}
+              está definida en casi todo punto x de $\mathbb{R}^p$, es medible-Borel e integrable y se verifica
+              \begin{align*}
+                  \int_{\mathbb{R}^{p+q}}{f \ d(x,y)} = \int_{\mathbb{R}^p}{\varphi \ dx} = \int_{\mathbb{R}^p}\left( \int_{\mathbb{R}^q}{f(x,y) \ dy}\right) \ dx.
+              \end{align*}
+        \item[(iii)] Para casi todo $y \in \mathbb{R}^q$, $f^y$ es integrable en $\mathbb{R}^p$.
+        \item[(iv)] La aplicación $\psi: \mathbb{R}^q \longrightarrow \mathbb{R}$, definida por
+              \begin{align*}
+                  \varphi(y) = \int_{\mathbb{R}^p}{f^y \ dx}
+              \end{align*}
+              está definida en casi todo punto y de Y, es integrable  y se verifica
+              \begin{align*}
+                  \int_{\mathbb{R}^{p+q}}{f \ d(x,y)} = \int_{Y}{\psi \ dy} = \int_{\mathbb{R}^q}\left( \int_{\mathbb{R}^p}{f(x,y) \ dx}\right) \ dy.
+              \end{align*}
+    \end{enumerate}
 \end{cor}
 
 \subsection{Los teoremas de Tonelli y Fubini en espacios euclídeos}
 
 \begin{teo}[El Principio de Cavalieri en espacios euclídeos]
-Sea $E \in \mathbb{R}^{p+q}$ un conjunto medible-Lebesgue en $\mathbb{R}^{p+q}$. Entonces
-\begin{enumerate}
-    \item[(i)] $E_x$ es medible-Lebesgue en $\mathbb{R}^{q}$ para casi todo $x \in \mathbb{R}^{p}$ y $E^y$ es medible-Lebesgue en $\mathbb{R}^{p}$ para casi todo $y \in \mathbb{R}^{q}$.
-    \item[(ii)] Las aplicaciones 
-    \begin{align*}
-        \varphi(x) = m_q(E_x) \in [0,+\infty], \\
-        \psi(y) = m_p(E^y) \in [0,+\infty],
-    \end{align*}
-    están definidas para casi todo punto $x \in \mathbb{R}^{p}$ y en casi todo punto $y \in \mathbb{R}^{q}$ respectivamente, son medibles-Lebesgue y se verifica
-    \begin{align*}
-        m_{p+q}(E) &= \int_{\mathbb{R}^{p}}{\varphi(x) \ dm_p(x)} = \int_{\mathbb{R}^{p}}{m_q(E_x) \ dx} \\
-        &= \int_{\mathbb{R}^{q}}{\psi(y) \ dm_q(y)} = \int_{\mathbb{R}^{q}}{m_p(E^y) \ dy}
-    \end{align*}
-\end{enumerate}
+    Sea $E \in \mathbb{R}^{p+q}$ un conjunto medible-Lebesgue en $\mathbb{R}^{p+q}$. Entonces
+    \begin{enumerate}
+        \item[(i)] $E_x$ es medible-Lebesgue en $\mathbb{R}^{q}$ para casi todo $x \in \mathbb{R}^{p}$ y $E^y$ es medible-Lebesgue en $\mathbb{R}^{p}$ para casi todo $y \in \mathbb{R}^{q}$.
+        \item[(ii)] Las aplicaciones
+              \begin{align*}
+                  \varphi(x) = m_q(E_x) \in [0,+\infty], \\
+                  \psi(y) = m_p(E^y) \in [0,+\infty],
+              \end{align*}
+              están definidas para casi todo punto $x \in \mathbb{R}^{p}$ y en casi todo punto $y \in \mathbb{R}^{q}$ respectivamente, son medibles-Lebesgue y se verifica
+              \begin{align*}
+                  m_{p+q}(E) & = \int_{\mathbb{R}^{p}}{\varphi(x) \ dm_p(x)} = \int_{\mathbb{R}^{p}}{m_q(E_x) \ dx} \\
+                             & = \int_{\mathbb{R}^{q}}{\psi(y) \ dm_q(y)} = \int_{\mathbb{R}^{q}}{m_p(E^y) \ dy}
+              \end{align*}
+    \end{enumerate}
 \end{teo}
 
 \begin{proof}
-Sea $E \in \mathcal{L}_{p+q}$ entonces
-\begin{align*}
-    E = B \cup F,
-\end{align*}
-donde $F \subset N$, $B, N \in \mathcal{B}_{\mathbb{R}^{p+q}}$ y $m_{p+q}(N) = 0$. Sea $x \in \mathbb{R}^p$, entonces $E_x = B_x \cup F_x$ y se tiene que
-\begin{align*}
-   &B_x \in \mathcal{B}_{\mathbb{R}^{q}} \text{ y } m_{p+q}(B) = \int_{\mathbb{R}^p}{m_q(B_x) \dx} \\
-    &N_x \in \mathcal{B}_{\mathbb{R}^{q}} \text{ y } m_{p+q}(N) = \int_{\mathbb{R}^p}{m_q(N_x) \dx} = 0.
-\end{align*}
-Luego, para casi todo $x \in \mathbb{R}^p$ $m_q(N_x) = 0$, es decir,
-\begin{align*}
-    D = \{ x \in \mathbb{R}^p : m_q(N_x) = 0 \} \in \mathcal{B}_{\mathbb{R}^{p}} \text{ y } m_p(D^c) = 0.
-\end{align*}
-Sea $x \in D$, entonces $F_x \subset N_x$ y como $m_q(N_x) = 0$, entoces $F_x \in \mathcal{L}_{q}$ y $m_q(F_x) = 0$, luego, para casi todo $x \in \mathbb{R}^p$, $F_x \in \mathcal{L}_{q}$ y $m_q(F_x) = 0$. Luego, para casi todo $x \in \mathbb{R}^p$
-\begin{align*}
-    E_x = B_x \cup F_x, \ E_x \in \mathcal{L}_q \text{ y } m_q(E_x) = m_q(B_x).
-\end{align*}
-Consideremos $\varphi_B(x) = m_q(B_x)$, que es medible-Borel y
-\begin{align*}
-    \varphi(x) = m_q(E_x) = m_q(B_x) = \varphi_B(x),
-\end{align*}
-es decir, $\varphi = \varphi_B$ en casi todo punto. Por tanto, $\varphi$ es medible-Lebesgue. Además
-\begin{align*}
-    m_{p+q}(E) = m_{p+q}(B) = \int_{\mathbb{R}^p}{m_q(B_x) \ dx} = \int_{\mathbb{R}^p}{\varphi_B(x) \ dx} =  \int_{\mathbb{R}^p}{\varphi(x) \ dx} = \int_{\mathbb{R}^p}{m_q(E_x) \ dx}.
-\end{align*}
+    Sea $E \in \mathcal{L}_{p+q}$ entonces
+    \begin{align*}
+        E = B \cup F,
+    \end{align*}
+    donde $F \subset N$, $B, N \in \mathcal{B}_{\mathbb{R}^{p+q}}$ y $m_{p+q}(N) = 0$. Sea $x \in \mathbb{R}^p$, entonces $E_x = B_x \cup F_x$ y se tiene que
+    \begin{align*}
+         & B_x \in \mathcal{B}_{\mathbb{R}^{q}} \text{ y } m_{p+q}(B) = \int_{\mathbb{R}^p}{m_q(B_x) dx}      \\
+         & N_x \in \mathcal{B}_{\mathbb{R}^{q}} \text{ y } m_{p+q}(N) = \int_{\mathbb{R}^p}{m_q(N_x) dx} = 0.
+    \end{align*}
+    Luego, para casi todo $x \in \mathbb{R}^p$ $m_q(N_x) = 0$, es decir,
+    \begin{align*}
+        D = \{ x \in \mathbb{R}^p : m_q(N_x) = 0 \} \in \mathcal{B}_{\mathbb{R}^{p}} \text{ y } m_p(D^c) = 0.
+    \end{align*}
+    Sea $x \in D$, entonces $F_x \subset N_x$ y como $m_q(N_x) = 0$, entoces $F_x \in \mathcal{L}_{q}$ y $m_q(F_x) = 0$, luego, para casi todo $x \in \mathbb{R}^p$, $F_x \in \mathcal{L}_{q}$ y $m_q(F_x) = 0$. Luego, para casi todo $x \in \mathbb{R}^p$
+    \begin{align*}
+        E_x = B_x \cup F_x, \ E_x \in \mathcal{L}_q \text{ y } m_q(E_x) = m_q(B_x).
+    \end{align*}
+    Consideremos $\varphi_B(x) = m_q(B_x)$, que es medible-Borel y
+    \begin{align*}
+        \varphi(x) = m_q(E_x) = m_q(B_x) = \varphi_B(x),
+    \end{align*}
+    es decir, $\varphi = \varphi_B$ en casi todo punto. Por tanto, $\varphi$ es medible-Lebesgue. Además
+    \begin{align*}
+        m_{p+q}(E) = m_{p+q}(B) = \int_{\mathbb{R}^p}{m_q(B_x) \ dx} = \int_{\mathbb{R}^p}{\varphi_B(x) \ dx} =  \int_{\mathbb{R}^p}{\varphi(x) \ dx} = \int_{\mathbb{R}^p}{m_q(E_x) \ dx}.
+    \end{align*}
 \end{proof}
 
 \begin{lema}
-Si $f: \mathbb{R} \longrightarrow \rcom$ es medible-Lebesgue, entonces existe $g: \mathbb{R}^n \longrightarrow \rcom$ tal que $f = g$ en casi todo punto.
+    Si $f: \mathbb{R} \longrightarrow \rcom$ es medible-Lebesgue, entonces existe $g: \mathbb{R}^n \longrightarrow \rcom$ tal que $f = g$ en casi todo punto.
 \end{lema}
 
 \begin{prop}
-Sea $f: \mathbb{R}^{p+q} \longrightarrow \mathbb{R}$ una función medible-Lebesgue. Entonces
-\begin{enumerate}
-    \item[(i)] Para casi todo $x \in \mathbb{R}^p$, $f_x$ es medible-Lebesgue en $\mathbb{R}^q$.
-    \item[(ii)] Para casi todo $y \in \mathbb{R}^q$, $f^y$ es medible-Lebesgue en $\mathbb{R}^p$.
-\end{enumerate}
+    Sea $f: \mathbb{R}^{p+q} \longrightarrow \mathbb{R}$ una función medible-Lebesgue. Entonces
+    \begin{enumerate}
+        \item[(i)] Para casi todo $x \in \mathbb{R}^p$, $f_x$ es medible-Lebesgue en $\mathbb{R}^q$.
+        \item[(ii)] Para casi todo $y \in \mathbb{R}^q$, $f^y$ es medible-Lebesgue en $\mathbb{R}^p$.
+    \end{enumerate}
 \end{prop}
 
 \begin{proof}
-Sea $g: \mathbb{R}^{p+q} \longrightarrow \mathbb{R}$ medible-Borel tal que $f=g$ en casi todo punto (dicha $g$ existe por el lema anterior), es decir,
-\begin{align*}
-    E = \{ (x,y) \in \mathbb{R}^{p+q} : f(x,y) \not = g(x,y) \} \text{ tiene medida cero}.
-\end{align*}
-Por el principio de Cavalieri
-\begin{align*}
-    m_{p+q}(E) = \int_{\mathbb{R}^p}{m_q(E_x) \ dx} = 0,
-\end{align*}
-luego, para casi todo $x \in \mathbb{R}^p$, $m_q(E_x) = 0$.
-\begin{align*}
-    E_x &= \{ y \in \mathbb{R}^q : (x,y) \in E \} = \{ y \in \mathbb{R}^q : f(x,y) \not = g(x,y) \} \\
-    &= \{ y \in \mathbb{R}^q : f_x(y) \not = g_x(y) \},
-\end{align*}
-es decir, $m_q(E_x) = 0$ si y solo si $f_x = g_x$ en casi todo punto. Por tanto $f_x = g_x$ en casi todo $x \in \mathbb{R}^p$. Como $g_x$ es medible-Borel entnonces $f_x$ es medible-Lebesgue en casi todo $x \in \mathbb{R}^p$. 
+    Sea $g: \mathbb{R}^{p+q} \longrightarrow \mathbb{R}$ medible-Borel tal que $f=g$ en casi todo punto (dicha $g$ existe por el lema anterior), es decir,
+    \begin{align*}
+        E = \{ (x,y) \in \mathbb{R}^{p+q} : f(x,y) \not = g(x,y) \} \text{ tiene medida cero}.
+    \end{align*}
+    Por el principio de Cavalieri
+    \begin{align*}
+        m_{p+q}(E) = \int_{\mathbb{R}^p}{m_q(E_x) \ dx} = 0,
+    \end{align*}
+    luego, para casi todo $x \in \mathbb{R}^p$, $m_q(E_x) = 0$.
+    \begin{align*}
+        E_x & = \{ y \in \mathbb{R}^q : (x,y) \in E \} = \{ y \in \mathbb{R}^q : f(x,y) \not = g(x,y) \} \\
+            & = \{ y \in \mathbb{R}^q : f_x(y) \not = g_x(y) \},
+    \end{align*}
+    es decir, $m_q(E_x) = 0$ si y solo si $f_x = g_x$ en casi todo punto. Por tanto $f_x = g_x$ en casi todo $x \in \mathbb{R}^p$. Como $g_x$ es medible-Borel entnonces $f_x$ es medible-Lebesgue en casi todo $x \in \mathbb{R}^p$.
 \end{proof}
 
 \begin{teo}[Teorema de Tonelli en espacios euclídeos]
-Sea $f: \mathbb{R}^{p+q} \longrightarrow \mathbb{R}$ una función medible-Lebesgue no negativa. Entoncens
-\begin{enumerate}
-    \item[(i)] $f_x$ es medible-Lebesgue para casi todo $x \in \mathbb{R}^p$ y $f^y$ es medible-Lebesgue para casi todo $y \in \mathbb{R}^q$.
-    \item[(ii)] Las aplicaciones
-    \begin{align*}
-        \varphi(x) = \int_{\mathbb{R}^q}{f_x(y) \ dm_q(y)} = \int_{\mathbb{R}^q}{f(x,y) \ dy} \in [0,+\infty],\\
-        \psi(y) = \int_{\mathbb{R}^p}{f^y(x) \ dm_p(x)} = \int_{\mathbb{R}^p}{f(x,y) \ dx} \in [0,+\infty],
-    \end{align*}
-    están definidas para casi todo punto $x \in \mathbb{R}^{p}$ y en casi todo punto $y \in \mathbb{R}^{q}$ respectivamente, son medibles-Lebesgue y se verifica
-    \begin{align*}
-        \int_{\mathbb{R}^{p+q}}{f(x,y) \ dm_{p+q}(x,y)} &= \int_{\mathbb{R}^p}{\varphi(x) \ dm_p(x)} = \int_{\mathbb{R}^p}\left( \int_{\mathbb{R}^q}{f_x(y) \ dm_q(y)} \right) \ dm_p(x) \\
-        &= \int_{\mathbb{R}^p}\left( \int_{\mathbb{R}^q}{f(x,y) \ dy} \right) \ dx \\
-        &= \int_{\mathbb{R}^q}{\psi(y) \ dm_q(y)} = \int_{\mathbb{R}^q}\left( \int_{\mathbb{R}^p}{f^y(x) \ dm_p(x)} \right) \ dm_q(y)\\
-        &= \int_{\mathbb{R}^q}\left( \int_{\mathbb{R}^p}{f(x,y) \ dx} \right) \ dy.
-    \end{align*}
-\end{enumerate}
+    Sea $f: \mathbb{R}^{p+q} \longrightarrow \mathbb{R}$ una función medible-Lebesgue no negativa. Entoncens
+    \begin{enumerate}
+        \item[(i)] $f_x$ es medible-Lebesgue para casi todo $x \in \mathbb{R}^p$ y $f^y$ es medible-Lebesgue para casi todo $y \in \mathbb{R}^q$.
+        \item[(ii)] Las aplicaciones
+              \begin{align*}
+                  \varphi(x) = \int_{\mathbb{R}^q}{f_x(y) \ dm_q(y)} = \int_{\mathbb{R}^q}{f(x,y) \ dy} \in [0,+\infty], \\
+                  \psi(y) = \int_{\mathbb{R}^p}{f^y(x) \ dm_p(x)} = \int_{\mathbb{R}^p}{f(x,y) \ dx} \in [0,+\infty],
+              \end{align*}
+              están definidas para casi todo punto $x \in \mathbb{R}^{p}$ y en casi todo punto $y \in \mathbb{R}^{q}$ respectivamente, son medibles-Lebesgue y se verifica
+              \begin{align*}
+                  \int_{\mathbb{R}^{p+q}}{f(x,y) \ dm_{p+q}(x,y)} & = \int_{\mathbb{R}^p}{\varphi(x) \ dm_p(x)} = \int_{\mathbb{R}^p}\left( \int_{\mathbb{R}^q}{f_x(y) \ dm_q(y)} \right) \ dm_p(x) \\
+                                                                  & = \int_{\mathbb{R}^p}\left( \int_{\mathbb{R}^q}{f(x,y) \ dy} \right) \ dx                                                       \\
+                                                                  & = \int_{\mathbb{R}^q}{\psi(y) \ dm_q(y)} = \int_{\mathbb{R}^q}\left( \int_{\mathbb{R}^p}{f^y(x) \ dm_p(x)} \right) \ dm_q(y)    \\
+                                                                  & = \int_{\mathbb{R}^q}\left( \int_{\mathbb{R}^p}{f(x,y) \ dx} \right) \ dy.
+              \end{align*}
+    \end{enumerate}
 \end{teo}
 
 \begin{teo}[Teorema de Fubini en espacios euclídeos]
-Sea $f: \mathbb{R}^{p+q} \longrightarrow \mathbb{R}$ una función medible-Lebesgue integrable. Entonces
-\begin{enumerate}
-    \item[(i)] $f_x$ es medible-Lebesgue para casi todo $x \in \mathbb{R}^p$ y $f^y$ es medible-Lebesgue para casi todo $y \in \mathbb{R}^q$.
-    \item[(ii)] Las aplicaciones
-    \begin{align*}
-        \varphi(x) = \int_{\mathbb{R}^q}{f_x(y) \ dm_q(y)} = \int_{\mathbb{R}^q}{f(x,y) \ dy} \in [0,+\infty],\\
-        \psi(y) = \int_{\mathbb{R}^p}{f^y(x) \ dm_p(x)} = \int_{\mathbb{R}^p}{f(x,y) \ dx} \in [0,+\infty],
-    \end{align*}
-    están definidas para casi todo punto $x \in \mathbb{R}^{p}$ y en casi todo punto $y \in \mathbb{R}^{q}$ respectivamente, son medibles-Lebesgue y se verifica
-    \begin{align*}
-        \int_{\mathbb{R}^{p+q}}{f(x,y) \ dm_{p+q}(x,y)} &= \int_{\mathbb{R}^p}{\varphi(x) \ dm_p(x)} = \int_{\mathbb{R}^p}\left( \int_{\mathbb{R}^q}{f_x(y) \ dm_q(y)} \right) \ dm_p(x) \\
-        &= \int_{\mathbb{R}^p}\left( \int_{\mathbb{R}^q}{f(x,y) \ dy} \right) \ dx \\
-        &= \int_{\mathbb{R}^q}{\psi(y) \ dm_q(y)} = \int_{\mathbb{R}^q}\left( \int_{\mathbb{R}^p}{f^y(x) \ dm_p(x)} \right) \ dm_q(y)\\
-        &= \int_{\mathbb{R}^q}\left( \int_{\mathbb{R}^p}{f(x,y) \ dx} \right) \ dy.
-    \end{align*}
-\end{enumerate}
+    Sea $f: \mathbb{R}^{p+q} \longrightarrow \mathbb{R}$ una función medible-Lebesgue integrable. Entonces
+    \begin{enumerate}
+        \item[(i)] $f_x$ es medible-Lebesgue para casi todo $x \in \mathbb{R}^p$ y $f^y$ es medible-Lebesgue para casi todo $y \in \mathbb{R}^q$.
+        \item[(ii)] Las aplicaciones
+              \begin{align*}
+                  \varphi(x) = \int_{\mathbb{R}^q}{f_x(y) \ dm_q(y)} = \int_{\mathbb{R}^q}{f(x,y) \ dy} \in [0,+\infty], \\
+                  \psi(y) = \int_{\mathbb{R}^p}{f^y(x) \ dm_p(x)} = \int_{\mathbb{R}^p}{f(x,y) \ dx} \in [0,+\infty],
+              \end{align*}
+              están definidas para casi todo punto $x \in \mathbb{R}^{p}$ y en casi todo punto $y \in \mathbb{R}^{q}$ respectivamente, son medibles-Lebesgue y se verifica
+              \begin{align*}
+                  \int_{\mathbb{R}^{p+q}}{f(x,y) \ dm_{p+q}(x,y)} & = \int_{\mathbb{R}^p}{\varphi(x) \ dm_p(x)} = \int_{\mathbb{R}^p}\left( \int_{\mathbb{R}^q}{f_x(y) \ dm_q(y)} \right) \ dm_p(x) \\
+                                                                  & = \int_{\mathbb{R}^p}\left( \int_{\mathbb{R}^q}{f(x,y) \ dy} \right) \ dx                                                       \\
+                                                                  & = \int_{\mathbb{R}^q}{\psi(y) \ dm_q(y)} = \int_{\mathbb{R}^q}\left( \int_{\mathbb{R}^p}{f^y(x) \ dm_p(x)} \right) \ dm_q(y)    \\
+                                                                  & = \int_{\mathbb{R}^q}\left( \int_{\mathbb{R}^p}{f(x,y) \ dx} \right) \ dy.
+              \end{align*}
+    \end{enumerate}
 \end{teo}

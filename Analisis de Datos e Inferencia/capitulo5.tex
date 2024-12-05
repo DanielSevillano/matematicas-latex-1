@@ -4,10 +4,9 @@
 
 \section{Introducción}
 
-\noindent Hasta ahora los tests de hipótesis han sido utilizados para contrastar la veracidad de hipótesis acerca de los parámetros de la distribución de una población. Sin embargo,
+Hasta ahora los tests de hipótesis han sido utilizados para contrastar la veracidad de hipótesis acerca de los parámetros de la distribución de una población. Sin embargo,
 en muchas ocasiones, es necesario emitir un juicio estadísstico sobre la distribución poblacional en su conjunto.
-\\
-\newline
+
 Los problemas de este tipo que se plantean de manera habitual son los siguientes:
 \begin{itemize}
     \item Decidir, a la vista de una muestra aleatoria de una población, si puede admitirse que la distribución poblacional coincide con una cierta distribución dada o pertenece a un determinado tipo de distribuciones $\Rightarrow$ \textbf{Contrastes de bondad de ajuste}.
@@ -16,7 +15,7 @@ Los problemas de este tipo que se plantean de manera habitual son los siguientes
 \end{itemize}
 
 \section{Contrastes de bondad de ajuste}
-\noindent Vamos a centrarnos en los siguientes contrastes:
+Vamos a centrarnos en los siguientes contrastes:
 \begin{itemize}
     \item Contraste $\chi^2$ de bondad de ajuste (primer caso).
     \item Contraste $\chi^2$ de bondad de ajuste (segundo caso).
@@ -24,7 +23,7 @@ Los problemas de este tipo que se plantean de manera habitual son los siguientes
 
 \subsubsection{Contraste $\chi^2$ de bondad de ajuste (primer caso)}
 
-\noindent Consideramos un muestra aleatoria $(X_1,\ldots, X_n)$ de una variable aleatoria $X$ con distribución desconocida. Queremos dar respuesta a: 
+Consideramos un muestra aleatoria $(X_1,\ldots, X_n)$ de una variable aleatoria $X$ con distribución desconocida. Queremos dar respuesta a:
 \begin{itemize}
     \item ¿A la vista de la muestra, es razonable admitir que la distribución de $X$ viene dada por un determinado modelo de probabilidad $P$?
     \item ¿Se ajustan bien los datos a $P$?
@@ -37,25 +36,22 @@ Resolveremos el siguiente contraste de hipótesis:
     \end{cases}
 \end{align*}
 El modelo $P$ debe estar completamente especificado.
-\\
-\newline
+
 Para contrastar $H_0$ frente a $H_1$ hacemos una partición (arbitraria) del espacio muestral de la población (posibles valores de $X$) en $k$ clases $A_1, \ldots, A_k$. Después, para cada $A_i$, $i=1,\ldots,k$, consideramos las siguientes frecuencias (absolutas)
 \begin{align*}
-    O_i &= \text{frecuencia observada en $A_i$} \\
-    &= \text{número de elementos de la muestra que están en la clase $A_i$} \\ \\
-    e_i &= \text{frecuencia esperada de la clase $A_i$ si la hipótesis $H_0$ es cierta} \\
-    &= n \cdot P(A_i)
+    O_i & = \text{frecuencia observada en $A_i$}                                         \\
+        & = \text{número de elementos de la muestra que están en la clase $A_i$}         \\ \\
+    e_i & = \text{frecuencia esperada de la clase $A_i$ si la hipótesis $H_0$ es cierta} \\
+        & = n \cdot P(A_i)
 \end{align*}
 El estadístico que utilizaremos es:
 \begin{align*}
     \sum_{i=1}^{k} \frac{(O_i - e_i)^2}{e_i},
 \end{align*}
-que tiene aproximadamente (cuando $n$ es grande) una distribución $\chi^2_{k-1}$ si $H_0$ es cierta. 
-\\
-\newline
+que tiene aproximadamente (cuando $n$ es grande) una distribución $\chi^2_{k-1}$ si $H_0$ es cierta.
+
 Para que la aproximación sea razonablemente ''buena'', además de tener una muestra suficientemente grande, es necesario que el valor esperado de cada clase sea ''suficientemente grande''. Si la muestra procede de $P$, es de esperar que haya valores parecidos para $O_i$ y $e_i$, y por tanto, este estadístico debería tomar valores próximos a cero. En consecuencia, rechazaremos la hipótesis nula cuando los valores de este estadístico sean ''grandes'' y la aceptaremos cuando sean ''pequeños''.
-\\
-\newline
+
 Rechazaremos $H_0$ a nivel de significación $\alpha$ si
 \begin{align*}
     \sum_{i=1}^{k} \frac{(O_i - e_i)^2}{e_i} > \chi^2_{k-1, 1 - \alpha}.
@@ -64,7 +60,7 @@ En caso contrario, aceptaremos $H_0$ a nivel de significación $\alpha$.
 
 \subsubsection{Contraste $\chi^2$ de bondad de ajuste (segundo caso)}
 
-\noindent El contraste de bondad de ajuste se puede plantear también en una situación más general. Consideramos un muestra aleatoria $(X_1,\ldots, X_n)$ de una variable aleatoria $X$ con distribución desconocida. Queremos dar respuesta a: 
+El contraste de bondad de ajuste se puede plantear también en una situación más general. Consideramos un muestra aleatoria $(X_1,\ldots, X_n)$ de una variable aleatoria $X$ con distribución desconocida. Queremos dar respuesta a:
 \begin{itemize}
     \item ¿A la vista de la muestra, es razonable admitir que la distribución de $X$ viene dada por algún modelo de probabilidad de la familia $P_{\theta}$, donde $\theta = (\theta_1,\ldots,\theta_r)$?
     \item ¿Se ajustan bien los datos a un modelo de probabilidad de la familia $\{P_{\theta} : \theta \in \Theta\}$?
@@ -78,21 +74,19 @@ Resolveremos el siguiente contraste de hipótesis:
 \end{align*}
 Para contrastar $H_0$ frente a $H_1$ hacemos una partición (arbitraria) del espacio muestral de la población (posibles valores de $X$) en $k$ clases $A_1, \ldots, A_k$. Después, para cada $A_i$, $i=1,\ldots,k$, consideramos las siguientes frecuencias (absolutas)
 \begin{align*}
-    O_i &= \text{frecuencia observada en $A_i$} \\
-    &= \text{número de elementos de la muestra que están en la clase $A_i$} \\ \\
-    e_i &= \text{frecuencia esperada de la clase $A_i$ si la hipótesis $H_0$ es cierta} \\
-    &= n \cdot P_{\theta}(A_i) \approx n \cdot P_{\widehat{\theta}}(A_i)
+    O_i & = \text{frecuencia observada en $A_i$}                                         \\
+        & = \text{número de elementos de la muestra que están en la clase $A_i$}         \\ \\
+    e_i & = \text{frecuencia esperada de la clase $A_i$ si la hipótesis $H_0$ es cierta} \\
+        & = n \cdot P_{\theta}(A_i) \approx n \cdot P_{\widehat{\theta}}(A_i)
 \end{align*}
 donde $\widehat{\theta}$ es el estimador de máxima verosimilitud de $\theta$.
-\\
-\newline
+
 El estadístico que utilizaremos es:
 \begin{align*}
     \sum_{i=1}^{k} \frac{(O_i - e_i)^2}{e_i},
 \end{align*}
 que tiene aproximadamente (cuando $n$ es grande) una distribución $\chi^2_{k-r-1}$ si $H_0$ es cierta.
-\\
-\newline
+
 Rechazaremos $H_0$ a nivel de significación $\alpha$ si
 \begin{align*}
     \sum_{i=1}^{k} \frac{(O_i - e_i)^2}{e_i} > \chi^2_{k-r-1, 1 - \alpha}.
@@ -103,12 +97,12 @@ En caso contrario, aceptaremos $H_0$ a nivel de significación $\alpha$.
 
 \subsubsection{Contraste $\chi^2$ de homogeneidad}
 
-\noindent Supongamos que disponemos de $p$ muestras aleatorias independientes tomadas de $p$ poblaciones
+Supongamos que disponemos de $p$ muestras aleatorias independientes tomadas de $p$ poblaciones
 \begin{align*}
-    (X_{11}, X_{12} &\ldots, X_{1n_1}) \\
-    (X_{21}, X_{22} &\ldots, X_{2n_2}) \\
-    & \quad \vdots \\
-    (X_{p1}, X_{p2} &\ldots, X_{pn_p})
+    (X_{11}, X_{12} & \ldots, X_{1n_1}) \\
+    (X_{21}, X_{22} & \ldots, X_{2n_2}) \\
+                    & \quad \vdots      \\
+    (X_{p1}, X_{p2} & \ldots, X_{pn_p})
 \end{align*}
 y sea $n = n_1 + n_2 + \ldots + n_p$. Queremos ver si, a la vista de las muestras obtenidas, es razonable admitir que todas las poblaciones tienen una distribución común, es decir, queremos ver si son poblaciones homogéneas. Por tanto, tenemos:
 \begin{align*}
@@ -119,9 +113,9 @@ y sea $n = n_1 + n_2 + \ldots + n_p$. Queremos ver si, a la vista de las muestra
 \end{align*}
 Para contrastar $H_0$ frente a $H_1$ hacemos nuevamente una partición (arbitraria) del espacio muestral común a las $p$ poblaciones en $k$ clases $A_1,\ldots,A_k$. Después, definimos para la clase $A_i$, $i=1,\ldots,k$ y para la muestra de la población $j$-ésima ($j=1,\ldots,p$)
 \begin{align*}
-    O_{ij} &= \text{frecuencia observada en la clase $A_i$ con la $j$-ésima muestra} \\ \\
-    e_{ij} &= \text{frecuencia esperada en la clase $A_i$  con la $j$-ésima muestra si la hipótesis $H_0$ es cierta} \\
-    &= n_j \cdot P_{\theta}(A_i) 
+    O_{ij} & = \text{frecuencia observada en la clase $A_i$ con la $j$-ésima muestra}                                 \\ \\
+    e_{ij} & = \text{frecuencia esperada en la clase $A_i$  con la $j$-ésima muestra si la hipótesis $H_0$ es cierta} \\
+           & = n_j \cdot P_{\theta}(A_i)
 \end{align*}
 Entonces, tenemos para la muestra $j$-ésima
 \begin{align*}
@@ -153,7 +147,7 @@ En caso contrario, aceptaremos $H_0$ a nivel de significación $\alpha$.
 
 \subsubsection{Contraste $\chi^2$ de independencia}
 
-\noindent Supongamos que queremos estudiar si dos características $X$ e $Y$ de una población están relacionadas o no. Para hacer este estudio, obtenemos una muestra aleatoria de $n$ pares de valores de estas características
+Supongamos que queremos estudiar si dos características $X$ e $Y$ de una población están relacionadas o no. Para hacer este estudio, obtenemos una muestra aleatoria de $n$ pares de valores de estas características
 \begin{align*}
     ((X_1,Y_1), \ldots, (X_n,Y_n)).
 \end{align*}
@@ -165,13 +159,12 @@ Queremos ver si, a la vista de la muestra tiene sentido admitir que $X$ e $Y$ so
     \end{cases}
 \end{align*}
 Tomamos una partición (arbitraria) del espacio muestral (correspondientes a los posibles valores de $X$ e $Y$) en $k \cdot p$ clases $A_1 \times B_1, A_1 \times B_2, \ldots, A_k \times B_p$. Estas $k \cdot p$ clases corresponden a tomar clases $A_1, \ldots, A_k$ para la característica $X$, y las clases $B_1, \ldots, B_p$ para la característica $Y$.
-\\
-\newline
+
 Llamamos
 \begin{align*}
-    O_{ij} &= \text{frecuencia osbervada en la clase $A_i \times B_j$} \\ \\
-    e_{ij} &= \text{frecuencia esperada en la clase $A_i \times B_j$ si la hipótesis $H_0$ es cierta} \\
-    &= n \cdot P(A_i) \cdot P(B_j)
+    O_{ij} & = \text{frecuencia osbervada en la clase $A_i \times B_j$}                                \\ \\
+    e_{ij} & = \text{frecuencia esperada en la clase $A_i \times B_j$ si la hipótesis $H_0$ es cierta} \\
+           & = n \cdot P(A_i) \cdot P(B_j)
 \end{align*}
 Entonces tenemos que
 \begin{align*}

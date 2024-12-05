@@ -4,173 +4,173 @@
 \section{Distribución degenerada}
 
 \begin{defi}
-Se dice que una variable aleatoria $X \sim D(a)$ si su distribución de probabilidad viene dada por
-\begin{align*}
-    P(X = x) = \left\{ \begin{array}{lcc}
-             1 &  si  & x = a\\
-             0 &  si  & x \not = a\\
-             \end{array}
+    Se dice que una variable aleatoria $X \sim D(a)$ si su distribución de probabilidad viene dada por
+    \begin{align*}
+        P(X = x) = \left\{ \begin{array}{lcc}
+                               1 & si & x = a      \\
+                               0 & si & x \not = a \\
+                           \end{array}
         \right.
-\end{align*}
+    \end{align*}
 \end{defi}
 
 \begin{obs}
-Si $X \sim D(a)$ entonces
-\begin{enumerate}
-    \item[(i)] $D_X = \{a\}$, $E[X] = a$ y $V[X] = 0$.
-    \item[(ii)] Su función de distribución es
-    \begin{align*}
-        F_X(x) = \left\{ \begin{array}{lcc}
-             0 &  si  & x < a\\
-             1 &  si  & x \ge a\\
-             \end{array}
-        \right.
-    \end{align*}
-    \item[(iii)] $G_X(s) = E[s^X] = s^aP(X = a) = s^a$ para todo $s \in \mathbb{R}$.
-    \item[(iv)] $M_X(t) = e^{ta}$.
-\end{enumerate}
+    Si $X \sim D(a)$ entonces
+    \begin{enumerate}
+        \item[(i)] $D_X = \{a\}$, $E[X] = a$ y $V[X] = 0$.
+        \item[(ii)] Su función de distribución es
+              \begin{align*}
+                  F_X(x) = \left\{ \begin{array}{lcc}
+                                       0 & si & x < a   \\
+                                       1 & si & x \ge a \\
+                                   \end{array}
+                  \right.
+              \end{align*}
+        \item[(iii)] $G_X(s) = E[s^X] = s^aP(X = a) = s^a$ para todo $s \in \mathbb{R}$.
+        \item[(iv)] $M_X(t) = e^{ta}$.
+    \end{enumerate}
 \end{obs}
 
 \section{Distribución de Bernoulli}
 
 \begin{defi}
-Se dice que una variable aleatoria $X \sim Ber(p)$ si
-\begin{itemize}
-    \item $D_X = \{0, 1\}$.
-    \item $P(X = 0) = 1 - p$ y $P(X = 1) = 1$, $0 < p < 1$.
-\end{itemize}
+    Se dice que una variable aleatoria $X \sim Ber(p)$ si
+    \begin{itemize}
+        \item $D_X = \{0, 1\}$.
+        \item $P(X = 0) = 1 - p$ y $P(X = 1) = 1$, $0 < p < 1$.
+    \end{itemize}
 \end{defi}
 
 \begin{obs}
-Si $X \sim Ber(p)$ entonces
-\begin{enumerate}
-    \item[(i)] $E[X] = p$.
-    \item[(ii)] $V[X] = p(1 - p)$.
-    \item[(iii)] $G_X(s) = E[s^X] = ps + q$ para todo $s \in \mathbb{R}$.
-    \item[(iv)] $M_X(t) = pe^t + q$.
-\end{enumerate}
+    Si $X \sim Ber(p)$ entonces
+    \begin{enumerate}
+        \item[(i)] $E[X] = p$.
+        \item[(ii)] $V[X] = p(1 - p)$.
+        \item[(iii)] $G_X(s) = E[s^X] = ps + q$ para todo $s \in \mathbb{R}$.
+        \item[(iv)] $M_X(t) = pe^t + q$.
+    \end{enumerate}
 \end{obs}
 
 \begin{defi}
-Sean $X_1,...,X_n$ variables aleatorias definidas sobre el mismo espacio de probabilidad. Decimos que son independientes si dados $B_1,...,B_n \in \mathbb{B}_1$ se verifica
-\begin{align*}
-    P(X_1 \in B_1, X_2 \in B_2, ..., X_n \in B_n) = \prod_{i=1}^{n}{P(X_i \in B_i)}.
-\end{align*}
+    Sean $X_1,...,X_n$ variables aleatorias definidas sobre el mismo espacio de probabilidad. Decimos que son independientes si dados $B_1,...,B_n \in \mathbb{B}_1$ se verifica
+    \begin{align*}
+        P(X_1 \in B_1, X_2 \in B_2, ..., X_n \in B_n) = \prod_{i=1}^{n}{P(X_i \in B_i)}.
+    \end{align*}
 \end{defi}
 
 \begin{obs}
-\begin{enumerate}
-    \item[(1)] Si $X_,...,X_n$ son variables aleatorias discretas, la condición de independencia se traduce como
-    \begin{align*}
-        &P(X_1 = x_1, ..., X_n = x_n) = \prod_{i=1}^{n}{P(X_i = x_i)} \\
-        &P(X_1 \leq x_1,...,X_n \leq x_n) = \prod_{i=1}^{n}{P(X_i \leq x_i)} = \prod_{i=1}^{n}{F_{X_i}(x_i)}.
-    \end{align*}
-    \item[(2)] Si $X_1,...,X_n$ son variables aleatorias absolutamente continuas, la condición de independencia se traduce como
-    \begin{align*}
-        &f(x_1,...,x_n) = \prod_{i=1}^{n}{f_i(x_i)} \\
-        &P(X_1 \leq x_1,...,X_n \leq x_n) = \prod_{i=1}^{n}{F_{X_i}(x_i)}.
-    \end{align*}
-    \item[(3)] Si $X_1,...,X_n$ son variables aleatorias discretas independientes y si $T = \sum_{i=1}^{n}{X_i}$. Entonces $T$ es variable aleatoria y 
-    \begin{align*}
-        G_T(s) = \prod_{i=1}^{n}{G_{X_i}(s)}.
-    \end{align*}
-    \item[(4)] Si $X_1,...,X_n$ son variables aleatorias discretas independientes y si $T = \sum_{i=1}^{n}{X_i}$. Entonces $T$ es variable aleatoria y 
-    \begin{align*}
-        M_T(t) = \prod_{i=1}^{n}{M_{X_i}(t)}.
-    \end{align*}
-\end{enumerate}
+    \begin{enumerate}
+        \item[(1)] Si $X_,...,X_n$ son variables aleatorias discretas, la condición de independencia se traduce como
+              \begin{align*}
+                   & P(X_1 = x_1, ..., X_n = x_n) = \prod_{i=1}^{n}{P(X_i = x_i)}                                         \\
+                   & P(X_1 \leq x_1,...,X_n \leq x_n) = \prod_{i=1}^{n}{P(X_i \leq x_i)} = \prod_{i=1}^{n}{F_{X_i}(x_i)}.
+              \end{align*}
+        \item[(2)] Si $X_1,...,X_n$ son variables aleatorias absolutamente continuas, la condición de independencia se traduce como
+              \begin{align*}
+                   & f(x_1,...,x_n) = \prod_{i=1}^{n}{f_i(x_i)}                        \\
+                   & P(X_1 \leq x_1,...,X_n \leq x_n) = \prod_{i=1}^{n}{F_{X_i}(x_i)}.
+              \end{align*}
+        \item[(3)] Si $X_1,...,X_n$ son variables aleatorias discretas independientes y si $T = \sum_{i=1}^{n}{X_i}$. Entonces $T$ es variable aleatoria y
+              \begin{align*}
+                  G_T(s) = \prod_{i=1}^{n}{G_{X_i}(s)}.
+              \end{align*}
+        \item[(4)] Si $X_1,...,X_n$ son variables aleatorias discretas independientes y si $T = \sum_{i=1}^{n}{X_i}$. Entonces $T$ es variable aleatoria y
+              \begin{align*}
+                  M_T(t) = \prod_{i=1}^{n}{M_{X_i}(t)}.
+              \end{align*}
+    \end{enumerate}
 \end{obs}
 
 \section{Distribución Binomial}
 
 \begin{defi}
-Sea X = número de éxitos al realizar n pruebas independientes de Bernoulli. Entonces $X \sim Bi(n,p)$ y 
-\begin{itemize}
-    \item $D_X = \{0,1,...,n\}$.
-    \item $P(X = i) = \binom{n}{i}p^i(1-p)^{n-i}$, $i \in D_X$.
-\end{itemize}
+    Sea X = número de éxitos al realizar n pruebas independientes de Bernoulli. Entonces $X \sim Bi(n,p)$ y
+    \begin{itemize}
+        \item $D_X = \{0,1,...,n\}$.
+        \item $P(X = i) = \binom{n}{i}p^i(1-p)^{n-i}$, $i \in D_X$.
+    \end{itemize}
 \end{defi}
 
 \begin{obs}
-Si $X \sim Bi(n,p)$ entonces
-\begin{enumerate}
-    \item[(i)] $G_X(s) = (ps + q)^n$.
-    \item[(ii)] $M_X(t) = (pe^t + q)^n = m(t)$.
-    \item[(iii)] $E[X] = m'(0) = np$.
-    \item[(iv)] $V[X] = np(1 - p)$.
-\end{enumerate}
+    Si $X \sim Bi(n,p)$ entonces
+    \begin{enumerate}
+        \item[(i)] $G_X(s) = (ps + q)^n$.
+        \item[(ii)] $M_X(t) = (pe^t + q)^n = m(t)$.
+        \item[(iii)] $E[X] = m'(0) = np$.
+        \item[(iv)] $V[X] = np(1 - p)$.
+    \end{enumerate}
 \end{obs}
 
 \section{Distribución Geométrica}
 
 \begin{defi}
-Sea X = número de fracasos hasta obtener el primer éxito al realizar pruebas independientes con $P(éxito = p)$. Entonces $X \sim Ge(p)$ y 
-\begin{itemize}
-    \item $D_X = \{0,1,...\}$.
-    \item $P(X = n) = (1 - p)^np$, $n \in D_X$.
-\end{itemize}
+    Sea X = número de fracasos hasta obtener el primer éxito al realizar pruebas independientes con $P(\text{éxito} = p)$. Entonces $X \sim Ge(p)$ y
+    \begin{itemize}
+        \item $D_X = \{0,1,...\}$.
+        \item $P(X = n) = (1 - p)^np$, $n \in D_X$.
+    \end{itemize}
 \end{defi}
 
 \begin{obs}
-Si $X \sim Ge(p)$ entonces
-\begin{enumerate}
-    \item[(i)] = $G_X(s) = \sum_{n=0}^{\infty}{s^nP(X = n)} = \sum_{n=0}^{\infty}{s^n(1-p)^np} = p\sum_{n=0}^{\infty}{(sq)^n} = \frac{p}{1 - sq}$ para todo $|s| \leq \frac{1}{q}$.
-    \item[(ii)] $M_X(t) = \frac{p}{q - e^tq}$.
-    \item[(iii)] $E[X] = \frac{q}{p}$.
-    \item[(iv)] $V[X] = \frac{q}{p^2}$.
-\end{enumerate}
+    Si $X \sim Ge(p)$ entonces
+    \begin{enumerate}
+        \item[(i)] = $G_X(s) = \sum_{n=0}^{\infty}{s^nP(X = n)} = \sum_{n=0}^{\infty}{s^n(1-p)^np} = p\sum_{n=0}^{\infty}{(sq)^n} = \frac{p}{1 - sq}$ para todo $|s| \leq \frac{1}{q}$.
+        \item[(ii)] $M_X(t) = \frac{p}{q - e^tq}$.
+        \item[(iii)] $E[X] = \frac{q}{p}$.
+        \item[(iv)] $V[X] = \frac{q}{p^2}$.
+    \end{enumerate}
 \end{obs}
 
 \section{Distribución Binomial Negativa}
 
 \begin{defi}
-Sea X = número de fracasos hasta conseguir el r-ésimo éxito al realizar pruebas independientes con $P(éxito) = p$. Entonces $X \sim BN(r,p)$ y 
-\begin{itemize}
-    \item $D_X = \{0,1,...\}$.
-    \item $P(X = n) = \binom{n + r - 1}{n}(1 - p)^np^r$, $r \in D_X$.
-\end{itemize}
+    Sea X = número de fracasos hasta conseguir el r-ésimo éxito al realizar pruebas independientes con $P(\text{éxito}) = p$. Entonces $X \sim BN(r,p)$ y
+    \begin{itemize}
+        \item $D_X = \{0,1,...\}$.
+        \item $P(X = n) = \binom{n + r - 1}{n}(1 - p)^np^r$, $r \in D_X$.
+    \end{itemize}
 \end{defi}
 
 \begin{obs}
-Si $X \sim BN(r,p)$ entonces
-\begin{itemize}
-    \item $X = \sum_{i=1}^{r}{X_i}$, donde $X_i \sim Ge(p)$ son variables aleatorias independientes.
-    \item $G_X(s) = \left(\frac{p}{1 - s(1 - p)}\right)^r$.
-    \item $m(t) = \left(\frac{p}{1 - e^t(1 - p)}\right)^r$.
-    \item $E[X] = \frac{r(1 - p)}{p}$.
-    \item $V[X] = \frac{r(1 - p)}{p^2}$.
-\end{itemize}
+    Si $X \sim BN(r,p)$ entonces
+    \begin{itemize}
+        \item $X = \sum_{i=1}^{r}{X_i}$, donde $X_i \sim Ge(p)$ son variables aleatorias independientes.
+        \item $G_X(s) = \left(\frac{p}{1 - s(1 - p)}\right)^r$.
+        \item $m(t) = \left(\frac{p}{1 - e^t(1 - p)}\right)^r$.
+        \item $E[X] = \frac{r(1 - p)}{p}$.
+        \item $V[X] = \frac{r(1 - p)}{p^2}$.
+    \end{itemize}
 \end{obs}
 
 \section{Distribución de Poisson}
 
 \begin{defi}
-$X \sim Po(\lambda)$, $\lambda > 0$, si
-\begin{itemize}
-    \item $D_X = \{0,1,...\}$.
-    \item $P(X = n) = e^{-\lambda}\frac{\lambda^n}{n!}$, $n \in D_X$.
-\end{itemize}
+    $X \sim Po(\lambda)$, $\lambda > 0$, si
+    \begin{itemize}
+        \item $D_X = \{0,1,...\}$.
+        \item $P(X = n) = e^{-\lambda}\frac{\lambda^n}{n!}$, $n \in D_X$.
+    \end{itemize}
 \end{defi}
 
 \begin{obs}
-Si $X \sim Po(\lambda)$, $\lambda > 0$, entonces
-\begin{itemize}
-    \item $G_X(s) = e^{-\lambda(1 - s)}$.
-    \item $M_X(t) = e^{-\lambda(1 - e^t)}$.
-    \item $E[X] = V[X] = \lambda$.
-\end{itemize}
+    Si $X \sim Po(\lambda)$, $\lambda > 0$, entonces
+    \begin{itemize}
+        \item $G_X(s) = e^{-\lambda(1 - s)}$.
+        \item $M_X(t) = e^{-\lambda(1 - e^t)}$.
+        \item $E[X] = V[X] = \lambda$.
+    \end{itemize}
 \end{obs}
 
 \section{Distribución Hipergeométrica}
 
 \begin{defi}
-Consideremos una población de $N$ elementos, donde hay $D$ elementos de la clase $A$ y $N - D$ elementos de la clase $B$. Sea X = número de elementos de la clase A al tomar una muestra (sin reemplazamiento) de tamaño n. Entonces $X \sim HG(N,D,n)$ y
-\begin{itemize}
-    \item $D_X = \{0,1,...,n\}$.
-    \item 
-    \begin{align*}
-        P(X = i) = \frac{\binom{D}{i}\binom{N - D}{n - i}}{\binom{N}{n}}, \ i \in D_X.
-    \end{align*}
-\end{itemize}
+    Consideremos una población de $N$ elementos, donde hay $D$ elementos de la clase $A$ y $N - D$ elementos de la clase $B$. Sea X = número de elementos de la clase A al tomar una muestra (sin reemplazamiento) de tamaño n. Entonces $X \sim HG(N,D,n)$ y
+    \begin{itemize}
+        \item $D_X = \{0,1,...,n\}$.
+        \item
+              \begin{align*}
+                  P(X = i) = \frac{\binom{D}{i}\binom{N - D}{n - i}}{\binom{N}{n}}, \ i \in D_X.
+              \end{align*}
+    \end{itemize}
 \end{defi}
 

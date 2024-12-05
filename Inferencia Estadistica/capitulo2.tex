@@ -1,48 +1,48 @@
 \chapter{Distribución Normal. Distribuciones asociadas al muestreo de poblaciones normales}
 
 \begin{defi}
-Sea $\textbf{X} = (X_1,X_2,...,X_n)^t$ un vector aleatorio y sea \\ $\boldsymbol{\mu} = (E(X_1),E(X_2),...,E(X_n))^t$ el vector de medias. Se define la matriz de varianzas y covarianzas $\Sigma$, como
-\begin{align*}
-    \Sigma = E((\textbf{X} - \boldsymbol{\mu}) \cdot (\textbf{X} - \boldsymbol{\mu})^t)
-\end{align*}
+    Sea $\textbf{X} = (X_1,X_2,...,X_n)^t$ un vector aleatorio y sea \\ $\boldsymbol{\mu} = (E(X_1),E(X_2),...,E(X_n))^t$ el vector de medias. Se define la matriz de varianzas y covarianzas $\Sigma$, como
+    \begin{align*}
+        \Sigma = E((\textbf{X} - \boldsymbol{\mu}) \cdot (\textbf{X} - \boldsymbol{\mu})^t)
+    \end{align*}
 \end{defi}
 
 \section{Distribución Normal Bivariante}
 
 \begin{defi}
-Se dice que $(X_1,X_2)^t$ tiene un distribución \textbf{Normal Bivariante} con vector de medias $\boldsymbol{\mu} = (\mu_1,\mu_2)^t$ y matriz de covarianzas
-\begin{align*}
-    \Sigma =\left( \begin{matrix}
-        \sigma_1^2 & Cov(X_1,X_2)\\
-        Cov(X_1,X_2) & \sigma_2^2
-\end{matrix}
-\right) = \left( \begin{matrix}
-        \sigma_1^2 & .\rho \sigma_1\sigma_2\\
-        \rho \sigma_1\sigma_2 & \sigma_2^2
-\end{matrix}
-\right)
-\end{align*}
-siendo $\rho$ el coeficiente de correlación entre $X_1$ y $X_2$ y lo notaremos $\textbf{X} \sim N_2(\boldsymbol{\mu}, \Sigma)$, si
-\begin{align*}
-    \left( \begin{matrix}
-        X_1\\
-        X_2
-\end{matrix}
-\right) = \left( \begin{matrix}
-        \mu_1\\
-        \mu_2
-\end{matrix}
-\right) + \left( \begin{matrix}
-        \sigma_1^2 & Cov(X_1,X_2)\\
-        Cov(X_1,X_2) & \sigma_2^2
-\end{matrix}
-\right)\left( \begin{matrix}
-        Z_1\\
-        Z_2
-\end{matrix}
-\right) 
-\end{align*}
-donde $Z_1$ y $Z_2$ son variables aleatorias independientes distribuidad según una $N(0,1)$.
+    Se dice que $(X_1,X_2)^t$ tiene un distribución \textbf{Normal Bivariante} con vector de medias $\boldsymbol{\mu} = (\mu_1,\mu_2)^t$ y matriz de covarianzas
+    \begin{align*}
+        \Sigma =\left( \begin{matrix}
+                           \sigma_1^2   & Cov(X_1,X_2) \\
+                           Cov(X_1,X_2) & \sigma_2^2
+                       \end{matrix}
+        \right) = \left( \begin{matrix}
+                             \sigma_1^2            & .\rho \sigma_1\sigma_2 \\
+                             \rho \sigma_1\sigma_2 & \sigma_2^2
+                         \end{matrix}
+        \right)
+    \end{align*}
+    siendo $\rho$ el coeficiente de correlación entre $X_1$ y $X_2$ y lo notaremos $\textbf{X} \sim N_2(\boldsymbol{\mu}, \Sigma)$, si
+    \begin{align*}
+        \left( \begin{matrix}
+                   X_1 \\
+                   X_2
+               \end{matrix}
+        \right) = \left( \begin{matrix}
+                             \mu_1 \\
+                             \mu_2
+                         \end{matrix}
+        \right) + \left( \begin{matrix}
+                             \sigma_1^2   & Cov(X_1,X_2) \\
+                             Cov(X_1,X_2) & \sigma_2^2
+                         \end{matrix}
+        \right)\left( \begin{matrix}
+                          Z_1 \\
+                          Z_2
+                      \end{matrix}
+        \right)
+    \end{align*}
+    donde $Z_1$ y $Z_2$ son variables aleatorias independientes distribuidad según una $N(0,1)$.
 \end{defi}
 Si $\textbf{X} \sim N_2(\boldsymbol{\mu}, \Sigma)$, su función de densidad conjunta viene dada de la forma
 \begin{align*}
@@ -54,27 +54,25 @@ donde $Q(x_1,x_2)$ es la forma cuadrática
 \end{align*}
 
 \begin{obs}
-Recordemos que el coeficiente de correlación entre $X_1$ y $X_2$ es
-\begin{align*}
-    \rho = \frac{Cov(X_1,X_2)}{\sqrt{V(X_1)}\sqrt{V(X_2)}}
-\end{align*}
-Si $X_1$ y $X_2$ son independientes entonces $\rho = 0$. Sin embargo, el recíproco no es cierto en general, aunque si $(X_1,X_2) \sim N_2(\boldsymbol{\mu}, \Sigma)$ entonces $X_1$ y $X_2$ son independientes si y solo si $\rho = 0$.
+    Recordemos que el coeficiente de correlación entre $X_1$ y $X_2$ es
+    \begin{align*}
+        \rho = \frac{Cov(X_1,X_2)}{\sqrt{V(X_1)}\sqrt{V(X_2)}}
+    \end{align*}
+    Si $X_1$ y $X_2$ son independientes entonces $\rho = 0$. Sin embargo, el recíproco no es cierto en general, aunque si $(X_1,X_2) \sim N_2(\boldsymbol{\mu}, \Sigma)$ entonces $X_1$ y $X_2$ son independientes si y solo si $\rho = 0$.
 \end{obs}
 
 \section{Distribución $\chi_{(n)}^2$}
 \begin{defi}
-Una variable aleatoria $X$ decimos que se distribuye según una $\chi_{(n)}^2$ cuando $X \sim Ga \Ga\left(\alpha = \frac{n}{2}, \beta = \frac{1}{2}\right)$, con $n \in \mathbb{N}$. La función de densidad viene dada de la forma
-\begin{align*}
-    f(x) = \frac{\left(\frac{1}{2}\right)^{\frac{n}{2}}}{\Gamma(\left \frac{n}{2}\right)}e^{-\frac{1}{2}x}x^{\frac{n}{2} -1}, \ \ \ x > 0.
-\end{align*}
+    Una variable aleatoria $X$ decimos que se distribuye según una $\chi_{(n)}^2$ cuando $X \sim Ga\left(\alpha = \frac{n}{2}, \beta = \frac{1}{2}\right)$, con $n \in \mathbb{N}$. La función de densidad viene dada de la forma
+    \begin{align*}
+        f(x) = \frac{\left(\frac{1}{2}\right)^{\frac{n}{2}}}{\Gamma\left( \frac{n}{2}\right)}e^{-\frac{1}{2}x}x^{\frac{n}{2} -1}, \ \ \ x > 0.
+    \end{align*}
 \end{defi}
 \subsubsection{Génesis de la distribución $\chi_{(n)}^2$}
 Dadas $X_1,X_2,...,X_n$ variables aleatorias independientes con distribución $N(0,1)$, el vector \\ $\textbf{X} = (X_1,X_2,...,X_n)^t \sim N_n(\textbf{0},\textbf{I}_n)$. Si consideramos la variable aleatoria $Y = \sum_{i=1}^{n}{X_i^2}$ podemos decir que $Y \sim \chi_{(n)}^2$.
-\\
-\newline
+
 Por lo tanto podemos que una $\chi_{(n)}^2$ viene dada como la suma de los cuadrados de $n$ variables aleatorias independientes todas $N(0,1)$.
-\\
-\newline
+
 Esta distribución depende de un sólo parámetro, $n$, cuya denominación de \textit{grados de libertad} hace referencia al número de sumandos que aportan variabilidad a la suma.
 
 \subsubsection{Parámetros de la distribución $\chi_{(n)}^2$}
@@ -83,8 +81,8 @@ Si $Y \sim \chi_{(n)}^2$, la esperanza es $E(Y) = n$ y la varianza es $V(Y) = 2n
 \subsubsection{Aproximación por el Teorema Central del Límite}
 Si $Y \sim \chi_{(n)}^2$, mediante el Teorema Central del Límite se tiene que
 \begin{align*}
-    &\frac{Y - n}{\sqrt{2n}} \longrightarrow N(0,1) \\
-    &\sqrt{2Y} - \sqrt{2n - 1} \longrightarrow N(0,1)
+     & \frac{Y - n}{\sqrt{2n}} \longrightarrow N(0,1)   \\
+     & \sqrt{2Y} - \sqrt{2n - 1} \longrightarrow N(0,1)
 \end{align*}
 
 \subsubsection{Reproductividad}
@@ -99,19 +97,19 @@ Si $\textbf{X} \sim N_n(\boldsymbol{\mu}, \Sigma)$. Entonces la formma cuadráti
 \subsubsection{Teorema de Fisher}
 
 \begin{teo}[Teorema de Fisher]
-Si $(X_1,X_2,...,X_n)$ es una muestra aleatoria simple de una población $N(0,1)$, entonces $(n-1)S^2 \left( = \sum_{i=1}^{n}{(X_i -\overline{X})^2}\right)$ y $\overline{X}$ son variables aleatorias independientes y la distribución del muestreo es
-\begin{align*}
-    (n-1)S^2 \sim \chi_{(n-1)}^2 \\
-    \overline{X} \sim N\left( 0, \frac{1}{\sqrt{n}} \right)
-\end{align*}
+    Si $(X_1,X_2,...,X_n)$ es una muestra aleatoria simple de una población $N(0,1)$, entonces $(n-1)S^2 \left( = \sum_{i=1}^{n}{(X_i -\overline{X})^2}\right)$ y $\overline{X}$ son variables aleatorias independientes y la distribución del muestreo es
+    \begin{align*}
+        (n-1)S^2 \sim \chi_{(n-1)}^2 \\
+        \overline{X} \sim N\left( 0, \frac{1}{\sqrt{n}} \right)
+    \end{align*}
 \end{teo}
 
 \begin{teo}[Teorema de Fisher generalizado]
-Si $(X_1,X_2,...,X_n)$ es una muestra aleatoria simple de una población $N(\mu,\sigma)$, entonces $S^2$ y $\overline{X}$ son variables aleatorias independientes y la distribución del muestreo es
-\begin{align*}
-    \frac{(n-1)S^2}{\sigma^2} \sim \chi_{(n-1)}^2 \\
-    \overline{X} \sim N\left( \mu, \frac{\sigma}{\sqrt{n}} \right)
-\end{align*}
+    Si $(X_1,X_2,...,X_n)$ es una muestra aleatoria simple de una población $N(\mu,\sigma)$, entonces $S^2$ y $\overline{X}$ son variables aleatorias independientes y la distribución del muestreo es
+    \begin{align*}
+        \frac{(n-1)S^2}{\sigma^2} \sim \chi_{(n-1)}^2 \\
+        \overline{X} \sim N\left( \mu, \frac{\sigma}{\sqrt{n}} \right)
+    \end{align*}
 \end{teo}
 
 \section{Distribución t-Student}
@@ -125,11 +123,11 @@ No será de gran utilidad esta distribución si $\sigma$ es desconocido. De hech
 \end{align*}
 La custión ahora es determinar la distribución de este nuevo estadístico y confiar en que no dependa de $\sigma$. En caso contrario no lo podremos usar como estadístico.
 \begin{defi}
-Si $X,X_1,X_2,...,X_n$, $n +1$ variables aleatorias independientes con distribución $N(0,\sigma)$. Sea $Y = \sum_{i=1}^{n}{X_i^2}$ y $U = \sqrt{Y/n}$. Entonces
-\begin{align*}
-    t = \frac{X}{U} = \frac{X}{\sqrt{\frac{\sum_{i=1}^{n}{X_i^2}}{n}}}
-\end{align*}
-La distribución de $t$ se denomina \textbf{distribución t-Student con $n$ grados de libertad} y lo notaremos $t \sim t_n$.
+    Si $X,X_1,X_2,...,X_n$, $n +1$ variables aleatorias independientes con distribución $N(0,\sigma)$. Sea $Y = \sum_{i=1}^{n}{X_i^2}$ y $U = \sqrt{Y/n}$. Entonces
+    \begin{align*}
+        t = \frac{X}{U} = \frac{X}{\sqrt{\frac{\sum_{i=1}^{n}{X_i^2}}{n}}}
+    \end{align*}
+    La distribución de $t$ se denomina \textbf{distribución t-Student con $n$ grados de libertad} y lo notaremos $t \sim t_n$.
 \end{defi}
 La distribución $t_n$ es la distribución $N(0,1)$ dividida por la raíz cuadrada de una $\chi_{(n)}^2$ por sus grados de libertad, ambas independientes.
 
@@ -140,14 +138,13 @@ La distribución $t$ de Student depende de un único parámtro $n$ (el número d
 
 \begin{itemize}
     \item Para $n = 1$, la distribución $t_1$ es la distribución de Cauchy con densidad
-    \begin{align*}
-        f(x) = \frac{1}{\pi (1 + x^2)}, \ \ x \in \mathbb{R}.
-    \end{align*}
-    Esta distribución no posee momentos de primer orden y por consiguiente carece de varianza.
+          \begin{align*}
+              f(x) = \frac{1}{\pi (1 + x^2)}, \ \ x \in \mathbb{R}.
+          \end{align*}
+          Esta distribución no posee momentos de primer orden y por consiguiente carece de varianza.
     \item Si $n > 1$ la media es finita y vale cero. Para $n > 2$ la varianza existe y es $\frac{n}{n-2}$, de forma que la dispersión decrece rápidamente hacia $1$ cuando $n$ crece.
-    \\
-    \newline
-    La función de distribución asociada a la densidad de $t_n$ tampoco puede expresarse explícitamente y sus valores numéricos aparecen tabulados.
+
+          La función de distribución asociada a la densidad de $t_n$ tampoco puede expresarse explícitamente y sus valores numéricos aparecen tabulados.
 \end{itemize}
 
 \subsubsection{Aproximación a la $N(0,1)$}
@@ -156,11 +153,11 @@ Cuando $n \to +\infty$, la distribución $t_n$ se puede aproximar por una $N(0,1
 Consideremos dos poblaciones normales independientes $X \sim N(\mu_1,\sigma_1)$ e $Y \sim N(\mu_2,\sigma_2)$ que queremos comparar. Supuesto que las varianzas son desconocidas, la comparación entre las poblaciones exige también la comparación de las varianzas. El método para obtener información acerca de la relación estará basado en las cuasivarianzas respectivas $S_1^2$ y $S_2^2$. En vez de considerar $S_1^2 - S_2^2$, de la que no es posible encontrar la distribución de forma fácil, utilizaremos el estadístico $\frac{S_1^2}{S_2^2}$ cuya distribución en el muestreo se puede calcular de forma explícita.
 
 \begin{defi}
-Si $X_1,X_2,...,X_n,Y_1,Y_2,...,Y_m$ son variables aleatorias independientes con distribución $N(0,1)$, entonces la distribución del estadístico
-\begin{align*}
-    \frac{\sum_{i=1}^{n}{\frac{X_i^2}{n}}}{\sum_{j=1}^{m}{\frac{Y_j^2}{m}}}
-\end{align*}
-es una distribución \textbf{F-Snedecor con $n$ y $m$ grados de libertad} y lo notaremos $F_{n,m}$.
+    Si $X_1,X_2,...,X_n,Y_1,Y_2,...,Y_m$ son variables aleatorias independientes con distribución $N(0,1)$, entonces la distribución del estadístico
+    \begin{align*}
+        \frac{\sum_{i=1}^{n}{\frac{X_i^2}{n}}}{\sum_{j=1}^{m}{\frac{Y_j^2}{m}}}
+    \end{align*}
+    es una distribución \textbf{F-Snedecor con $n$ y $m$ grados de libertad} y lo notaremos $F_{n,m}$.
 \end{defi}
 Una distribución $F_{n,m}$ es la distribución del cociente de dos distribuciones $\chi^2$ independientes, de $n$ y $m$ grados de libertad respectivamente, dividadas cada una de ellas por sus grados de libertad.
 

@@ -5,11 +5,10 @@
 La \textbf{Estadística} es la rama de las Matemáticas que se ocupa de recoger datos, analizarlos y organizarlos, y de realizar predicciones que sobre esos datos puedan deducirse. Tiene dos vertientes básicas:
 \begin{enumerate}
     \item[a)] \textbf{Estadística Descriptiva:} Se ocupa de, a partir de ciertos datos, analizarlos y organizarlos. Es aquí donde tiene sentido calcular la media, mediana, moda, desviación media, desviación típica, etc.
-    \item[b)] \textbf{Estadística Inferencial:} Se ocupa de predecir, sacar conclusiones, para una población tomando como base una muestra de dicha población. Como todas las predicciones, siempre han de hacerse bajo un cierto grado de fiabilidad o confianza. 
+    \item[b)] \textbf{Estadística Inferencial:} Se ocupa de predecir, sacar conclusiones, para una población tomando como base una muestra de dicha población. Como todas las predicciones, siempre han de hacerse bajo un cierto grado de fiabilidad o confianza.
 \end{enumerate}
 En un sentido amplio, se entiende por \textbf{Inferencia} a la parte de la Estadística que estudia grandes colectivos (población) a partir de una pequeña parte de ésta (muestra).
-\\
-\newline
+
 Un factor clave de diferenciación entre los diversos problemas de Inferencia Estadística. que pueden plantearse, es el tipo de conclusiones que se quieren establecer sobre la situación aleatoria en cuestión. Distinguimos entonces:
 
 \begin{itemize}
@@ -21,23 +20,22 @@ La población en estudio viene representada por una variable aleatoria, $X$, con
 
 \begin{enumerate}
     \item[a)] \textbf{Inferencia Paramétrica:} Es aquella en la que se admite que la distribución de la población pertenece a una cierta familia paramétrica de distribuciones, siendo necesario únicamente precisar el valor de los parámetros para determinar la distribución poblacional.
-    \begin{enumerate}
-        \item[1)] \textbf{Enfoque clásico:} Los parámetros de la distribución de la población se consideran constantes.
-        \item[2)] \textbf{Enfoque bayesiano:} Considera los parámetros de la distribución como variables aleatorias permitiendo introducir información sobre ellos a través de la distribución a priori.
-    \end{enumerate}
+          \begin{enumerate}
+              \item[1)] \textbf{Enfoque clásico:} Los parámetros de la distribución de la población se consideran constantes.
+              \item[2)] \textbf{Enfoque bayesiano:} Considera los parámetros de la distribución como variables aleatorias permitiendo introducir información sobre ellos a través de la distribución a priori.
+          \end{enumerate}
     \item[b)] \textbf{Inferencia no Paramétrica:} No supone ninguna distribución de probabilidad de la población, exigiendo solo hipótesis muy generales como puede ser la de simetría de la distribucion. Los procedimientos no paramétricos se pueden clasificiar en:
-    \begin{enumerate}
-        \item[1)] \textbf{Procedimientos de localización}, que estudian los parámetros de localización de la distribución.
-        \item[2)] \textbf{Procedimientos de estructura}, que estudian las condiciones que se dan en la distribución de la variable.
-        \item[3)] \textbf{Procedimientos sobre las condiciones de la muestra}, que comprueban si se verifican las hipótesis exigibles a los valores muestrables como pueden ser la independencia, ausencia de valores atípicos, etc.
-    \end{enumerate}
+          \begin{enumerate}
+              \item[1)] \textbf{Procedimientos de localización}, que estudian los parámetros de localización de la distribución.
+              \item[2)] \textbf{Procedimientos de estructura}, que estudian las condiciones que se dan en la distribución de la variable.
+              \item[3)] \textbf{Procedimientos sobre las condiciones de la muestra}, que comprueban si se verifican las hipótesis exigibles a los valores muestrables como pueden ser la independencia, ausencia de valores atípicos, etc.
+          \end{enumerate}
 \end{enumerate}
 
 \section{Elementos de la Inferencia Estadística}
 
 Todo problema de inferencia estadística está motivado por un cierto grado de desconocimiento de la ley de probabilidad que rige cierto fenómeno aleatorio. El caso más simple es cuando el interés se centra en una determinada variable aleatoria $X$ cuya distribución $F$ es más o menos desconocida. La distribución $F$ involucrada en el problema de inferencia estadística se denomina \textit{distribución teórica} o \textit{distribución de la población}.
-\\
-\newline
+
 Los elementos de la Inferencia Estadísitca son:
 \begin{itemize}
     \item \textbf{Población:} Conjunto de elementos sobre los que se observa una característica común. Esta característica viene representada por una variable aleatoria cuya distribución $F$ es desconocida o no se conoce su totalidad.
@@ -67,28 +65,25 @@ Los muestreos probabilísticos se basan en el principio de equiprobabilidad: tod
     \item \textbf{Muestreo aleatoria simple con reemplazamiento:} Todas las unidades muestrales tienen la misma probabilidad de ser elegidas, pudiendo medirse varias veces el mismo individuo.
     \item \textbf{Muestreo aleatoria simple sin reemplazamiento}: Todas las unidades muestrales tienen la misma probabilidad de ser elegidas, pero los individuos no tienen posibilidad de aparecer en la muestra más de una vez.
     \item \textbf{Muestreo estratificado:} La población está dividida en subpoblaciones o estratos que contienen elementos parecidos entre sí. La composición de la muestra se distribuye entre los distintos estratos mediante un procedimiento que recibe el nombre de \textit{afijación}.
-    \begin{enumerate}
-        \item[a)] \textbf{Afijación uniforme:} En la muestra habrá el mismo número de representantes por cada estrato. Si hay $k$ estratos y el tamaño de la muestra es $n$, se extraerán aproximadamente $n/k$ elementos de cada estrato.
-        \item[b)] \textbf{Afijación proporcional:} En la muestra habrá un número de representantes de cada estrato proporcional a su tamaño. Si el estrato $i$ tiene $N_i$ elementos y la población total está formada por $N$ elementos, al estrato $i$ le corresponden $(N_i/N) \cdot n$ elementos muestrales, donde $n$ es el tamaño de muestra que se quiere tomar.
-        \item[c)] La asignación de unidades muestrales se hace teniendo en cuenta tanto el \textbf{tamaño de la muestra} como su \textbf{variabilidad}. De esta forma en un estrato más heterogéneo se necesitan más unidades muestrales mientras que en uno más homogéneo se necesitan menos unidades muestrales.
-        \\
-        \newline
-        Si $\sigma_i$ representa a la desviación típica del $i$-ésimo estrato, la asignación de las unidades muestrales para dicho estrato será
-        \begin{align*}
-            n_i = n \cdot \frac{N_i \sigma_i}{\sum_{j=1}^{k}{\sigma_j N_j}}.
-        \end{align*}
-    \end{enumerate}
+          \begin{enumerate}
+              \item[a)] \textbf{Afijación uniforme:} En la muestra habrá el mismo número de representantes por cada estrato. Si hay $k$ estratos y el tamaño de la muestra es $n$, se extraerán aproximadamente $n/k$ elementos de cada estrato.
+              \item[b)] \textbf{Afijación proporcional:} En la muestra habrá un número de representantes de cada estrato proporcional a su tamaño. Si el estrato $i$ tiene $N_i$ elementos y la población total está formada por $N$ elementos, al estrato $i$ le corresponden $(N_i/N) \cdot n$ elementos muestrales, donde $n$ es el tamaño de muestra que se quiere tomar.
+              \item[c)] La asignación de unidades muestrales se hace teniendo en cuenta tanto el \textbf{tamaño de la muestra} como su \textbf{variabilidad}. De esta forma en un estrato más heterogéneo se necesitan más unidades muestrales mientras que en uno más homogéneo se necesitan menos unidades muestrales.
+
+                    Si $\sigma_i$ representa a la desviación típica del $i$-ésimo estrato, la asignación de las unidades muestrales para dicho estrato será
+                    \begin{align*}
+                        n_i = n \cdot \frac{N_i \sigma_i}{\sum_{j=1}^{k}{\sigma_j N_j}}.
+                    \end{align*}
+          \end{enumerate}
     \item \textbf{Muestreo por conglomerados:} Dada una población, se establecen grupos de elementos físicamente próximos entre ellos frecuentemente constituidos por una partición geográfica de la población. Los conglomerados deben ser tan heterogéneos como la población a estudiar para que la muestra la represente bien.
-    \\
-    \newline
-    Obsérvese que en el muestreo estratificado un estrato es homogéneo (sus elementos tienen la mismas características), mientras que un conglomerado es heterogéneo porque debe representar a la población.
+
+          Obsérvese que en el muestreo estratificado un estrato es homogéneo (sus elementos tienen la mismas características), mientras que un conglomerado es heterogéneo porque debe representar a la población.
     \item \textbf{Muestreo sistemático:} Para obtener una muestra de tamaño $n$ se elige un individuo al azar y a partir de él, a intervalos constantes, se eligen los demás hasta completar la muestra.
 \end{itemize}
 
 \subsection{Muestreo no probabilístico}
 Cuando el muestreo probabilístico resulta costoso o no se tiene asegurado que cualquier elemento de la población pueda pertenecer a una muestra, se consideran muestreos no probabilísticos. Estos métodos no sirven para realizar generalizaciones pues no se tiene la certeza de que la muestra sea representativa.
-\\
-\newline
+
 En este tipo de muestreo se da preferencia en la muestra a aquellos individuos que al cumplir con cierta cualidad o característica benefician a la investigación.
 \begin{itemize}
     \item \textbf{Muestreo por cuotas:} Se supone que existe un buen conocimiento de los estratos de la población y/o los individuos más representativos o adecuados para la investigación. Tiene semenjanzas con el muestreo estratificado pero no tiene el carácter de aleatoriedad.
@@ -99,11 +94,10 @@ En este tipo de muestreo se da preferencia en la muestra a aquellos individuos q
 \section{Muestra aleatoria simple}
 
 \begin{defi}
-Una \textbf{muestra aleatoria simple de tamaño n} de una variable aleatoria $X$ con distribución teórica $F_X$, es un conjunto de $n$ variables aleatorias independientes $(X_1, ..., X_n)$ e igualmente distribuidas con distribución común $F_X$.
+    Una \textbf{muestra aleatoria simple de tamaño n} de una variable aleatoria $X$ con distribución teórica $F_X$, es un conjunto de $n$ variables aleatorias independientes $(X_1, ..., X_n)$ e igualmente distribuidas con distribución común $F_X$.
 \end{defi}
 Cada $X_i$ es una variable aleatoria que representa la característica bajo estudio del elemento $i$-ésimo de la muestra. Cuando las mediciones se hayan llevado a cabo, es decir, una vez realizado el muestreo, los resultados obtenidos, $(x_1, ..., x_n)$, se denomiarán \textbf{realización de la muestra}.
-\\
-\newline
+
 Como las variables aleatorias han de ser independientes, la función de distribución conjunta de la muestra aleatoria simple será
 \begin{align*}
     F(x_1,...,x_n) = F_X(x_1) \dotsb F_X(x_n).
@@ -113,47 +107,45 @@ No habrá ambig\"uedad en representar mediante el mismo símbolo, $F$, la funci�
 \section{Concepto de estadístico y su distribución en el muestreo}
 
 \begin{defi}
-Llamamos \textbf{estadístico} a cualquier función medible de las variables aleatorias observables de la muestra aleatoria simple que no depende de ningún parámetro desconocido en el estudio.
+    Llamamos \textbf{estadístico} a cualquier función medible de las variables aleatorias observables de la muestra aleatoria simple que no depende de ningún parámetro desconocido en el estudio.
 \end{defi}
 
-En general un estadístico es una función medible $T: \mathbb{R}^n \longrightarrow \mathbb{R}^k$ aplicada a la muestra aleatoria simple, $T(X_1, ..., X_n)$. 
-\\
-\newline
+En general un estadístico es una función medible $T: \mathbb{R}^n \longrightarrow \mathbb{R}^k$ aplicada a la muestra aleatoria simple, $T(X_1, ..., X_n)$.
+
 Un estadístico $T$ es una nueva varible aleatoria (o vector aleatorio) que tendrá una distribución asociada llamada \textit{distribución muestral} con una función de distribución llamada \textit{función de distribución empírica}.
 
 \subsection{Estadísticos más utilizados}
 Los estadísticos más utilizados son:
 \begin{itemize}
     \item \textbf{Media muestral}
-    \begin{align*}
-        T(X_1,X_2, ..., X_n) = \overline{X} = \frac{\sum_{i=1}^{n}{X_i}}{n}
-    \end{align*}
+          \begin{align*}
+              T(X_1,X_2, ..., X_n) = \overline{X} = \frac{\sum_{i=1}^{n}{X_i}}{n}
+          \end{align*}
     \item \textbf{Varianza muestral}
-    \begin{align*}
-        T(X_1,X_2, ..., X_n) = \var_n(\textbf{X}) = \frac{\sum_{i=1}^{n}{(X_i - \overline{X})^2}}{n}
-    \end{align*}
+          \begin{align*}
+              T(X_1,X_2, ..., X_n) = \var_n(\textbf{X}) = \frac{\sum_{i=1}^{n}{(X_i - \overline{X})^2}}{n}
+          \end{align*}
     \item \textbf{Cuasivarianza muestral}
-    \begin{align*}
-        T(X_1,X_2, ..., X_n) = \text{S}^2 = \frac{\sum_{i=1}^{n}{(X_i - \overline{X})^2}}{n-1}
-    \end{align*}
+          \begin{align*}
+              T(X_1,X_2, ..., X_n) = \text{S}^2 = \frac{\sum_{i=1}^{n}{(X_i - \overline{X})^2}}{n-1}
+          \end{align*}
     \item \textbf{Máximo y Mínimo}
-    \begin{align*}
-        &T(X_1,X_2, ..., X_N) = X_{(n)}=  \max(X_1, X_2, ...,X_n) \\
-        &T(X_1,X_2, ..., X_N) = X_{(1)} =\min(X_1, X_2, ...,X_n)
-    \end{align*}
+          \begin{align*}
+               & T(X_1,X_2, ..., X_N) = X_{(n)}=  \max(X_1, X_2, ...,X_n) \\
+               & T(X_1,X_2, ..., X_N) = X_{(1)} =\min(X_1, X_2, ...,X_n)
+          \end{align*}
 \end{itemize}
 
 \begin{obs}
-\begin{align*}
-    \text{S}^2 = \frac{n}{n-1}\var_n(\textbf{X})
-\end{align*}
+    \begin{align*}
+        \text{S}^2 = \frac{n}{n-1}\var_n(\textbf{X})
+    \end{align*}
 \end{obs}
 
 \subsection{Función de distribución muestral}
 
 Sea $X \sim F_{\theta}$, donde $\{F_{\theta} : \theta \in \Theta \}$.  Identifiquemos $F_{\theta} \equiv F$. ¿Cómo podemos estimar $F$?
-\\
-\newline
+
 Tomamos $(X_1, X_2,..., X_n)$ una mumestra aleatoria simple ($X_i \sim F$, $i = 1,...,n$ e independientes). Definimos
 \begin{align*}
     F_{(X_1, X_2,..., X_n)}^*(x) = \frac{\text{número de variables tales que } X_i \leq x}{n}, \ x \in \mathbb{R},
@@ -165,10 +157,10 @@ que es una nueva variable aleatoria. Observamos que podemos escribir dicha varia
 Si llamamos
 \begin{align*}
     Y_i = I_{(-\infty,x]}(X_i) = \left\{ \begin{array}{lcc}
-             1 & si & X_i \leq x \\
-             0 & si & X_i > x\\
-             \end{array}
-        \right.
+                                             1 & si & X_i \leq x \\
+                                             0 & si & X_i > x    \\
+                                         \end{array}
+    \right.
 \end{align*}
 es una variable aleatoria e $Y_i \sim Ber(p)$. Encontremos dicho $p$. Observamos que
 \begin{align*}
@@ -184,8 +176,8 @@ como $Y_i$ son variables aleatorias independientes, entonces
 \end{align*}
 De aquí deducimos que
 \begin{align*}
-    &E(F_{(X_1, X_2,..., X_n)}^*(x)) = \frac{1}{n}nF(x) = F(x) \\
-    &V(F_{(X_1, X_2,..., X_n)}^*(x)) = \frac{1}{n^2}nF(x)(1 - F(x)) = \frac{1}{n}F(x)(1 - F(X)) \\
+     & E(F_{(X_1, X_2,..., X_n)}^*(x)) = \frac{1}{n}nF(x) = F(x)                                  \\
+     & V(F_{(X_1, X_2,..., X_n)}^*(x)) = \frac{1}{n^2}nF(x)(1 - F(x)) = \frac{1}{n}F(x)(1 - F(X)) \\
 \end{align*}
 Además, por el Teorema Central del Límite
 \begin{align*}
@@ -197,12 +189,12 @@ Además, por el Teorema Central del Límite
 Sea $X \sim F_X$ y sea $(X_1, X_2,..., X_n)$ una mumestra aleatoria simple ($X_i \sim F$, $i = 1,...,n$ e independientes). Entonces
 \begin{itemize}
     \item \textbf{Momento ordinario de orden k respecto del origen}
-    \begin{align*}
-        m_k = \frac{\sum_{i=1}^{n}{X_i^k}}{n}
-    \end{align*}
+          \begin{align*}
+              m_k = \frac{\sum_{i=1}^{n}{X_i^k}}{n}
+          \end{align*}
     \item \textbf{Momento central de orden k}
-    \begin{align*}
-        M_k = \frac{\sum_{i=1}^{n}{(X_i - \overline{X})^k}}{n}
-    \end{align*}
+          \begin{align*}
+              M_k = \frac{\sum_{i=1}^{n}{(X_i - \overline{X})^k}}{n}
+          \end{align*}
 \end{itemize}
 
